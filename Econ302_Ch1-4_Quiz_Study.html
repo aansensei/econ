@@ -1,0 +1,1355 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Econ 302 — Ch 1-4 Quiz Study App</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#f4f4f4;color:#222;min-height:100vh}
+/* NAV */
+#nav{background:#c5050c;color:#fff;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 6px rgba(0,0,0,0.3)}
+#nav h1{font-size:1.1rem;font-weight:700;letter-spacing:.5px}
+#nav-btns button{margin-left:8px;padding:6px 14px;border:2px solid #fff;background:transparent;color:#fff;border-radius:20px;cursor:pointer;font-size:.85rem;transition:all .2s}
+#nav-btns button:hover,#nav-btns button.active{background:#fff;color:#c5050c;font-weight:700}
+/* TIMER */
+#timer-bar{background:#222;color:#fff;text-align:center;padding:8px;font-size:1.1rem;font-weight:700;display:none;position:sticky;top:54px;z-index:99}
+#quiz-qnav{position:sticky;top:96px;z-index:98;background:#f0f0f0;border-bottom:2px solid #ccc;padding:8px 12px;display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+#quiz-qnav .qn-label{font-size:.78rem;font-weight:700;color:#555;margin-right:4px;white-space:nowrap}
+.qn-btn{width:32px;height:32px;border-radius:6px;border:1.5px solid #bbb;background:#fff;font-size:.8rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .15s}
+.qn-btn.answered{background:#28a745;color:#fff;border-color:#28a745}
+.qn-btn.flagged{background:#fd7e14;color:#fff;border-color:#fd7e14}
+.qn-btn.flagged.answered{background:#fd7e14;color:#fff}
+.flag-btn{float:right;background:none;border:1.5px solid #bbb;border-radius:6px;padding:3px 8px;cursor:pointer;font-size:.85rem;color:#888;transition:all .15s;margin-left:8px}
+.flag-btn.active{background:#fd7e14;border-color:#fd7e14;color:#fff}
+#timer-bar.warning{background:#c5050c;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.7}}
+/* HOME */
+#home{max-width:800px;margin:40px auto;padding:20px}
+#home h2{font-size:1.8rem;color:#c5050c;margin-bottom:10px}
+#home p{margin-bottom:12px;line-height:1.6}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:20px 0}
+.stat-card{background:#fff;border-radius:10px;padding:16px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.stat-card .num{font-size:2rem;font-weight:700;color:#c5050c}
+.stat-card .lbl{font-size:.8rem;color:#666;margin-top:4px}
+.mode-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.mode-card{background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,.1);cursor:pointer;border:2px solid transparent;transition:all .2s}
+.mode-card:hover{border-color:#c5050c;transform:translateY(-2px)}
+.mode-card h3{font-size:1.2rem;color:#c5050c;margin-bottom:8px}
+.mode-card p{font-size:.9rem;color:#555;line-height:1.5}
+.btn{display:inline-block;padding:10px 22px;background:#c5050c;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:.95rem;font-weight:600;transition:background .2s}
+.btn:hover{background:#a00}
+.btn-secondary{background:#555}
+.btn-secondary:hover{background:#333}
+.btn-outline{background:transparent;border:2px solid #c5050c;color:#c5050c}
+.btn-outline:hover{background:#c5050c;color:#fff}
+/* REVIEW / QUIZ CONTAINER */
+#review,#quiz,#mistakes{max-width:860px;margin:0 auto;padding:20px}
+.section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.section-header h2{font-size:1.3rem;color:#c5050c}
+/* QUESTION CARD */
+.q-card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 1px 6px rgba(0,0,0,.08);border-left:4px solid #ddd;transition:border-color .2s}
+.q-card.correct{border-left-color:#28a745}
+.q-card.incorrect{border-left-color:#c5050c}
+.q-card.unanswered{border-left-color:#ffc107}
+.q-tag{display:inline-block;padding:2px 10px;background:#c5050c;color:#fff;border-radius:20px;font-size:.72rem;font-weight:700;margin-bottom:8px;text-transform:uppercase;letter-spacing:.4px}
+.q-points{display:inline-block;margin-left:8px;padding:2px 8px;background:#e0e0e0;color:#333;border-radius:20px;font-size:.72rem;font-weight:600}
+.q-stem{font-size:.97rem;line-height:1.6;margin:10px 0 14px}
+.q-stem strong{font-weight:700}
+.q-image{max-width:100%;border-radius:8px;margin:10px 0 14px;border:1px solid #eee}
+.options label{display:flex;align-items:flex-start;gap:10px;padding:8px 12px;border-radius:8px;cursor:pointer;margin-bottom:6px;border:1.5px solid #ddd;transition:all .2s;font-size:.9rem;line-height:1.5}
+.options label:hover{background:#fff5f5;border-color:#c5050c}
+.options label.selected{border-color:#c5050c;background:#fff0f0}
+.options label.correct-opt{background:#d4edda;border-color:#28a745}
+.options label.wrong-opt{background:#f8d7da;border-color:#c5050c}
+.options input{margin-top:3px;flex-shrink:0;accent-color:#c5050c}
+.q-dropdown{padding:8px 12px;border:1.5px solid #ddd;border-radius:8px;font-size:.9rem;min-width:200px}
+.q-check-btn{margin-top:12px;padding:8px 18px;background:#c5050c;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:.88rem;font-weight:600}
+.q-check-btn:disabled{background:#ccc;cursor:not-allowed}
+.q-retry-btn{margin-left:8px;padding:8px 14px;background:#555;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:.88rem;font-weight:600}
+.feedback{margin-top:10px;padding:10px 14px;border-radius:8px;font-size:.9rem;font-weight:600}
+.feedback.ok{background:#d4edda;color:#155724}
+.feedback.err{background:#f8d7da;color:#721c24}
+.table-q{width:100%;border-collapse:collapse;margin:10px 0;font-size:.88rem}
+.table-q th{background:#c5050c;color:#fff;padding:8px;text-align:left}
+.table-q td{padding:8px;border-bottom:1px solid #eee}
+.table-q tr:nth-child(even){background:#fafafa}
+/* QUIZ MODE */
+#quiz-submit-bar{text-align:center;margin:20px 0}
+.q-card.quiz-mode{border-left:4px solid #888}
+/* SCORE DISPLAY */
+#score-box{background:#fff;border-radius:12px;padding:24px;text-align:center;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+#score-box .big{font-size:3rem;font-weight:700;color:#c5050c}
+#score-box .sub{font-size:1rem;color:#555;margin-top:6px}
+/* PROGRESS */
+#review-progress{background:#e0e0e0;height:8px;border-radius:4px;margin-bottom:16px;overflow:hidden}
+#review-progress-fill{height:100%;background:#c5050c;transition:width .3s;border-radius:4px}
+/* FILTER BAR */
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.filter-btn{padding:5px 12px;border:1.5px solid #ccc;border-radius:20px;background:#fff;cursor:pointer;font-size:.8rem;transition:all .2s}
+.filter-btn.active{background:#c5050c;color:#fff;border-color:#c5050c}
+/* SCENARIO BOX */
+.scenario-box{background:#f0f4ff;border:1.5px solid #b0c4de;border-radius:8px;padding:14px;margin-bottom:14px;font-size:.9rem;line-height:1.6}
+.scenario-box h4{font-size:.85rem;font-weight:700;color:#003366;margin-bottom:6px}
+/* MULTI-PART */
+.subq{margin-top:16px;padding-top:14px;border-top:1px dashed #ddd}
+.subq-label{font-weight:700;font-size:.82rem;color:#c5050c;margin-bottom:6px;text-transform:uppercase;letter-spacing:.4px}
+/* ANSWER KEY REVEAL */
+.answer-key{background:#f8f9fa;border:1px solid #ccc;border-radius:8px;padding:12px;margin-top:10px;font-size:.88rem}
+.answer-key .ak-title{font-weight:700;color:#555;margin-bottom:6px}
+/* GROUP CARD */
+.group-label{font-size:.78rem;background:#555;color:#fff;display:inline-block;padding:2px 8px;border-radius:4px;margin-bottom:6px}
+/* SCROLLTOP */
+#scrolltop{position:fixed;bottom:24px;right:24px;background:#c5050c;color:#fff;border:none;border-radius:50%;width:44px;height:44px;font-size:1.2rem;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.2);display:none;z-index:200}
+</style>
+</head>
+<body><script>
+const IMG={}; // no charts/graphs needed for this problem set
+
+// ============================================================
+// QUESTION BANK — all pools (complete)
+// ============================================================
+// ============================================================
+// QUESTION BANK -- Econ 302, Ch 1-4 Potential Quiz & Module 1 Exam
+// Source: "Ch 1-4 Potential Quiz and Module 1 Exam Answers.pdf"
+// Correct answers below were extracted directly from the bold-highlighted
+// text embedded in the PDF (verified via font-weight inspection, not guessed).
+// ============================================================
+const OPTS4 = ["an increase","a decrease","no change","an ambiguous-change"];
+
+const QB = [
+
+// ====== POOL 1: Ch.4 model, C on vertical axis -- MRS & utility (1 pt each) ======
+{id:"p1_1",pool:"pool_1",tag:"Pool 1 -- MRS & Utility (Ch.4 Model)",pts:1,type:"inline",
+ stem:"Using the Chapter 4 model from class with C on the vertical axis, the increase in female labor force participation rates in the 1960s-1990s could be represented by (ceteris paribus) ____ in the MRS out of consumption into leisure, and ____ in utility.",
+ blanks:[{opts:OPTS4,ans:1},{opts:OPTS4,ans:3}],
+ note:"A taste shift toward market work (not a wage or income change) moves the household along a new indifference map, so the effect on utility is ambiguous without knowing the new preferences."},
+
+{id:"p1_2",pool:"pool_1",tag:"Pool 1 -- MRS & Utility (Ch.4 Model)",pts:1,type:"inline",
+ stem:"Using the Chapter 4 model from class, if there is a decrease in profits (pi), this will, in equilibrium, lead to (ceteris paribus) ____ in the MRS out of consumption into leisure, and ____ in utility.",
+ blanks:[{opts:OPTS4,ans:2},{opts:OPTS4,ans:1}],
+ note:"A pure income effect (wage unchanged): equilibrium still requires MRS = real wage, so MRS is unchanged. The household is poorer, so utility falls."},
+
+{id:"p1_3",pool:"pool_1",tag:"Pool 1 -- MRS & Utility (Ch.4 Model)",pts:1,type:"inline",
+ stem:"Using the Chapter 4 model from class with C on the vertical axis, an increase in the average number of years spent in school would best be represented by (ceteris paribus) ____ in the MRS out of consumption into leisure, and ____ in utility.",
+ blanks:[{opts:OPTS4,ans:0},{opts:OPTS4,ans:3}],
+ note:"A composition/taste shift (more schooling, less market work) -- MRS rises, but the utility effect is ambiguous without knowing the new preference map."},
+
+{id:"p1_4",pool:"pool_1",tag:"Pool 1 -- MRS & Utility (Ch.4 Model)",pts:1,type:"inline",
+ stem:"Using the Chapter 4 model from class, if there is a decrease in after-tax real wages, this will, in equilibrium, lead to (ceteris paribus) ____ in the MRS out of consumption into leisure, and ____ in utility.",
+ blanks:[{opts:OPTS4,ans:1},{opts:OPTS4,ans:1}],
+ note:"Lower after-tax real wage flattens the budget line, so the equilibrium MRS (= wage) falls; the household also loses opportunities, so utility falls."},
+
+{id:"p1_5",pool:"pool_1",tag:"Pool 1 -- MRS & Utility (Ch.4 Model)",pts:1,type:"inline",
+ stem:"Using the Chapter 4 model from class with C on the vertical axis, if younger workers value consumption more than older workers do, then aging of the labor force would best be represented by (ceteris paribus) ____ in the MRS out of consumption into leisure, and ____ in utility.",
+ blanks:[{opts:OPTS4,ans:0},{opts:OPTS4,ans:3}],
+ note:"Composition shift toward workers who value leisure relatively more -- MRS rises; overall utility effect is ambiguous (depends on whose preferences we're aggregating)."},
+
+{id:"p1_6",pool:"pool_1",tag:"Pool 1 -- MRS & Utility (Ch.4 Model)",pts:1,type:"inline",
+ stem:"Using the Chapter 4 model from class, if there is a decrease in lump-sum taxes (T), this will, in equilibrium, lead to (ceteris paribus) ____ in the MRS out of consumption into leisure, and ____ in utility.",
+ blanks:[{opts:OPTS4,ans:2},{opts:OPTS4,ans:0}],
+ note:"Pure income effect (wage unchanged): equilibrium MRS = wage is unaffected. The household is richer, so utility rises."},
+
+// ====== POOL 2: Labor / consumption theory -- multiple choice (1 pt each) ======
+{id:"p2_1",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",
+ stem:"A good is normal for a consumer if",
+ opts:["It is always consumed in a consistent quantity.","Its consumption rises when income rises.","Its consumption falls when income rises.","Some minimal level of the good must be consumed to assure the consumer's survival."],
+ ans:1},
+
+{id:"p2_2",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",
+ stem:"We assume leisure is a normal good. This implies that",
+ opts:["An increase in taxes increases utility.","We can use a representative household model.","Preferences over consumption are well defined.","An increase in the wage increases demand for leisure."],
+ ans:3},
+
+{id:"p2_3",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",
+ stem:"The fact that indifference curves are downward sloping",
+ opts:["Is not true.","Follows from the fact that more is preferred to less.","Follows from the property that the consumer likes diversity in his or her consumption bundle.","Follows from the property that consumption and leisure are normal goods."],
+ ans:1},
+
+{id:"p2_4",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",
+ stem:"The fact that indifference curves are bowed in toward the origin",
+ opts:["Is not true.","Follows from the fact that more is preferred to less.","Follows from the property that the consumer likes diversity in his or her consumption bundle.","Follows from the property that consumption and leisure are normal goods."],
+ ans:2},
+
+{id:"p2_5",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",
+ stem:"The property of diminishing marginal rate of substitution follows from the property that the indifference curve is",
+ opts:["Downward sloping.","Upward sloping.","Bowed in toward the origin.","Bowed out from the origin."],
+ ans:2},
+
+{id:"p2_6",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",
+ stem:"As the quantity of labor increases, the marginal product of capital",
+ opts:["Is constant.","Increases.","Decreases.","May either increase or decrease."],
+ ans:1},
+
+{id:"p2_7",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",
+ stem:"The assumption that the marginal product of labor decreases as the labor input increases implies that",
+ opts:["Output decreases as the labor input increases.","The wage increases as the labor input increases.","The production function is concave.","The production function shifts upward."],
+ ans:2},
+
+{id:"p2_8",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",
+ stem:"An increase in total factor productivity could be the result of",
+ opts:["Adverse weather.","The addition of new machinery.","New hires.","The introduction of new manufacturing methods."],
+ ans:3},
+
+{id:"p2_9",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",
+ stem:"If the firm hires more labor, everything else held constant, then",
+ opts:["The marginal product of labor falls.","Output decreases.","There is an increase in the marginal product of labor.","Total factor productivity falls."],
+ ans:0},
+
+{id:"p2_10",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",
+ stem:"An increase in total factor productivity",
+ opts:["Changes neither the slope nor the position of the production function.","Changes the slope but not the position of the production function.","Changes the position but not the slope of the production function.","Changes both the slope and the position of the production function."],
+ ans:3},
+
+{id:"p2_11",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",
+ stem:"The profit-maximizing quantity of labor equates the marginal product of labor with",
+ opts:["Total factor productivity.","The marginal product of capital.","The real wage.","The average product of labor."],
+ ans:2},
+
+{id:"p2_12",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",
+ stem:"In the one-period model, the assumption that everyone would behave the same way under the same circumstance is reflected in",
+ opts:["All of these things.","Real wage equaling MPN.","The use of a representative consumer.","The use of a general equilibrium framework."],
+ ans:2},
+
+{id:"p2_13",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",
+ stem:"A constant returns to scale production function means",
+ opts:["F(xK, N) = F(K, xN)","F(xK, xN) = xF(K, N)","F(xK, xN) = F(K, N)","All of these"],
+ ans:1},
+
+{id:"p2_14",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",
+ stem:"Assume government cuts payroll taxes (proportional income taxes) and it leads to an increase in tax revenue collections. We would know from this that",
+ opts:["Substitution effects dominate income effects.","Income effects dominate substitution effects.","Markets are efficient.","None of these things can be known with certainty from the information supplied."],
+ ans:0},
+
+{id:"p2_15",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",
+ stem:"If a forecaster uses a log-linear utility function to make a long run (twenty years from now) labor market forecast, the forecaster is likely going to",
+ opts:["Over-estimate the change in labor supply in response to a rising real wage.","Under-estimate the change in labor supply in response to a rising real wage.","Over-estimate the change in labor demand in response to a rising real wage.","Under-estimate the change in labor demand in response to a rising real wage."],
+ ans:0},
+
+{id:"p2_16",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",
+ stem:"If wages remain constant over time, but we observe people working less, what can we say about the MRS(l,c)?",
+ opts:["The MRS must have increased.","The MRS must have decreased.","The MRS must have remained the same.","We cannot be sure what happened to the MRS."],
+ ans:0},
+
+// ====== POOL 3: Math -- Cobb-Douglas growth accounting (1 pt) ======
+{id:"p3_1",pool:"pool_3",tag:"Pool 3 -- Math: Cobb-Douglas Growth Accounting",pts:1,type:"fill",
+ stem:"Assume the following Cobb-Douglas aggregate production function: GDP = z&middot;K<sup>[0.7]</sup>&middot;N<sup>[0.3]</sup>, where K is the aggregate capital stock and N is aggregate employment.<br><br><em>Ceteris paribus</em>, if employment (N) rises by <strong>[2]</strong> percent, what is the growth rate of GDP?<br><br>Enter your answer rounded to two decimal points, in the format: 10% (0.10) is entered as <code>10</code>, and 10.10% (.1010) is entered as <code>10.10</code>.<br><span style=\"color:#a00;font-weight:600\">Note: the bracketed numbers [0.7], [0.3] and [2] change every time this is drawn on a quiz/exam -- use the general method in the answer note below, don't just memorize 0.60.</span>",
+ answer:"0.60",
+ note:"<strong>General method (works for ANY numbers the exam draws):</strong> for GDP = z&middot;K<sup>&alpha;</sup>&middot;N<sup>&beta;</sup>, log-differentiating gives %&Delta;GDP &asymp; &alpha;&middot;%&Delta;K + &beta;&middot;%&Delta;N (this is just growth accounting / the chain rule applied to a Cobb-Douglas function). Ceteris paribus means only ONE variable moves at a time. Here only N changes, so %&Delta;GDP &asymp; &beta;&middot;%&Delta;N = 0.3 &times; 2% = 0.6% &rarr; entered as <strong>0.60</strong>. If K changes instead, use %&Delta;GDP &asymp; &alpha;&middot;%&Delta;K. If both change, add the two terms. Always multiply the EXPONENT of the variable that changed by its OWN percent change -- that's the whole trick regardless of which numbers are drawn."},
+
+// ====== POOL 4: Wage / tax shocks -- full household model (3 pts each) ======
+{id:"p4_1",pool:"pool_4",tag:"Pool 4 -- Wage & Tax Shocks (Full Household Model)",pts:3,type:"inline",
+ stem:"Using the language and theory from class, assume that <strong>real wages decrease</strong> for the representative household. The model predicts ____ in labor supply from the substitution effect and ____ in labor supply from the income effect. The model predicts ____ in Consumption from the substitution effect and ____ in Consumption from the income effect. Overall, the model predicts ____ in labor supply, ____ in Consumption, and ____ in utility.",
+ blanks:[{opts:OPTS4,ans:1},{opts:OPTS4,ans:0},{opts:OPTS4,ans:1},{opts:OPTS4,ans:1},{opts:OPTS4,ans:3},{opts:OPTS4,ans:1},{opts:OPTS4,ans:1}],
+ note:"Lower wage: leisure is relatively cheaper now (substitution effect cuts labor supply), but the household is also poorer and wants to work more to make up income (income effect raises labor supply) -- the two effects oppose, so overall labor supply is ambiguous. Consumption falls both because less is earned (substitution) and because the household is poorer (income). Utility falls since the opportunity set shrank."},
+
+{id:"p4_2",pool:"pool_4",tag:"Pool 4 -- Wage & Tax Shocks (Full Household Model)",pts:3,type:"inline",
+ stem:"Using the language and theory from class, assume that proportional income tax rates \"t\" <strong>increase</strong> for the representative household. The model predicts ____ in labor supply from the substitution effect and ____ in labor supply from the income effect. The model predicts ____ in Consumption from the substitution effect and ____ in Consumption from the income effect. Overall, the model predicts ____ in labor supply, ____ in Consumption, and ____ in utility.",
+ blanks:[{opts:OPTS4,ans:1},{opts:OPTS4,ans:0},{opts:OPTS4,ans:1},{opts:OPTS4,ans:1},{opts:OPTS4,ans:3},{opts:OPTS4,ans:1},{opts:OPTS4,ans:1}],
+ note:"A higher tax rate lowers the after-tax real wage, so it works exactly like a wage decrease: substitution effect cuts labor supply, income effect raises it (ambiguous overall), consumption falls, and utility falls."},
+
+{id:"p4_3",pool:"pool_4",tag:"Pool 4 -- Wage & Tax Shocks (Full Household Model)",pts:3,type:"inline",
+ stem:"Using the language and theory from class, assume that proportional income tax rates \"t\" <strong>decrease</strong> for the representative household. The model predicts ____ in labor supply from the substitution effect and ____ in labor supply from the income effect. The model predicts ____ in Consumption from the substitution effect and ____ in Consumption from the income effect. Overall, the model predicts ____ in labor supply, ____ in Consumption, and ____ in utility.",
+ blanks:[{opts:OPTS4,ans:0},{opts:OPTS4,ans:1},{opts:OPTS4,ans:0},{opts:OPTS4,ans:0},{opts:OPTS4,ans:3},{opts:OPTS4,ans:0},{opts:OPTS4,ans:0}],
+ note:"A tax cut raises the after-tax real wage -- mirror image of a wage increase: substitution effect raises labor supply, income effect lowers it (ambiguous overall), consumption rises, and utility rises."},
+
+{id:"p4_4",pool:"pool_4",tag:"Pool 4 -- Wage & Tax Shocks (Full Household Model)",pts:3,type:"inline",
+ stem:"Using the language and theory from class, assume that <strong>real wages increase</strong> for the representative household. The model predicts ____ in labor supply from the substitution effect and ____ in labor supply from the income effect. The model predicts ____ in Consumption from the substitution effect and ____ in Consumption from the income effect. Overall, the model predicts ____ in labor supply, ____ in Consumption, and ____ in utility.",
+ blanks:[{opts:OPTS4,ans:0},{opts:OPTS4,ans:1},{opts:OPTS4,ans:0},{opts:OPTS4,ans:0},{opts:OPTS4,ans:3},{opts:OPTS4,ans:0},{opts:OPTS4,ans:0}],
+ note:"Higher wage: leisure is now relatively more expensive (substitution effect raises labor supply), but the household is richer and wants more leisure too (income effect lowers labor supply) -- ambiguous overall. Consumption rises (more earned, and richer), and utility rises."},
+
+// ====== POOL 5: Profit / lump-sum tax shocks -- full household model (3 pts each) ======
+{id:"p5_1",pool:"pool_5",tag:"Pool 5 -- Profit & Lump-Sum Tax Shocks (Full Household Model)",pts:3,type:"inline",
+ stem:"Using the language and theory from class, assume that profits (pi) <strong>decrease</strong> for the representative household. The model predicts ____ in labor supply from the substitution effect and ____ in labor supply from the income effect. The model predicts ____ in Consumption from the substitution effect and ____ in Consumption from the income effect. Overall, the model predicts ____ in labor supply, ____ in Consumption, and ____ in utility.",
+ blanks:[{opts:OPTS4,ans:2},{opts:OPTS4,ans:0},{opts:OPTS4,ans:2},{opts:OPTS4,ans:1},{opts:OPTS4,ans:0},{opts:OPTS4,ans:1},{opts:OPTS4,ans:1}],
+ note:"Profits are non-labor (lump-sum-like) income -- the relative price of leisure vs. consumption (the wage) never moves, so there is NO substitution effect (always 'no change'). Lower profits make the household poorer: it works more and consumes less (pure income effect), so utility falls."},
+
+{id:"p5_2",pool:"pool_5",tag:"Pool 5 -- Profit & Lump-Sum Tax Shocks (Full Household Model)",pts:3,type:"inline",
+ stem:"Using the language and theory from class, assume that lump-sum taxes <strong>increase</strong> for the representative household. The model predicts ____ in labor supply from the substitution effect and ____ in labor supply from the income effect. The model predicts ____ in Consumption from the substitution effect and ____ in Consumption from the income effect. Overall, the model predicts ____ in labor supply, ____ in Consumption, and ____ in utility.",
+ blanks:[{opts:OPTS4,ans:2},{opts:OPTS4,ans:0},{opts:OPTS4,ans:2},{opts:OPTS4,ans:1},{opts:OPTS4,ans:0},{opts:OPTS4,ans:1},{opts:OPTS4,ans:1}],
+ note:"A lump-sum tax hike is a pure income effect (no relative-price change, so no substitution effect). The poorer household works more and consumes less; utility falls."},
+
+{id:"p5_3",pool:"pool_5",tag:"Pool 5 -- Profit & Lump-Sum Tax Shocks (Full Household Model)",pts:3,type:"inline",
+ stem:"Using the language and theory from class, assume that lump-sum taxes <strong>decrease</strong> for the representative household. The model predicts ____ in labor supply from the substitution effect and ____ in labor supply from the income effect. The model predicts ____ in Consumption from the substitution effect and ____ in Consumption from the income effect. Overall, the model predicts ____ in labor supply, ____ in Consumption, and ____ in utility.",
+ blanks:[{opts:OPTS4,ans:2},{opts:OPTS4,ans:1},{opts:OPTS4,ans:2},{opts:OPTS4,ans:0},{opts:OPTS4,ans:1},{opts:OPTS4,ans:0},{opts:OPTS4,ans:0}],
+ note:"A lump-sum tax cut is a pure income effect (no substitution effect). The richer household works less and consumes more; utility rises."},
+
+{id:"p5_4",pool:"pool_5",tag:"Pool 5 -- Profit & Lump-Sum Tax Shocks (Full Household Model)",pts:3,type:"inline",
+ stem:"Using the language and theory from class, assume that profits (pi) <strong>increase</strong> for the representative household. The model predicts ____ in labor supply from the substitution effect and ____ in labor supply from the income effect. The model predicts ____ in Consumption from the substitution effect and ____ in Consumption from the income effect. Overall, the model predicts ____ in labor supply, ____ in Consumption, and ____ in utility.",
+ blanks:[{opts:OPTS4,ans:2},{opts:OPTS4,ans:1},{opts:OPTS4,ans:2},{opts:OPTS4,ans:0},{opts:OPTS4,ans:1},{opts:OPTS4,ans:0},{opts:OPTS4,ans:0}],
+ note:"Higher profits are a pure income effect (no substitution effect, since the wage doesn't move). The richer household works less and consumes more; utility rises."},
+
+// ====== POOL 6: Firm-side CRS shocks, Y = z*f(K,N) (1.5 pts each) ======
+{id:"p6_1",pool:"pool_6",tag:"Pool 6 -- Firm-Side CRS Shocks",pts:1.5,type:"inline",
+ stem:"Consider the CRS firm profit-maximization problem from class where Y = z&middot;f(K,N). Suppose the government supplies firms with an <strong>employment tax t</strong> per unit of labor input N, such that each unit of labor costs the firm w(1+t). According to the model of the firm from class, we would expect to see ____ in employment, ____ in output, and ____ in the marginal product of labor.",
+ blanks:[{opts:OPTS4,ans:1},{opts:OPTS4,ans:1},{opts:OPTS4,ans:0}],
+ note:"Raising the effective cost of labor shifts labor demand down (like a decrease in the effective wage the firm is willing to pay): employment falls, and with less labor and CRS/diminishing MPN, output falls too. Lower N moves the firm back up the diminishing-MPN curve, so MPN rises."},
+
+{id:"p6_2",pool:"pool_6",tag:"Pool 6 -- Firm-Side CRS Shocks",pts:1.5,type:"inline",
+ stem:"Consider the CRS firm profit-maximization problem from class where Y = z&middot;f(K,N). Suppose the government imposes a <strong>production tax</strong> (e.g., to pay for environmental cleanup) such that the firm pays t units of consumption goods to the government for each unit of output it produces. According to the model of the firm from class, we would expect to see ____ in employment, ____ in output, and ____ in the marginal product of labor.",
+ blanks:[{opts:OPTS4,ans:1},{opts:OPTS4,ans:1},{opts:OPTS4,ans:0}],
+ note:"A tax per unit of output effectively lowers the return the firm keeps per unit produced, acting like a drop in productivity for the firm's hiring decision: employment and output both fall, and MPN rises as N falls (diminishing returns)."},
+
+{id:"p6_3",pool:"pool_6",tag:"Pool 6 -- Firm-Side CRS Shocks",pts:1.5,type:"inline",
+ stem:"Consider the CRS firm profit-maximization problem from class where Y = z&middot;f(K,N). Suppose the government imposes a <strong>production subsidy s</strong> such that the firm earns s units of consumption goods from the government for each unit of output it produces. According to the model of the firm from class, we would expect to see ____ in employment, ____ in output, and ____ in the marginal product of labor.",
+ blanks:[{opts:OPTS4,ans:0},{opts:OPTS4,ans:0},{opts:OPTS4,ans:1}],
+ note:"A per-unit-output subsidy raises the effective return to producing, so the firm hires more labor and produces more; hiring more N moves it down the diminishing-MPN curve, so MPN falls."},
+
+{id:"p6_4",pool:"pool_6",tag:"Pool 6 -- Firm-Side CRS Shocks",pts:1.5,type:"inline",
+ stem:"Consider the CRS firm profit-maximization problem from class where Y = z&middot;f(K,N). Suppose the government supplies firms with an <strong>employment subsidy s</strong> per unit of labor input N, such that the firm earns s units for each unit of labor it hires. According to the model of the firm from class, we would expect to see ____ in employment, ____ in output, and ____ in the marginal product of labor.",
+ blanks:[{opts:OPTS4,ans:0},{opts:OPTS4,ans:0},{opts:OPTS4,ans:1}],
+ note:"Subsidizing each unit of labor lowers the effective cost of hiring, so the firm hires more labor and produces more; the extra labor pushes MPN down (diminishing returns)."}
+
+]; // end QB
+
+// ============================================================
+// UTILITIES
+// ============================================================
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+function getStats() { return JSON.parse(localStorage.getItem('econ302_stats') || '{}'); }
+function saveStats(s) { localStorage.setItem('econ302_stats', JSON.stringify(s)); }
+function recordResult(id, isCorrect) {
+  const s = getStats();
+  if (!s[id]) s[id] = {attempts:0, correct:0, lastResult:null, everWrong:false, clearedFromMistakes:false};
+  s[id].attempts++;
+  if (isCorrect) s[id].correct++;
+  s[id].lastResult = isCorrect ? 'correct' : 'incorrect';
+  if (!isCorrect) { s[id].everWrong = true; s[id].clearedFromMistakes = false; }
+  saveStats(s);
+}
+
+function clearMistake(id) {
+  const s = getStats();
+  if (s[id]) { s[id].clearedFromMistakes = true; saveStats(s); }
+  renderMistakes();
+  renderHome();
+}
+
+function clearMistakeGroup(parentId) {
+  const q = QB.find(q => q.id === parentId);
+  if (!q || q.type !== 'group') return;
+  const s = getStats();
+  q.subs.forEach(sub => { if (s[sub.id]) s[sub.id].clearedFromMistakes = true; });
+  saveStats(s);
+  renderMistakes();
+  renderHome();
+}
+
+function clearAllMistakes() {
+  if (!confirm('Clear all mistakes? Your study history (attempt counts) will be kept.')) return;
+  const s = getStats();
+  Object.keys(s).forEach(id => { if (s[id].everWrong) s[id].clearedFromMistakes = true; });
+  saveStats(s);
+  renderMistakes();
+  renderHome();
+}
+
+function getParentQ(id) {
+  for (const q of QB) {
+    if (q.type === 'group') { for (const s of q.subs) if (s.id === id) return q; }
+    else if (q.id === id) return q;
+  }
+  return null;
+}
+
+// Count all individual leaf questions (including fill/table)
+function getAllLeafIds() {
+  const ids = [];
+  QB.forEach(q => {
+    const subs = q.type === 'group' ? q.subs : [q];
+    subs.forEach(s => ids.push(s.id));
+  });
+  return ids;
+}
+// Count only gradeable leaf questions
+function getGradeableLeafIds() {
+  const ids = [];
+  QB.forEach(q => {
+    const subs = q.type === 'group' ? q.subs : [q];
+    subs.forEach(s => { if (s.type !== 'fill' && s.type !== 'table') ids.push(s.id); });
+  });
+  return ids;
+}
+
+// ============================================================
+// STATE
+// ============================================================
+let timerInterval = null;
+let timerSec = 0;
+let quizQs = [];
+let flaggedQs = new Set();
+let answeredQs = new Set();
+let _examSimMode = false;
+const LETTERS = 'ABCDE';
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+var _activeView = 'home';
+function showView(v) {
+  try { localStorage.setItem('econ302_scroll_'+_activeView, String(window.scrollY)); } catch(e){}
+  _activeView = v;
+  ['home','review','quiz','mistakes','verify'].forEach(function(id) {
+    document.getElementById(id).style.display = id === v ? '' : 'none';
+    const btn = document.getElementById('nb-'+id);
+    if (btn) btn.classList.toggle('active', id === v);
+  });
+  document.getElementById('timer-bar').style.display = 'none';
+  if (timerInterval && v !== 'quiz') { clearInterval(timerInterval); timerInterval = null; }
+  if (v === 'home') renderHome();
+  if (v === 'review') { const rc = document.getElementById('review'); if (!rc || rc.innerHTML.trim() === '') renderReview(); }
+  if (v === 'mistakes') renderMistakes();
+  if (v === 'verify') { const vc = document.getElementById('verify'); if (!vc || vc.innerHTML.trim() === '') renderVerify(); }
+  try {
+    const saved = localStorage.getItem('econ302_scroll_'+v);
+    if (saved !== null) { setTimeout(function(){ window.scrollTo(0, parseInt(saved)||0); }, 80); }
+    else { window.scrollTo(0, 0); }
+    localStorage.setItem('econ302_view', v);
+  } catch(e){}
+}
+
+// ============================================================
+// HOME / STATS
+// ============================================================
+function renderHome() {
+  const stats = getStats();
+  const allIds = getGradeableLeafIds();
+  const attempted = allIds.filter(id => stats[id] && stats[id].attempts > 0);
+  const pct = attempted.length > 0 ? Math.round(100 * attempted.filter(id => stats[id].correct > 0).length / attempted.length) : 0;
+  const mastered = allIds.filter(id => stats[id] && stats[id].lastResult === 'correct');
+  document.getElementById('s-total').textContent = allIds.length;
+  document.getElementById('s-attempted').textContent = attempted.length;
+  document.getElementById('s-pct').textContent = pct + '%';
+  document.getElementById('s-mastered').textContent = mastered.length;
+}
+
+// ============================================================
+// FILL ANSWER MATCHING
+// ============================================================
+function matchFill(userInput, correctAnswer) {
+  const user = userInput.toLowerCase().trim().replace(/\s+/g,' ');
+  const correct = correctAnswer.toLowerCase().trim();
+  if (user === correct) return true;
+  // Key-word matching: need 60% of significant words (len > 3)
+  const words = correct.split(/\s+/).filter(w => w.length > 3);
+  if (words.length === 0) return user.includes(correct) || correct.includes(user);
+  return words.filter(w => user.includes(w)).length >= Math.ceil(words.length * 0.6);
+}
+
+// ============================================================
+// RENDER — single sub-question
+// ============================================================
+function renderSubQ(sub, mode, suppressMasterBtn) {
+  let html = `<div class="subq" id="subwrap-${sub.id}">`;
+
+  if (sub.type === 'inline') {
+    const parts = sub.stem.split('____');
+    html += '<div class="q-stem" style="line-height:2.4">';
+    parts.forEach((part, i) => {
+      html += part;
+      if (i < sub.blanks.length) {
+        const b = sub.blanks[i];
+        html += '<select class="q-dropdown q-inline-dd" id="idd-' + sub.id + '-' + i + '" style="display:inline-block;width:auto;min-width:160px;margin:0 4px;vertical-align:middle"><option value="">— select —</option>';
+        shuffle(b.opts.map((opt, j) => ({opt, j}))).forEach(({opt, j}) => { html += '<option value="' + j + '">' + opt + '</option>'; });
+        html += '</select>';
+      }
+    });
+    html += '</div>';
+    if (mode === 'review' || mode === 'mistakes') {
+      html += '<div style="margin-top:12px"><button class="q-check-btn" id="chkbtn-' + sub.id + '" onclick="checkSub(\'' + sub.id + '\',this)">Check Answer</button><button class="q-retry-btn" id="retrybtn-' + sub.id + '" style="display:none" onclick="retrySub(\'' + sub.id + '\',this)">&#8634; Retry</button></div>';
+      if (mode === 'mistakes' && !suppressMasterBtn) {
+        html += '<button id="masterbtn-' + sub.id + '" onclick="clearMistake(\'' + sub.id + '\')" style="display:none;margin-top:8px;width:100%;padding:10px;background:#28a745;color:#fff;border:none;border-radius:8px;font-size:.95rem;font-weight:700;cursor:pointer">&#10003; 100% — Remove from Mistakes</button>';
+      }
+    }
+    html += '<div class="feedback" id="fb-' + sub.id + '" style="display:none"></div></div>';
+    return html;
+  }
+
+  if (sub.stem) html += `<div class="q-stem">${sub.stem}</div>`;
+
+  if (sub.type === 'mcq') {
+    html += `<div class="options">`;
+    shuffle(sub.opts.map((opt, i) => ({opt, i}))).forEach(({opt, i}) => {
+      html += `<label id="lbl-${sub.id}-${i}"><input type="radio" name="r-${sub.id}" value="${i}"> ${opt}</label>`;
+    });
+    html += `</div>`;
+
+  } else if (sub.type === 'multi') {
+    html += `<div class="options">`;
+    shuffle(sub.opts.map((opt, i) => ({opt, i}))).forEach(({opt, i}) => {
+      html += `<label id="lbl-${sub.id}-${i}"><input type="checkbox" name="c-${sub.id}" value="${i}"> ${opt}</label>`;
+    });
+    html += `</div>`;
+
+  } else if (sub.type === 'dropdown') {
+    html += `<select class="q-dropdown" id="dd-${sub.id}"><option value="">— Select an answer —</option>`;
+    shuffle(sub.opts.map((opt, i) => ({opt, i}))).forEach(({opt, i}) => html += `<option value="${i}">${opt}</option>`);
+    html += `</select>`;
+
+  } else if (sub.type === 'fill') {
+    html += `<div style="margin:10px 0">
+      <input type="text" class="fill-input" id="fill-input-${sub.id}" placeholder="Type your answer here…" autocomplete="off" style="width:100%;max-width:480px;padding:9px 12px;border:1.5px solid #ddd;border-radius:8px;font-size:.92rem;outline:none">
+    </div>
+    <div class="answer-key" id="ak-${sub.id}" style="display:none">
+      <div class="ak-title">Correct Answer:</div>
+      <div style="font-size:.97rem"><strong>${sub.answer}</strong></div>
+      ${sub.note ? `<div style="margin-top:6px;font-weight:normal;color:#555;font-size:.87rem">${sub.note}</div>` : ''}
+    </div>`;
+    if (mode === 'review' || mode === 'mistakes') {
+      html += `<div style="margin-top:12px">
+        <button class="q-check-btn" id="chkbtn-${sub.id}" onclick="checkSub('${sub.id}',this)">Check Answer</button>
+        <button class="q-retry-btn" id="retrybtn-${sub.id}" style="display:none" onclick="retrySub('${sub.id}',this)">↺ Retry</button>
+      </div>`;
+      if (mode === 'mistakes' && !suppressMasterBtn) {
+        html += `<button id="masterbtn-${sub.id}" onclick="clearMistake('${sub.id}')" style="display:none;margin-top:8px;width:100%;padding:10px;background:#28a745;color:#fff;border:none;border-radius:8px;font-size:.95rem;font-weight:700;cursor:pointer">✓ 100% — Remove from Mistakes</button>`;
+      }
+    }
+    html += `<div class="feedback" id="fb-${sub.id}" style="display:none"></div>`;
+    html += `</div>`;
+    return html;
+
+  } else if (sub.type === 'table') {
+    const td = sub.tableData;
+    let tblHtml = '<table class="table-q" style="margin:10px 0"><thead><tr>'
+      + td.headers.map(function(h){return '<th>'+h+'</th>';}).join('')
+      + '</tr></thead><tbody>';
+    if (td.dropCols) {
+      td.rows.forEach(function(row, i) {
+        tblHtml += '<tr id="trow-'+sub.id+'-'+i+'">';
+        for (var j2=0; j2<row.length; j2++) {
+          if (td.dropCols.includes(j2)) {
+            var copts = td.colOpts[j2];
+            tblHtml += '<td><select class="q-dropdown" id="tsub-'+sub.id+'-'+i+'-'+j2+'" style="width:100%;min-width:160px"><option value="">— Select —</option>'
+              + copts.map(function(o){return '<option value="'+o+'">'+o+'</option>';}).join('')
+              + '</select></td>';
+          } else {
+            tblHtml += '<td>'+row[j2]+'</td>';
+          }
+        }
+        tblHtml += '</tr>';
+      });
+    } else {
+      var sopts = Array.from(new Set(td.rows.map(function(r){return r[r.length-1];})));
+      td.rows.forEach(function(row, i) {
+        tblHtml += '<tr id="trow-'+sub.id+'-'+i+'">';
+        for (var j2=0; j2<row.length-1; j2++) tblHtml += '<td>'+row[j2]+'</td>';
+        tblHtml += '<td><select class="q-dropdown" id="tsub-'+sub.id+'-'+i+'" style="width:100%;min-width:140px"><option value="">— Select —</option>'
+          + sopts.map(function(o){return '<option value="'+o+'">'+o+'</option>';}).join('')
+          + '</select></td></tr>';
+      });
+    }
+    tblHtml += '</tbody></table>';
+    html += tblHtml;
+    html += '<div class="answer-key" id="ak-'+sub.id+'" style="display:none"><div class="ak-title">Answer Key:</div>'
+      + (sub.note ? '<div style="font-weight:normal;color:#555;font-size:.87rem">'+sub.note+'</div>' : '')
+      + '</div>';
+    if (mode === 'review' || mode === 'mistakes') {
+      html += '<div style="margin-top:12px"><button class="q-check-btn" id="chkbtn-'+sub.id+'" onclick="checkSub(\''+sub.id+'\',this)">Check All Rows</button><button class="q-retry-btn" id="retrybtn-'+sub.id+'" style="display:none" onclick="retrySub(\''+sub.id+'\',this)">&#8634; Retry</button></div>';
+      if (mode === 'mistakes' && !suppressMasterBtn) {
+        html += '<button id="masterbtn-'+sub.id+'" onclick="clearMistake(\''+sub.id+'\')" style="display:none;margin-top:8px;width:100%;padding:10px;background:#28a745;color:#fff;border:none;border-radius:8px;font-size:.95rem;font-weight:700;cursor:pointer">&#10003; 100% — Remove from Mistakes</button>';
+      }
+    }
+    html += '<div class="feedback" id="fb-'+sub.id+'" style="display:none"></div>';
+    html += '</div>';
+    return html;
+  }
+
+  // Check/Retry buttons for mcq/multi/dropdown
+  if (mode === 'review' || mode === 'mistakes') {
+    html += `<div style="margin-top:12px">
+      <button class="q-check-btn" id="chkbtn-${sub.id}" onclick="checkSub('${sub.id}',this)">Check Answer</button>
+      <button class="q-retry-btn" id="retrybtn-${sub.id}" style="display:none" onclick="retrySub('${sub.id}',this)">↺ Retry</button>
+    </div>`;
+    if (mode === 'mistakes' && !suppressMasterBtn) {
+      html += `<button id="masterbtn-${sub.id}" onclick="clearMistake('${sub.id}')" style="display:none;margin-top:8px;width:100%;padding:10px;background:#28a745;color:#fff;border:none;border-radius:8px;font-size:.95rem;font-weight:700;cursor:pointer">✓ 100% — Remove from Mistakes</button>`;
+    }
+  }
+  html += `<div class="feedback" id="fb-${sub.id}" style="display:none"></div>`;
+  html += `</div>`;
+  return html;
+}
+
+// ============================================================
+// RENDER — full question card
+// ============================================================
+function renderCard(q, mode) {
+  let html = `<div class="q-card" id="qcard-${q.id}">`;
+  if (mode === 'quiz') {
+    const qNum = quizQs.indexOf(q) + 1;
+    html += `<span style="float:left;background:#c5050c;color:#fff;border-radius:5px;padding:2px 8px;font-size:.78rem;font-weight:700;margin-right:6px">Q${qNum}</span>`;
+    html += `<button class="flag-btn" id="flagbtn-${q.id}" onclick="toggleFlag('${q.id}')" title="Flag for review">&#128681; Flag</button>`;
+  }
+  if (!(mode === 'quiz' && _examSimMode)) {
+    html += `<span class="q-tag">${q.tag}</span> `;
+  }
+  html += `<span class="q-points">${q.pts} pt${q.pts>1?'s':''}</span>`;
+  if (q.type === 'group') {
+    if (q.img && IMG[q.img]) {
+      html += `<div style="margin:14px 0"><img src="${IMG[q.img]}" alt="${q.imgCap||'Graph'}" class="q-image"></div>`;
+      if (q.imgCap) html += `<div style="font-size:.8rem;color:#666;margin-bottom:10px"><em>📊 ${q.imgCap}</em></div>`;
+    }
+    if (q.scenario) html += `<div class="scenario-box">${q.scenario}</div>`;
+    q.subs.forEach((sub, i) => {
+      if (q.subs.length > 1) html += `<div class="subq-label">Part ${i+1}</div>`;
+      html += renderSubQ(sub, mode, mode === 'mistakes');
+    });
+    if (mode === 'mistakes') {
+      html += `<button id="group-masterbtn-${q.id}" onclick="clearMistakeGroup('${q.id}')" style="display:none;margin-top:12px;width:100%;padding:10px;background:#28a745;color:#fff;border:none;border-radius:8px;font-size:.95rem;font-weight:700;cursor:pointer">&#10003; 100% — Remove from Mistakes</button>`;
+    }
+  } else {
+    if (q.img && IMG[q.img]) {
+      html += `<div style="margin:14px 0"><img src="${IMG[q.img]}" alt="${q.imgCap||'Graph'}" class="q-image"></div>`;
+      if (q.imgCap) html += `<div style="font-size:.8rem;color:#666;margin-bottom:10px"><em>📊 ${q.imgCap}</em></div>`;
+    }
+    if (q.scenario) html += `<div class="scenario-box">${q.scenario}</div>`;
+    html += renderSubQ(q, mode);
+  }
+  html += `</div>`;
+  return html;
+}
+
+// ============================================================
+// REVIEW MODE
+// ============================================================
+function renderReview() {
+  const container = document.getElementById('review');
+  const qs = shuffle(QB);
+  const totalLeaf = getAllLeafIds().length;
+  let html = `<div class="section-header">
+    <h2>Review Mode — ${QB.length} groups · ${totalLeaf} questions total</h2>
+    <button class="btn btn-secondary" onclick="renderReview()">Refresh ↺</button>
+  </div>`;
+  html += `<div id="review-progress"><div id="review-progress-fill" style="width:0%"></div></div>`;
+  qs.forEach(q => html += renderCard(q, 'review'));
+  container.innerHTML = html;
+  updateReviewProgress();
+}
+
+function getSubById(id) {
+  for (const q of QB) {
+    if (q.type === 'group') { for (const s of q.subs) if (s.id===id) return s; }
+    else if (q.id===id) return q;
+  }
+  return null;
+}
+
+function checkSub(id, btn) {
+  const sub = getSubById(id);
+  if (!sub) return;
+  const scope = (btn && btn.closest) ? btn.closest('.subq') : null;
+  const $q = function(sel) { return scope ? scope.querySelector(sel) : document.querySelector(sel); };
+  const $qa = function(sel) { return scope ? scope.querySelectorAll(sel) : document.querySelectorAll(sel); };
+  const fb = $q('#fb-'+id);
+  let isCorrect = false;
+  let feedbackHtml = '';
+
+  if (sub.type === 'mcq') {
+    const sel = $q('input[name="r-'+id+'"]:checked');
+    if (!sel) { if(fb){fb.style.display='';fb.className='feedback err';fb.textContent='⚠ Please select an answer first.';} return; }
+    const val = parseInt(sel.value);
+    isCorrect = val === sub.ans;
+    const aText = sub.opts[sub.ans];
+    feedbackHtml = isCorrect
+      ? '✓ Correct! <strong>'+aText+'</strong>'
+      : '✗ Incorrect. Correct answer: <strong>'+aText+'</strong>'+(sub.note?'<div style="margin-top:6px;font-weight:normal">'+sub.note+'</div>':'');
+    sub.opts.forEach(function(_,i){ const l=$q('#lbl-'+id+'-'+i); if(l) l.classList.remove('correct-opt','wrong-opt'); });
+    if (!isCorrect) { const l=$q('#lbl-'+id+'-'+val); if(l) l.classList.add('wrong-opt'); }
+    const cl=$q('#lbl-'+id+'-'+sub.ans); if(cl) cl.classList.add('correct-opt');
+
+  } else if (sub.type === 'multi') {
+    const checked = Array.from($qa('input[name="c-'+id+'"]:checked')).map(function(el){return parseInt(el.value);}).sort(function(a,b){return a-b;});
+    const correct = sub.ans.slice().sort(function(a,b){return a-b;});
+    isCorrect = JSON.stringify(checked) === JSON.stringify(correct);
+    feedbackHtml = isCorrect
+      ? '✓ Correct!'
+      : '✗ Incorrect. Correct: <strong>'+correct.map(function(i){return sub.opts[i];}).join('; ')+'</strong>';
+    sub.opts.forEach(function(_,i){ const l=$q('#lbl-'+id+'-'+i); if(l) l.classList.remove('correct-opt','wrong-opt'); });
+    sub.ans.forEach(function(i){ const l=$q('#lbl-'+id+'-'+i); if(l) l.classList.add('correct-opt'); });
+    checked.filter(function(i){return !sub.ans.includes(i);}).forEach(function(i){ const l=$q('#lbl-'+id+'-'+i); if(l) l.classList.add('wrong-opt'); });
+
+  } else if (sub.type === 'dropdown') {
+    const dd = $q('#dd-'+id);
+    if (!dd || dd.value==='') { if(fb){fb.style.display='';fb.className='feedback err';fb.textContent='⚠ Please select an answer first.';} return; }
+    const val = parseInt(dd.value);
+    isCorrect = val === sub.ans;
+    feedbackHtml = isCorrect
+      ? '✓ Correct!'
+      : '✗ Incorrect. Correct: <strong>'+sub.opts[sub.ans]+'</strong>'+(sub.note?'<div style="margin-top:6px;font-weight:normal">'+sub.note+'</div>':'');
+
+  } else if (sub.type === 'inline') {
+    const _anyEmpty = sub.blanks.some(function(b,i){ const dd=$q('#idd-'+id+'-'+i); return !dd||dd.value===''; });
+    if (_anyEmpty) { if(fb){fb.style.display='';fb.className='feedback err';fb.textContent='Please select all answers first.';} return; }
+    isCorrect = sub.blanks.every(function(b,i){ const dd=$q('#idd-'+id+'-'+i); return parseInt(dd.value)===b.ans; });
+    const _correctText = sub.blanks.map(function(b){ return b.opts[b.ans]; }).join(' / ');
+    feedbackHtml = isCorrect ? '✓ Correct!' : ('✗ Incorrect. Correct: <strong>'+_correctText+'</strong>'+(sub.note?'<div style="margin-top:6px;font-weight:normal">'+sub.note+'</div>':''));
+
+  } else if (sub.type === 'fill') {
+    const inputEl = $q('#fill-input-'+id);
+    if (!inputEl || inputEl.value.trim().length < 1) { if(fb){fb.style.display='';fb.className='feedback err';fb.textContent='⚠ Please type your answer first.';} return; }
+    isCorrect = matchFill(inputEl.value, sub.answer);
+    feedbackHtml = isCorrect
+      ? '✓ Correct! Answer: <strong>'+sub.answer+'</strong>'
+      : '✗ Not quite. Correct: <strong>'+sub.answer+'</strong>'+(sub.note?'<div style="margin-top:6px;font-weight:normal">'+sub.note+'</div>':'');
+    const ak = $q('#ak-'+id); if(ak) ak.style.display='';
+
+  } else if (sub.type === 'table') {
+    const td = sub.tableData;
+    let allCorrect = true;
+    if (td.dropCols) {
+      td.rows.forEach(function(row, i) {
+        const rowOk = td.dropCols.every(function(col) {
+          const sel = $q('#tsub-'+id+'-'+i+'-'+col);
+          return sel && sel.value === row[col];
+        });
+        if (!rowOk) allCorrect = false;
+        const tr = $q('#trow-'+id+'-'+i);
+        if (tr) tr.style.background = rowOk ? '#d4edda' : '#f8d7da';
+      });
+    } else {
+      td.rows.forEach(function(row, i) {
+        const sel = $q('#tsub-'+id+'-'+i);
+        const expected = row[row.length-1];
+        const rowOk = sel && sel.value === expected;
+        if (!rowOk) allCorrect = false;
+        const tr = $q('#trow-'+id+'-'+i);
+        if (tr) tr.style.background = rowOk ? '#d4edda' : '#f8d7da';
+      });
+    }
+    isCorrect = allCorrect;
+    feedbackHtml = isCorrect ? '✓ All rows correct!' : '✗ Some rows are wrong — check the highlighted rows above.';
+    const ak = $q('#ak-'+id); if(ak) ak.style.display='';
+  }
+
+  if(fb){fb.style.display='';fb.className='feedback '+(isCorrect?'ok':'err');fb.innerHTML=feedbackHtml;}
+  recordResult(id, isCorrect);
+  // Lock inputs until Retry
+  $qa('input, select').forEach(function(el){el.disabled=true;});
+  const chkBtn=$q('#chkbtn-'+id); if(chkBtn) chkBtn.style.display='none';
+  const retryBtn=$q('#retrybtn-'+id); if(retryBtn) retryBtn.style.display='';
+  if (isCorrect) {
+    const parentQ = getParentQ(id);
+    if (parentQ && parentQ.type === 'group') {
+      const stats = getStats();
+      const allCorrect = parentQ.subs.every(s => stats[s.id] && stats[s.id].lastResult === 'correct');
+      if (allCorrect) {
+        const groupBtn = document.getElementById('group-masterbtn-'+parentQ.id);
+        if (groupBtn) groupBtn.style.display = '';
+      }
+    } else {
+      const masterBtn = $q('#masterbtn-'+id);
+      if (masterBtn) masterBtn.style.display = '';
+    }
+  }
+  updateReviewProgress();
+}
+
+function retrySub(id, btn) {
+  const sub = getSubById(id);
+  if (!sub) return;
+  const scope = (btn && btn.closest) ? btn.closest('.subq') : null;
+  const $q = function(sel) { return scope ? scope.querySelector(sel) : document.querySelector(sel); };
+  const $qa = function(sel) { return scope ? scope.querySelectorAll(sel) : document.querySelectorAll(sel); };
+  if (sub.type==='mcq') { $qa('input[name="r-'+id+'"]').forEach(function(el){el.checked=false;}); sub.opts.forEach(function(_,i){ const l=$q('#lbl-'+id+'-'+i); if(l) l.classList.remove('correct-opt','wrong-opt'); }); }
+  else if (sub.type==='multi') { $qa('input[name="c-'+id+'"]').forEach(function(el){el.checked=false;}); sub.opts.forEach(function(_,i){ const l=$q('#lbl-'+id+'-'+i); if(l) l.classList.remove('correct-opt','wrong-opt'); }); }
+  else if (sub.type==='dropdown') { const dd=$q('#dd-'+id); if(dd) dd.value=''; }
+  else if (sub.type==='inline') { sub.blanks.forEach(function(_,i){ const dd=$q('#idd-'+id+'-'+i); if(dd) dd.value=''; }); }
+  else if (sub.type==='fill') { const inp=$q('#fill-input-'+id); if(inp) inp.value=''; const ak=$q('#ak-'+id); if(ak) ak.style.display='none'; }
+  else if (sub.type==='table') {
+    if (sub.tableData.dropCols) {
+      sub.tableData.rows.forEach(function(_,i){
+        sub.tableData.dropCols.forEach(function(col){ const sel=$q('#tsub-'+id+'-'+i+'-'+col); if(sel) sel.value=''; });
+        const tr=$q('#trow-'+id+'-'+i); if(tr) tr.style.background='';
+      });
+    } else {
+      sub.tableData.rows.forEach(function(_,i){ const sel=$q('#tsub-'+id+'-'+i); if(sel) sel.value=''; const tr=$q('#trow-'+id+'-'+i); if(tr) tr.style.background=''; });
+    }
+    const ak=$q('#ak-'+id); if(ak) ak.style.display='none';
+  }
+  const fb=$q('#fb-'+id); if(fb) fb.style.display='none';
+  // Re-enable inputs
+  $qa('input, select').forEach(function(el){el.disabled=false;});
+  const chkBtn=$q('#chkbtn-'+id); if(chkBtn) chkBtn.style.display='';
+  const retryBtn=$q('#retrybtn-'+id); if(retryBtn) retryBtn.style.display='none';
+}
+
+function updateReviewProgress() {
+  const stats = getStats();
+  const allIds = getGradeableLeafIds();
+  const done = allIds.filter(id => stats[id] && stats[id].attempts > 0).length;
+  const fill = document.getElementById('review-progress-fill');
+  if (fill) fill.style.width = Math.round(100*done/allIds.length)+'%';
+}
+
+// ============================================================
+// QUIZ MODE — pool draw spec
+// ============================================================
+const QUIZ_SPEC = [
+  {pool:'pool_1', draw:2},
+  {pool:'pool_2', draw:6},
+  {pool:'pool_3', draw:1},
+  {pool:'pool_4', draw:2},
+  {pool:'pool_5', draw:1}
+]; // sums to 20 pts (2+6+1+6+3), matching the stated 20-point / 30-minute quiz.
+   // NOTE: the instructor's PDF only says "a subset will appear" -- it does not
+   // specify exact per-pool counts, so this composition is an unofficial
+   // practice draw, not the guaranteed real quiz layout.
+
+const CHAPTER_POOLS = {
+  'Ch.1-4': ['pool_1','pool_2','pool_3','pool_4','pool_5','pool_6']
+};
+
+const POOL_LABELS = {
+  'pool_1':'Pool 1 -- MRS & Utility (Ch.4 Model)',
+  'pool_2':'Pool 2 -- Labor & Consumption Theory (MC)',
+  'pool_3':'Pool 3 -- Math: Cobb-Douglas Growth Accounting',
+  'pool_4':'Pool 4 -- Wage & Tax Shocks (Full Model)',
+  'pool_5':'Pool 5 -- Profit & Lump-Sum Tax Shocks (Full Model)',
+  'pool_6':'Pool 6 -- Firm-Side CRS Shocks'
+};
+
+const POOL_ORDER = ['pool_1','pool_2','pool_3','pool_4','pool_5','pool_6'];
+
+function getPoolStats(pools) {
+  // pools: string | string[] — pool name(s)
+  const poolList = Array.isArray(pools) ? pools : [pools];
+  const stats = getStats();
+  let total=0, attempted=0, correct=0, wrong=0;
+  QB.forEach(q => {
+    if (!poolList.includes(q.pool)) return;
+    const subs = q.type==='group' ? q.subs : [q];
+    subs.forEach(s => {
+      total++;
+      const st = stats[s.id];
+      if (st && st.attempts > 0) {
+        attempted++;
+        if (st.lastResult==='correct') correct++;
+        if (st.everWrong && !st.clearedFromMistakes) wrong++;
+      }
+    });
+  });
+  return {total, attempted, correct, wrong};
+}
+
+function toggleFlag(qid) {
+  if (flaggedQs.has(qid)) flaggedQs.delete(qid);
+  else flaggedQs.add(qid);
+  const btn = document.getElementById('flagbtn-'+qid);
+  if (btn) btn.classList.toggle('active', flaggedQs.has(qid));
+  updateQuizNav();
+}
+
+function markAnswered(qid) {
+  answeredQs.add(qid);
+  updateQuizNav();
+}
+
+function updateQuizNav() {
+  quizQs.forEach((q, i) => {
+    const btn = document.getElementById('qnav-'+q.id);
+    if (!btn) return;
+    btn.classList.toggle('answered', answeredQs.has(q.id));
+    btn.classList.toggle('flagged', flaggedQs.has(q.id));
+  });
+}
+
+function bindQuizInputs() {
+  quizQs.forEach(q => {
+    const card = document.getElementById('qcard-'+q.id);
+    if (!card) return;
+    card.querySelectorAll('input[type=radio],input[type=checkbox],select').forEach(el => {
+      el.addEventListener('change', () => markAnswered(q.id));
+    });
+  });
+}
+
+function scrollToQ(qid) {
+  const el = document.getElementById('qcard-'+qid);
+  if (!el) return;
+  const navH = (document.getElementById('nav')||{offsetHeight:54}).offsetHeight;
+  const timerH = (document.getElementById('timer-bar')||{offsetHeight:0}).offsetHeight;
+  const qnavH = (document.getElementById('quiz-qnav')||{offsetHeight:0}).offsetHeight;
+  const offset = navH + timerH + qnavH + 8;
+  const top = el.getBoundingClientRect().top + window.scrollY - offset;
+  window.scrollTo({top, behavior:'smooth'});
+}
+
+function generateQuiz() {
+  const byPool = {};
+  QB.forEach(q => { if (!byPool[q.pool]) byPool[q.pool]=[]; byPool[q.pool].push(q); });
+  const selected = [];
+  QUIZ_SPEC.forEach(spec => { shuffle(byPool[spec.pool]||[]).slice(0,spec.draw).forEach(q=>selected.push(q)); });
+  return selected;
+}
+
+function startQuiz() {
+  const container = document.getElementById('quiz');
+
+  function statBadge(pools) {
+    const s = getPoolStats(pools);
+    if (s.attempted === 0) return '<span style="color:#999;font-size:.83rem">Not started</span>';
+    const pct = Math.round(s.correct/s.total*100);
+    return '<span style="font-size:.83rem">'
+      + '<span style="color:#28a745;font-weight:600">&#10003;' + s.correct + '</span> / '
+      + (s.wrong > 0 ? '<span style="color:#dc3545;font-weight:600">&#10007;' + s.wrong + '</span> / ' : '')
+      + s.total + ' &nbsp;<span style="color:#888">(' + pct + '%)</span></span>';
+  }
+
+  let html = '<div class="section-header"><h2>Quiz Mode</h2></div>';
+
+  // === Exam Mode ===
+  html += '<div style="background:#fff;border:2px solid #c5050c;border-radius:12px;padding:18px 20px;margin-bottom:18px">'
+    + '<div style="display:flex;justify-content:space-between;align-items:center">'
+    + '<div><div style="font-size:1.1rem;font-weight:700;color:#c5050c">&#9889; Ch 1-4 Quiz Simulation</div>'
+    + '<div style="font-size:.88rem;color:#555;margin-top:4px">~20-point practice draw from all pools &nbsp;&#8226;&nbsp; 30 min (matches the real quiz format)</div></div>'
+    + '<button class="btn" style="flex-shrink:0" onclick="doStartQuiz(\'exam\')">Start Quiz</button></div>'
+    + '<div style="margin-top:8px">' + statBadge(Object.values(CHAPTER_POOLS).flat()) + '</div>'
+    + '</div>';
+
+  // === Chapter Mode ===
+  html += '<div style="font-weight:700;font-size:1rem;margin:18px 0 10px;color:#333">Full Practice — All Pools &nbsp;<span style="font-weight:400;font-size:.85rem;color:#666">— untimed-ish, 45 min</span></div>';
+  const chLabels = {'Ch.1-4':'Chapters 1-4 — Every Question, All Pools'};
+  const chIcons = {'Ch.1-4':'&#128218;'};
+  Object.entries(CHAPTER_POOLS).forEach(function(entry) {
+    const ch = entry[0], pools = entry[1];
+    const s = getPoolStats(pools);
+    html += '<div style="background:#fff;border:1.5px solid #ddd;border-radius:10px;padding:14px 18px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:12px">'
+      + '<div><div style="font-weight:600;font-size:.97rem">' + chIcons[ch] + ' ' + chLabels[ch] + '</div>'
+      + '<div style="margin-top:5px">' + statBadge(pools) + '</div>'
+      + '<div style="font-size:.8rem;color:#999;margin-top:2px">' + s.total + ' questions in ' + pools.length + ' pools</div></div>'
+      + '<button class="btn btn-secondary" style="flex-shrink:0;white-space:nowrap" onclick="doStartQuiz(\'chapter\',\'' + ch + '\')">Start &#8594;</button></div>';
+  });
+
+  // === Pool Mode ===
+  html += '<div style="font-weight:700;font-size:1rem;margin:18px 0 10px;color:#333">Single Pool Practice &nbsp;<span style="font-weight:400;font-size:.85rem;color:#666">— untimed-ish, 10 min</span></div>';
+  html += '<div style="background:#fff;border:1.5px solid #ddd;border-radius:10px;overflow:hidden">';
+  POOL_ORDER.forEach(function(pool, i) {
+    const s = getPoolStats([pool]);
+    const bg = i % 2 === 0 ? '#fafafa' : '#fff';
+    html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 16px;background:' + bg + ';border-bottom:1px solid #eee;gap:10px">'
+      + '<div><div style="font-size:.9rem;font-weight:600">' + POOL_LABELS[pool] + '</div>'
+      + '<div style="margin-top:2px">' + statBadge([pool]) + '</div></div>'
+      + '<button class="btn btn-secondary" style="flex-shrink:0;font-size:.82rem;padding:5px 12px;white-space:nowrap" onclick="doStartQuiz(\'pool\',\'' + pool + '\')">Quiz</button></div>';
+  });
+  html += '</div>';
+
+  container.innerHTML = html;
+  showView('quiz');
+}
+
+function doStartQuiz(mode, param) {
+  // Generate questions based on mode
+  const byPool = {};
+  QB.forEach(q => { if (!byPool[q.pool]) byPool[q.pool]=[]; byPool[q.pool].push(q); });
+
+  let selectedQs = [];
+  let mins = 30;
+  let title = '';
+
+  _examSimMode = (mode === 'exam');
+  if (mode === 'exam') {
+    QUIZ_SPEC.forEach(spec => {
+      shuffle(byPool[spec.pool]||[]).slice(0,spec.draw).forEach(q => {
+        if (spec.pickOneSub && q.type === 'group' && q.subs && q.subs.length > 1) {
+          const chosenSub = shuffle([...q.subs])[0];
+          selectedQs.push(Object.assign({}, q, {subs: [chosenSub]}));
+        } else {
+          selectedQs.push(q);
+        }
+      });
+    });
+    mins = 30;
+    title = 'Ch 1-4 Quiz Simulation';
+  } else if (mode === 'chapter') {
+    const pools = CHAPTER_POOLS[param] || [];
+    pools.forEach(pool => (byPool[pool]||[]).forEach(q=>selectedQs.push(q)));
+    shuffle(selectedQs);
+    mins = 45;
+    title = param + ' — Full Practice (All Pools)';
+  } else if (mode === 'pool') {
+    selectedQs = shuffle([...(byPool[param]||[])]);
+    mins = 10;
+    title = (POOL_LABELS[param]||param) + ' — Pool Practice';
+  }
+
+  quizQs = selectedQs;
+  flaggedQs = new Set();
+  answeredQs = new Set();
+  const container = document.getElementById('quiz');
+  let html = '<div id="score-box" style="display:none"></div>' +
+    '<div class="section-header"><h2>' + title + '</h2>' +
+    '<div style="display:flex;gap:8px">' +
+    '<button class="btn btn-secondary" onclick="startQuiz()">&#8592; Back</button>' +
+    '<button class="btn btn-secondary" id="quiz-submit-btn" onclick="submitQuiz()">Submit</button></div></div>' +
+    '<div style="background:#fff3cd;border:1.5px solid #ffc107;border-radius:8px;padding:10px 14px;margin-bottom:16px;font-size:.88rem">' +
+    '<strong>Instructions:</strong> Answer all questions. Timer: <strong>' + mins + ' min</strong>. Submit before time runs out — auto-submits at 0:00.' +
+    '</div>';
+  quizQs.forEach(q => html += renderCard(q, 'quiz'));
+  html += '<div style="text-align:center;margin:20px 0"><button class="btn" onclick="submitQuiz()">Submit Quiz</button></div>';
+  container.innerHTML = html;
+
+  // Build question navigator
+  let navHtml = '<div id="quiz-qnav"><span class="qn-label">Jump to:</span>';
+  quizQs.forEach((q, i) => {
+    navHtml += '<button class="qn-btn" id="qnav-'+q.id+'" onclick="scrollToQ(\'' + q.id + '\')" title="'+q.tag+'">'+(i+1)+'</button>';
+  });
+  navHtml += '<span style="font-size:.78rem;color:#777;margin-left:8px">&#128681; = flagged &nbsp; &#9646; = answered</span></div>';
+  container.insertAdjacentHTML('afterbegin', navHtml);
+
+  showView('quiz');
+  document.getElementById('timer-bar').style.display='block';
+  startTimer(mins);
+  setTimeout(bindQuizInputs, 100);
+}
+
+function startTimer(mins) {
+  if (timerInterval) clearInterval(timerInterval);
+  timerSec = mins * 60;
+  function tick() {
+    const m=String(Math.floor(timerSec/60)).padStart(2,'0'), s=String(timerSec%60).padStart(2,'0');
+    document.getElementById('timer-display').textContent = m+':'+s;
+    const bar=document.getElementById('timer-bar');
+    if (timerSec<=300&&timerSec>0) bar.classList.add('warning'); else bar.classList.remove('warning');
+    if (timerSec<=0) { clearInterval(timerInterval); timerInterval=null; submitQuiz(); return; }
+    timerSec--;
+  }
+  tick(); timerInterval=setInterval(tick,1000);
+}
+
+function gradeQuizSub(sub) {
+  if (sub.type==='mcq') {
+    const sel=document.querySelector(`input[name="r-${sub.id}"]:checked`);
+    const val=sel?parseInt(sel.value):-1;
+    return {val, isCorrect:val===sub.ans};
+  }
+  if (sub.type==='multi') {
+    const checked=[...document.querySelectorAll(`input[name="c-${sub.id}"]:checked`)].map(el=>parseInt(el.value)).sort((a,b)=>a-b);
+    const correct=[...sub.ans].sort((a,b)=>a-b);
+    return {val:checked, isCorrect:JSON.stringify(checked)===JSON.stringify(correct)};
+  }
+  if (sub.type==='dropdown') {
+    const dd=document.getElementById('dd-'+sub.id);
+    const val=dd&&dd.value!==''?parseInt(dd.value):-1;
+    return {val, isCorrect:val===sub.ans};
+  }
+  if (sub.type==='inline') {
+    const _blankEmpty=sub.blanks.some(function(b,i){ const dd=document.getElementById('idd-'+sub.id+'-'+i); return !dd||dd.value===''; });
+    if (_blankEmpty) return {val:null, isCorrect:false};
+    const _allOk=sub.blanks.every(function(b,i){ const dd=document.getElementById('idd-'+sub.id+'-'+i); return parseInt(dd.value)===b.ans; });
+    return {val:sub.blanks.map(function(b,i){ const dd=document.getElementById('idd-'+sub.id+'-'+i); return dd?parseInt(dd.value):-1; }), isCorrect:_allOk};
+  }
+  if (sub.type==='fill') {
+    const inp=document.getElementById('fill-input-'+sub.id);
+    if (!inp||inp.value.trim().length<1) return {val:'', isCorrect:false};
+    return {val:inp.value, isCorrect:matchFill(inp.value,sub.answer)};
+  }
+  if (sub.type==='table') {
+    const td=sub.tableData;
+    const rowResults=[];
+    let allCorrect=true;
+    td.rows.forEach((row,i)=>{
+      const sel=document.getElementById(`tsub-${sub.id}-${i}`);
+      const expected=row[row.length-1];
+      const rowOk=sel&&sel.value===expected;
+      if(!rowOk) allCorrect=false;
+      rowResults.push({i,rowOk,expected});
+    });
+    return {val:rowResults, isCorrect:allCorrect};
+  }
+  return {val:null, isCorrect:null};
+}
+
+function submitQuiz() {
+  if (timerInterval) { clearInterval(timerInterval); timerInterval=null; }
+  document.getElementById('timer-bar').style.display='none';
+  const qnav=document.getElementById('quiz-qnav'); if(qnav) qnav.style.display='none';
+  let totalPts=0, earnedPts=0;
+  const stats=getStats();
+
+  quizQs.forEach(q => {
+    const subs=q.type==='group'?q.subs:[q];
+    subs.forEach(sub => {
+      const {val, isCorrect}=gradeQuizSub(sub);
+      if (isCorrect===null) return; // shouldn't happen now
+
+      if (sub.type==='table') {
+        // grade per row
+        (val||[]).forEach(({i,rowOk,expected})=>{
+          totalPts++; earnedPts+=rowOk?1:0;
+          const tr=document.getElementById(`trow-${sub.id}-${i}`);
+          if(tr) tr.style.background=rowOk?'#d4edda':'#f8d7da';
+        });
+        if (!stats[sub.id]) stats[sub.id]={attempts:0,correct:0,lastResult:null,everWrong:false,clearedFromMistakes:false};
+        stats[sub.id].attempts++; if(isCorrect) stats[sub.id].correct++;
+        stats[sub.id].lastResult=isCorrect?'correct':'incorrect';
+        if (!isCorrect) { stats[sub.id].everWrong=true; stats[sub.id].clearedFromMistakes=false; }
+        const fb=document.getElementById('fb-'+sub.id);
+        if(fb){fb.style.display='';fb.className='feedback '+(isCorrect?'ok':'err');fb.innerHTML=isCorrect?'✓ All rows correct!':'✗ Some rows incorrect — check highlighted rows.';}
+        const ak=document.getElementById('ak-'+sub.id); if(ak) ak.style.display='';
+        return;
+      }
+
+      totalPts++; earnedPts+=isCorrect?1:0;
+      if (!stats[sub.id]) stats[sub.id]={attempts:0,correct:0,lastResult:null,everWrong:false,clearedFromMistakes:false};
+      stats[sub.id].attempts++; if(isCorrect) stats[sub.id].correct++;
+      stats[sub.id].lastResult=isCorrect?'correct':'incorrect';
+      if (!isCorrect) { stats[sub.id].everWrong=true; stats[sub.id].clearedFromMistakes=false; }
+
+      const fb=document.getElementById('fb-'+sub.id); if(!fb) return;
+      fb.style.display='';
+      if (sub.type==='mcq') {
+        fb.className='feedback '+(isCorrect?'ok':'err');
+        const aText=sub.opts[sub.ans]
+        fb.innerHTML=isCorrect?`✓ Correct! <strong>${aText}</strong>`:`✗ Incorrect. Correct: <strong>${aText}</strong>${sub.note?`<div style="margin-top:6px;font-weight:normal">${sub.note}</div>`:''}`;
+        sub.opts.forEach((_,i)=>{const l=document.getElementById(`lbl-${sub.id}-${i}`);if(l) l.classList.remove('correct-opt','wrong-opt');});
+        if(!isCorrect&&val>=0){const l=document.getElementById(`lbl-${sub.id}-${val}`);if(l) l.classList.add('wrong-opt');}
+        const cl=document.getElementById(`lbl-${sub.id}-${sub.ans}`);if(cl) cl.classList.add('correct-opt');
+      } else if (sub.type==='multi') {
+        const correct=[...sub.ans].sort((a,b)=>a-b);
+        fb.className='feedback '+(isCorrect?'ok':'err');
+        fb.innerHTML=isCorrect?`✓ Correct!`:`✗ Incorrect. Correct: <strong>${correct.map(i=>`${sub.opts[i]}`).join('; ')}</strong>`;
+        sub.opts.forEach((_,i)=>{const l=document.getElementById(`lbl-${sub.id}-${i}`);if(l) l.classList.remove('correct-opt','wrong-opt');});
+        sub.ans.forEach(i=>{const l=document.getElementById(`lbl-${sub.id}-${i}`);if(l) l.classList.add('correct-opt');});
+        if(Array.isArray(val)) val.filter(i=>!sub.ans.includes(i)).forEach(i=>{const l=document.getElementById(`lbl-${sub.id}-${i}`);if(l) l.classList.add('wrong-opt');});
+      } else if (sub.type==='dropdown') {
+        fb.className='feedback '+(isCorrect?'ok':'err');
+        fb.innerHTML=isCorrect?`✓ Correct!`:`✗ Incorrect. Correct: <strong>${sub.opts[sub.ans]}</strong>${sub.note?`<div style="margin-top:6px;font-weight:normal">${sub.note}</div>`:''}`;
+      } else if (sub.type==='fill') {
+        fb.className='feedback '+(isCorrect?'ok':'err');
+        fb.innerHTML=isCorrect?`✓ Correct! Answer: <strong>${sub.answer}</strong>`:`✗ Incorrect. Correct: <strong>${sub.answer}</strong>${sub.note?`<div style="margin-top:6px;font-weight:normal">${sub.note}</div>`:''}`;
+        const ak=document.getElementById('ak-'+sub.id); if(ak) ak.style.display='';
+      } else if (sub.type==='inline') {
+        fb.className='feedback '+(isCorrect?'ok':'err');
+        const correctText=sub.blanks.map(b=>b.opts[b.ans]).join(' / ');
+        fb.innerHTML=isCorrect?`✓ Correct!`:`✗ Incorrect. Correct: <strong>${correctText}</strong>${sub.note?`<div style="margin-top:6px;font-weight:normal">${sub.note}</div>`:''}`;
+      }
+    });
+  });
+  // Lock all inputs after submit
+  document.querySelectorAll('#quiz input, #quiz select').forEach(el => el.disabled = true);
+
+  saveStats(stats);
+  const pct=totalPts>0?Math.round(100*earnedPts/totalPts):0;
+  const box=document.getElementById('score-box');
+  if(box){box.style.display='';box.innerHTML=`<div class="big">${earnedPts}/${totalPts}</div><div class="sub">${pct}% — Quiz Complete!</div><div style="margin-top:14px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap"><button class="btn btn-secondary" onclick="showView('home')">Back to Home</button><button class="btn btn-secondary" onclick="startQuiz()">Retake Quiz</button><button class="btn" onclick="(function(){const c=document.querySelector('#quiz .q-card');if(c)window.scrollTo({top:c.getBoundingClientRect().top+window.scrollY-160,behavior:'smooth'});})()">Review Answers ↓</button></div>`;}
+  const btn=document.getElementById('quiz-submit-btn'); if(btn){btn.disabled=true;btn.textContent='✓ Submitted';}
+  window.scrollTo(0,0);
+}
+
+// ============================================================
+// MISTAKES MODE
+// ============================================================
+function renderMistakes() {
+  const stats=getStats();
+  const container=document.getElementById('mistakes');
+  const mistakeIds=new Set(Object.keys(stats).filter(id=>stats[id].everWrong&&!stats[id].clearedFromMistakes));
+  if(mistakeIds.size===0){
+    container.innerHTML=`<div class="section-header"><h2>Review Mistakes</h2></div><div style="text-align:center;padding:60px;color:#666"><div style="font-size:3rem;margin-bottom:16px">🎉</div><h3 style="color:#28a745">No mistakes to review!</h3><p style="margin-top:8px">Complete questions in Review or Quiz mode first.</p></div>`;
+    return;
+  }
+  const parentQs=QB.filter(q=>q.type==='group'?q.subs.some(s=>mistakeIds.has(s.id)):mistakeIds.has(q.id));
+  let html=`<div class="section-header"><h2>Review Mistakes (${mistakeIds.size} question${mistakeIds.size>1?'s':''})</h2><button class="btn btn-secondary" onclick="clearAllMistakes()">Clear Mistakes</button></div>`;
+  parentQs.forEach(q=>html+=renderCard(q,'mistakes'));
+  container.innerHTML=html;
+}
+
+// ============================================================
+// SCROLL + INIT
+// ============================================================
+window.addEventListener('scroll',()=>{
+  const btn=document.getElementById('scrolltop');
+  if(btn) btn.style.display=window.scrollY>400?'flex':'none';
+});
+window.addEventListener('DOMContentLoaded', function() {
+  try {
+    const v = localStorage.getItem('econ302_view');
+    if (v && ['home','review','mistakes','verify'].includes(v)) { showView(v); }
+    else { showView('home'); }
+  } catch(e) { showView('home'); }
+});
+</script>
+
+<div id="nav">
+  <h1>Econ 302 — Ch 1-4 Quiz</h1>
+  <div id="nav-btns">
+    <button id="nb-home" onclick="showView('home')">🏠 Home</button>
+    <button id="nb-review" onclick="showView('review')">📖 Review</button>
+    <button id="nb-quiz" onclick="startQuiz()">⏱ Quiz</button>
+    <button id="nb-mistakes" onclick="showView('mistakes')">❌ Mistakes</button>
+    <button id="nb-verify" onclick="showView('verify')">📋 Verify</button>
+  </div>
+</div>
+
+<div id="timer-bar" style="display:none">⏱ &nbsp;<span id="timer-display">40:00</span>&nbsp; remaining</div>
+
+<div id="home" style="display:none">
+  <div style="max-width:800px;margin:40px auto;padding:20px">
+    <h2>Econ 302 — Ch 1-4 Potential Quiz</h2>
+    <p style="color:#555;margin-bottom:6px">UW-Madison &nbsp;&middot;&nbsp; Chapters 1-4 (one-period / labor-leisure model) &nbsp;&middot;&nbsp; 30-minute, 20-point quiz simulation</p>
+    <p style="color:#888;margin-bottom:6px;font-size:.85rem">Note: the Module 1 Exam also draws from the separate Chapter 5 potential-quiz list and in-class "Ask Your Neighbor" questions, which are not included in this study set.</p>
+    <div class="stat-grid">
+      <div class="stat-card"><div class="num" id="s-total">—</div><div class="lbl">Gradeable Questions</div></div>
+      <div class="stat-card"><div class="num" id="s-attempted">—</div><div class="lbl">Attempted</div></div>
+      <div class="stat-card"><div class="num" id="s-pct">—</div><div class="lbl">Accuracy</div></div>
+      <div class="stat-card"><div class="num" id="s-mastered">—</div><div class="lbl">Mastered (Last ✓)</div></div>
+    </div>
+    <div class="mode-cards">
+      <div class="mode-card" onclick="showView('review')">
+        <h3>📖 Review Mode</h3>
+        <p>All 33 questions across 6 pools, in random order. Check answers and get instant feedback. Retry wrong answers.</p>
+        <button class="btn" style="margin-top:14px">Start Review</button>
+      </div>
+      <div class="mode-card" onclick="startQuiz()">
+        <h3>⏱ Quiz Mode</h3>
+        <p>30-minute countdown, ~20-point practice draw across all pools (same format as the real Ch 1-4 Quiz). Submit for your score.</p>
+        <button class="btn" style="margin-top:14px">Start Quiz</button>
+      </div>
+      <div class="mode-card" onclick="showView('mistakes')">
+        <h3>❌ Review Mistakes</h3>
+        <p>Focus only on questions you've gotten wrong. Track improvement session to session.</p>
+        <button class="btn btn-secondary" style="margin-top:14px">View Mistakes</button>
+      </div>
+      <div class="mode-card" onclick="if(confirm('Clear all study history? Cannot be undone.')){localStorage.removeItem('econ302_stats');renderHome();}">
+        <h3>🗑 Reset Progress</h3>
+        <p>Clear all study history and start fresh. Your stats will reset to zero.</p>
+        <button class="btn btn-secondary" style="margin-top:14px">Reset</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="review" style="display:none;max-width:860px;margin:0 auto;padding:20px"></div>
+<div id="quiz" style="display:none;max-width:860px;margin:0 auto;padding:20px"></div>
+<div id="mistakes" style="display:none;max-width:860px;margin:0 auto;padding:20px"></div>
+<div id="verify" style="display:none;max-width:960px;margin:0 auto;padding:20px"></div>
+
+<button id="scrolltop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top" style="display:none;align-items:center;justify-content:center">↑</button>
+
+<script>
+// ============================================================
+// VERIFY MODE — all questions in source order, answers shown
+// ============================================================
+function renderVerify() {
+  const container = document.getElementById('verify');
+  let html = `<div class="section-header" style="flex-direction:column;align-items:flex-start;gap:6px">
+    <h2>📋 Verify Questions — ${QB.length} Groups · ${getAllLeafIds().length} Questions</h2>
+    <div style="font-size:.85rem;color:#555">All questions in source order &middot; answers shown for memorization and self-check</div>
+  </div>`;
+
+  QB.forEach((q, qIdx) => {
+    html += `<div class="q-card" id="vcard-${q.id}" style="border-left:4px solid #c5050c">`;
+    // Header row
+    html += `<div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px">
+      <span class="q-tag">${q.tag}</span>
+      <span class="q-points">${q.pts} pt${q.pts>1?'s':''}</span>
+      <span style="background:#555;color:#fff;padding:2px 8px;border-radius:20px;font-size:.7rem;font-weight:600">${q.pool}</span>
+    </div>`;
+
+    if (q.type === 'group') {
+      if (q.img && IMG[q.img]) {
+        html += `<div style="margin:10px 0"><img src="${IMG[q.img]}" alt="${q.imgCap||'Graph'}" style="max-width:100%;border-radius:8px;border:1px solid #eee"></div>`;
+        if (q.imgCap) html += `<div style="font-size:.79rem;color:#555;margin-bottom:10px"><em>📊 ${q.imgCap}</em></div>`;
+      }
+      if (q.scenario) html += `<div class="scenario-box">${q.scenario}</div>`;
+      q.subs.forEach((sub, si) => {
+        if (q.subs.length > 1) html += `<div class="subq-label">Part ${si+1}</div>`;
+        html += renderVerifySub(sub);
+      });
+    } else {
+      if (q.img && IMG[q.img]) {
+        html += `<div style="margin:10px 0"><img src="${IMG[q.img]}" alt="${q.imgCap||'Graph'}" style="max-width:100%;border-radius:8px;border:1px solid #eee"></div>`;
+        if (q.imgCap) html += `<div style="font-size:.79rem;color:#555;margin-bottom:10px"><em>📊 ${q.imgCap}</em></div>`;
+      }
+      if (q.scenario) html += `<div class="scenario-box">${q.scenario}</div>`;
+      html += renderVerifySub(q);
+    }
+    html += `</div>`;
+  });
+
+  container.innerHTML = html;
+}
+
+function renderVerifySub(sub) {
+  let html = `<div class="subq" style="border-top:none;padding-top:4px">`;
+  if (sub.stem) html += `<div class="q-stem">${sub.stem}</div>`;
+
+  if (sub.type === 'mcq' || sub.type === 'dropdown') {
+    html += `<div style="margin-top:8px">`;
+    sub.opts.forEach((opt, i) => {
+      const ok = i === sub.ans;
+      html += `<div style="display:flex;align-items:flex-start;gap:8px;padding:6px 10px;margin:3px 0;border-radius:7px;font-size:.89rem;
+        ${ok ? 'background:#d4edda;border-left:4px solid #28a745;font-weight:600;' : 'color:#555;border-left:4px solid transparent;'}">
+        <span style="font-weight:700;color:${ok?'#155724':'#c5050c'};flex-shrink:0">${LETTERS[i]}.</span>
+        <span style="flex:1">${opt}</span>
+        ${ok ? '<span style="flex-shrink:0;color:#155724;font-weight:700">✓</span>' : ''}
+      </div>`;
+    });
+    html += `</div>`;
+
+  } else if (sub.type === 'multi') {
+    html += `<div style="margin-top:8px">`;
+    sub.opts.forEach((opt, i) => {
+      const ok = sub.ans.includes(i);
+      html += `<div style="display:flex;align-items:flex-start;gap:8px;padding:6px 10px;margin:3px 0;border-radius:7px;font-size:.89rem;
+        ${ok ? 'background:#d4edda;border-left:4px solid #28a745;font-weight:600;' : 'color:#555;border-left:4px solid transparent;'}">
+        <span style="font-weight:700;color:${ok?'#155724':'#c5050c'};flex-shrink:0">${LETTERS[i]}.</span>
+        <span style="flex:1">${opt}</span>
+        ${ok ? '<span style="flex-shrink:0;color:#155724;font-weight:700">✓</span>' : ''}
+      </div>`;
+    });
+    html += `</div>`;
+
+  } else if (sub.type === 'inline') {
+    const parts = sub.stem.split('____');
+    html += '<div style="margin-top:8px;line-height:2.4;font-size:.89rem">';
+    parts.forEach((part, i) => {
+      html += part;
+      if (i < sub.blanks.length) {
+        const b = sub.blanks[i];
+        html += '<span style="display:inline-block;background:#d4edda;border:2px solid #28a745;border-radius:5px;padding:2px 10px;margin:0 4px;font-weight:700;color:#155724">' + b.opts[b.ans] + ' &#10003;</span>';
+      }
+    });
+    html += '</div>';
+
+  } else if (sub.type === 'table') {
+    const td = sub.tableData;
+    html += `<table class="table-q" style="margin:10px 0">
+      <thead><tr>${td.headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead>
+      <tbody>`;
+    td.rows.forEach(row => {
+      html += `<tr>`;
+      row.forEach((cell, ci) => {
+        if (ci === row.length - 1) {
+          html += `<td style="font-weight:700;color:#155724;background:#d4edda">✓ ${cell}</td>`;
+        } else {
+          html += `<td>${cell}</td>`;
+        }
+      });
+      html += `</tr>`;
+    });
+    html += `</tbody></table>`;
+    if (sub.note) html += `<div style="font-size:.83rem;color:#555;margin-top:4px;padding:6px 10px;background:#f8f9fa;border-radius:6px;border-left:3px solid #aaa">${sub.note}</div>`;
+    html += `</div>`;
+    return html;
+  }
+
+  if (sub.type === 'fill') {
+    html += `<div style="margin-top:8px;padding:8px 12px;background:#d4edda;border-radius:7px;font-size:.9rem;font-weight:700;color:#155724">Answer: ${sub.answer}</div>`;
+  }
+
+  if (sub.note && sub.type !== 'table') {
+    html += `<div style="margin-top:8px;padding:7px 10px;background:#f8f9fa;border-radius:6px;font-size:.83rem;color:#555;border-left:3px solid #888">${sub.note}</div>`;
+  }
+
+  html += `</div>`;
+  return html;
+}
+</script>
+</body>
+</html>
