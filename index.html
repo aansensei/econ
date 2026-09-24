@@ -52,6 +52,9 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f4f4f4;color:#222;min-h
 .q-card.correct{border-left-color:#28a745}
 .q-card.incorrect{border-left-color:#c5050c}
 .q-card.unanswered{border-left-color:#ffc107}
+.q-card.removed-q{position:relative;overflow:hidden;border-left-color:#c5050c;background:#fff6f6}
+.q-card.removed-q .options,.q-card.removed-q select,.q-card.removed-q input,.q-card.removed-q .q-check-btn,.q-card.removed-q .q-retry-btn{pointer-events:none;opacity:.45}
+.removed-stamp{position:absolute;top:22px;right:-42px;background:#c5050c;color:#fff;font-weight:800;font-size:.82rem;letter-spacing:.5px;padding:6px 50px;transform:rotate(35deg);box-shadow:0 2px 8px rgba(0,0,0,.35);z-index:5;text-transform:uppercase;white-space:nowrap}
 .q-tag{display:inline-block;padding:2px 10px;background:#c5050c;color:#fff;border-radius:20px;font-size:.72rem;font-weight:700;margin-bottom:8px;text-transform:uppercase;letter-spacing:.4px}
 .q-points{display:inline-block;margin-left:8px;padding:2px 8px;background:#e0e0e0;color:#333;border-radius:20px;font-size:.72rem;font-weight:600}
 .q-stem{font-size:.97rem;line-height:1.6;margin:10px 0 14px}
@@ -154,82 +157,98 @@ const QB = [
 {id:"p2_1",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",
  stem:"A good is normal for a consumer if",
  opts:["It is always consumed in a consistent quantity.","Its consumption rises when income rises.","Its consumption falls when income rises.","Some minimal level of the good must be consumed to assure the consumer's survival."],
- ans:1},
+ ans:1,
+ note:"By definition, a normal good is one whose consumption rises as income rises (positive income elasticity). A good whose consumption falls as income rises is called inferior instead."},
 
 {id:"p2_2",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",
  stem:"We assume leisure is a normal good. This implies that",
  opts:["An increase in taxes increases utility.","We can use a representative household model.","Preferences over consumption are well defined.","An increase in the wage increases demand for leisure."],
- ans:3},
+ ans:3,
+ note:"A wage increase raises the household's real income. Since leisure is assumed normal, that income effect alone raises the demand for leisure -- that is exactly what 'leisure is a normal good' means applied to a wage change."},
 
 {id:"p2_3",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",
  stem:"The fact that indifference curves are downward sloping",
  opts:["Is not true.","Follows from the fact that more is preferred to less.","Follows from the property that the consumer likes diversity in his or her consumption bundle.","Follows from the property that consumption and leisure are normal goods."],
- ans:1},
+ ans:1,
+ note:"If more is always preferred to less (monotonicity), then giving up some consumption must be compensated with more leisure (or vice versa) to keep utility the same -- so the indifference curve must trade one off against the other, i.e. slope downward."},
 
 {id:"p2_4",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",
  stem:"The fact that indifference curves are bowed in toward the origin",
  opts:["Is not true.","Follows from the fact that more is preferred to less.","Follows from the property that the consumer likes diversity in his or her consumption bundle.","Follows from the property that consumption and leisure are normal goods."],
- ans:2},
+ ans:2,
+ note:"Bowed-in (convex) indifference curves come from the consumer preferring balanced/diversified bundles to extreme ones -- a mix of consumption and leisure is preferred over an equally-valued bundle that is all of one and none of the other. Monotonicity (more-is-better) only gives downward-sloping curves, not convexity."},
 
 {id:"p2_5",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",
  stem:"The property of diminishing marginal rate of substitution follows from the property that the indifference curve is",
  opts:["Downward sloping.","Upward sloping.","Bowed in toward the origin.","Bowed out from the origin."],
- ans:2},
+ ans:2,
+ note:"Diminishing MRS and 'bowed in toward the origin' (convex) are really the same property stated two ways: as you slide along the curve, the slope (MRS) keeps getting flatter, which is exactly what makes the curve convex."},
 
 {id:"p2_6",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",
  stem:"As the quantity of labor increases, the marginal product of capital",
  opts:["Is constant.","Increases.","Decreases.","May either increase or decrease."],
- ans:1},
+ ans:1,
+ note:"Capital and labor are complements in production: with more workers using the same machines, each unit of capital has more labor to work with and becomes more productive, so MPK rises as N rises (holding K fixed)."},
 
 {id:"p2_7",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",
  stem:"The assumption that the marginal product of labor decreases as the labor input increases implies that",
  opts:["Output decreases as the labor input increases.","The wage increases as the labor input increases.","The production function is concave.","The production function shifts upward."],
- ans:2},
+ ans:2,
+ note:"MPL is the slope of the production function in N. If that slope keeps getting smaller as N rises (diminishing MPL), the function is curving downward as you add labor -- which is the definition of a concave function."},
 
 {id:"p2_8",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",
  stem:"An increase in total factor productivity could be the result of",
  opts:["Adverse weather.","The addition of new machinery.","New hires.","The introduction of new manufacturing methods."],
- ans:3},
+ ans:3,
+ note:"TFP (z) is the 'get more output from the same K and N' term, so only a pure technology/process improvement -- like a better manufacturing method -- raises it. Adverse weather lowers z; new machinery or new hires just change K or N, not z itself."},
 
 {id:"p2_9",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",
  stem:"If the firm hires more labor, everything else held constant, then",
  opts:["The marginal product of labor falls.","Output decreases.","There is an increase in the marginal product of labor.","Total factor productivity falls."],
- ans:0},
+ ans:0,
+ note:"This is just the diminishing-marginal-product assumption itself: with K and z fixed, each additional worker adds less extra output than the one before, so MPL falls as N rises. Output still rises (just by smaller and smaller amounts), and z is unaffected."},
 
 {id:"p2_10",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",
  stem:"An increase in total factor productivity",
  opts:["Changes neither the slope nor the position of the production function.","Changes the slope but not the position of the production function.","Changes the position but not the slope of the production function.","Changes both the slope and the position of the production function."],
- ans:3},
+ ans:3,
+ note:"Output is Y = z&middot;f(K,N), so a higher z scales up output at every N (shifts the curve up/position) and also scales up the slope MPL = z&middot;f'(K,N) at every N -- both the position and the slope change."},
 
 {id:"p2_11",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",
  stem:"The profit-maximizing quantity of labor equates the marginal product of labor with",
  opts:["Total factor productivity.","The marginal product of capital.","The real wage.","The average product of labor."],
- ans:2},
+ ans:2,
+ note:"The firm keeps hiring as long as an extra worker adds more output value (MPL) than it costs (the real wage w). Profit is maximized where the two are equal: MPL = w."},
 
 {id:"p2_12",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",
  stem:"In the one-period model, the assumption that everyone would behave the same way under the same circumstance is reflected in",
  opts:["All of these things.","Real wage equaling MPN.","The use of a representative consumer.","The use of a general equilibrium framework."],
- ans:2},
+ ans:2,
+ note:"Modeling the whole economy with a single 'representative' household only makes sense if every household would make the same choices given the same prices/circumstances -- that's precisely the assumption baked into using a representative consumer."},
 
 {id:"p2_13",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",
  stem:"A constant returns to scale production function means",
  opts:["F(xK, N) = F(K, xN)","F(xK, xN) = xF(K, N)","F(xK, xN) = F(K, N)","All of these"],
- ans:1},
+ ans:1,
+ note:"Constant returns to scale means scaling ALL inputs by the same factor x scales output by exactly that same factor x: F(xK, xN) = x&middot;F(K, N). Doubling both K and N exactly doubles output."},
 
 {id:"p2_14",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",
  stem:"Assume government cuts payroll taxes (proportional income taxes) and it leads to an increase in tax revenue collections. We would know from this that",
  opts:["Substitution effects dominate income effects.","Income effects dominate substitution effects.","Markets are efficient.","None of these things can be known with certainty from the information supplied."],
- ans:0},
+ ans:0,
+ note:"A tax cut raises the after-tax wage, like pool 4's 'tax rate decrease' case: the substitution effect raises labor supply while the income effect lowers it. For tax revenue (tax rate x tax base) to rise despite the lower rate, the tax base (hours/income) must have grown enough to more than offset it -- meaning the substitution effect (which raises labor supply) dominated the income effect (which lowers it)."},
 
-{id:"p2_15",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",
+{id:"p2_15",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",removed:true,
  stem:"If a forecaster uses a log-linear utility function to make a long run (twenty years from now) labor market forecast, the forecaster is likely going to",
  opts:["Over-estimate the change in labor supply in response to a rising real wage.","Under-estimate the change in labor supply in response to a rising real wage.","Over-estimate the change in labor demand in response to a rising real wage.","Under-estimate the change in labor demand in response to a rising real wage."],
- ans:0},
+ ans:0,
+ note:"Removed by the instructor from the potential quiz/exam list (email update) -- kept here for reference only, not gradeable. (Log-linear utility ties the income and substitution effects on labor supply together in a way that tends to overstate how much labor supply responds to a rising real wage over a long horizon.)"},
 
 {id:"p2_16",pool:"pool_2",tag:"Pool 2 -- Labor & Consumption Theory (MC)",pts:1,type:"mcq",
  stem:"If wages remain constant over time, but we observe people working less, what can we say about the MRS(l,c)?",
  opts:["The MRS must have increased.","The MRS must have decreased.","The MRS must have remained the same.","We cannot be sure what happened to the MRS."],
- ans:0},
+ ans:0,
+ note:"At the optimum, MRS = real wage. Since the wage (the budget line's slope) hasn't changed but the chosen bundle moved to more leisure/less labor, the new tangency point must be where the indifference curve is steeper in leisure's favor -- so the MRS of consumption for leisure must have risen."},
 
 // ====== POOL 3: Math -- Cobb-Douglas growth accounting (1 pt) ======
 {id:"p3_1",pool:"pool_3",tag:"Pool 3 -- Math: Cobb-Douglas Growth Accounting",pts:1,type:"fill",
@@ -363,6 +382,7 @@ function getParentQ(id) {
 function getAllLeafIds() {
   const ids = [];
   QB.forEach(q => {
+    if (q.removed) return;
     const subs = q.type === 'group' ? q.subs : [q];
     subs.forEach(s => ids.push(s.id));
   });
@@ -372,6 +392,7 @@ function getAllLeafIds() {
 function getGradeableLeafIds() {
   const ids = [];
   QB.forEach(q => {
+    if (q.removed) return;
     const subs = q.type === 'group' ? q.subs : [q];
     subs.forEach(s => { if (s.type !== 'fill' && s.type !== 'table') ids.push(s.id); });
   });
@@ -580,7 +601,10 @@ function renderSubQ(sub, mode, suppressMasterBtn) {
 // RENDER — full question card
 // ============================================================
 function renderCard(q, mode) {
-  let html = `<div class="q-card" id="qcard-${q.id}">`;
+  let html = `<div class="q-card${q.removed ? ' removed-q' : ''}" id="qcard-${q.id}">`;
+  if (q.removed) {
+    html += `<div class="removed-stamp">Đã bỏ khỏi đề</div>`;
+  }
   if (mode === 'quiz') {
     const qNum = quizQs.indexOf(q) + 1;
     html += `<span style="float:left;background:#c5050c;color:#fff;border-radius:5px;padding:2px 8px;font-size:.78rem;font-weight:700;margin-right:6px">Q${qNum}</span>`;
@@ -822,7 +846,7 @@ function getPoolStats(pools) {
   const stats = getStats();
   let total=0, attempted=0, correct=0, wrong=0;
   QB.forEach(q => {
-    if (!poolList.includes(q.pool)) return;
+    if (!poolList.includes(q.pool) || q.removed) return;
     const subs = q.type==='group' ? q.subs : [q];
     subs.forEach(s => {
       total++;
@@ -882,7 +906,7 @@ function scrollToQ(qid) {
 
 function generateQuiz() {
   const byPool = {};
-  QB.forEach(q => { if (!byPool[q.pool]) byPool[q.pool]=[]; byPool[q.pool].push(q); });
+  QB.forEach(q => { if (q.removed) return; if (!byPool[q.pool]) byPool[q.pool]=[]; byPool[q.pool].push(q); });
   const selected = [];
   QUIZ_SPEC.forEach(spec => { shuffle(byPool[spec.pool]||[]).slice(0,spec.draw).forEach(q=>selected.push(q)); });
   return selected;
@@ -946,7 +970,7 @@ function startQuiz() {
 function doStartQuiz(mode, param) {
   // Generate questions based on mode
   const byPool = {};
-  QB.forEach(q => { if (!byPool[q.pool]) byPool[q.pool]=[]; byPool[q.pool].push(q); });
+  QB.forEach(q => { if (q.removed) return; if (!byPool[q.pool]) byPool[q.pool]=[]; byPool[q.pool].push(q); });
 
   let selectedQs = [];
   let mins = 30;
