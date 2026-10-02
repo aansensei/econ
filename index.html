@@ -2,19 +2,34 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Econ 302 — Ch 1-4 Quiz Study App</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',Arial,sans-serif;background:#f4f4f4;color:#222;min-height:100vh}
 /* NAV */
-#nav{background:#c5050c;color:#fff;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 6px rgba(0,0,0,0.3)}
+#nav{background:#c5050c;color:#fff;padding:12px 24px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;position:sticky;top:0;z-index:100;box-shadow:0 2px 6px rgba(0,0,0,0.3)}
 #nav h1{font-size:1.1rem;font-weight:700;letter-spacing:.5px}
 #nav-btns button{margin-left:8px;padding:6px 14px;border:2px solid #fff;background:transparent;color:#fff;border-radius:20px;cursor:pointer;font-size:.85rem;transition:all .2s}
 #nav-btns button:hover,#nav-btns button.active{background:#fff;color:#c5050c;font-weight:700}
+#chapter-switch{display:flex;gap:6px;flex-shrink:0}
+.chapter-btn{padding:6px 14px;border:2px solid #fff;background:rgba(255,255,255,.15);color:#fff;border-radius:20px;cursor:pointer;font-size:.85rem;font-weight:600;transition:all .2s}
+.chapter-btn:hover{background:rgba(255,255,255,.3)}
+.chapter-btn.active{background:#fff;color:#c5050c;font-weight:700}
+.chapter-btn.active:hover{background:#fff}
+@media (max-width:480px){
+  #nav{padding:calc(10px + env(safe-area-inset-top, 0px)) 12px 10px;gap:8px;justify-content:flex-start}
+  #nav h1{font-size:.88rem;width:100%;text-align:center;order:1}
+  #chapter-switch{width:100%;order:2;gap:8px}
+  .chapter-btn{flex:1;text-align:center;padding:7px 10px;font-size:.82rem}
+  #nav-btns{display:flex;flex-wrap:nowrap;gap:2px;width:100%;order:3}
+  #nav-btns button{flex:1;min-width:0;margin-left:0;padding:6px 2px;font-size:.62rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;line-height:1.15;border-radius:12px;white-space:nowrap;overflow:hidden}
+  #nav-btns .nb-icon{font-size:1.05rem}
+  #nav-btns .nb-label{font-size:.6rem}
+}
 /* TIMER */
-#timer-bar{background:#222;color:#fff;text-align:center;padding:8px;font-size:1.1rem;font-weight:700;display:none;position:sticky;top:54px;z-index:99}
-#quiz-qnav{position:sticky;top:96px;z-index:98;background:#f0f0f0;border-bottom:2px solid #ccc;padding:8px 12px;display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+#timer-bar{background:#222;color:#fff;text-align:center;padding:8px;font-size:1.1rem;font-weight:700;display:none;position:sticky;top:var(--nav-h,54px);z-index:99}
+#quiz-qnav{position:sticky;top:calc(var(--nav-h,54px) + 42px);z-index:98;background:#f0f0f0;border-bottom:2px solid #ccc;padding:8px 12px;display:flex;flex-wrap:wrap;gap:5px;align-items:center}
 #quiz-qnav .qn-label{font-size:.78rem;font-weight:700;color:#555;margin-right:4px;white-space:nowrap}
 .qn-btn{width:32px;height:32px;border-radius:6px;border:1.5px solid #bbb;background:#fff;font-size:.8rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .15s}
 .qn-btn.answered{background:#28a745;color:#fff;border-color:#28a745}
@@ -85,7 +100,9 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f4f4f4;color:#222;min-h
 #score-box .big{font-size:3rem;font-weight:700;color:#c5050c}
 #score-box .sub{font-size:1rem;color:#555;margin-top:6px}
 /* PROGRESS */
-#review-progress{background:#e0e0e0;height:8px;border-radius:4px;margin-bottom:16px;overflow:hidden}
+#review-progress-wrap{position:sticky;top:var(--nav-h,54px);z-index:97;background:#f4f4f4;padding:10px 0 6px;margin:0 -20px 10px;}
+#review-progress-wrap::before{content:"";position:absolute;inset:0;background:#f4f4f4;z-index:-1}
+#review-progress{background:#e0e0e0;height:8px;border-radius:4px;overflow:hidden;margin:0 20px}
 #review-progress-fill{height:100%;background:#c5050c;transition:width .3s;border-radius:4px}
 /* FILTER BAR */
 .filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
@@ -103,7 +120,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f4f4f4;color:#222;min-h
 /* GROUP CARD */
 .group-label{font-size:.78rem;background:#555;color:#fff;display:inline-block;padding:2px 8px;border-radius:4px;margin-bottom:6px}
 /* SCROLLTOP */
-#scrolltop{position:fixed;bottom:24px;right:24px;background:#c5050c;color:#fff;border:none;border-radius:50%;width:44px;height:44px;font-size:1.2rem;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.2);display:none;z-index:200}
+#scrolltop{position:fixed;bottom:calc(24px + env(safe-area-inset-bottom, 0px));right:24px;background:#c5050c;color:#fff;border:none;border-radius:50%;width:44px;height:44px;font-size:1.2rem;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.2);display:none;z-index:200}
 </style>
 </head>
 <body><script>
@@ -322,6 +339,279 @@ const QB = [
 ]; // end QB
 
 // ============================================================
+// CHAPTER 5 QUESTION BANK
+// Source: "Ch 5 Potential Quiz and Module 1 Exam Answers.pdf"
+// Correct answers extracted directly from bold-highlighted text in the
+// PDF (verified via font-weight inspection, not guessed), cross-checked
+// for internal consistency (e.g. G-up/G-down and TFP-up/TFP-down cases
+// mirror each other correctly).
+// ============================================================
+const QB_CH5 = [
+
+// ====== POOL 1: Math -- utility-maximizing C level + income vs substitution effect ======
+{id:"c5p1_1a",pool:"pool_c5_1",tag:"Ch5 Pool 1 -- Math: Utility-Maximizing Choice",pts:1,type:"fill",
+ stem:"Math fill in the blank: household utility is U(C,l) = a&middot;ln(C) + b&middot;ln(l), with budget constraint C = w(1&minus;t)(h&minus;l). Let a = 0.5, b = 0.5, w(1&minus;t) = 10, and h = 16.<br><br>Rounding to two decimal points, what level of C will the utility-maximizing household choose?<br><br><span style=\"color:#a00;font-weight:600\">Note: the numeric values change every time this is drawn on a quiz/exam -- use the general method below, don't just memorize 80.00.</span>",
+ answer:"80.00",
+ note:"<strong>General method:</strong> with log utility a&middot;ln(C)+b&middot;ln(l) and budget C + w(1&minus;t)&middot;l = w(1&minus;t)&middot;h, 'full income' is M = w(1&minus;t)&middot;h = 10&times;16 = 160. Log (and Cobb-Douglas) utility always splits full income into budget shares exactly equal to the exponents: C* = [a/(a+b)]&middot;M = (0.5/1)&times;160 = <strong>80.00</strong>. Mnemonic: 'log utility = fixed budget shares' -- a and b ARE the percentage of full income spent on C and on leisure, no calculus needed once you see this."},
+
+{id:"c5p1_1b",pool:"pool_c5_1",tag:"Ch5 Pool 1 -- Math: Utility-Maximizing Choice",pts:1,type:"mcq",
+ stem:"Same household as above, with U(C,l) = a&middot;ln(C) + b&middot;ln(l). In this example, are income effects greater than (>), less than (<), or equal to (=) substitution effects on labor supply?",
+ opts:[">","<","="],
+ ans:2,
+ note:"Log (Cobb-Douglas) utility is the textbook 'knife-edge' case: the income and substitution effects on labor supply exactly offset, so labor supply doesn't respond to a pure wage change at all. Mnemonic: 'log utility -> labor supply is wage-proof' (income effect = substitution effect, always, for this family of preferences)."},
+
+{id:"c5p1_2a",pool:"pool_c5_1",tag:"Ch5 Pool 1 -- Math: Utility-Maximizing Choice",pts:1,type:"fill",
+ stem:"Math fill in the blank: household utility is now U(C,l) = a&middot;C + b&middot;ln(l) (linear in C instead of log), with the same budget constraint C = w(1&minus;t)(h&minus;l), a = 0.5, b = 0.5, w(1&minus;t) = 10, h = 16.<br><br>Rounding to two decimal points, what level of C will the utility-maximizing household choose?<br><br><span style=\"color:#a00;font-weight:600\">Note: the numeric values change every time this is drawn on a quiz/exam -- use the general method below, don't just memorize 159.00.</span>",
+ answer:"159.00",
+ note:"<strong>General method:</strong> this utility is quasi-linear (linear in C). Substitute the budget constraint and maximize over l: U(l) = a&middot;w(1&minus;t)(h&minus;l) + b&middot;ln(l). FOC: &minus;a&middot;w(1&minus;t) + b/l = 0 &rarr; l* = b / [a&middot;w(1&minus;t)] = 0.5/(0.5&times;10) = 0.1. Then C* = w(1&minus;t)(h&minus;l*) = 10&times;(16&minus;0.1) = <strong>159.00</strong>. Mnemonic: 'linear in C = no wealth effect on leisure', so l* depends only on a, b, w(1-t) -- never on h."},
+
+{id:"c5p1_2b",pool:"pool_c5_1",tag:"Ch5 Pool 1 -- Math: Utility-Maximizing Choice",pts:1,type:"mcq",
+ stem:"Same household as above, with U(C,l) = a&middot;C + b&middot;ln(l). In this example, are income effects greater than (>), less than (<), or equal to (=) substitution effects on labor supply?",
+ opts:[">","<","="],
+ ans:1,
+ note:"Because utility is linear in C, the marginal utility of consumption is constant (= a) no matter how rich the household is -- that kills the income effect on leisure/labor entirely (income effect = 0), while the substitution effect is still there. So income effects < substitution effects. Mnemonic: 'quasi-linear = all substitution, no income.'"},
+
+// ====== POOL 2: Social Planner's model -- Government spending (G) shocks ======
+{id:"c5p2_1",pool:"pool_c5_2",tag:"Ch5 Pool 2 -- Social Planner: Government Spending (G) Shocks",pts:1,type:"inline",
+ stem:"Ceteris paribus, using the Social Planner's model from Chapter 5, we expect an <strong>increase in Government spending</strong> to lead to ____ in equilibrium levels of leisure and to ____ in the leisure intercept for the Production Possibility Frontier (PPF).",
+ blanks:[{opts:OPTS4,ans:1},{opts:OPTS4,ans:1}],
+ note:"Higher G must be financed out of the same fixed time endowment h, so the household ends up with less time for leisure -- equilibrium leisure falls. The PPF's leisure-intercept is the most leisure possible when C=0 (all output goes to G); since more output (hence less leisure) is now needed just to cover the bigger G even at C=0, that intercept falls too. Mnemonic: 'bigger G eats into the PPF from the leisure side.'"},
+
+{id:"c5p2_2",pool:"pool_c5_2",tag:"Ch5 Pool 2 -- Social Planner: Government Spending (G) Shocks",pts:1,type:"inline",
+ stem:"Ceteris paribus, using the Social Planner's model from Chapter 5, we expect an <strong>increase in Government spending</strong> to lead to ____ in equilibrium levels of employment and to ____ in welfare (utility).",
+ blanks:[{opts:OPTS4,ans:0},{opts:OPTS4,ans:1}],
+ note:"Employment is just h minus leisure, so if leisure falls (previous question), employment (N = h&minus;l) must rise. Welfare falls because G crowds out both private consumption and leisure without giving the household anything back (G is assumed unproductive here). Mnemonic: 'G up = work more, enjoy less.'"},
+
+{id:"c5p2_3",pool:"pool_c5_2",tag:"Ch5 Pool 2 -- Social Planner: Government Spending (G) Shocks",pts:1,type:"inline",
+ stem:"Ceteris paribus, using the Social Planner's model from Chapter 5, we expect an <strong>increase in Government spending</strong> to lead to ____ in equilibrium real wages and to ____ in GDP.",
+ blanks:[{opts:OPTS4,ans:1},{opts:OPTS4,ans:0}],
+ note:"GDP rises because employment rose: more labor on the same production function means more output. But hiring more labor runs into diminishing marginal product of labor (MPN), and in equilibrium the real wage = MPN, so the real wage falls as N rises. Mnemonic: 'more workers, same tech -> GDP up, but each worker's marginal product (and the wage) down.'"},
+
+{id:"c5p2_4",pool:"pool_c5_2",tag:"Ch5 Pool 2 -- Social Planner: Government Spending (G) Shocks",pts:1,type:"inline",
+ stem:"Ceteris paribus, using the Social Planner's model from Chapter 5, we expect a <strong>decrease in Government spending</strong> to lead to ____ in equilibrium levels of leisure and to ____ in the leisure intercept for the Production Possibility Frontier (PPF).",
+ blanks:[{opts:OPTS4,ans:0},{opts:OPTS4,ans:0}],
+ note:"Mirror image of a G increase: less government spending frees up time/resources, so equilibrium leisure rises, and the PPF's leisure-intercept also rises since less output is needed to cover the smaller G. Mnemonic: 'less G, more leisure time available.'"},
+
+{id:"c5p2_5",pool:"pool_c5_2",tag:"Ch5 Pool 2 -- Social Planner: Government Spending (G) Shocks",pts:1,type:"inline",
+ stem:"Ceteris paribus, using the Social Planner's model from Chapter 5, we expect a <strong>decrease in Government spending</strong> to lead to ____ in equilibrium levels of employment and to ____ in welfare (utility).",
+ blanks:[{opts:OPTS4,ans:1},{opts:OPTS4,ans:0}],
+ note:"Mirror of the G-increase case: with more leisure chosen, employment (h&minus;l) falls; and since both C and l are now more available to the household, welfare rises. Mnemonic: 'less G crowding out -> happier household.'"},
+
+{id:"c5p2_6",pool:"pool_c5_2",tag:"Ch5 Pool 2 -- Social Planner: Government Spending (G) Shocks",pts:1,type:"inline",
+ stem:"Ceteris paribus, using the Social Planner's model from Chapter 5, we expect a <strong>decrease in Government spending</strong> to lead to ____ in equilibrium real wages and to ____ in GDP.",
+ blanks:[{opts:OPTS4,ans:0},{opts:OPTS4,ans:1}],
+ note:"Mirror of the G-increase case: less employment moves the economy back up the diminishing-MPN curve (real wage = MPN rises), while lower N on the same production function means lower GDP. Mnemonic: 'fewer hours worked -> each hour more valuable, but less total output.'"},
+
+// ====== POOL 3: Social Planner's model -- TFP (z) shocks ======
+{id:"c5p3_1",pool:"pool_c5_3",tag:"Ch5 Pool 3 -- Social Planner: TFP (z) Shocks",pts:1,type:"inline",
+ stem:"Ceteris paribus, using the Social Planner's model from Chapter 5, we expect an <strong>increase in TFP (z)</strong> to lead to ____ in equilibrium levels of leisure and to ____ in the leisure intercept for the Production Possibility Frontier (PPF).",
+ blanks:[{opts:OPTS4,ans:3},{opts:OPTS4,ans:0}],
+ note:"A TFP increase raises both the return to working (substitution effect: work more, leisure down) and the household's overall wealth (income effect: consume more of everything including leisure, leisure up) -- these pull leisure in opposite directions, so the net effect is ambiguous. But the PPF's leisure-intercept unambiguously rises: with higher z, even producing just enough to cover G needs less labor, freeing up more potential leisure. Mnemonic: 'TFP always makes the PPF better (intercept up), but affects leisure through a tug-of-war (ambiguous).'"},
+
+{id:"c5p3_2",pool:"pool_c5_3",tag:"Ch5 Pool 3 -- Social Planner: TFP (z) Shocks",pts:1,type:"inline",
+ stem:"Ceteris paribus, using the Social Planner's model from Chapter 5, we expect an <strong>increase in TFP (z)</strong> to lead to ____ in equilibrium levels of employment and to ____ in welfare (utility).",
+ blanks:[{opts:OPTS4,ans:3},{opts:OPTS4,ans:0}],
+ note:"Employment = h&minus;leisure, and since leisure's response to a TFP increase is ambiguous (previous question), employment's response is ambiguous too. Welfare unambiguously rises though: the household strictly has more opportunities (a strictly better PPF) than before, so utility at the new optimum can't be lower. Mnemonic: 'ambiguous for hours, but always good for welfare -- technology is a free lunch.'"},
+
+{id:"c5p3_3",pool:"pool_c5_3",tag:"Ch5 Pool 3 -- Social Planner: TFP (z) Shocks",pts:1,type:"inline",
+ stem:"Ceteris paribus, using the Social Planner's model from Chapter 5, we expect an <strong>increase in TFP (z)</strong> to lead to ____ in equilibrium real wages and to ____ in GDP.",
+ blanks:[{opts:OPTS4,ans:0},{opts:OPTS4,ans:0}],
+ note:"Real wage = MPN = z&middot;f'(K,N); a higher z directly raises MPN at every level of N, so the real wage rises unambiguously. GDP = z&middot;f(K,N) also rises directly from the higher z. Mnemonic: 'z is literally the multiplier in front of both output and the wage -- both go up with z, no tug-of-war needed.'"},
+
+{id:"c5p3_4",pool:"pool_c5_3",tag:"Ch5 Pool 3 -- Social Planner: TFP (z) Shocks",pts:1,type:"inline",
+ stem:"Ceteris paribus, using the Social Planner's model from Chapter 5, we expect a <strong>decrease in TFP (z)</strong> to lead to ____ in equilibrium levels of leisure and to ____ in the leisure intercept for the Production Possibility Frontier (PPF).",
+ blanks:[{opts:OPTS4,ans:3},{opts:OPTS4,ans:1}],
+ note:"Mirror of a TFP increase: substitution effect (work less, since the reward to working fell) and income effect (poorer, so consume less of everything including leisure) pull leisure in opposite directions again -- ambiguous. The leisure-intercept falls because, with lower z, even C=0 now requires more labor to produce enough output to cover G. Mnemonic: same tug-of-war as the TFP-up case, just reversed."},
+
+{id:"c5p3_5",pool:"pool_c5_3",tag:"Ch5 Pool 3 -- Social Planner: TFP (z) Shocks",pts:1,type:"inline",
+ stem:"Ceteris paribus, using the Social Planner's model from Chapter 5, we expect a <strong>decrease in TFP (z)</strong> to lead to ____ in equilibrium levels of employment and to ____ in welfare (utility).",
+ blanks:[{opts:OPTS4,ans:3},{opts:OPTS4,ans:1}],
+ note:"Employment mirrors leisure's ambiguous move. Welfare unambiguously falls: the household's whole opportunity set (the PPF) has strictly shrunk, so it cannot be better off. Mnemonic: 'a worse PPF can never make you better off.'"},
+
+{id:"c5p3_6",pool:"pool_c5_3",tag:"Ch5 Pool 3 -- Social Planner: TFP (z) Shocks",pts:1,type:"inline",
+ stem:"Ceteris paribus, using the Social Planner's model from Chapter 5, we expect a <strong>decrease in TFP (z)</strong> to lead to ____ in equilibrium real wages and to ____ in GDP.",
+ blanks:[{opts:OPTS4,ans:1},{opts:OPTS4,ans:1}],
+ note:"Mirror of the TFP-increase case: a lower z directly lowers MPN (the real wage) at every N, and directly lowers output (GDP) for any given N. Mnemonic: 'z down scales both the wage line and the output line down together.'"},
+
+// ====== POOL 4: Social Planner's model -- preference shifts ======
+{id:"c5p4_1",pool:"pool_c5_4",tag:"Ch5 Pool 4 -- Social Planner: Preference Shifts",pts:1,type:"inline",
+ stem:"Ceteris paribus, using the Social Planner's model from Chapter 5, we expect a shift in preferences <strong>toward Consumption</strong> to lead to ____ in equilibrium levels of leisure and to ____ in the leisure intercept for the Production Possibility Frontier (PPF).",
+ blanks:[{opts:OPTS4,ans:1},{opts:OPTS4,ans:2}],
+ note:"A pure preference shift doesn't touch technology or resources, so the PPF itself (and its leisure-intercept) is completely unchanged -- only the chosen point along that same PPF moves. Wanting relatively more C and less l moves the chosen point toward less leisure. Mnemonic: 'preferences choose WHERE on the PPF you stand, not the PPF's shape/intercepts.'"},
+
+{id:"c5p4_2",pool:"pool_c5_4",tag:"Ch5 Pool 4 -- Social Planner: Preference Shifts",pts:1,type:"inline",
+ stem:"Ceteris paribus, using the Social Planner's model from Chapter 5, we expect a shift in preference <strong>toward Consumption</strong> to lead to ____ in equilibrium levels of employment and to ____ in welfare (utility).",
+ blanks:[{opts:OPTS4,ans:0},{opts:OPTS4,ans:3}],
+ note:"Less leisure chosen means more employment (h&minus;l). Welfare is ambiguous because we're now evaluating utility with a DIFFERENT utility function/weighting than before -- utility levels aren't directly comparable across different preferences. Mnemonic: 'comparing utility across different tastes is apples-to-oranges -> ambiguous.'"},
+
+{id:"c5p4_3",pool:"pool_c5_4",tag:"Ch5 Pool 4 -- Social Planner: Preference Shifts",pts:1,type:"inline",
+ stem:"Ceteris paribus, using the Social Planner's model from Chapter 5, we expect a shift in preferences <strong>toward Consumption</strong> to lead to ____ in equilibrium real wages and to ____ in GDP.",
+ blanks:[{opts:OPTS4,ans:1},{opts:OPTS4,ans:0}],
+ note:"More labor supplied (previous questions) moves the economy down the diminishing-MPN curve -- real wage falls -- while GDP rises because more N produces more output on the same production function. Mnemonic: 'more hours worked along an unchanged production function: GDP up, marginal (and real) wage down.'"},
+
+{id:"c5p4_4",pool:"pool_c5_4",tag:"Ch5 Pool 4 -- Social Planner: Preference Shifts",pts:1,type:"inline",
+ stem:"Ceteris paribus, using the Social Planner's model from Chapter 5, we expect a shift in preferences <strong>toward leisure</strong> to lead to ____ in equilibrium levels of leisure and to ____ in the leisure intercept for the Production Possibility Frontier (PPF).",
+ blanks:[{opts:OPTS4,ans:0},{opts:OPTS4,ans:2}],
+ note:"Mirror of the Consumption-ward shift: the PPF and its leisure-intercept don't move (same technology/resources), only the chosen point shifts toward more leisure. Mnemonic: same as the Consumption-shift case, reversed."},
+
+{id:"c5p4_5",pool:"pool_c5_4",tag:"Ch5 Pool 4 -- Social Planner: Preference Shifts",pts:1,type:"inline",
+ stem:"Ceteris paribus, using the Social Planner's model from Chapter 5, we expect a shift in preference <strong>toward leisure</strong> to lead to ____ in equilibrium levels of employment and to ____ in welfare (utility).",
+ blanks:[{opts:OPTS4,ans:1},{opts:OPTS4,ans:3}],
+ note:"More leisure chosen means less employment. Welfare is ambiguous for the same reason as before -- different preferences mean utility levels aren't directly comparable. Mnemonic: 'ambiguous welfare whenever it's preferences (not resources/technology) that changed.'"},
+
+{id:"c5p4_6",pool:"pool_c5_4",tag:"Ch5 Pool 4 -- Social Planner: Preference Shifts",pts:1,type:"inline",
+ stem:"Ceteris paribus, using the Social Planner's model from Chapter 5, we expect a shift in preferences <strong>toward leisure</strong> to lead to ____ in equilibrium real wages and to ____ in GDP.",
+ blanks:[{opts:OPTS4,ans:0},{opts:OPTS4,ans:1}],
+ note:"Less labor supplied moves the economy back up the diminishing-MPN curve (real wage rises) while output falls with less N on the same production function. Mnemonic: mirror of the Consumption-shift case."},
+
+// ====== POOL 5: Social Planner's model -- G that is productive (raises TFP), vs. unproductive-G baseline ======
+{id:"c5p5_1",pool:"pool_c5_5",tag:"Ch5 Pool 5 -- Social Planner: Productive G (TFP depends on G)",pts:1,type:"inline",
+ stem:"Assume TFP (z) is a positive (increasing) function of Government spending (G). Ceteris paribus, using the Social Planner's model from Chapter 5, we expect an <strong>increase in G</strong> to lead to ____ in equilibrium levels of leisure <strong>compared to the case where G is unproductive</strong>, and to ____ in the leisure intercept for the PPF <strong>compared to the case where G is unproductive</strong>.",
+ blanks:[{opts:OPTS4,ans:3},{opts:OPTS4,ans:0}],
+ note:"A productive-G increase bundles TWO effects: the ordinary 'G crowds out leisure' effect (pushes leisure down, Pool 2) PLUS a TFP-increase effect (ambiguous on leisure, Pool 3). Stacking a sure decrease with an ambiguous effect makes the combined comparison ambiguous. The leisure-intercept, though, is unambiguously higher than in the unproductive-G case: the extra TFP boost means less labor is needed to cover any given G. Mnemonic: 'productive G = ordinary-G effect + TFP effect; mixed sign on leisure, but the TFP side always helps the intercept.'"},
+
+{id:"c5p5_2",pool:"pool_c5_5",tag:"Ch5 Pool 5 -- Social Planner: Productive G (TFP depends on G)",pts:1,type:"inline",
+ stem:"Assume TFP (z) is a positive (increasing) function of Government spending (G). Ceteris paribus, using the Social Planner's model from Chapter 5, we expect an <strong>increase in G</strong> to lead to ____ in equilibrium levels of employment <strong>compared to the case where G is unproductive</strong>, and to ____ in welfare (utility) <strong>compared to the case where G is unproductive</strong>.",
+ blanks:[{opts:OPTS4,ans:3},{opts:OPTS4,ans:0}],
+ note:"Employment mirrors leisure's ambiguous relative move. Welfare is relatively HIGHER than in the unproductive-G case: productive G still crowds out resources, but it also pays the household back with a TFP boost (which, per Pool 3, can only help or be neutral toward welfare). Mnemonic: 'productive G still crowds out, but it also pays you back in technology -- relatively better welfare.'"},
+
+{id:"c5p5_3",pool:"pool_c5_5",tag:"Ch5 Pool 5 -- Social Planner: Productive G (TFP depends on G)",pts:1,type:"inline",
+ stem:"Assume TFP (z) is a positive (increasing) function of Government spending (G). Ceteris paribus, using the Social Planner's model from Chapter 5, we expect an <strong>increase in G</strong> to lead to ____ in equilibrium real wages <strong>compared to the case where G is unproductive</strong>, and to ____ in GDP <strong>compared to the case where G is unproductive</strong>.",
+ blanks:[{opts:OPTS4,ans:0},{opts:OPTS4,ans:0}],
+ note:"Both the real wage (=MPN=z&middot;f') and GDP (=z&middot;f) scale up directly with z. Since productive G means a higher z than the unproductive-G baseline (for the same G), both are relatively higher here -- no ambiguity once z itself is higher. Mnemonic: 'z is a direct multiplier on both the wage and output lines.'"},
+
+{id:"c5p5_4",pool:"pool_c5_5",tag:"Ch5 Pool 5 -- Social Planner: Productive G (TFP depends on G)",pts:1,type:"inline",
+ stem:"Assume TFP (z) is a positive (increasing) function of Government spending (G). Ceteris paribus, using the Social Planner's model from Chapter 5, we expect a <strong>decrease in G</strong> to lead to ____ in equilibrium levels of leisure <strong>compared to the case where G is unproductive</strong>, and to ____ in the leisure intercept for the PPF <strong>compared to the case where G is unproductive</strong>.",
+ blanks:[{opts:OPTS4,ans:3},{opts:OPTS4,ans:1}],
+ note:"Mirror of the G-increase case: cutting a 'productive' G removes both the ordinary crowding-out relief (frees up leisure) and a TFP boost (ambiguous for leisure), so the combined relative effect stays ambiguous. But losing the TFP boost relatively lowers the leisure-intercept compared to the unproductive-G baseline. Mnemonic: same tug-of-war as the G-increase case, reversed."},
+
+{id:"c5p5_5",pool:"pool_c5_5",tag:"Ch5 Pool 5 -- Social Planner: Productive G (TFP depends on G)",pts:1,type:"inline",
+ stem:"Assume TFP (z) is a positive (increasing) function of Government spending (G). Ceteris paribus, using the Social Planner's model from Chapter 5, we expect a <strong>decrease in G</strong> to lead to ____ in equilibrium levels of employment <strong>compared to the case where G is unproductive</strong>, and to ____ in welfare (utility) <strong>compared to the case where G is unproductive</strong>.",
+ blanks:[{opts:OPTS4,ans:3},{opts:OPTS4,ans:1}],
+ note:"Employment mirrors leisure's ambiguous move again. Welfare is relatively LOWER than in the unproductive-G-cut case: cutting a productive G also takes away its TFP boost, which can only hurt (or at best not help) welfare, on top of the usual relief from less crowding out. Mnemonic: mirror of the G-increase welfare case -- losing a 'good' G's bonus technology lowers relative welfare."},
+
+{id:"c5p5_6",pool:"pool_c5_5",tag:"Ch5 Pool 5 -- Social Planner: Productive G (TFP depends on G)",pts:1,type:"inline",
+ stem:"Assume TFP (z) is a positive (increasing) function of Government spending (G). Ceteris paribus, using the Social Planner's model from Chapter 5, we expect a <strong>decrease in G</strong> to lead to ____ in equilibrium real wages <strong>compared to the case where G is unproductive</strong>, and to ____ in GDP <strong>compared to the case where G is unproductive</strong>.",
+ blanks:[{opts:OPTS4,ans:1},{opts:OPTS4,ans:1}],
+ note:"Mirror of the G-increase case: losing the TFP boost that came with productive G relatively lowers both the real wage (=z&middot;f') and GDP (=z&middot;f) compared to the unproductive-G baseline. Mnemonic: mirror of the G-increase real-wage/GDP case."},
+
+// ====== POOL 6: Model mechanics -- taxes, business cycle fit, short-run vs long-run ======
+{id:"c5p6_1",pool:"pool_c5_6",tag:"Ch5 Pool 6 -- Model Mechanics (Taxes & Business Cycle Fit)",pts:1,type:"inline",
+ stem:"Assuming as in class that Consumption is on the vertical axis, the presence of ____ will result in MRS out of consumption into leisure ____ MPN.",
+ blanks:[{opts:["a proportional income tax","a lump sum tax"],ans:0},{opts:["less than","greater than"],ans:0}],
+ note:"A proportional labor-income tax drives a wedge between the household's trade-off (MRS) and the firm's trade-off (MPN): the household only keeps w(1&minus;t) per hour, so it sets MRS = w(1&minus;t) < w = MPN. A lump-sum tax doesn't touch the wage the household faces at the margin, so MRS still equals MPN exactly (no wedge). Mnemonic: 'a tax on the margin (proportional) breaks MRS=MPN; a tax on the lump sum (T) doesn't touch the margin at all.'"},
+
+{id:"c5p6_2",pool:"pool_c5_6",tag:"Ch5 Pool 6 -- Model Mechanics (Taxes & Business Cycle Fit)",pts:1,type:"inline",
+ stem:"In the one-period general equilibrium model from class, changes in government spending predict that real wages will move ____ as GDP moves, whereas in the US data real wages move ____ as GDP moves.",
+ blanks:[{opts:["pro-cyclically","counter-cyclically","ambiguously"],ans:1},{opts:["pro-cyclically","counter-cyclically","ambiguously"],ans:0}],
+ note:"A demand-side shock like G raises employment along a FIXED production function, pushing the economy down the diminishing-MPN curve -- the model says the real wage should FALL exactly when GDP rises from a G shock (counter-cyclical). In the actual data, real wages instead rise and fall together with GDP (pro-cyclical) -- a well-known mismatch, which is why G shocks alone are seen as a poor explanation for the business cycle. Mnemonic: 'G shocks: model says counter, data says pro -- G shocks don't fit.'"},
+
+{id:"c5p6_3",pool:"pool_c5_6",tag:"Ch5 Pool 6 -- Model Mechanics (Taxes & Business Cycle Fit)",pts:1,type:"inline",
+ stem:"In the one-period general equilibrium model from class, changes in TFP (z) predict that real wages will move ____ as GDP moves, whereas in the US data real wages move ____ as GDP moves.",
+ blanks:[{opts:["pro-cyclically","counter-cyclically","ambiguously"],ans:0},{opts:["pro-cyclically","counter-cyclically","ambiguously"],ans:0}],
+ note:"A TFP shock shifts the whole production function (and the MPN curve) up together with output, so both GDP and the real wage rise together -- pro-cyclical, matching what we actually see in the data. This is exactly why TFP/technology shocks are the workhorse driver of business cycles in this model. Mnemonic: 'z shocks: model says pro, data says pro -- TFP fits.'"},
+
+{id:"c5p6_4",pool:"pool_c5_6",tag:"Ch5 Pool 6 -- Model Mechanics (Taxes & Business Cycle Fit)",pts:1,type:"inline",
+ stem:"According to the one-period general equilibrium model from class, if the government replaces a lump sum tax with a proportional labor income tax (raising the same revenue), employment will ____ whereas GDP will ____.",
+ blanks:[{opts:["increase","decrease","either increase or decrease"],ans:1},{opts:["increase","decrease","either increase or decrease"],ans:1}],
+ note:"A proportional tax (unlike a lump-sum tax) creates a substitution effect away from labor, on top of whatever income effect existed -- it discourages work at the margin, so employment falls. Less employment on the same production function means GDP falls too. Mnemonic: 'swap T for t: now there's a wedge at the margin, so labor (and GDP) take a hit.'"},
+
+{id:"c5p6_5",pool:"pool_c5_6",tag:"Ch5 Pool 6 -- Model Mechanics (Taxes & Business Cycle Fit)",pts:1,type:"inline",
+ stem:"Assuming substitution effects dominate income effects in the one-period general equilibrium model from class, an increase in the proportional income tax rate will ____ lead to a decrease in tax revenue, and will ____ lead to a decrease in GDP.",
+ blanks:[{opts:["always","sometimes","never"],ans:1},{opts:["always","sometimes","never"],ans:0}],
+ note:"If substitution effects dominate, a higher tax rate always reduces labor supply, so GDP (which depends on employment) ALWAYS falls. But tax REVENUE = (tax rate) &times; (tax base): the rate went up while the base (income) went down, so the revenue effect depends on which force is bigger -- SOMETIMES the higher rate wins (revenue rises) and sometimes the shrinking base wins (revenue falls). That's Laffer-curve logic. Mnemonic: 'GDP: always down (direct employment effect). Revenue: it depends -- rate up vs. base down is a tug-of-war.'"},
+
+{id:"c5p6_6",pool:"pool_c5_6",tag:"Ch5 Pool 6 -- Model Mechanics (Taxes & Business Cycle Fit)",pts:1,type:"inline",
+ stem:"Assume a positive shock to TFP in the one-period general equilibrium model from class. This model will do a better job of predicting short-run (business cycle) movements in hours worked if substitution effects ____ income effects, and will do a better job predicting long-run (more than a few years) movements in hours worked if substitution effects ____ income effects.",
+ blanks:[{opts:["dominate","are dominated by","are exactly offset by"],ans:0},{opts:["dominate","are dominated by","are exactly offset by"],ans:1}],
+ note:"Short-run business-cycle swings in hours worked are large and clearly tied to temporary wage/TFP movements, which the model only reproduces if the substitution effect is the stronger force. But over the long run, average hours worked per person have stayed roughly flat for decades even as real wages have grown enormously -- that long-run flatness only makes sense if the income effect has grown to dominate (offsetting the substitution effect) over long horizons. Mnemonic: 'short run: substitution wins (volatile hours). Long run: income catches up and wins (flat hours despite much higher wages).'"},
+
+// ====== POOL 7: Concept checks (single-answer, 1 pt each) ======
+{id:"c5p7_1",pool:"pool_c5_7",tag:"Ch5 Pool 7 -- Concept Checks",pts:1,type:"mcq",
+ stem:"In our general equilibrium model, which of the following is thought to be exogenous?",
+ opts:["Employment","Leisure","Consumption","Government Spending"],
+ ans:3,
+ note:"Everything else (employment, leisure, consumption, wages, output) is an equilibrium OUTCOME the model solves for, given preferences, technology, and policy. Government spending G is a policy choice fed INTO the model from outside -- that's what makes it exogenous. Mnemonic: 'G is a policy lever the model takes as given; everything else is what the model figures out.'"},
+
+{id:"c5p7_2",pool:"pool_c5_7",tag:"Ch5 Pool 7 -- Concept Checks",pts:1,type:"mcq",
+ stem:"If two data series are negatively correlated, it means that:",
+ opts:["There is no relationship between the data.","If one data series is increasing, the other is also increasing.","If one data series is decreasing, the other is increasing.","If one data series is decreasing, the other is also decreasing."],
+ ans:2,
+ note:"Negative correlation = the two series move in OPPOSITE directions. 'One down, the other up' is exactly that; 'both move together' (up-up or down-down) would instead be POSITIVE correlation, and 'no relationship' is (close to) ZERO correlation. Mnemonic: 'negative = opposite directions.'"},
+
+{id:"c5p7_3",pool:"pool_c5_7",tag:"Ch5 Pool 7 -- Concept Checks",pts:1,type:"mcq",
+ stem:"In the business cycle data presented in class, GDP is negatively correlated with which of the following?",
+ opts:["Consumption","Real Wage","Total Factor Productivity","Leisure"],
+ ans:3,
+ note:"Consumption, the real wage, and TFP are all famously pro-cyclical (positively correlated with GDP) in the data -- that's the whole motivation for using TFP shocks in this model. Leisure is the odd one out: when the economy booms (GDP up), people work more and enjoy less leisure, so leisure moves opposite to GDP -- negatively correlated. Mnemonic: 'everything is pro-cyclical except leisure, the mirror image of hours worked.'"},
+
+{id:"c5p7_4",pool:"pool_c5_7",tag:"Ch5 Pool 7 -- Concept Checks",pts:1,type:"mcq",
+ stem:"In the general equilibrium model, if preferences change toward desiring more leisure, the PPF curve will:",
+ opts:["Get steeper.","Get flatter.","Not change."],
+ ans:2,
+ note:"The PPF is built entirely from technology (z, the production function) and resources (K, h, G) -- none of that changes when only TASTES/preferences change. A preference shift just moves the chosen POINT along the same, unchanged PPF. Mnemonic: 'preferences pick the point; tech & resources draw the curve.'"},
+
+{id:"c5p7_5",pool:"pool_c5_7",tag:"Ch5 Pool 7 -- Concept Checks",pts:1,type:"mcq",
+ stem:"In the competitive equilibrium of our one-period model, which of the following is NOT always true even if the equilibrium is Pareto Optimal?",
+ opts:["MPN = w","MRT = w","MU<sub>l</sub> / MU<sub>c</sub> = MRT","MPN = z"],
+ ans:3,
+ note:"MPN=w, MRT=w, and MU<sub>l</sub>/MU<sub>c</sub>=MRT are all standard equilibrium/efficiency conditions that always hold. 'MPN = z' is not a general equilibrium condition at all -- MPN depends on both z AND the capital-labor ratio (MPN = z&middot;f'(K,N)), so it only equals z in special cases, not generally. Mnemonic: 'z is just one ingredient in MPN, not a stand-in for it.'"},
+
+{id:"c5p7_6",pool:"pool_c5_7",tag:"Ch5 Pool 7 -- Concept Checks",pts:1,type:"mcq",
+ stem:"Which of the following is a proper formulation of the household budget constraint in our model when &pi; = 0 and T = 0?",
+ opts:["h = C + l","h = l + (1/w)&middot;C","wh = l + C","h = wl + C"],
+ ans:1,
+ note:"Start from C = w(h&minus;l) (spend all labor income on consumption, no profit income or taxes), divide both sides by w: C/w = h&minus;l, rearrange: h = l + C/w = l + (1/w)&middot;C. (Option A mixes up units -- you can't add hours l directly to dollars of C without converting through the wage; C and D attach the wage to the wrong terms.) Mnemonic: 'divide the usual C=w(h-l) by w to turn it into a TIME budget (hours), not a dollar budget.'"},
+
+{id:"c5p7_7",pool:"pool_c5_7",tag:"Ch5 Pool 7 -- Concept Checks",pts:1,type:"mcq",
+ stem:"When the government uses a proportional tax on labor income, MRS should be equal to:",
+ opts:["MPN","w","MRT","w(1-t)"],
+ ans:3,
+ note:"The household only keeps w(1&minus;t) of every extra hour worked (the rest goes to taxes), so that's the true 'price' of leisure it faces at the margin -- optimal choice sets MRS equal to the AFTER-TAX wage w(1&minus;t), not the pre-tax wage w (and not MPN or MRT either, since the tax wedge breaks MRS=MPN=MRT). Mnemonic: 'tax the wage, and the household's MRS follows the wage it actually keeps.'"},
+
+{id:"c5p7_8",pool:"pool_c5_7",tag:"Ch5 Pool 7 -- Concept Checks",pts:1,type:"mcq",
+ stem:"Based on our one-period model from class, an increase in lump-sum taxes (T) causes:",
+ opts:["Negative income effects.","Positive income effects.","Substitution effects from leisure to consumption.","No effect on the model."],
+ ans:0,
+ note:"A lump-sum tax takes away resources without changing any relative price (the wage is untouched), so there's no substitution effect at all -- it's a pure income effect, and since the household has strictly less to spend, it's a NEGATIVE income effect (poorer household works more, consumes less). Mnemonic: 'lump-sum = income effect only, and taking money away is always a negative income effect.'"},
+
+{id:"c5p7_9",pool:"pool_c5_7",tag:"Ch5 Pool 7 -- Concept Checks",pts:1,type:"mcq",
+ stem:"Our general equilibrium model is most consistent with the correlations in the data when we have shocks to:",
+ opts:["G/T","Preferences","Prices","Z (TFP)"],
+ ans:3,
+ note:"As seen in Pool 6, TFP (z) shocks are the ones that correctly reproduce the pro-cyclical real wage (and other) correlations seen in actual business-cycle data; G shocks get the real-wage cyclicality backwards, and preference shocks have their own counter-factual predictions (Pool 7, last question). Mnemonic: 'when in doubt about what drives the business cycle in this model, it's TFP (z).'"},
+
+{id:"c5p7_10",pool:"pool_c5_7",tag:"Ch5 Pool 7 -- Concept Checks",pts:1,type:"mcq",
+ stem:"Which of the following has a substitution effect of zero in the one-period partial-equilibrium model of Chapter 4 (i.e., a pure income effect)?",
+ opts:["Wage changes","Firms become more profitable","Firms become more productive","Preferences shift"],
+ ans:1,
+ note:"A wage change moves the relative price of leisure directly (substitution effect) as well as income. Firms becoming more productive (TFP) changes wages too, so it also has a substitution effect. Preference shifts aren't 'income vs. substitution' effects at all -- they move the indifference map itself. Higher firm PROFITS, though, are paid to the household as non-labor income: they raise income without changing the wage at all -- pure income effect, substitution effect = 0. Mnemonic: 'profits land in your pocket without touching the wage -- income effect only.'"},
+
+{id:"c5p7_11",pool:"pool_c5_7",tag:"Ch5 Pool 7 -- Concept Checks",pts:1,type:"mcq",
+ stem:"In our one-period consumer model, if MU<sub>l</sub>/MU<sub>c</sub> > w, a consumer should:",
+ opts:["Work more.","Work less.","Work the same amount.","Try to increase their wage."],
+ ans:1,
+ note:"MU<sub>l</sub>/MU<sub>c</sub> is the MRS (what the household would be willing to give up in C for one more unit of l); w is the market price of leisure (what the household actually gives up in C for one more unit of l). If MRS > w, leisure is worth more to the household at the margin than it costs -- so the household should buy MORE leisure, i.e. work less. Mnemonic: 'MRS > price -> buy more of it (here: buy more leisure = work less).'"},
+
+{id:"c5p7_12",pool:"pool_c5_7",tag:"Ch5 Pool 7 -- Concept Checks",pts:1,type:"mcq",
+ stem:"In which of the following utility functions does leisure NOT depend on the level of a payroll tax (proportional income tax)?",
+ opts:["&frac12;C + &frac12;l","&frac12;ln(C) + &frac12;ln(l)","&frac34;C + &frac14;l","&frac34;ln(C) + &frac14;l"],
+ ans:1,
+ note:"Same 'knife-edge' result as Pool 1: ONLY full log (Cobb-Douglas-equivalent) utility over BOTH goods -- a&middot;ln(C)+b&middot;ln(l) -- makes income and substitution effects exactly cancel, so leisure doesn't respond to tax-rate (wage) changes at all. The linear-in-C options (A, C) are quasi-linear and DO respond (no income effect, pure substitution effect, very tax-sensitive). Option D mixes log(C) with a LINEAR l term (not ln(l)), so it isn't the clean case either, and leisure still responds. Mnemonic: 'only ln(C)+ln(l) together gives the tax-proof knife-edge case.'"},
+
+{id:"c5p7_13",pool:"pool_c5_7",tag:"Ch5 Pool 7 -- Concept Checks",pts:1,type:"mcq",
+ stem:"Consider the model from class. According to the model, shocks to preferences cannot be a source of business cycle fluctuations because the model counter-factually predicts:",
+ opts:["Countercyclical consumption.","Countercyclical wages.","Pro-cyclical labor hours.","Pro-cyclical technology."],
+ ans:1,
+ note:"A preference shock (say, toward more consumption) raises labor supply along a FIXED production function -- more hours worked pushes the economy down the diminishing-MPN curve, so the model predicts the real wage should FALL when hours/GDP rise from a preference shock (countercyclical wages). That contradicts the strongly pro-cyclical real wages seen in the data, which is why 'preference shocks drive the business cycle' is rejected. Mnemonic: 'any shock that works through labor supply alone (G, or preferences) predicts countercyclical wages -- and that's wrong in the data.'"}
+
+]; // end QB_CH5
+
+QB_CH5.forEach(function(q){ q.chapter = 'ch5'; });
+QB.push.apply(QB, QB_CH5);
+QB.forEach(function(q){ if (!q.chapter) q.chapter = 'ch1-4'; });
+
+// ============================================================
 // UTILITIES
 // ============================================================
 function shuffle(arr) {
@@ -378,21 +668,60 @@ function getParentQ(id) {
   return null;
 }
 
-// Count all individual leaf questions (including fill/table)
+// ============================================================
+// CHAPTER SELECTOR (Ch 1-4 vs Ch 5) — cached in localStorage
+// ============================================================
+let currentChapter = (function() {
+  try {
+    const v = localStorage.getItem('econ302_chapter');
+    return (v === 'ch5' || v === 'ch1-4') ? v : 'ch1-4';
+  } catch (e) { return 'ch1-4'; }
+})();
+
+function syncChapterUI() {
+  const ch = currentChapter;
+  document.querySelectorAll('.chapter-btn').forEach(function(b) {
+    b.classList.toggle('active', b.getAttribute('data-chapter') === ch);
+  });
+  const navTitle = document.getElementById('nav-title');
+  if (navTitle) navTitle.textContent = ch === 'ch5' ? 'Econ 302 — Ch 5 Quiz' : 'Econ 302 — Ch 1-4 Quiz';
+  document.title = ch === 'ch5' ? 'Econ 302 — Ch 5 Quiz Study App' : 'Econ 302 — Ch 1-4 Quiz Study App';
+  const homeTitle = document.getElementById('home-title');
+  if (homeTitle) homeTitle.textContent = ch === 'ch5' ? 'Econ 302 — Ch 5 Potential Quiz' : 'Econ 302 — Ch 1-4 Potential Quiz';
+  const homeSub = document.getElementById('home-subtitle');
+  if (homeSub) homeSub.textContent = ch === 'ch5'
+    ? 'UW-Madison  ·  Chapter 5 (Social Planner / one-period general equilibrium model)  ·  30-minute, 20-point quiz simulation'
+    : 'UW-Madison  ·  Chapters 1-4 (one-period / labor-leisure model)  ·  30-minute, 20-point quiz simulation';
+}
+
+function setChapter(ch) {
+  if (ch !== 'ch1-4' && ch !== 'ch5') return;
+  if (ch === currentChapter) return;
+  currentChapter = ch;
+  try { localStorage.setItem('econ302_chapter', ch); } catch (e) {}
+  syncChapterUI();
+  setTimeout(syncNavHeight, 0);
+  // Clear cached per-view HTML so switching chapter forces a fresh, correctly-scoped render
+  ['review','mistakes','verify','quiz'].forEach(function(id) { const el = document.getElementById(id); if (el) el.innerHTML = ''; });
+  if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+  if (_activeView === 'quiz') { showView('quiz'); startQuiz(); } else { showView(_activeView); }
+}
+
+// Count all individual leaf questions (including fill/table), scoped to the current chapter
 function getAllLeafIds() {
   const ids = [];
   QB.forEach(q => {
-    if (q.removed) return;
+    if (q.removed || q.chapter !== currentChapter) return;
     const subs = q.type === 'group' ? q.subs : [q];
     subs.forEach(s => ids.push(s.id));
   });
   return ids;
 }
-// Count only gradeable leaf questions
+// Count only gradeable leaf questions, scoped to the current chapter
 function getGradeableLeafIds() {
   const ids = [];
   QB.forEach(q => {
-    if (q.removed) return;
+    if (q.removed || q.chapter !== currentChapter) return;
     const subs = q.type === 'group' ? q.subs : [q];
     subs.forEach(s => { if (s.type !== 'fill' && s.type !== 'table') ids.push(s.id); });
   });
@@ -449,6 +778,9 @@ function renderHome() {
   document.getElementById('s-attempted').textContent = attempted.length;
   document.getElementById('s-pct').textContent = pct + '%';
   document.getElementById('s-mastered').textContent = mastered.length;
+  const poolCount = new Set(QB.filter(q => q.chapter === currentChapter).map(q => q.pool)).size;
+  const descEl = document.getElementById('review-card-desc');
+  if (descEl) descEl.textContent = 'All ' + getAllLeafIds().length + ' questions across ' + poolCount + ' pools, in random order. Check answers and get instant feedback. Retry wrong answers.';
 }
 
 // ============================================================
@@ -644,13 +976,15 @@ function renderCard(q, mode) {
 // ============================================================
 function renderReview() {
   const container = document.getElementById('review');
-  const qs = shuffle(QB);
+  const chapterQB = QB.filter(q => q.chapter === currentChapter);
+  const qs = shuffle(chapterQB);
   const totalLeaf = getAllLeafIds().length;
+  const poolCount = new Set(chapterQB.map(q => q.pool)).size;
   let html = `<div class="section-header">
-    <h2>Review Mode — ${QB.length} groups · ${totalLeaf} questions total</h2>
+    <h2>Review Mode — ${totalLeaf} questions across ${poolCount} pools</h2>
     <button class="btn btn-secondary" onclick="renderReview()">Refresh ↺</button>
   </div>`;
-  html += `<div id="review-progress"><div id="review-progress-fill" style="width:0%"></div></div>`;
+  html += `<div id="review-progress-wrap"><div id="review-progress"><div id="review-progress-fill" style="width:0%"></div></div></div>`;
   qs.forEach(q => html += renderCard(q, 'review'));
   container.innerHTML = html;
   updateReviewProgress();
@@ -680,9 +1014,10 @@ function checkSub(id, btn) {
     const val = parseInt(sel.value);
     isCorrect = val === sub.ans;
     const aText = sub.opts[sub.ans];
-    feedbackHtml = isCorrect
+    feedbackHtml = (isCorrect
       ? '✓ Correct! <strong>'+aText+'</strong>'
-      : '✗ Incorrect. Correct answer: <strong>'+aText+'</strong>'+(sub.note?'<div style="margin-top:6px;font-weight:normal">'+sub.note+'</div>':'');
+      : '✗ Incorrect. Correct answer: <strong>'+aText+'</strong>')
+      +(sub.note?'<div style="margin-top:6px;font-weight:normal">'+sub.note+'</div>':'');
     sub.opts.forEach(function(_,i){ const l=$q('#lbl-'+id+'-'+i); if(l) l.classList.remove('correct-opt','wrong-opt'); });
     if (!isCorrect) { const l=$q('#lbl-'+id+'-'+val); if(l) l.classList.add('wrong-opt'); }
     const cl=$q('#lbl-'+id+'-'+sub.ans); if(cl) cl.classList.add('correct-opt');
@@ -703,16 +1038,18 @@ function checkSub(id, btn) {
     if (!dd || dd.value==='') { if(fb){fb.style.display='';fb.className='feedback err';fb.textContent='⚠ Please select an answer first.';} return; }
     const val = parseInt(dd.value);
     isCorrect = val === sub.ans;
-    feedbackHtml = isCorrect
+    feedbackHtml = (isCorrect
       ? '✓ Correct!'
-      : '✗ Incorrect. Correct: <strong>'+sub.opts[sub.ans]+'</strong>'+(sub.note?'<div style="margin-top:6px;font-weight:normal">'+sub.note+'</div>':'');
+      : '✗ Incorrect. Correct: <strong>'+sub.opts[sub.ans]+'</strong>')
+      +(sub.note?'<div style="margin-top:6px;font-weight:normal">'+sub.note+'</div>':'');
 
   } else if (sub.type === 'inline') {
     const _anyEmpty = sub.blanks.some(function(b,i){ const dd=$q('#idd-'+id+'-'+i); return !dd||dd.value===''; });
     if (_anyEmpty) { if(fb){fb.style.display='';fb.className='feedback err';fb.textContent='Please select all answers first.';} return; }
     isCorrect = sub.blanks.every(function(b,i){ const dd=$q('#idd-'+id+'-'+i); return parseInt(dd.value)===b.ans; });
     const _correctText = sub.blanks.map(function(b){ return b.opts[b.ans]; }).join(' / ');
-    feedbackHtml = isCorrect ? '✓ Correct!' : ('✗ Incorrect. Correct: <strong>'+_correctText+'</strong>'+(sub.note?'<div style="margin-top:6px;font-weight:normal">'+sub.note+'</div>':''));
+    feedbackHtml = (isCorrect ? '✓ Correct!' : ('✗ Incorrect. Correct: <strong>'+_correctText+'</strong>'))
+      +(sub.note?'<div style="margin-top:6px;font-weight:normal">'+sub.note+'</div>':'');
 
   } else if (sub.type === 'fill') {
     const inputEl = $q('#fill-input-'+id);
@@ -720,7 +1057,7 @@ function checkSub(id, btn) {
     isCorrect = matchFill(inputEl.value, sub.answer);
     feedbackHtml = isCorrect
       ? '✓ Correct! Answer: <strong>'+sub.answer+'</strong>'
-      : '✗ Not quite. Correct: <strong>'+sub.answer+'</strong>'+(sub.note?'<div style="margin-top:6px;font-weight:normal">'+sub.note+'</div>':'');
+      : '✗ Not quite. Correct: <strong>'+sub.answer+'</strong>';
     const ak = $q('#ak-'+id); if(ak) ak.style.display='';
 
   } else if (sub.type === 'table') {
@@ -835,10 +1172,35 @@ const POOL_LABELS = {
   'pool_3':'Pool 3 -- Math: Cobb-Douglas Growth Accounting',
   'pool_4':'Pool 4 -- Wage & Tax Shocks (Full Model)',
   'pool_5':'Pool 5 -- Profit & Lump-Sum Tax Shocks (Full Model)',
-  'pool_6':'Pool 6 -- Firm-Side CRS Shocks'
+  'pool_6':'Pool 6 -- Firm-Side CRS Shocks',
+  'pool_c5_1':'Pool 1 -- Math: Utility-Maximizing Choice',
+  'pool_c5_2':'Pool 2 -- Social Planner: Government Spending (G) Shocks',
+  'pool_c5_3':'Pool 3 -- Social Planner: TFP (z) Shocks',
+  'pool_c5_4':'Pool 4 -- Social Planner: Preference Shifts',
+  'pool_c5_5':'Pool 5 -- Social Planner: Productive G (TFP depends on G)',
+  'pool_c5_6':'Pool 6 -- Model Mechanics (Taxes & Business Cycle Fit)',
+  'pool_c5_7':'Pool 7 -- Concept Checks'
 };
 
 const POOL_ORDER = ['pool_1','pool_2','pool_3','pool_4','pool_5','pool_6'];
+const POOL_ORDER_CH5 = ['pool_c5_1','pool_c5_2','pool_c5_3','pool_c5_4','pool_c5_5','pool_c5_6','pool_c5_7'];
+
+const QUIZ_SPEC_CH5 = [
+  {pool:'pool_c5_1', draw:2},
+  {pool:'pool_c5_2', draw:3},
+  {pool:'pool_c5_3', draw:3},
+  {pool:'pool_c5_4', draw:3},
+  {pool:'pool_c5_5', draw:2},
+  {pool:'pool_c5_6', draw:3},
+  {pool:'pool_c5_7', draw:4}
+]; // sums to 20 pts (2+3+3+3+2+3+4), matching the stated 20-point / 30-minute quiz.
+   // NOTE: the instructor's PDF only says "a subset will appear" -- it does not
+   // specify exact per-pool counts, so this composition is an unofficial
+   // practice draw, not the guaranteed real quiz layout.
+
+const CHAPTER_POOLS_CH5 = {
+  'Ch.5': POOL_ORDER_CH5
+};
 
 function getPoolStats(pools) {
   // pools: string | string[] — pool name(s)
@@ -925,22 +1287,27 @@ function startQuiz() {
       + s.total + ' &nbsp;<span style="color:#888">(' + pct + '%)</span></span>';
   }
 
+  const isCh5 = currentChapter === 'ch5';
+  const chapterPoolsNow = isCh5 ? CHAPTER_POOLS_CH5 : CHAPTER_POOLS;
+  const poolOrderNow = isCh5 ? POOL_ORDER_CH5 : POOL_ORDER;
+  const examLabel = isCh5 ? 'Ch 5 Quiz Simulation' : 'Ch 1-4 Quiz Simulation';
+
   let html = '<div class="section-header"><h2>Quiz Mode</h2></div>';
 
   // === Exam Mode ===
   html += '<div style="background:#fff;border:2px solid #c5050c;border-radius:12px;padding:18px 20px;margin-bottom:18px">'
     + '<div style="display:flex;justify-content:space-between;align-items:center">'
-    + '<div><div style="font-size:1.1rem;font-weight:700;color:#c5050c">&#9889; Ch 1-4 Quiz Simulation</div>'
+    + '<div><div style="font-size:1.1rem;font-weight:700;color:#c5050c">&#9889; ' + examLabel + '</div>'
     + '<div style="font-size:.88rem;color:#555;margin-top:4px">~20-point practice draw from all pools &nbsp;&#8226;&nbsp; 30 min (matches the real quiz format)</div></div>'
     + '<button class="btn" style="flex-shrink:0" onclick="doStartQuiz(\'exam\')">Start Quiz</button></div>'
-    + '<div style="margin-top:8px">' + statBadge(Object.values(CHAPTER_POOLS).flat()) + '</div>'
+    + '<div style="margin-top:8px">' + statBadge(Object.values(chapterPoolsNow).flat()) + '</div>'
     + '</div>';
 
   // === Chapter Mode ===
   html += '<div style="font-weight:700;font-size:1rem;margin:18px 0 10px;color:#333">Full Practice — All Pools &nbsp;<span style="font-weight:400;font-size:.85rem;color:#666">— untimed-ish, 45 min</span></div>';
-  const chLabels = {'Ch.1-4':'Chapters 1-4 — Every Question, All Pools'};
-  const chIcons = {'Ch.1-4':'&#128218;'};
-  Object.entries(CHAPTER_POOLS).forEach(function(entry) {
+  const chLabels = {'Ch.1-4':'Chapters 1-4 — Every Question, All Pools', 'Ch.5':'Chapter 5 — Every Question, All Pools'};
+  const chIcons = {'Ch.1-4':'&#128218;', 'Ch.5':'&#128218;'};
+  Object.entries(chapterPoolsNow).forEach(function(entry) {
     const ch = entry[0], pools = entry[1];
     const s = getPoolStats(pools);
     html += '<div style="background:#fff;border:1.5px solid #ddd;border-radius:10px;padding:14px 18px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:12px">'
@@ -953,7 +1320,7 @@ function startQuiz() {
   // === Pool Mode ===
   html += '<div style="font-weight:700;font-size:1rem;margin:18px 0 10px;color:#333">Single Pool Practice &nbsp;<span style="font-weight:400;font-size:.85rem;color:#666">— untimed-ish, 10 min</span></div>';
   html += '<div style="background:#fff;border:1.5px solid #ddd;border-radius:10px;overflow:hidden">';
-  POOL_ORDER.forEach(function(pool, i) {
+  poolOrderNow.forEach(function(pool, i) {
     const s = getPoolStats([pool]);
     const bg = i % 2 === 0 ? '#fafafa' : '#fff';
     html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 16px;background:' + bg + ';border-bottom:1px solid #eee;gap:10px">'
@@ -969,8 +1336,11 @@ function startQuiz() {
 
 function doStartQuiz(mode, param) {
   // Generate questions based on mode
+  const isCh5 = currentChapter === 'ch5';
+  const quizSpecNow = isCh5 ? QUIZ_SPEC_CH5 : QUIZ_SPEC;
+  const chapterPoolsNow = isCh5 ? CHAPTER_POOLS_CH5 : CHAPTER_POOLS;
   const byPool = {};
-  QB.forEach(q => { if (q.removed) return; if (!byPool[q.pool]) byPool[q.pool]=[]; byPool[q.pool].push(q); });
+  QB.forEach(q => { if (q.removed || q.chapter !== currentChapter) return; if (!byPool[q.pool]) byPool[q.pool]=[]; byPool[q.pool].push(q); });
 
   let selectedQs = [];
   let mins = 30;
@@ -978,7 +1348,7 @@ function doStartQuiz(mode, param) {
 
   _examSimMode = (mode === 'exam');
   if (mode === 'exam') {
-    QUIZ_SPEC.forEach(spec => {
+    quizSpecNow.forEach(spec => {
       shuffle(byPool[spec.pool]||[]).slice(0,spec.draw).forEach(q => {
         if (spec.pickOneSub && q.type === 'group' && q.subs && q.subs.length > 1) {
           const chosenSub = shuffle([...q.subs])[0];
@@ -989,9 +1359,9 @@ function doStartQuiz(mode, param) {
       });
     });
     mins = 30;
-    title = 'Ch 1-4 Quiz Simulation';
+    title = isCh5 ? 'Ch 5 Quiz Simulation' : 'Ch 1-4 Quiz Simulation';
   } else if (mode === 'chapter') {
-    const pools = CHAPTER_POOLS[param] || [];
+    const pools = chapterPoolsNow[param] || [];
     pools.forEach(pool => (byPool[pool]||[]).forEach(q=>selectedQs.push(q)));
     shuffle(selectedQs);
     mins = 45;
@@ -1173,12 +1543,13 @@ function renderMistakes() {
   const stats=getStats();
   const container=document.getElementById('mistakes');
   const mistakeIds=new Set(Object.keys(stats).filter(id=>stats[id].everWrong&&!stats[id].clearedFromMistakes));
-  if(mistakeIds.size===0){
+  const chapterQB = QB.filter(q => q.chapter === currentChapter);
+  const parentQs=chapterQB.filter(q=>q.type==='group'?q.subs.some(s=>mistakeIds.has(s.id)):mistakeIds.has(q.id));
+  if(parentQs.length===0){
     container.innerHTML=`<div class="section-header"><h2>Review Mistakes</h2></div><div style="text-align:center;padding:60px;color:#666"><div style="font-size:3rem;margin-bottom:16px">🎉</div><h3 style="color:#28a745">No mistakes to review!</h3><p style="margin-top:8px">Complete questions in Review or Quiz mode first.</p></div>`;
     return;
   }
-  const parentQs=QB.filter(q=>q.type==='group'?q.subs.some(s=>mistakeIds.has(s.id)):mistakeIds.has(q.id));
-  let html=`<div class="section-header"><h2>Review Mistakes (${mistakeIds.size} question${mistakeIds.size>1?'s':''})</h2><button class="btn btn-secondary" onclick="clearAllMistakes()">Clear Mistakes</button></div>`;
+  let html=`<div class="section-header"><h2>Review Mistakes (${parentQs.length} question${parentQs.length>1?'s':''})</h2><button class="btn btn-secondary" onclick="clearAllMistakes()">Clear Mistakes</button></div>`;
   parentQs.forEach(q=>html+=renderCard(q,'mistakes'));
   container.innerHTML=html;
 }
@@ -1190,7 +1561,15 @@ window.addEventListener('scroll',()=>{
   const btn=document.getElementById('scrolltop');
   if(btn) btn.style.display=window.scrollY>400?'flex':'none';
 });
+function syncNavHeight() {
+  const nav = document.getElementById('nav');
+  if (nav) document.documentElement.style.setProperty('--nav-h', nav.offsetHeight + 'px');
+}
+window.addEventListener('resize', syncNavHeight);
 window.addEventListener('DOMContentLoaded', function() {
+  syncChapterUI();
+  syncNavHeight();
+  setTimeout(syncNavHeight, 50);
   try {
     const v = localStorage.getItem('econ302_view');
     if (v && ['home','review','mistakes','verify'].includes(v)) { showView(v); }
@@ -1200,13 +1579,17 @@ window.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <div id="nav">
-  <h1>Econ 302 — Ch 1-4 Quiz</h1>
+  <h1 id="nav-title">Econ 302 — Ch 1-4 Quiz</h1>
+  <div id="chapter-switch">
+    <button class="chapter-btn active" data-chapter="ch1-4" onclick="setChapter('ch1-4')">Ch 1-4</button>
+    <button class="chapter-btn" data-chapter="ch5" onclick="setChapter('ch5')">Ch 5</button>
+  </div>
   <div id="nav-btns">
-    <button id="nb-home" onclick="showView('home')">🏠 Home</button>
-    <button id="nb-review" onclick="showView('review')">📖 Review</button>
-    <button id="nb-quiz" onclick="startQuiz()">⏱ Quiz</button>
-    <button id="nb-mistakes" onclick="showView('mistakes')">❌ Mistakes</button>
-    <button id="nb-verify" onclick="showView('verify')">📋 Verify</button>
+    <button id="nb-home" onclick="showView('home')"><span class="nb-icon">🏠</span><span class="nb-label"> Home</span></button>
+    <button id="nb-review" onclick="showView('review')"><span class="nb-icon">📖</span><span class="nb-label"> Review</span></button>
+    <button id="nb-quiz" onclick="startQuiz()"><span class="nb-icon">⏱</span><span class="nb-label"> Quiz</span></button>
+    <button id="nb-mistakes" onclick="showView('mistakes')"><span class="nb-icon">❌</span><span class="nb-label"> Mistakes</span></button>
+    <button id="nb-verify" onclick="showView('verify')"><span class="nb-icon">📋</span><span class="nb-label"> Verify</span></button>
   </div>
 </div>
 
@@ -1214,9 +1597,9 @@ window.addEventListener('DOMContentLoaded', function() {
 
 <div id="home" style="display:none">
   <div style="max-width:800px;margin:40px auto;padding:20px">
-    <h2>Econ 302 — Ch 1-4 Potential Quiz</h2>
-    <p style="color:#555;margin-bottom:6px">UW-Madison &nbsp;&middot;&nbsp; Chapters 1-4 (one-period / labor-leisure model) &nbsp;&middot;&nbsp; 30-minute, 20-point quiz simulation</p>
-    <p style="color:#888;margin-bottom:6px;font-size:.85rem">Note: the Module 1 Exam also draws from the separate Chapter 5 potential-quiz list and in-class "Ask Your Neighbor" questions, which are not included in this study set.</p>
+    <h2 id="home-title">Econ 302 — Ch 1-4 Potential Quiz</h2>
+    <p id="home-subtitle" style="color:#555;margin-bottom:6px">UW-Madison &nbsp;&middot;&nbsp; Chapters 1-4 (one-period / labor-leisure model) &nbsp;&middot;&nbsp; 30-minute, 20-point quiz simulation</p>
+    <p style="color:#888;margin-bottom:6px;font-size:.85rem">Note: use the <strong>Ch 1-4 / Ch 5</strong> switch at the top to pick which potential-quiz list you're studying. Your choice and progress are saved on this device.</p>
     <div class="stat-grid">
       <div class="stat-card"><div class="num" id="s-total">—</div><div class="lbl">Gradeable Questions</div></div>
       <div class="stat-card"><div class="num" id="s-attempted">—</div><div class="lbl">Attempted</div></div>
@@ -1226,12 +1609,12 @@ window.addEventListener('DOMContentLoaded', function() {
     <div class="mode-cards">
       <div class="mode-card" onclick="showView('review')">
         <h3>📖 Review Mode</h3>
-        <p>All 33 questions across 6 pools, in random order. Check answers and get instant feedback. Retry wrong answers.</p>
+        <p id="review-card-desc">All questions in this chapter, in random order. Check answers and get instant feedback. Retry wrong answers.</p>
         <button class="btn" style="margin-top:14px">Start Review</button>
       </div>
       <div class="mode-card" onclick="startQuiz()">
         <h3>⏱ Quiz Mode</h3>
-        <p>30-minute countdown, ~20-point practice draw across all pools (same format as the real Ch 1-4 Quiz). Submit for your score.</p>
+        <p>30-minute countdown, ~20-point practice draw across all pools (same format as the real quiz). Submit for your score.</p>
         <button class="btn" style="margin-top:14px">Start Quiz</button>
       </div>
       <div class="mode-card" onclick="showView('mistakes')">
@@ -1261,12 +1644,14 @@ window.addEventListener('DOMContentLoaded', function() {
 // ============================================================
 function renderVerify() {
   const container = document.getElementById('verify');
+  const chapterQB = QB.filter(q => q.chapter === currentChapter);
+  const poolCount = new Set(chapterQB.map(q => q.pool)).size;
   let html = `<div class="section-header" style="flex-direction:column;align-items:flex-start;gap:6px">
-    <h2>📋 Verify Questions — ${QB.length} Groups · ${getAllLeafIds().length} Questions</h2>
+    <h2>📋 Verify Questions — ${getAllLeafIds().length} Questions across ${poolCount} Pools</h2>
     <div style="font-size:.85rem;color:#555">All questions in source order &middot; answers shown for memorization and self-check</div>
   </div>`;
 
-  QB.forEach((q, qIdx) => {
+  chapterQB.forEach((q, qIdx) => {
     html += `<div class="q-card" id="vcard-${q.id}" style="border-left:4px solid #c5050c">`;
     // Header row
     html += `<div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px">
