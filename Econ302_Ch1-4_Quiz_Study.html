@@ -736,7 +736,7 @@ function saveQuizSession() {
   const quiz=document.getElementById('quiz');
   const answers={};
   quizQs.forEach(q=>(q.type==='group'?q.subs:[q]).forEach(sub=>{answers[sub.id]=readStudyAnswer(sub,quiz.querySelector('#subwrap-'+sub.id));}));
-  localStorage.setItem('econ302_quiz_session',JSON.stringify({chapter:currentChapter,mode:quizMode,param:quizParam,ids:quizQs.map(q=>q.id),answers,flags:[...flaggedQs],submitted:quizSubmitted,deadline:quizDeadline}));
+  localStorage.setItem('econ302_quiz_session',JSON.stringify({chapter:currentChapter,mode:quizMode,param:quizParam,ids:quizQs.map(q=>q.id),answers,flags:[...flaggedQs],submitted:quizSubmitted,deadline:quizDeadline,timePerQuestion:QUIZ_SECONDS_PER_QUESTION}));
 }
 
 function openQuiz() {
@@ -1372,6 +1372,13 @@ function generateQuiz() {
   return selected;
 }
 
+const QUIZ_SECONDS_PER_QUESTION = 70;
+
+function formatQuizDuration(seconds) {
+  const minutes=Math.floor(seconds/60), remainder=seconds%60;
+  return minutes+' min'+(remainder ? ' '+remainder+' sec' : '');
+}
+
 function startQuiz() {
   const container = document.getElementById('quiz');
   if(timerInterval){clearInterval(timerInterval);timerInterval=null;}
@@ -1399,13 +1406,13 @@ function startQuiz() {
   html += '<div style="background:#fff;border:2px solid #c5050c;border-radius:12px;padding:18px 20px;margin-bottom:18px">'
     + '<div style="display:flex;justify-content:space-between;align-items:center">'
     + '<div><div style="font-size:1.1rem;font-weight:700;color:#c5050c">&#9889; ' + examLabel + '</div>'
-    + '<div style="font-size:.88rem;color:#555;margin-top:4px">~20-point practice draw from all pools &nbsp;&#8226;&nbsp; 30 min (matches the real quiz format)</div></div>'
+    + '<div style="font-size:.88rem;color:#555;margin-top:4px">~20-point practice draw from all pools &nbsp;&#8226;&nbsp; 1 min 10 sec per question</div></div>'
     + '<button class="btn" style="flex-shrink:0" onclick="doStartQuiz(\'exam\')">Start Quiz</button></div>'
     + '<div style="margin-top:8px">' + statBadge(Object.values(chapterPoolsNow).flat()) + '</div>'
     + '</div>';
 
   // === Chapter Mode ===
-  html += '<div style="font-weight:700;font-size:1rem;margin:18px 0 10px;color:#333">Full Practice — All Pools &nbsp;<span style="font-weight:400;font-size:.85rem;color:#666">— untimed-ish, 45 min</span></div>';
+  html += '<div style="font-weight:700;font-size:1rem;margin:18px 0 10px;color:#333">Full Practice: All Pools &nbsp;<span style="font-weight:400;font-size:.85rem;color:#666">(1 min 10 sec per question)</span></div>';
   const chLabels = {'Ch.1-4':'Chapters 1-4 — Every Question, All Pools', 'Ch.5':'Chapter 5 — Every Question, All Pools'};
   const chIcons = {'Ch.1-4':'&#128218;', 'Ch.5':'&#128218;'};
   Object.entries(chapterPoolsNow).forEach(function(entry) {
@@ -1414,19 +1421,20 @@ function startQuiz() {
     html += '<div style="background:#fff;border:1.5px solid #ddd;border-radius:10px;padding:14px 18px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:12px">'
       + '<div><div style="font-weight:600;font-size:.97rem">' + chIcons[ch] + ' ' + chLabels[ch] + '</div>'
       + '<div style="margin-top:5px">' + statBadge(pools) + '</div>'
-      + '<div style="font-size:.8rem;color:#999;margin-top:2px">' + s.total + ' questions in ' + pools.length + ' pools</div></div>'
+      + '<div style="font-size:.8rem;color:#999;margin-top:2px">' + s.total + ' questions in ' + pools.length + ' pools. Time: ' + formatQuizDuration(s.total*QUIZ_SECONDS_PER_QUESTION) + '</div></div>'
       + '<button class="btn btn-secondary" style="flex-shrink:0;white-space:nowrap" onclick="doStartQuiz(\'chapter\',\'' + ch + '\')">Start &#8594;</button></div>';
   });
 
   // === Pool Mode ===
-  html += '<div style="font-weight:700;font-size:1rem;margin:18px 0 10px;color:#333">Single Pool Practice &nbsp;<span style="font-weight:400;font-size:.85rem;color:#666">— untimed-ish, 10 min</span></div>';
+  html += '<div style="font-weight:700;font-size:1rem;margin:18px 0 10px;color:#333">Single Pool Practice &nbsp;<span style="font-weight:400;font-size:.85rem;color:#666">(1 min 10 sec per question)</span></div>';
   html += '<div style="background:#fff;border:1.5px solid #ddd;border-radius:10px;overflow:hidden">';
   poolOrderNow.forEach(function(pool, i) {
     const s = getPoolStats([pool]);
     const bg = i % 2 === 0 ? '#fafafa' : '#fff';
     html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 16px;background:' + bg + ';border-bottom:1px solid #eee;gap:10px">'
       + '<div><div style="font-size:.9rem;font-weight:600">' + POOL_LABELS[pool] + '</div>'
-      + '<div style="margin-top:2px">' + statBadge([pool]) + '</div></div>'
+      + '<div style="margin-top:2px">' + statBadge([pool]) + '</div>'
+      + '<div style="font-size:.8rem;color:#777;margin-top:2px">Time: ' + formatQuizDuration(s.total*QUIZ_SECONDS_PER_QUESTION) + '</div></div>'
       + '<button class="btn btn-secondary" style="flex-shrink:0;font-size:.82rem;padding:5px 12px;white-space:nowrap" onclick="doStartQuiz(\'pool\',\'' + pool + '\')">Quiz</button></div>';
   });
   html += '</div>';
@@ -1444,7 +1452,6 @@ function doStartQuiz(mode, param, savedSession) {
   QB.forEach(q => { if (q.removed || q.chapter !== currentChapter) return; if (!byPool[q.pool]) byPool[q.pool]=[]; byPool[q.pool].push(q); });
 
   let selectedQs = [];
-  let mins = 30;
   let title = '';
 
   _examSimMode = (mode === 'exam');
@@ -1459,22 +1466,21 @@ function doStartQuiz(mode, param, savedSession) {
         }
       });
     });
-    mins = 30;
     title = isCh5 ? 'Ch 5 Quiz Simulation' : 'Ch 1-4 Quiz Simulation';
   } else if (mode === 'chapter') {
     const pools = chapterPoolsNow[param] || [];
     pools.forEach(pool => (byPool[pool]||[]).forEach(q=>selectedQs.push(q)));
     shuffle(selectedQs);
-    mins = 45;
     title = param + ' — Full Practice (All Pools)';
   } else if (mode === 'pool') {
     selectedQs = param==='pool_c5_1' ? [...(byPool[param]||[])] : shuffle([...(byPool[param]||[])]);
-    mins = 10;
     title = (POOL_LABELS[param]||param) + ' — Pool Practice';
   }
 
   if(savedSession)selectedQs=[...new Set(savedSession.ids.map(id=>getParentQ(id)).filter(q=>q && q.chapter===currentChapter && !q.removed))];
   quizQs = selectedQs;
+  const questionCount=quizQs.reduce((count,q)=>count+(q.type==='group'?q.subs.length:1),0);
+  const durationSec=questionCount*QUIZ_SECONDS_PER_QUESTION;
   quizMode=mode;quizParam=param || '';
   quizSubmitted = false;
   flaggedQs = new Set();
@@ -1486,7 +1492,7 @@ function doStartQuiz(mode, param, savedSession) {
     '<button class="btn btn-secondary" onclick="startQuiz()">&#8592; Back</button>' +
     '<button class="btn btn-secondary" id="quiz-submit-btn" onclick="submitQuiz()">Submit</button></div></div>' +
     '<div style="background:#fff3cd;border:1.5px solid #ffc107;border-radius:8px;padding:10px 14px;margin-bottom:16px;font-size:.88rem">' +
-    '<strong>Instructions:</strong> Answer all questions. Timer: <strong>' + mins + ' min</strong>. Submit before time runs out — auto-submits at 0:00.' +
+    '<strong>Instructions:</strong> Answer all questions. Time budget: <strong>' + questionCount + ' questions &times; 1 min 10 sec = ' + formatQuizDuration(durationSec) + '</strong>. Each labeled part counts as one question; multiple blanks in one question share its budget. Submit before time runs out. Auto-submits at 0:00.' +
     '</div>';
   quizQs.forEach(q => html += renderCard(q, 'quiz'));
   html += '<div style="text-align:center;margin:20px 0"><button class="btn" onclick="submitQuiz()">Submit Quiz</button></div>';
@@ -1506,15 +1512,19 @@ function doStartQuiz(mode, param, savedSession) {
     quizQs.forEach(q=>(q.type==='group'?q.subs:[q]).forEach(sub=>{applyStudyAnswer(sub,container.querySelector('#subwrap-'+sub.id),savedSession.answers[sub.id]);}));
     (savedSession.flags || []).forEach(id=>toggleFlag(id));
     quizDeadline=savedSession.deadline;
-  } else quizDeadline=Date.now()+mins*60000;
+    if(!savedSession.submitted && savedSession.timePerQuestion!==QUIZ_SECONDS_PER_QUESTION){
+      const previousDuration={exam:1800,chapter:2700,pool:600}[mode];
+      quizDeadline=Math.min(quizDeadline,savedSession.deadline-previousDuration*1000+durationSec*1000);
+    }
+  } else quizDeadline=Date.now()+durationSec*1000;
   bindQuizInputs();
   if(savedSession && savedSession.submitted)submitQuiz(true);
-  else {saveQuizSession();startTimer(mins);}
+  else {saveQuizSession();startTimer(durationSec);}
 }
 
-function startTimer(mins) {
+function startTimer(seconds) {
   if (timerInterval) clearInterval(timerInterval);
-  if(!quizDeadline)quizDeadline=Date.now()+mins*60000;
+  if(!quizDeadline)quizDeadline=Date.now()+seconds*1000;
   function tick() {
     timerSec=Math.max(0,Math.ceil((quizDeadline-Date.now())/1000));
     const m=String(Math.floor(timerSec/60)).padStart(2,'0'), s=String(timerSec%60).padStart(2,'0');
@@ -1715,7 +1725,7 @@ window.addEventListener('DOMContentLoaded', function() {
   </div>
 </div>
 
-<div id="timer-bar" style="display:none">⏱ &nbsp;<span id="timer-display">40:00</span>&nbsp; remaining</div>
+<div id="timer-bar" style="display:none">⏱ &nbsp;<span id="timer-display">00:00</span>&nbsp; remaining</div>
 
 <div id="home" style="display:none">
   <div style="max-width:800px;margin:40px auto;padding:20px">
