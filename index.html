@@ -26,6 +26,8 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f4f4f4;color:#222;min-h
   #nav-btns button{flex:1;min-width:0;margin-left:0;padding:6px 2px;font-size:.62rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;line-height:1.15;border-radius:12px;white-space:nowrap;overflow:hidden}
   #nav-btns .nb-icon{font-size:1.05rem}
   #nav-btns .nb-label{font-size:.6rem}
+  #home .mode-cards{grid-template-columns:1fr}
+  .mode-card{min-width:0}
 }
 /* TIMER */
 #timer-bar{background:#222;color:#fff;text-align:center;padding:8px;font-size:1.1rem;font-weight:700;display:none;position:sticky;top:var(--nav-h,54px);z-index:99}
@@ -59,7 +61,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f4f4f4;color:#222;min-h
 .btn-outline{background:transparent;border:2px solid #c5050c;color:#c5050c}
 .btn-outline:hover{background:#c5050c;color:#fff}
 /* REVIEW / QUIZ CONTAINER */
-#review,#quiz,#mistakes{max-width:860px;margin:0 auto;padding:20px}
+#review,#quiz,#mistakes,#frequent{max-width:860px;margin:0 auto;padding:20px}
 .section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
 .section-header h2{font-size:1.3rem;color:#c5050c}
 /* QUESTION CARD */
@@ -637,7 +639,40 @@ function getStats() {
   } catch(e) { return {}; }
 }
 function saveStats(s) { localStorage.setItem('econ302_stats', JSON.stringify(s)); }
+function getWeakHistory() {
+  try {
+    const cached=JSON.parse(localStorage.getItem('econ302_weak_history') || 'null');
+    if(cached && typeof cached==='object' && !Array.isArray(cached))return cached;
+  } catch(e) {}
+  const history={};
+  Object.entries(getStats()).forEach(([id,stats])=>{
+    const attempts=Number(stats.attempts)||0, correct=Number(stats.correct)||0;
+    if(attempts>0)history[id]={attempts,correct,wrong:Math.max(0,attempts-correct),lastWrongAnswer:stats.lastResult==='incorrect'?stats.lastAnswer:null};
+  });
+  localStorage.setItem('econ302_weak_history',JSON.stringify(history));
+  return history;
+}
+
+function recordWeakAttempt(id, isCorrect, answer) {
+  const history=getWeakHistory();
+  if(!history[id])history[id]={attempts:0,correct:0,wrong:0};
+  history[id].attempts++;
+  if(isCorrect)history[id].correct++;
+  else {history[id].wrong++;history[id].lastWrongAnswer=answer;}
+  localStorage.setItem('econ302_weak_history',JSON.stringify(history));
+  updateWeakBadges();
+}
+
+function updateWeakBadges() {
+  const history=getWeakHistory();
+  document.querySelectorAll('[data-weak-id]').forEach(el=>{
+    const entry=history[el.dataset.weakId];
+    if(entry)el.textContent=(el.dataset.partLabel?'Part '+el.dataset.partLabel+': ':'')+'Missed '+entry.wrong+' of '+entry.attempts+' attempts';
+  });
+}
+
 function recordResult(id, isCorrect, answer) {
+  recordWeakAttempt(id,isCorrect,answer);
   const s = getStats();
   if (!s[id]) s[id] = {attempts:0, correct:0, lastResult:null, everWrong:false, clearedFromMistakes:false};
   s[id].attempts++;
@@ -736,7 +771,7 @@ function saveQuizSession() {
   const quiz=document.getElementById('quiz');
   const answers={};
   quizQs.forEach(q=>(q.type==='group'?q.subs:[q]).forEach(sub=>{answers[sub.id]=readStudyAnswer(sub,quiz.querySelector('#subwrap-'+sub.id));}));
-  localStorage.setItem('econ302_quiz_session',JSON.stringify({chapter:currentChapter,mode:quizMode,param:quizParam,ids:quizQs.map(q=>q.id),answers,flags:[...flaggedQs],submitted:quizSubmitted,deadline:quizDeadline,timePerQuestion:QUIZ_SECONDS_PER_QUESTION}));
+  localStorage.setItem('econ302_quiz_session',JSON.stringify({chapter:currentChapter,mode:quizMode,param:quizParam,ids:quizQs.map(q=>q.id),answers,flags:[...flaggedQs],submitted:quizSubmitted,deadline:quizDeadline,timePerQuestion:quizMode==='gacha'?60:QUIZ_SECONDS_PER_QUESTION}));
 }
 
 function openQuiz() {
@@ -748,9 +783,9 @@ function resetProgress() {
   if(!confirm('Clear all study history in both chapters? Cannot be undone.'))return;
   if(timerInterval){clearInterval(timerInterval);timerInterval=null;}
   quizQs=[];quizSubmitted=false;quizDeadline=0;flaggedQs.clear();answeredQs.clear();
-  ['econ302_stats','econ302_quiz_session'].forEach(key=>localStorage.removeItem(key));
+  ['econ302_stats','econ302_quiz_session','econ302_weak_history'].forEach(key=>localStorage.removeItem(key));
   Object.keys(localStorage).filter(key=>key.startsWith('econ302_scroll_')).forEach(key=>localStorage.removeItem(key));
-  ['review','mistakes','verify','quiz'].forEach(id=>{document.getElementById(id).innerHTML='';});
+  ['review','mistakes','frequent','verify','quiz'].forEach(id=>{document.getElementById(id).innerHTML='';});
   window.scrollTo(0,0);
   showView('home');
 }
@@ -777,8 +812,8 @@ function syncChapterUI() {
   if (homeTitle) homeTitle.textContent = ch === 'ch5' ? 'Econ 302 — Ch 5 Potential Quiz' : 'Econ 302 — Ch 1-4 Potential Quiz';
   const homeSub = document.getElementById('home-subtitle');
   if (homeSub) homeSub.textContent = ch === 'ch5'
-    ? 'UW-Madison  ·  Chapter 5 (Social Planner / one-period general equilibrium model)  ·  30-minute, 20-point quiz simulation'
-    : 'UW-Madison  ·  Chapters 1-4 (one-period / labor-leisure model)  ·  30-minute, 20-point quiz simulation';
+    ? 'UW-Madison  ·  Chapter 5 (Social Planner / one-period general equilibrium model)  ·  70 seconds per question, 20-point quiz simulation'
+    : 'UW-Madison  ·  Chapters 1-4 (one-period / labor-leisure model)  ·  70 seconds per question, 20-point quiz simulation';
 }
 
 function setChapter(ch) {
@@ -789,7 +824,7 @@ function setChapter(ch) {
   syncChapterUI();
   setTimeout(syncNavHeight, 0);
   // Clear cached per-view HTML so switching chapter forces a fresh, correctly-scoped render
-  ['review','mistakes','verify','quiz'].forEach(function(id) { const el = document.getElementById(id); if (el) el.innerHTML = ''; });
+  ['review','mistakes','frequent','verify','quiz'].forEach(function(id) { const el = document.getElementById(id); if (el) el.innerHTML = ''; });
   if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
   quizQs=[];quizSubmitted=false;quizDeadline=0;
   localStorage.removeItem('econ302_quiz_session');
@@ -833,7 +868,7 @@ var _activeView = 'home';
 function showView(v) {
   try { localStorage.setItem('econ302_scroll_'+currentChapter+'_'+_activeView, String(window.scrollY)); } catch(e){}
   _activeView = v;
-  ['home','review','quiz','mistakes','verify'].forEach(function(id) {
+  ['home','review','quiz','mistakes','frequent','verify'].forEach(function(id) {
     document.getElementById(id).style.display = id === v ? '' : 'none';
     const btn = document.getElementById('nb-'+id);
     if (btn) btn.classList.toggle('active', id === v);
@@ -842,6 +877,9 @@ function showView(v) {
   if (v === 'home') renderHome();
   if (v === 'review') { const rc = document.getElementById('review'); if (!rc || rc.innerHTML.trim() === '') renderReview(); }
   if (v === 'mistakes') renderMistakes();
+  if (v === 'frequent') renderFrequent();
+  document.getElementById('nb-gacha').classList.toggle('active',v==='quiz' && quizQs.length>0 && quizMode==='gacha');
+  if(v==='quiz' && quizQs.length>0 && quizMode==='gacha')document.getElementById('nb-quiz').classList.remove('active');
   if (v === 'verify') { const vc = document.getElementById('verify'); if (!vc || vc.innerHTML.trim() === '') renderVerify(); }
   try {
     const saved = localStorage.getItem('econ302_scroll_'+currentChapter+'_'+v);
@@ -1039,7 +1077,7 @@ function renderCard(q, mode) {
     }
     if (q.scenario) html += `<div class="scenario-box">${q.scenario}</div>`;
     q.subs.forEach((sub, i) => {
-      if (q.subs.length > 1) html += `<div class="subq-label">Part ${sub.partLabel || i+1}</div>`;
+      if (q.subs.length > 1 || (mode==='quiz' && quizMode==='gacha')) html += `<div class="subq-label">Part ${sub.partLabel || i+1}</div>`;
       html += renderSubQ(sub, mode, mode === 'mistakes');
     });
     if (mode === 'mistakes') {
@@ -1060,6 +1098,23 @@ function renderCard(q, mode) {
 // ============================================================
 // REVIEW MODE
 // ============================================================
+function refreshReview() {
+  if(!confirm('Start a fresh Review for this chapter? Answers and progress will reset. Frequently missed history will be kept.'))return;
+  getWeakHistory();
+  const stats=getStats();
+  getAllLeafIds().forEach(id=>delete stats[id]);
+  saveStats(stats);
+  if(timerInterval){clearInterval(timerInterval);timerInterval=null;}
+  quizQs=[];quizSubmitted=false;quizDeadline=0;flaggedQs.clear();answeredQs.clear();
+  localStorage.removeItem('econ302_quiz_session');
+  ['review','quiz','mistakes','frequent'].forEach(id=>document.getElementById(id).innerHTML='');
+  localStorage.setItem('econ302_scroll_'+currentChapter+'_review','0');
+  document.getElementById('timer-bar').style.display='none';
+  renderReview();
+  renderHome();
+  window.scrollTo(0,0);
+}
+
 function renderReview() {
   const container = document.getElementById('review');
   const chapterQB = QB.filter(q => q.chapter === currentChapter);
@@ -1068,7 +1123,7 @@ function renderReview() {
   const poolCount = new Set(chapterQB.map(q => q.pool)).size;
   let html = `<div class="section-header">
     <h2>Review Mode — ${totalLeaf} questions across ${poolCount} pools</h2>
-    <button class="btn btn-secondary" onclick="renderReview()">Refresh ↺</button>
+    <button class="btn btn-secondary" onclick="refreshReview()">Refresh ↺</button>
   </div>`;
   html += `<div id="review-progress-wrap"><div id="review-progress"><div id="review-progress-fill" style="width:0%"></div></div></div>`;
   qs.forEach(q => html += renderCard(q, 'review'));
@@ -1443,6 +1498,22 @@ function startQuiz() {
   showView('quiz');
 }
 
+function makeGachaQuestion(id) {
+  const parent=getParentQ(id);
+  if(!parent || parent.removed || parent.chapter!==currentChapter)return null;
+  if(parent.type!=='group')return parent;
+  const sub=parent.subs.find(sub=>sub.id===id);
+  if(!sub)return null;
+  let scenario=parent.scenario || '';
+  if(parent.pool==='pool_c5_1')scenario=scenario.replace(/^<strong>.*?<\/strong><br>/,'<strong>Use this household for the question below.</strong><br>');
+  return {...parent,scenario,pts:parent.pts/parent.subs.length,subs:[sub]};
+}
+
+function openGacha() {
+  if(quizMode==='gacha' && quizQs.length && !quizSubmitted)showView('quiz');
+  else doStartQuiz('gacha');
+}
+
 function doStartQuiz(mode, param, savedSession) {
   // Generate questions based on mode
   const isCh5 = currentChapter === 'ch5';
@@ -1467,6 +1538,11 @@ function doStartQuiz(mode, param, savedSession) {
       });
     });
     title = isCh5 ? 'Ch 5 Quiz Simulation' : 'Ch 1-4 Quiz Simulation';
+  } else if(mode==='gacha'){
+    const id=savedSession?savedSession.param:(param || shuffle(getAllLeafIds())[0]);
+    const question=makeGachaQuestion(id);
+    if(!question)return;
+    selectedQs=[question];param=id;title='Gacha: One Question, 60 Seconds';
   } else if (mode === 'chapter') {
     const pools = chapterPoolsNow[param] || [];
     pools.forEach(pool => (byPool[pool]||[]).forEach(q=>selectedQs.push(q)));
@@ -1477,10 +1553,11 @@ function doStartQuiz(mode, param, savedSession) {
     title = (POOL_LABELS[param]||param) + ' — Pool Practice';
   }
 
-  if(savedSession)selectedQs=[...new Set(savedSession.ids.map(id=>getParentQ(id)).filter(q=>q && q.chapter===currentChapter && !q.removed))];
+  if(savedSession && mode!=='gacha')selectedQs=[...new Set(savedSession.ids.map(id=>getParentQ(id)).filter(q=>q && q.chapter===currentChapter && !q.removed))];
   quizQs = selectedQs;
   const questionCount=quizQs.reduce((count,q)=>count+(q.type==='group'?q.subs.length:1),0);
-  const durationSec=questionCount*QUIZ_SECONDS_PER_QUESTION;
+  const secondsPerQuestion=mode==='gacha'?60:QUIZ_SECONDS_PER_QUESTION;
+  const durationSec=questionCount*secondsPerQuestion;
   quizMode=mode;quizParam=param || '';
   quizSubmitted = false;
   flaggedQs = new Set();
@@ -1492,7 +1569,7 @@ function doStartQuiz(mode, param, savedSession) {
     '<button class="btn btn-secondary" onclick="startQuiz()">&#8592; Back</button>' +
     '<button class="btn btn-secondary" id="quiz-submit-btn" onclick="submitQuiz()">Submit</button></div></div>' +
     '<div style="background:#fff3cd;border:1.5px solid #ffc107;border-radius:8px;padding:10px 14px;margin-bottom:16px;font-size:.88rem">' +
-    '<strong>Instructions:</strong> Answer all questions. Time budget: <strong>' + questionCount + ' questions &times; 1 min 10 sec = ' + formatQuizDuration(durationSec) + '</strong>. Each labeled part counts as one question; multiple blanks in one question share its budget. Submit before time runs out. Auto-submits at 0:00.' +
+    '<strong>Instructions:</strong> Answer all questions. Time budget: <strong>' + questionCount + ' question'+(questionCount===1?'':'s')+' &times; '+formatQuizDuration(secondsPerQuestion)+' = ' + formatQuizDuration(durationSec) + '</strong>. Each labeled part counts as one question; multiple blanks in one question share its budget. Submit before time runs out. Auto-submits at 0:00.' +
     '</div>';
   quizQs.forEach(q => html += renderCard(q, 'quiz'));
   html += '<div style="text-align:center;margin:20px 0"><button class="btn" onclick="submitQuiz()">Submit Quiz</button></div>';
@@ -1512,8 +1589,8 @@ function doStartQuiz(mode, param, savedSession) {
     quizQs.forEach(q=>(q.type==='group'?q.subs:[q]).forEach(sub=>{applyStudyAnswer(sub,container.querySelector('#subwrap-'+sub.id),savedSession.answers[sub.id]);}));
     (savedSession.flags || []).forEach(id=>toggleFlag(id));
     quizDeadline=savedSession.deadline;
-    if(!savedSession.submitted && savedSession.timePerQuestion!==QUIZ_SECONDS_PER_QUESTION){
-      const previousDuration={exam:1800,chapter:2700,pool:600}[mode];
+    if(!savedSession.submitted && savedSession.timePerQuestion!==secondsPerQuestion){
+      const previousDuration={exam:1800,chapter:2700,pool:600,gacha:60}[mode];
       quizDeadline=Math.min(quizDeadline,savedSession.deadline-previousDuration*1000+durationSec*1000);
     }
   } else quizDeadline=Date.now()+durationSec*1000;
@@ -1604,7 +1681,7 @@ function submitQuiz(restoring) {
           if(tr) tr.style.background=rowOk?'#d4edda':'#f8d7da';
         });
         if (!stats[sub.id]) stats[sub.id]={attempts:0,correct:0,lastResult:null,everWrong:false,clearedFromMistakes:false};
-        if(!restoring){stats[sub.id].attempts++; if(isCorrect) stats[sub.id].correct++;stats[sub.id].lastResult=isCorrect?'correct':'incorrect';stats[sub.id].lastAnswer=readStudyAnswer(sub,quiz.querySelector('#subwrap-'+sub.id));if (!isCorrect) { stats[sub.id].everWrong=true; stats[sub.id].clearedFromMistakes=false; }}
+        if(!restoring){recordWeakAttempt(sub.id,isCorrect,readStudyAnswer(sub,quiz.querySelector('#subwrap-'+sub.id)));stats[sub.id].attempts++; if(isCorrect) stats[sub.id].correct++;stats[sub.id].lastResult=isCorrect?'correct':'incorrect';stats[sub.id].lastAnswer=readStudyAnswer(sub,quiz.querySelector('#subwrap-'+sub.id));if (!isCorrect) { stats[sub.id].everWrong=true; stats[sub.id].clearedFromMistakes=false; }}
         const fb=quiz.querySelector('#fb-'+sub.id);
         if(fb){fb.style.display='';fb.className='feedback '+(isCorrect?'ok':'err');fb.innerHTML=isCorrect?'✓ All rows correct!':'✗ Some rows incorrect. Check highlighted rows.';}
         const ak=quiz.querySelector('#ak-'+sub.id); if(ak) ak.style.display='';
@@ -1614,7 +1691,7 @@ function submitQuiz(restoring) {
       const points=q.pts/subs.length;
       totalPts+=points; earnedPts+=isCorrect?points:0;
       if (!stats[sub.id]) stats[sub.id]={attempts:0,correct:0,lastResult:null,everWrong:false,clearedFromMistakes:false};
-      if(!restoring){stats[sub.id].attempts++; if(isCorrect) stats[sub.id].correct++;stats[sub.id].lastResult=isCorrect?'correct':'incorrect';stats[sub.id].lastAnswer=readStudyAnswer(sub,quiz.querySelector('#subwrap-'+sub.id));if (!isCorrect) { stats[sub.id].everWrong=true; stats[sub.id].clearedFromMistakes=false; }}
+      if(!restoring){recordWeakAttempt(sub.id,isCorrect,readStudyAnswer(sub,quiz.querySelector('#subwrap-'+sub.id)));stats[sub.id].attempts++; if(isCorrect) stats[sub.id].correct++;stats[sub.id].lastResult=isCorrect?'correct':'incorrect';stats[sub.id].lastAnswer=readStudyAnswer(sub,quiz.querySelector('#subwrap-'+sub.id));if (!isCorrect) { stats[sub.id].everWrong=true; stats[sub.id].clearedFromMistakes=false; }}
 
       const fb=quiz.querySelector('#fb-'+sub.id); if(!fb) return;
       fb.style.display='';
@@ -1656,7 +1733,9 @@ function submitQuiz(restoring) {
   document.getElementById('review').innerHTML='';
   const pct=totalPts>0?Math.round(100*earnedPts/totalPts):0;
   const box=quiz.querySelector('#score-box');
-  if(box){box.style.display='';box.innerHTML=`<div class="big">${earnedPts}/${totalPts}</div><div class="sub">${pct}%. Quiz Complete!</div><div style="margin-top:14px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap"><button class="btn btn-secondary" onclick="showView('home')">Back to Home</button><button class="btn btn-secondary" onclick="startQuiz()">Retake Quiz</button><button class="btn" onclick="(function(){const c=document.querySelector('#quiz .q-card');if(c)window.scrollTo({top:c.getBoundingClientRect().top+window.scrollY-160,behavior:'smooth'});})()">Review Answers ↓</button></div>`;}
+  const retryAction=quizMode==='gacha'?"doStartQuiz('gacha')":'startQuiz()';
+  const retryLabel=quizMode==='gacha'?'Next Draw':'Retake Quiz';
+  if(box){box.style.display='';box.innerHTML=`<div class="big">${earnedPts}/${totalPts}</div><div class="sub">${pct}%. Quiz Complete!</div><div style="margin-top:14px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap"><button class="btn btn-secondary" onclick="showView('home')">Back to Home</button><button class="btn btn-secondary" onclick="${retryAction}">${retryLabel}</button><button class="btn" onclick="(function(){const c=document.querySelector('#quiz .q-card');if(c)window.scrollTo({top:c.getBoundingClientRect().top+window.scrollY-160,behavior:'smooth'});})()">Review Answers ↓</button></div>`;}
   quiz.querySelectorAll('button[onclick="submitQuiz()"]').forEach(btn=>{btn.disabled=true;btn.textContent='✓ Submitted';});
   window.scrollTo(0,0);
 }
@@ -1664,6 +1743,34 @@ function submitQuiz(restoring) {
 // ============================================================
 // MISTAKES MODE
 // ============================================================
+function clearWeakHistory() {
+  if(!confirm('Clear frequently missed history for this chapter? Your current progress will be kept.'))return;
+  const history=getWeakHistory();
+  getAllLeafIds().forEach(id=>delete history[id]);
+  localStorage.setItem('econ302_weak_history',JSON.stringify(history));
+  renderFrequent();
+}
+
+function renderFrequent() {
+  const container=document.getElementById('frequent'), history=getWeakHistory();
+  const parents=QB.filter(q=>!q.removed && q.chapter===currentChapter && (q.type==='group'?q.subs:[q]).some(sub=>history[sub.id] && history[sub.id].wrong>0));
+  const misses=q=>(q.type==='group'?q.subs:[q]).reduce((sum,sub)=>sum+(history[sub.id]?history[sub.id].wrong:0),0);
+  parents.sort((a,b)=>misses(b)-misses(a));
+  let html='<div class="section-header"><h2>Frequently Missed Questions</h2><button class="btn btn-secondary" onclick="clearWeakHistory()">Clear History</button></div>';
+  html+='<p style="margin-bottom:18px;line-height:1.6">Hay sai: questions you have missed, with the most misses first. This history stays after a correct answer or Review Refresh. Mistakes shows only your latest wrong answers.</p>';
+  if(!parents.length)html+='<p>No missed questions saved for this chapter yet. Practice in Review, Quiz, or Gacha to build your history.</p>';
+  parents.forEach(q=>{
+    html+='<div style="margin-bottom:8px;font-size:.88rem;color:#a00">';
+    (q.type==='group'?q.subs:[q]).filter(sub=>history[sub.id] && history[sub.id].wrong>0).forEach(sub=>{
+      html+='<div data-weak-id="'+sub.id+'" data-part-label="'+(sub.partLabel||'')+'"></div>';
+    });
+    html+='</div>'+renderCard(q,'review');
+  });
+  container.innerHTML=html;
+  updateWeakBadges();
+  restoreStudyResults(container);
+}
+
 function renderMistakes() {
   const stats=getStats();
   const container=document.getElementById('mistakes');
@@ -1701,10 +1808,10 @@ window.addEventListener('DOMContentLoaded', function() {
     const session=JSON.parse(localStorage.getItem('econ302_quiz_session') || 'null');
     if(session && session.chapter===currentChapter && Array.isArray(session.ids) && session.ids.length && session.answers && Number.isFinite(session.deadline)){
       doStartQuiz(session.mode,session.param,session);
-      if(v && v!=='quiz' && ['home','review','mistakes','verify'].includes(v))showView(v);
+      if(v && v!=='quiz' && ['home','review','mistakes','frequent','verify'].includes(v))showView(v);
       return;
     }
-    if (v && ['home','review','mistakes','verify'].includes(v)) { showView(v); }
+    if (v && ['home','review','mistakes','frequent','verify'].includes(v)) { showView(v); }
     else { showView('home'); }
   } catch(e) { showView('home'); }
 });
@@ -1721,6 +1828,8 @@ window.addEventListener('DOMContentLoaded', function() {
     <button id="nb-review" onclick="showView('review')"><span class="nb-icon">📖</span><span class="nb-label"> Review</span></button>
     <button id="nb-quiz" onclick="openQuiz()"><span class="nb-icon">⏱</span><span class="nb-label"> Quiz</span></button>
     <button id="nb-mistakes" onclick="showView('mistakes')"><span class="nb-icon">❌</span><span class="nb-label"> Mistakes</span></button>
+    <button id="nb-frequent" onclick="showView('frequent')"><span class="nb-icon">📌</span><span class="nb-label"> Hay sai</span></button>
+    <button id="nb-gacha" onclick="openGacha()"><span class="nb-icon">🎲</span><span class="nb-label"> Gacha</span></button>
     <button id="nb-verify" onclick="showView('verify')"><span class="nb-icon">📋</span><span class="nb-label"> Verify</span></button>
   </div>
 </div>
@@ -1730,7 +1839,7 @@ window.addEventListener('DOMContentLoaded', function() {
 <div id="home" style="display:none">
   <div style="max-width:800px;margin:40px auto;padding:20px">
     <h2 id="home-title">Econ 302 — Ch 1-4 Potential Quiz</h2>
-    <p id="home-subtitle" style="color:#555;margin-bottom:6px">UW-Madison &nbsp;&middot;&nbsp; Chapters 1-4 (one-period / labor-leisure model) &nbsp;&middot;&nbsp; 30-minute, 20-point quiz simulation</p>
+    <p id="home-subtitle" style="color:#555;margin-bottom:6px">UW-Madison &nbsp;&middot;&nbsp; Chapters 1-4 (one-period / labor-leisure model) &nbsp;&middot;&nbsp; 70 seconds per question, 20-point quiz simulation</p>
     <p style="color:#888;margin-bottom:6px;font-size:.85rem">Note: use the <strong>Ch 1-4 / Ch 5</strong> switch at the top to pick which potential-quiz list you're studying. Your choice and progress are saved on this device.</p>
     <div class="stat-grid">
       <div class="stat-card"><div class="num" id="s-total">—</div><div class="lbl">Gradeable Questions</div></div>
@@ -1746,13 +1855,23 @@ window.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="mode-card" onclick="startQuiz()">
         <h3>⏱ Quiz Mode</h3>
-        <p>30-minute countdown, ~20-point practice draw across all pools (same format as the real quiz). Submit for your score.</p>
+        <p>70 seconds per question, with a ~20-point practice draw across all pools. Submit for your score.</p>
         <button class="btn" style="margin-top:14px">Start Quiz</button>
       </div>
       <div class="mode-card" onclick="showView('mistakes')">
         <h3>❌ Review Mistakes</h3>
         <p>Focus only on questions you've gotten wrong. Track improvement session to session.</p>
         <button class="btn btn-secondary" style="margin-top:14px">View Mistakes</button>
+      </div>
+      <div class="mode-card" onclick="showView('frequent')">
+        <h3>📌 Hay sai</h3>
+        <p>Saved missed-question history, ordered by the number of misses. Kept after correct answers and Review Refresh.</p>
+        <button class="btn btn-secondary" style="margin-top:14px">Practice Frequently Missed</button>
+      </div>
+      <div class="mode-card" onclick="openGacha()">
+        <h3>🎲 Gacha</h3>
+        <p>Draw one random question from this chapter. You have 60 seconds. Check your result, then draw again.</p>
+        <button class="btn" style="margin-top:14px">Draw a Question</button>
       </div>
       <div class="mode-card" onclick="resetProgress()">
         <h3>🗑 Reset Progress</h3>
@@ -1766,6 +1885,7 @@ window.addEventListener('DOMContentLoaded', function() {
 <div id="review" style="display:none;max-width:860px;margin:0 auto;padding:20px"></div>
 <div id="quiz" style="display:none;max-width:860px;margin:0 auto;padding:20px"></div>
 <div id="mistakes" style="display:none;max-width:860px;margin:0 auto;padding:20px"></div>
+<div id="frequent" style="display:none;max-width:860px;margin:0 auto;padding:20px"></div>
 <div id="verify" style="display:none;max-width:960px;margin:0 auto;padding:20px"></div>
 
 <button id="scrolltop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top" style="display:none;align-items:center;justify-content:center">↑</button>
