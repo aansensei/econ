@@ -737,6 +737,7 @@ let quizQs = [];
 let flaggedQs = new Set();
 let answeredQs = new Set();
 let _examSimMode = false;
+let quizSubmitted = false;
 const LETTERS = 'ABCDE';
 
 // ============================================================
@@ -1226,7 +1227,7 @@ function getPoolStats(pools) {
 function toggleFlag(qid) {
   if (flaggedQs.has(qid)) flaggedQs.delete(qid);
   else flaggedQs.add(qid);
-  const btn = document.getElementById('flagbtn-'+qid);
+  const btn = document.querySelector('#quiz #flagbtn-'+qid);
   if (btn) btn.classList.toggle('active', flaggedQs.has(qid));
   updateQuizNav();
 }
@@ -1247,7 +1248,7 @@ function updateQuizNav() {
 
 function bindQuizInputs() {
   quizQs.forEach(q => {
-    const card = document.getElementById('qcard-'+q.id);
+    const card = document.querySelector('#quiz #qcard-'+q.id);
     if (!card) return;
     card.querySelectorAll('input[type=radio],input[type=checkbox],select').forEach(el => {
       el.addEventListener('change', () => markAnswered(q.id));
@@ -1256,7 +1257,7 @@ function bindQuizInputs() {
 }
 
 function scrollToQ(qid) {
-  const el = document.getElementById('qcard-'+qid);
+  const el = document.querySelector('#quiz #qcard-'+qid);
   if (!el) return;
   const navH = (document.getElementById('nav')||{offsetHeight:54}).offsetHeight;
   const timerH = (document.getElementById('timer-bar')||{offsetHeight:0}).offsetHeight;
@@ -1373,6 +1374,7 @@ function doStartQuiz(mode, param) {
   }
 
   quizQs = selectedQs;
+  quizSubmitted = false;
   flaggedQs = new Set();
   answeredQs = new Set();
   const container = document.getElementById('quiz');
@@ -1417,29 +1419,28 @@ function startTimer(mins) {
 }
 
 function gradeQuizSub(sub) {
+  const quiz = document.getElementById('quiz');
   if (sub.type==='mcq') {
-    const sel=document.querySelector(`input[name="r-${sub.id}"]:checked`);
+    const sel=quiz.querySelector(`input[name="r-${sub.id}"]:checked`);
     const val=sel?parseInt(sel.value):-1;
     return {val, isCorrect:val===sub.ans};
   }
   if (sub.type==='multi') {
-    const checked=[...document.querySelectorAll(`input[name="c-${sub.id}"]:checked`)].map(el=>parseInt(el.value)).sort((a,b)=>a-b);
+    const checked=[...quiz.querySelectorAll(`input[name="c-${sub.id}"]:checked`)].map(el=>parseInt(el.value)).sort((a,b)=>a-b);
     const correct=[...sub.ans].sort((a,b)=>a-b);
     return {val:checked, isCorrect:JSON.stringify(checked)===JSON.stringify(correct)};
   }
   if (sub.type==='dropdown') {
-    const dd=document.getElementById('dd-'+sub.id);
+    const dd=quiz.querySelector('#dd-'+sub.id);
     const val=dd&&dd.value!==''?parseInt(dd.value):-1;
     return {val, isCorrect:val===sub.ans};
   }
   if (sub.type==='inline') {
-    const _blankEmpty=sub.blanks.some(function(b,i){ const dd=document.getElementById('idd-'+sub.id+'-'+i); return !dd||dd.value===''; });
-    if (_blankEmpty) return {val:null, isCorrect:false};
-    const _allOk=sub.blanks.every(function(b,i){ const dd=document.getElementById('idd-'+sub.id+'-'+i); return parseInt(dd.value)===b.ans; });
-    return {val:sub.blanks.map(function(b,i){ const dd=document.getElementById('idd-'+sub.id+'-'+i); return dd?parseInt(dd.value):-1; }), isCorrect:_allOk};
+    const values=sub.blanks.map(function(b,i){ const dd=quiz.querySelector('#idd-'+sub.id+'-'+i); return dd&&dd.value!==''?parseInt(dd.value):-1; });
+    return {val:values, isCorrect:sub.blanks.every((b,i)=>values[i]===b.ans)};
   }
   if (sub.type==='fill') {
-    const inp=document.getElementById('fill-input-'+sub.id);
+    const inp=quiz.querySelector('#fill-input-'+sub.id);
     if (!inp||inp.value.trim().length<1) return {val:'', isCorrect:false};
     return {val:inp.value, isCorrect:matchFill(inp.value,sub.answer)};
   }
@@ -1448,7 +1449,7 @@ function gradeQuizSub(sub) {
     const rowResults=[];
     let allCorrect=true;
     td.rows.forEach((row,i)=>{
-      const sel=document.getElementById(`tsub-${sub.id}-${i}`);
+      const sel=quiz.querySelector(`#tsub-${sub.id}-${i}`);
       const expected=row[row.length-1];
       const rowOk=sel&&sel.value===expected;
       if(!rowOk) allCorrect=false;
@@ -1460,6 +1461,9 @@ function gradeQuizSub(sub) {
 }
 
 function submitQuiz() {
+  if (quizSubmitted) return;
+  quizSubmitted = true;
+  const quiz = document.getElementById('quiz');
   if (timerInterval) { clearInterval(timerInterval); timerInterval=null; }
   document.getElementById('timer-bar').style.display='none';
   const qnav=document.getElementById('quiz-qnav'); if(qnav) qnav.style.display='none';
@@ -1468,24 +1472,26 @@ function submitQuiz() {
 
   quizQs.forEach(q => {
     const subs=q.type==='group'?q.subs:[q];
+    let questionCorrect = true;
     subs.forEach(sub => {
       const {val, isCorrect}=gradeQuizSub(sub);
       if (isCorrect===null) return; // shouldn't happen now
+      questionCorrect = questionCorrect && isCorrect;
 
       if (sub.type==='table') {
         // grade per row
         (val||[]).forEach(({i,rowOk,expected})=>{
           totalPts++; earnedPts+=rowOk?1:0;
-          const tr=document.getElementById(`trow-${sub.id}-${i}`);
+          const tr=quiz.querySelector(`#trow-${sub.id}-${i}`);
           if(tr) tr.style.background=rowOk?'#d4edda':'#f8d7da';
         });
         if (!stats[sub.id]) stats[sub.id]={attempts:0,correct:0,lastResult:null,everWrong:false,clearedFromMistakes:false};
         stats[sub.id].attempts++; if(isCorrect) stats[sub.id].correct++;
         stats[sub.id].lastResult=isCorrect?'correct':'incorrect';
         if (!isCorrect) { stats[sub.id].everWrong=true; stats[sub.id].clearedFromMistakes=false; }
-        const fb=document.getElementById('fb-'+sub.id);
-        if(fb){fb.style.display='';fb.className='feedback '+(isCorrect?'ok':'err');fb.innerHTML=isCorrect?'✓ All rows correct!':'✗ Some rows incorrect — check highlighted rows.';}
-        const ak=document.getElementById('ak-'+sub.id); if(ak) ak.style.display='';
+        const fb=quiz.querySelector('#fb-'+sub.id);
+        if(fb){fb.style.display='';fb.className='feedback '+(isCorrect?'ok':'err');fb.innerHTML=isCorrect?'✓ All rows correct!':'✗ Some rows incorrect. Check highlighted rows.';}
+        const ak=quiz.querySelector('#ak-'+sub.id); if(ak) ak.style.display='';
         return;
       }
 
@@ -1495,44 +1501,52 @@ function submitQuiz() {
       stats[sub.id].lastResult=isCorrect?'correct':'incorrect';
       if (!isCorrect) { stats[sub.id].everWrong=true; stats[sub.id].clearedFromMistakes=false; }
 
-      const fb=document.getElementById('fb-'+sub.id); if(!fb) return;
+      const fb=quiz.querySelector('#fb-'+sub.id); if(!fb) return;
       fb.style.display='';
       if (sub.type==='mcq') {
         fb.className='feedback '+(isCorrect?'ok':'err');
-        const aText=sub.opts[sub.ans]
-        fb.innerHTML=isCorrect?`✓ Correct! <strong>${aText}</strong>`:`✗ Incorrect. Correct: <strong>${aText}</strong>${sub.note?`<div style="margin-top:6px;font-weight:normal">${sub.note}</div>`:''}`;
-        sub.opts.forEach((_,i)=>{const l=document.getElementById(`lbl-${sub.id}-${i}`);if(l) l.classList.remove('correct-opt','wrong-opt');});
-        if(!isCorrect&&val>=0){const l=document.getElementById(`lbl-${sub.id}-${val}`);if(l) l.classList.add('wrong-opt');}
-        const cl=document.getElementById(`lbl-${sub.id}-${sub.ans}`);if(cl) cl.classList.add('correct-opt');
+        const aText=sub.opts[sub.ans];
+        fb.innerHTML=(isCorrect?'✓ Correct!':val<0?'✗ Unanswered.':'✗ Incorrect.')+` Correct answer: <strong>${aText}</strong>`;
+        sub.opts.forEach((_,i)=>{const l=quiz.querySelector(`#lbl-${sub.id}-${i}`);if(l) l.classList.remove('correct-opt','wrong-opt');});
+        if(!isCorrect&&val>=0){const l=quiz.querySelector(`#lbl-${sub.id}-${val}`);if(l) l.classList.add('wrong-opt');}
+        const cl=quiz.querySelector(`#lbl-${sub.id}-${sub.ans}`);if(cl) cl.classList.add('correct-opt');
       } else if (sub.type==='multi') {
         const correct=[...sub.ans].sort((a,b)=>a-b);
         fb.className='feedback '+(isCorrect?'ok':'err');
         fb.innerHTML=isCorrect?`✓ Correct!`:`✗ Incorrect. Correct: <strong>${correct.map(i=>`${sub.opts[i]}`).join('; ')}</strong>`;
-        sub.opts.forEach((_,i)=>{const l=document.getElementById(`lbl-${sub.id}-${i}`);if(l) l.classList.remove('correct-opt','wrong-opt');});
-        sub.ans.forEach(i=>{const l=document.getElementById(`lbl-${sub.id}-${i}`);if(l) l.classList.add('correct-opt');});
-        if(Array.isArray(val)) val.filter(i=>!sub.ans.includes(i)).forEach(i=>{const l=document.getElementById(`lbl-${sub.id}-${i}`);if(l) l.classList.add('wrong-opt');});
+        sub.opts.forEach((_,i)=>{const l=quiz.querySelector(`#lbl-${sub.id}-${i}`);if(l) l.classList.remove('correct-opt','wrong-opt');});
+        sub.ans.forEach(i=>{const l=quiz.querySelector(`#lbl-${sub.id}-${i}`);if(l) l.classList.add('correct-opt');});
+        if(Array.isArray(val)) val.filter(i=>!sub.ans.includes(i)).forEach(i=>{const l=quiz.querySelector(`#lbl-${sub.id}-${i}`);if(l) l.classList.add('wrong-opt');});
       } else if (sub.type==='dropdown') {
         fb.className='feedback '+(isCorrect?'ok':'err');
-        fb.innerHTML=isCorrect?`✓ Correct!`:`✗ Incorrect. Correct: <strong>${sub.opts[sub.ans]}</strong>${sub.note?`<div style="margin-top:6px;font-weight:normal">${sub.note}</div>`:''}`;
+        fb.innerHTML=(isCorrect?'✓ Correct!':val<0?'✗ Unanswered.':'✗ Incorrect.')+` Correct answer: <strong>${sub.opts[sub.ans]}</strong>`;
       } else if (sub.type==='fill') {
         fb.className='feedback '+(isCorrect?'ok':'err');
-        fb.innerHTML=isCorrect?`✓ Correct! Answer: <strong>${sub.answer}</strong>`:`✗ Incorrect. Correct: <strong>${sub.answer}</strong>${sub.note?`<div style="margin-top:6px;font-weight:normal">${sub.note}</div>`:''}`;
-        const ak=document.getElementById('ak-'+sub.id); if(ak) ak.style.display='';
+        fb.innerHTML=(isCorrect?'✓ Correct!':val===''?'✗ Unanswered.':'✗ Incorrect.')+` Correct answer: <strong>${sub.answer}</strong>`;
+        const ak=quiz.querySelector('#ak-'+sub.id); if(ak) ak.style.display='';
       } else if (sub.type==='inline') {
         fb.className='feedback '+(isCorrect?'ok':'err');
-        const correctText=sub.blanks.map(b=>b.opts[b.ans]).join(' / ');
-        fb.innerHTML=isCorrect?`✓ Correct!`:`✗ Incorrect. Correct: <strong>${correctText}</strong>${sub.note?`<div style="margin-top:6px;font-weight:normal">${sub.note}</div>`:''}`;
+        fb.innerHTML=(isCorrect?'✓ Correct!':'✗ Incorrect.')+sub.blanks.map((b,i)=>{
+          const selected=val[i];
+          const correct=selected===b.ans;
+          const dd=quiz.querySelector(`#idd-${sub.id}-${i}`);
+          if(dd)dd.style.borderColor=correct?'#28a745':'#c5050c';
+          return `<div class="blank-result ${correct?'correct':'incorrect'}" style="margin-top:6px">${correct?'✓':'✗'} Blank ${i+1}. Your answer: <strong>${selected>=0?b.opts[selected]:'Unanswered'}</strong>. Correct answer: <strong>${b.opts[b.ans]}</strong>.</div>`;
+        }).join('');
       }
+      if(sub.type!=='fill'&&sub.note)fb.innerHTML+=`<div style="margin-top:10px;font-weight:normal">${sub.note}</div>`;
     });
+    const card=quiz.querySelector('#qcard-'+q.id);
+    if(card){card.classList.remove('correct','incorrect');card.classList.add(questionCorrect?'correct':'incorrect');}
   });
   // Lock all inputs after submit
   document.querySelectorAll('#quiz input, #quiz select').forEach(el => el.disabled = true);
 
   saveStats(stats);
   const pct=totalPts>0?Math.round(100*earnedPts/totalPts):0;
-  const box=document.getElementById('score-box');
-  if(box){box.style.display='';box.innerHTML=`<div class="big">${earnedPts}/${totalPts}</div><div class="sub">${pct}% — Quiz Complete!</div><div style="margin-top:14px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap"><button class="btn btn-secondary" onclick="showView('home')">Back to Home</button><button class="btn btn-secondary" onclick="startQuiz()">Retake Quiz</button><button class="btn" onclick="(function(){const c=document.querySelector('#quiz .q-card');if(c)window.scrollTo({top:c.getBoundingClientRect().top+window.scrollY-160,behavior:'smooth'});})()">Review Answers ↓</button></div>`;}
-  const btn=document.getElementById('quiz-submit-btn'); if(btn){btn.disabled=true;btn.textContent='✓ Submitted';}
+  const box=quiz.querySelector('#score-box');
+  if(box){box.style.display='';box.innerHTML=`<div class="big">${earnedPts}/${totalPts}</div><div class="sub">${pct}%. Quiz Complete!</div><div style="margin-top:14px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap"><button class="btn btn-secondary" onclick="showView('home')">Back to Home</button><button class="btn btn-secondary" onclick="startQuiz()">Retake Quiz</button><button class="btn" onclick="(function(){const c=document.querySelector('#quiz .q-card');if(c)window.scrollTo({top:c.getBoundingClientRect().top+window.scrollY-160,behavior:'smooth'});})()">Review Answers ↓</button></div>`;}
+  quiz.querySelectorAll('button[onclick="submitQuiz()"]').forEach(btn=>{btn.disabled=true;btn.textContent='✓ Submitted';});
   window.scrollTo(0,0);
 }
 
