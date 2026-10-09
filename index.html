@@ -1929,15 +1929,18 @@ function renderVerify() {
   const container = document.getElementById('verify');
   const chapterQB = QB.filter(q => q.chapter === currentChapter);
   const poolCount = new Set(chapterQB.map(q => q.pool)).size;
+  const removedCount = chapterQB.filter(q => q.removed).length;
   let html = `<div class="section-header" style="flex-direction:column;align-items:flex-start;gap:6px">
     <h2>📋 Verify Questions — ${getAllLeafIds().length} Questions across ${poolCount} Pools</h2>
-    <div style="font-size:.85rem;color:#555">All questions in source order &middot; answers shown for memorization and self-check</div>
+    <div style="font-size:.85rem;color:#555">All questions in source order &middot; answers shown for memorization and self-check${removedCount ? ` &middot; <strong style="color:#c5050c">${removedCount} removed by instructor (marked in red, not counted)</strong>` : ''}</div>
   </div>`;
 
   chapterQB.forEach((q, qIdx) => {
-    html += `<div class="q-card" id="vcard-${q.id}" style="border-left:4px solid #c5050c">`;
+    html += `<div class="q-card${q.removed ? ' removed-q' : ''}" id="vcard-${q.id}" style="border-left:4px solid #c5050c">`;
+    if (q.removed) html += `<div class="removed-stamp">Đã bỏ khỏi đề</div>`;
     // Header row
     html += `<div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px">
+      ${q.removed ? '<span style="background:#c5050c;color:#fff;padding:2px 10px;border-radius:20px;font-size:.72rem;font-weight:800">ĐÃ BỎ KHỎI ĐỀ</span>' : ''}
       <span class="q-tag">${q.tag}</span>
       <span class="q-points">${q.pts} pt${q.pts>1?'s':''}</span>
       <span style="background:#555;color:#fff;padding:2px 8px;border-radius:20px;font-size:.7rem;font-weight:600">${q.pool}</span>
