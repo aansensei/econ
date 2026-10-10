@@ -5,3 +5,6 @@
 dialog{border:0;border-radius:14px;padding:24px;max-width:500px;width:calc(100% - 32px);box-shadow:0 10px 50px #0004}dialog::backdrop{background:#0007}dialog p{line-height:1.65}
 
 .source-image{display:block;max-width:100%;height:auto;margin:12px auto;border:1px solid #ddd;border-radius:8px}
+
+.filters label{display:grid;gap:4px;flex:1;min-width:150px;color:var(--muted);font-size:.8rem}.filters .search-field{flex:2;min-width:230px}.filters .source-field{flex:2;min-width:230px}.filters label input,.filters label select{width:100%;min-width:0;font-size:.9rem}.filters button{align-self:end;height:44px}.badge.chapter{background:#eaf0fa;color:#365584}
+@media(max-width:600px){.filters label{flex-basis:100%;min-width:0}.filters .search-field,.filters .source-field{min-width:0}}
