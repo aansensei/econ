@@ -622,6 +622,74 @@ QB.push.apply(QB, QB_CH5);
 QB.forEach(function(q){ if (!q.chapter) q.chapter = 'ch1-4'; });
 
 // ============================================================
+// RANDOMIZED MATH (Ch5 Pool 1): numbers are re-drawn but always give clean answers
+// ============================================================
+const MATH_SUB_IDS = ['c5p1_1a','c5p1_2a'];
+const MATH_PARAMS_KEY = 'econ302_math_params';
+let MATH_PARAMS = null;
+
+function mathFmt(x) { return String(Number(x.toFixed(2))); }
+function mathNice(x, scale) { const v = x * scale; return Math.abs(v - Math.round(v)) < 1e-9; }
+function mathPick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+function drawLogParams() {
+  const pairs = [[.5,.5],[.4,.6],[.6,.4],[.25,.75],[.75,.25],[.3,.7],[.7,.3],[.2,.8],[.8,.2],[.4,.4],[.3,.6],[.6,.3],[.2,.6],[.6,.2],[.3,.3]];
+  for (let i = 0; i < 500; i++) {
+    const p = mathPick(pairs), a = p[0], b = p[1];
+    const w = mathPick([4,5,6,8,10,12,15,20,25]), h = mathPick([12,16,20,24,30,40]);
+    const l = b * h / (a + b), C = a / (a + b) * w * h;
+    if (mathNice(C, 1) && mathNice(l, 2) && l > 0 && l < h) return {a: a, b: b, w: w, h: h};
+  }
+  return {a: .5, b: .5, w: 10, h: 16};
+}
+
+function drawQLParams() {
+  for (let i = 0; i < 500; i++) {
+    const a = mathPick([.2,.25,.4,.5]), r = mathPick([.5,1,1.5,2,3,4]), b = a * r;
+    const w = mathPick([2,4,5,8,10,20,25]), h = mathPick([12,16,20,24,30,40]);
+    const l = r / w, C = w * h - r;
+    if (mathNice(b, 100) && mathNice(l, 100) && mathNice(C, 100) && l > 0 && l < h) return {a: a, b: Math.round(b * 100) / 100, w: w, h: h};
+  }
+  return {a: .5, b: .5, w: 10, h: 16};
+}
+
+function mathSig() { return JSON.stringify(MATH_PARAMS); }
+
+function applyMathParams(p) {
+  MATH_PARAMS = p;
+  try { localStorage.setItem(MATH_PARAMS_KEY, JSON.stringify(p)); } catch (e) {}
+  const g1 = QB.find(q => q.id === 'c5p1_1'), g2 = QB.find(q => q.id === 'c5p1_2');
+  if (!g1 || !g2) return;
+  const L = p.log, Q = p.ql;
+  const redraw = '<em>Numbers are re-drawn each time and chosen so the answer comes out clean.</em>';
+
+  const lS = L.a + L.b, lL = L.b * L.h / lS, lN = L.h - lL, lC = L.w * lN;
+  g1.scenario = '<strong>Question 1. Answer both parts A and B for the SAME household.</strong><br>U(C,l) = a&middot;ln(C) + b&middot;ln(l)<br>C = w(1&minus;t)(h&minus;l)<br>a = ' + mathFmt(L.a) + '; b = ' + mathFmt(L.b) + '; w(1&minus;t) = ' + L.w + '; h = ' + L.h + '.<br>' + redraw;
+  g1.subs[0].answer = lC.toFixed(2);
+  g1.subs[0].note = '<strong>Câu này chọn:</strong> ' + lC.toFixed(2) + '<br><br><strong>Vì sao:</strong> Làm theo cô:<br>1. MU_C = a/C; MU_l = b/l.<br>2. MRS = (b/l)/(a/C) = bC/(al) = w(1−t).<br>3. Thế C = w(1−t)(h−l): b·w(1−t)(h−l)/(al) = w(1−t).<br>4. Chia hai vế cho w(1−t): b(h−l) = al. Suy ra l = bh/(a+b).<br>5. Thế số: l = ' + mathFmt(L.b) + '×' + L.h + '/(' + mathFmt(L.a) + '+' + mathFmt(L.b) + ') = ' + mathFmt(lL) + ' giờ nghỉ. N = ' + L.h + '−' + mathFmt(lL) + ' = ' + mathFmt(lN) + ' giờ làm.<br>6. C = ' + L.w + '×' + mathFmt(lN) + ' = <strong>' + lC.toFixed(2) + '</strong>.<br><br><strong>Cách nhanh:</strong> C = a/(a+b) × w(1−t)×h = ' + mathFmt(L.a / lS) + ' × ' + (L.w * L.h) + '.<br><br><strong>Full log, khi wage tăng hoặc t giảm:</strong> l và N không đổi; C tăng.<br><strong>Khi wage giảm hoặc t tăng:</strong> l và N không đổi; C giảm.<br><br><strong>Nhớ:</strong> Consumption = lương sau thuế × GIỜ LÀM. Tìm được l rồi phải lấy h−l. Giữ w(1−t) nguyên cụm, đừng bỏ (1−t).<details style="margin-top:12px"><summary>Lưu ý về điều kiện hoặc đáp án của đề</summary><div style="margin-top:8px">Công thức dùng budget đã cho, không có income ngoài lao động. Không cần a+b=1: phải chia cho a+b.</div></details>';
+
+  const qL = Q.b / (Q.a * Q.w), qN = Q.h - qL, qC = Q.w * qN;
+  g2.scenario = '<strong>Question 2. Answer both parts C and D for the SAME household.</strong><br>U(C,l) = a&middot;C + b&middot;ln(l)<br>C = w(1&minus;t)(h&minus;l)<br>a = ' + mathFmt(Q.a) + '; b = ' + mathFmt(Q.b) + '; w(1&minus;t) = ' + Q.w + '; h = ' + Q.h + '.<br>' + redraw;
+  g2.subs[0].answer = qC.toFixed(2);
+  g2.subs[0].note = '<strong>Câu này chọn:</strong> ' + qC.toFixed(2) + '<br><br><strong>Vì sao:</strong> Làm theo cô:<br>1. U = aC + b ln(l), nên MU_C = a; MU_l = b/l.<br>2. MRS = (b/l)/a = b/(al) = w(1−t).<br>3. Nhân chéo: b = a·l·w(1−t). Suy ra l = b/[a·w(1−t)].<br>4. Thế số: l = ' + mathFmt(Q.b) + '/(' + mathFmt(Q.a) + '×' + Q.w + ') = ' + mathFmt(qL) + ' giờ nghỉ.<br>5. N = ' + Q.h + '−' + mathFmt(qL) + ' = ' + mathFmt(qN) + ' giờ làm.<br>6. C = ' + Q.w + '×' + mathFmt(qN) + ' = <strong>' + qC.toFixed(2) + '</strong>.<br><br><strong>Cách nhanh:</strong> C = w(1−t)×h − b/a = ' + (Q.w * Q.h) + ' − ' + mathFmt(Q.b / Q.a) + '.<br><br><strong>Khi lương sau thuế tăng:</strong> l giảm, N tăng, C tăng.<br><strong>Khi lương sau thuế giảm:</strong> l tăng, N giảm, C giảm.<br><br><strong>Nhớ:</strong> aC có đạo hàm a. a ln(C) mới có đạo hàm a/C. Consumption vẫn tính bằng lương sau thuế × (h−l).<details style="margin-top:12px"><summary>Lưu ý về điều kiện hoặc đáp án của đề</summary><div style="margin-top:8px">Các chiều này dùng nghiệm ở bên trong: 0&lt;l&lt;h. Nếu công thức cho l≥h thì chọn l=h, N=0, C=0.</div></details>';
+}
+
+function loadMathParams() {
+  try {
+    const p = JSON.parse(localStorage.getItem(MATH_PARAMS_KEY) || 'null');
+    if (p && p.log && p.ql) return p;
+  } catch (e) {}
+  return null;
+}
+
+function rerollMath() {
+  applyMathParams({log: drawLogParams(), ql: drawQLParams()});
+  ['review','mistakes','verify','frequent'].forEach(function(id) { const el = document.getElementById(id); if (el) el.innerHTML = ''; });
+}
+
+applyMathParams(loadMathParams() || {log: drawLogParams(), ql: drawQLParams()});
+
+// ============================================================
 // UTILITIES
 // ============================================================
 function shuffle(arr) {
@@ -679,6 +747,9 @@ function recordResult(id, isCorrect, answer) {
   if (isCorrect) s[id].correct++;
   s[id].lastResult = isCorrect ? 'correct' : 'incorrect';
   s[id].lastAnswer = answer;
+  const question=getParentQ(id);
+  const leaf=question&&question.type==='group'?question.subs.find(sub=>sub.id===id):question;
+  s[id].lastAnswerKey=leaf&&leaf.type==='fill'?leaf.answer:null;
   if (!isCorrect) { s[id].everWrong = true; s[id].clearedFromMistakes = false; }
   saveStats(s);
 }
@@ -753,6 +824,7 @@ function restoreStudyResults(container) {
     (q.type==='group'?q.subs:[q]).forEach(sub=>{
       const saved=stats[sub.id];
       if(!saved || !saved.attempts)return;
+      if(sub.type==='fill' && saved.lastAnswerKey && saved.lastAnswerKey!==sub.answer)return;
       const scope=card.querySelector('#subwrap-'+sub.id);
       if(saved.lastAnswer!==undefined && saved.lastAnswer!==null){
         applyStudyAnswer(sub,scope,saved.lastAnswer);
@@ -1712,7 +1784,7 @@ function submitQuiz(restoring) {
           if(tr) tr.style.background=rowOk?'#d4edda':'#f8d7da';
         });
         if (!stats[sub.id]) stats[sub.id]={attempts:0,correct:0,lastResult:null,everWrong:false,clearedFromMistakes:false};
-        if(!restoring){recordWeakAttempt(sub.id,isCorrect,readStudyAnswer(sub,quiz.querySelector('#subwrap-'+sub.id)));stats[sub.id].attempts++; if(isCorrect) stats[sub.id].correct++;stats[sub.id].lastResult=isCorrect?'correct':'incorrect';stats[sub.id].lastAnswer=readStudyAnswer(sub,quiz.querySelector('#subwrap-'+sub.id));if (!isCorrect) { stats[sub.id].everWrong=true; stats[sub.id].clearedFromMistakes=false; }}
+        if(!restoring){recordWeakAttempt(sub.id,isCorrect,readStudyAnswer(sub,quiz.querySelector('#subwrap-'+sub.id)));stats[sub.id].attempts++; if(isCorrect) stats[sub.id].correct++;stats[sub.id].lastResult=isCorrect?'correct':'incorrect';stats[sub.id].lastAnswer=readStudyAnswer(sub,quiz.querySelector('#subwrap-'+sub.id));stats[sub.id].lastAnswerKey=sub.type==='fill'?sub.answer:null;if (!isCorrect) { stats[sub.id].everWrong=true; stats[sub.id].clearedFromMistakes=false; }}
         const fb=quiz.querySelector('#fb-'+sub.id);
         if(fb){fb.style.display='';fb.className='feedback '+(isCorrect?'ok':'err');fb.innerHTML=isCorrect?'✓ All rows correct!':'✗ Some rows incorrect. Check highlighted rows.';}
         const ak=quiz.querySelector('#ak-'+sub.id); if(ak) ak.style.display='';
@@ -1722,7 +1794,7 @@ function submitQuiz(restoring) {
       const points=q.pts/subs.length;
       totalPts+=points; earnedPts+=isCorrect?points:0;
       if (!stats[sub.id]) stats[sub.id]={attempts:0,correct:0,lastResult:null,everWrong:false,clearedFromMistakes:false};
-      if(!restoring){recordWeakAttempt(sub.id,isCorrect,readStudyAnswer(sub,quiz.querySelector('#subwrap-'+sub.id)));stats[sub.id].attempts++; if(isCorrect) stats[sub.id].correct++;stats[sub.id].lastResult=isCorrect?'correct':'incorrect';stats[sub.id].lastAnswer=readStudyAnswer(sub,quiz.querySelector('#subwrap-'+sub.id));if (!isCorrect) { stats[sub.id].everWrong=true; stats[sub.id].clearedFromMistakes=false; }}
+      if(!restoring){recordWeakAttempt(sub.id,isCorrect,readStudyAnswer(sub,quiz.querySelector('#subwrap-'+sub.id)));stats[sub.id].attempts++; if(isCorrect) stats[sub.id].correct++;stats[sub.id].lastResult=isCorrect?'correct':'incorrect';stats[sub.id].lastAnswer=readStudyAnswer(sub,quiz.querySelector('#subwrap-'+sub.id));stats[sub.id].lastAnswerKey=sub.type==='fill'?sub.answer:null;if (!isCorrect) { stats[sub.id].everWrong=true; stats[sub.id].clearedFromMistakes=false; }}
 
       const fb=quiz.querySelector('#fb-'+sub.id); if(!fb) return;
       fb.style.display='';
@@ -1788,7 +1860,7 @@ function renderFrequent() {
   const misses=q=>(q.type==='group'?q.subs:[q]).reduce((sum,sub)=>sum+(history[sub.id]?history[sub.id].wrong:0),0);
   parents.sort((a,b)=>misses(b)-misses(a));
   let html='<div class="section-header"><h2>Frequently Missed Questions</h2><button class="btn btn-secondary" onclick="clearWeakHistory()">Clear History</button></div>';
-  html+='<p style="margin-bottom:18px;line-height:1.6">Hay sai: questions you have missed, with the most misses first. This history stays after a correct answer or Review Refresh. Mistakes shows only your latest wrong answers.</p>';
+  html+='<p style="margin-bottom:18px;line-height:1.6">Hay sai: questions you have missed, with the most misses first. This history stays after a correct answer or Review Refresh. Mistakes keeps questions you have missed even after a correct retry. Use Clear Mistakes only when you choose to hide them.</p>';
   if(!parents.length)html+='<p>No missed questions saved for this chapter yet. Practice in Review, Quiz, or Gacha to build your history.</p>';
   parents.forEach(q=>{
     html+='<div style="margin-bottom:8px;font-size:.88rem;color:#a00">';
@@ -1805,7 +1877,8 @@ function renderFrequent() {
 function renderMistakes() {
   const stats=getStats();
   const container=document.getElementById('mistakes');
-  const mistakeIds=new Set(Object.keys(stats).filter(id=>stats[id].lastResult==='incorrect'&&!stats[id].clearedFromMistakes));
+  const history=getWeakHistory();
+  const mistakeIds=new Set([...new Set([...Object.keys(stats),...Object.keys(history)])].filter(id=>!(stats[id]&&stats[id].clearedFromMistakes) && ((history[id]&&history[id].wrong>0)||(stats[id]&&(stats[id].everWrong||stats[id].lastResult==='incorrect')))));
   const chapterQB = QB.filter(q => !q.removed && q.chapter === currentChapter);
   const parentQs=chapterQB.filter(q=>q.type==='group'?q.subs.some(s=>mistakeIds.has(s.id)):mistakeIds.has(q.id));
   if(parentQs.length===0){
@@ -1853,6 +1926,7 @@ window.addEventListener('DOMContentLoaded', function() {
   <div id="chapter-switch">
     <button class="chapter-btn active" data-chapter="ch1-4" onclick="setChapter('ch1-4')">Ch 1-4</button>
     <button class="chapter-btn" data-chapter="ch5" onclick="setChapter('ch5')">Ch 5</button>
+    <a class="chapter-btn" href="midterm.html" style="text-decoration:none">Midterm 1</a>
   </div>
   <div id="nav-btns">
     <button id="nb-home" onclick="showView('home')"><span class="nb-icon">🏠</span><span class="nb-label"> Home</span></button>

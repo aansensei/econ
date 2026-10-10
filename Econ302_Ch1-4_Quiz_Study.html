@@ -679,6 +679,9 @@ function recordResult(id, isCorrect, answer) {
   if (isCorrect) s[id].correct++;
   s[id].lastResult = isCorrect ? 'correct' : 'incorrect';
   s[id].lastAnswer = answer;
+  const question=getParentQ(id);
+  const leaf=question&&question.type==='group'?question.subs.find(sub=>sub.id===id):question;
+  s[id].lastAnswerKey=leaf&&leaf.type==='fill'?leaf.answer:null;
   if (!isCorrect) { s[id].everWrong = true; s[id].clearedFromMistakes = false; }
   saveStats(s);
 }
@@ -753,6 +756,7 @@ function restoreStudyResults(container) {
     (q.type==='group'?q.subs:[q]).forEach(sub=>{
       const saved=stats[sub.id];
       if(!saved || !saved.attempts)return;
+      if(sub.type==='fill' && saved.lastAnswerKey && saved.lastAnswerKey!==sub.answer)return;
       const scope=card.querySelector('#subwrap-'+sub.id);
       if(saved.lastAnswer!==undefined && saved.lastAnswer!==null){
         applyStudyAnswer(sub,scope,saved.lastAnswer);
@@ -1712,7 +1716,7 @@ function submitQuiz(restoring) {
           if(tr) tr.style.background=rowOk?'#d4edda':'#f8d7da';
         });
         if (!stats[sub.id]) stats[sub.id]={attempts:0,correct:0,lastResult:null,everWrong:false,clearedFromMistakes:false};
-        if(!restoring){recordWeakAttempt(sub.id,isCorrect,readStudyAnswer(sub,quiz.querySelector('#subwrap-'+sub.id)));stats[sub.id].attempts++; if(isCorrect) stats[sub.id].correct++;stats[sub.id].lastResult=isCorrect?'correct':'incorrect';stats[sub.id].lastAnswer=readStudyAnswer(sub,quiz.querySelector('#subwrap-'+sub.id));if (!isCorrect) { stats[sub.id].everWrong=true; stats[sub.id].clearedFromMistakes=false; }}
+        if(!restoring){recordWeakAttempt(sub.id,isCorrect,readStudyAnswer(sub,quiz.querySelector('#subwrap-'+sub.id)));stats[sub.id].attempts++; if(isCorrect) stats[sub.id].correct++;stats[sub.id].lastResult=isCorrect?'correct':'incorrect';stats[sub.id].lastAnswer=readStudyAnswer(sub,quiz.querySelector('#subwrap-'+sub.id));stats[sub.id].lastAnswerKey=sub.type==='fill'?sub.answer:null;if (!isCorrect) { stats[sub.id].everWrong=true; stats[sub.id].clearedFromMistakes=false; }}
         const fb=quiz.querySelector('#fb-'+sub.id);
         if(fb){fb.style.display='';fb.className='feedback '+(isCorrect?'ok':'err');fb.innerHTML=isCorrect?'✓ All rows correct!':'✗ Some rows incorrect. Check highlighted rows.';}
         const ak=quiz.querySelector('#ak-'+sub.id); if(ak) ak.style.display='';
@@ -1722,7 +1726,7 @@ function submitQuiz(restoring) {
       const points=q.pts/subs.length;
       totalPts+=points; earnedPts+=isCorrect?points:0;
       if (!stats[sub.id]) stats[sub.id]={attempts:0,correct:0,lastResult:null,everWrong:false,clearedFromMistakes:false};
-      if(!restoring){recordWeakAttempt(sub.id,isCorrect,readStudyAnswer(sub,quiz.querySelector('#subwrap-'+sub.id)));stats[sub.id].attempts++; if(isCorrect) stats[sub.id].correct++;stats[sub.id].lastResult=isCorrect?'correct':'incorrect';stats[sub.id].lastAnswer=readStudyAnswer(sub,quiz.querySelector('#subwrap-'+sub.id));if (!isCorrect) { stats[sub.id].everWrong=true; stats[sub.id].clearedFromMistakes=false; }}
+      if(!restoring){recordWeakAttempt(sub.id,isCorrect,readStudyAnswer(sub,quiz.querySelector('#subwrap-'+sub.id)));stats[sub.id].attempts++; if(isCorrect) stats[sub.id].correct++;stats[sub.id].lastResult=isCorrect?'correct':'incorrect';stats[sub.id].lastAnswer=readStudyAnswer(sub,quiz.querySelector('#subwrap-'+sub.id));stats[sub.id].lastAnswerKey=sub.type==='fill'?sub.answer:null;if (!isCorrect) { stats[sub.id].everWrong=true; stats[sub.id].clearedFromMistakes=false; }}
 
       const fb=quiz.querySelector('#fb-'+sub.id); if(!fb) return;
       fb.style.display='';
@@ -1788,7 +1792,7 @@ function renderFrequent() {
   const misses=q=>(q.type==='group'?q.subs:[q]).reduce((sum,sub)=>sum+(history[sub.id]?history[sub.id].wrong:0),0);
   parents.sort((a,b)=>misses(b)-misses(a));
   let html='<div class="section-header"><h2>Frequently Missed Questions</h2><button class="btn btn-secondary" onclick="clearWeakHistory()">Clear History</button></div>';
-  html+='<p style="margin-bottom:18px;line-height:1.6">Hay sai: questions you have missed, with the most misses first. This history stays after a correct answer or Review Refresh. Mistakes shows only your latest wrong answers.</p>';
+  html+='<p style="margin-bottom:18px;line-height:1.6">Hay sai: questions you have missed, with the most misses first. This history stays after a correct answer or Review Refresh. Mistakes keeps questions you have missed even after a correct retry. Use Clear Mistakes only when you choose to hide them.</p>';
   if(!parents.length)html+='<p>No missed questions saved for this chapter yet. Practice in Review, Quiz, or Gacha to build your history.</p>';
   parents.forEach(q=>{
     html+='<div style="margin-bottom:8px;font-size:.88rem;color:#a00">';
@@ -1805,7 +1809,8 @@ function renderFrequent() {
 function renderMistakes() {
   const stats=getStats();
   const container=document.getElementById('mistakes');
-  const mistakeIds=new Set(Object.keys(stats).filter(id=>stats[id].lastResult==='incorrect'&&!stats[id].clearedFromMistakes));
+  const history=getWeakHistory();
+  const mistakeIds=new Set([...new Set([...Object.keys(stats),...Object.keys(history)])].filter(id=>!(stats[id]&&stats[id].clearedFromMistakes) && ((history[id]&&history[id].wrong>0)||(stats[id]&&(stats[id].everWrong||stats[id].lastResult==='incorrect')))));
   const chapterQB = QB.filter(q => !q.removed && q.chapter === currentChapter);
   const parentQs=chapterQB.filter(q=>q.type==='group'?q.subs.some(s=>mistakeIds.has(s.id)):mistakeIds.has(q.id));
   if(parentQs.length===0){
@@ -1853,6 +1858,7 @@ window.addEventListener('DOMContentLoaded', function() {
   <div id="chapter-switch">
     <button class="chapter-btn active" data-chapter="ch1-4" onclick="setChapter('ch1-4')">Ch 1-4</button>
     <button class="chapter-btn" data-chapter="ch5" onclick="setChapter('ch5')">Ch 5</button>
+    <a class="chapter-btn" href="midterm.html" style="text-decoration:none">Midterm 1</a>
   </div>
   <div id="nav-btns">
     <button id="nb-home" onclick="showView('home')"><span class="nb-icon">🏠</span><span class="nb-label"> Home</span></button>
