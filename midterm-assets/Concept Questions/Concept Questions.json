@@ -1,0 +1,506 @@
+[
+  {
+    "id": "m1_concept_g_cycle",
+    "source": "concept-screenshots",
+    "category": "concept",
+    "type": "mcq",
+    "stem": "Changes in government spending are not likely causes of business cycles because changes in government spending predict",
+    "opts": [
+      "counter-cyclical employment",
+      "pro-cyclical real wages",
+      "counter-cyclical real wages",
+      "pro-cyclical employment"
+    ],
+    "ans": 2,
+    "note": "G tăng, trả bằng lump-sum taxes: household nghèo hơn, leisure giảm nên N và GDP tăng. Với diminishing MPN, N tăng làm MPN và real wage giảm. GDP và real wage đi ngược chiều, gọi là counter-cyclical real wages. Đây là unproductive G trong Chapter 5.",
+    "chapters": [
+      3,
+      5
+    ],
+    "pts": 1,
+    "verified": "derived",
+    "sim": false,
+    "wordingVerified": true,
+    "sourceImage": "midterm-assets/Concept Questions/m1_concept_g_cycle.png",
+    "wordingSource": "midterm-assets/Concept Questions/m1_concept_g_cycle.png",
+    "number": 1
+  },
+  {
+    "id": "m1_concept_g_cycle_variant",
+    "source": "concept-screenshots",
+    "category": "concept",
+    "type": "mcq",
+    "stem": "Changes in government spending are not likely causes of business cycles in our one-period classroom model because changes in G",
+    "opts": [
+      "do not predict pro-cyclical real wages",
+      "predict counter-cyclical employment",
+      "predict pro-cyclical real wages",
+      "predict pro-cyclical employment"
+    ],
+    "ans": 0,
+    "note": "Câu này dùng cách hỏi khác: do not predict pro-cyclical real wages. G tăng làm N và GDP tăng nhưng real wage giảm. Employment vẫn pro-cyclical; real wage mới là dấu không khớp business-cycle data.",
+    "chapters": [
+      3,
+      5
+    ],
+    "pts": 1,
+    "verified": "derived",
+    "sim": false,
+    "wordingVerified": true,
+    "sourceImage": "midterm-assets/Concept Questions/m1_concept_g_cycle_variant.png",
+    "wordingSource": "midterm-assets/Concept Questions/m1_concept_g_cycle_variant.png",
+    "number": 2
+  },
+  {
+    "id": "m1_concept_laffer_z",
+    "source": "concept-screenshots",
+    "category": "concept",
+    "type": "mcq",
+    "stem": "Suppose that the substitution effect of an increase in the real wage is always larger than the income effect. Also assume that the economy is always on the \"good\" side of the Laffer curve. How will an increase in Total Factor Productivity (z) affect each of the following?",
+    "opts": [
+      "The Laffer curve will shift down, with a lower tax rate required to earn each level of tax revenue. The equilibrium tax rate will rise.",
+      "The Laffer curve will shift down, with a lower tax rate required to earn each level of tax revenue. The equilibrium tax rate will fall",
+      "The Laffer curve will shift up, with more revenue collected at each tax rate. The equilibrium tax rate will rise",
+      "The Laffer curve will shift up, with more revenue collected at each tax rate. The equilibrium tax rate will fall."
+    ],
+    "ans": 3,
+    "note": "Tax revenue R = t·w·N. z tăng làm real wage tăng; với SE lớn hơn IE, N tăng. Tại cùng tax rate, tax base wN lớn hơn nên thu được nhiều tiền hơn: Laffer curve shifts up. Trong model, G là exogenous và giữ nguyên khi chỉ shock z. Để thu đủ R = G trên good side, government chọn tax rate thấp hơn. Nếu G cũng đổi thì không thể dùng kết luận tax rate falls này.",
+    "chapters": [
+      4,
+      5
+    ],
+    "pts": 1,
+    "verified": "derived",
+    "sim": false,
+    "wordingVerified": true,
+    "warning": "Tax rate falls dùng giả định G giữ nguyên của model. Đề không viết lại giả định đó; không suy kết luận này nếu G cũng thay đổi.",
+    "sourceImage": "midterm-assets/Concept Questions/m1_concept_laffer_z.png",
+    "wordingSource": "midterm-assets/Concept Questions/m1_concept_laffer_z.png",
+    "number": 3
+  },
+  {
+    "id": "m1_concept_capital",
+    "source": "concept-screenshots",
+    "category": "concept",
+    "type": "mcq",
+    "stem": "Suppose that changes in government regulations lead to an increase in the national capital stock and the marginal productivity of labor. According to our one-period general equilibrium model from Chapter 5, this will result in",
+    "opts": [
+      "Higher consumption, real wages, and GDP, but ambiguous effect on employment",
+      "Lower consumption, real wages, and employment; ambiguous effects on GDP",
+      "Higher consumption, real wages, GDP, and employment"
+    ],
+    "ans": 0,
+    "note": "K và MPN tăng mở rộng productive capacity. Theo model Chapter 5, C, real wage và GDP tăng. Wage tăng có SE muốn làm nhiều hơn và IE muốn nghỉ nhiều hơn. Đề không nói lực nào mạnh hơn nên employment ambiguous. Không lấy giả định SE > IE của câu Laffer áp sang câu này.",
+    "chapters": [
+      5
+    ],
+    "pts": 1,
+    "verified": "derived",
+    "sim": false,
+    "wordingVerified": true,
+    "sourceImage": "midterm-assets/Concept Questions/m1_concept_capital.png",
+    "wordingSource": "midterm-assets/Concept Questions/m1_concept_capital.png",
+    "number": 4
+  },
+  {
+    "id": "m1_concept_g_consumption",
+    "source": "concept-screenshots",
+    "category": "concept",
+    "type": "mcq",
+    "stem": "If an increase in government spending is paid for with lump-sum taxes, the Chapter 5 one-period general equilibrium model predicts",
+    "opts": [
+      "A decrease in C but ambiguous effects on N and GDP",
+      "An increase in N and GDP but a decrease in C",
+      "A decrease in N, GDP, and C",
+      "An increase in N, GDP, and C"
+    ],
+    "ans": 1,
+    "note": "G tăng kéo T = G tăng. Pure negative income effect: normal leisure giảm nên N tăng; production tăng nên GDP tăng. Household consumption C giảm vì government lấy thêm resources. Không có SE trực tiếp từ lump-sum tax.",
+    "chapters": [
+      5
+    ],
+    "pts": 1,
+    "verified": "derived",
+    "sim": false,
+    "wordingVerified": true,
+    "sourceImage": "midterm-assets/Concept Questions/m1_concept_g_consumption.png",
+    "wordingSource": "midterm-assets/Concept Questions/m1_concept_g_consumption.png",
+    "number": 5
+  },
+  {
+    "id": "m1_concept_partial_general",
+    "source": "concept-screenshots",
+    "category": "concept",
+    "type": "mcq",
+    "stem": "What is different in general equilibrium (Chapter 5) compared to partial equilibrium (Chapter 4)?",
+    "opts": [
+      "in a partial equilibrium solution, we simultaneously consider both consumer and firm optimizations",
+      "in a general equilibrium solution, we simultaneously consider both consumer and firm optimizations",
+      "in a partial equilibrium solution, we simultaneously consider firms and government optimizations",
+      "in a general equilibrium solution, we simultaneously consider consumers and government optimizations"
+    ],
+    "ans": 1,
+    "note": "Trong lớp: Chapter 4 giải household và firm riêng, với real wage cho trước. Chapter 5 giải consumer optimization, firm optimization và market clearing cùng nhau, nên real wage được model xác định. Định nghĩa rộng: partial equilibrium phân tích một market riêng, giữ các market khác cố định và bỏ qua feedback giữa chúng. General equilibrium xét tương tác giữa các market. Government spending thường exogenous, không phải government optimization trong câu này.",
+    "chapters": [
+      4,
+      5
+    ],
+    "pts": 1,
+    "verified": "derived",
+    "sim": false,
+    "wordingVerified": true,
+    "sourceImage": "midterm-assets/Concept Questions/m1_concept_partial_general.png",
+    "wordingSource": "midterm-assets/Concept Questions/m1_concept_partial_general.png",
+    "number": 6
+  },
+  {
+    "id": "m1_concept_linear_firm",
+    "source": "concept-screenshots",
+    "category": "concept",
+    "type": "mcq",
+    "stem": "How do we know that π = 0 and that w = z in the firm’s profit-maximizing solution?",
+    "opts": [
+      "only because there is no capital in our model",
+      "only because we assume perfect competition in consumption goods market",
+      "because we assume perfect competition in labor markets and there is no capital in our model",
+      "only because we assume perfect competition in the labor market"
+    ],
+    "ans": 2,
+    "note": "Lựa chọn thứ ba phù hợp nếu phần model trước câu này đã cho Y = zN. Khi đó π = (z − w)N; competitive equilibrium với positive employment có w = MPN = z nên π = 0. Screenshot không cho production function. No capital tự nó không đủ suy ra MPN = z; ví dụ Y = z√N vẫn không có capital nhưng MPN khác z. Chưa có official key cho screenshot này.",
+    "chapters": [
+      4,
+      5
+    ],
+    "pts": 1,
+    "verified": "unverified",
+    "sim": false,
+    "wordingVerified": true,
+    "referenceOnly": true,
+    "warning": "Thiếu production function trong ảnh. Đáp án được đề xuất chỉ đúng với Y = zN; chưa chấm tự động.",
+    "sourceImage": "midterm-assets/Concept Questions/m1_concept_linear_firm.png",
+    "wordingSource": "midterm-assets/Concept Questions/m1_concept_linear_firm.png",
+    "number": 7
+  },
+  {
+    "id": "m1_concept_distortion",
+    "source": "concept-screenshots",
+    "category": "concept",
+    "type": "mcq",
+    "stem": "What does it mean for a tax to be distortionary?",
+    "opts": [
+      "It has unintended consequences on economic markets",
+      "It affects markets",
+      "All of these things",
+      "It causes GDP to fall"
+    ],
+    "ans": null,
+    "note": "Canvas đánh All of these things sai. Ảnh không hiện correct answer, nên chưa xác nhận lựa chọn nào được key chấp nhận. Định nghĩa economics: distortionary tax làm thay đổi marginal incentives hoặc relative prices. Với proportional labor income tax: household MRS = w(1 − t), firm MPN = w, tạo tax wedge. Lump-sum tax cũng ảnh hưởng choice qua IE nhưng không tạo wage wedge. GDP fall không phải định nghĩa chung của distortionary.",
+    "chapters": [
+      5
+    ],
+    "pts": 1,
+    "verified": "unverified",
+    "sim": false,
+    "wordingVerified": true,
+    "referenceOnly": true,
+    "warning": "Feedback chỉ xác nhận All of these things sai. Chưa có correct answer để chấm các lựa chọn còn lại.",
+    "sourceImage": "midterm-assets/Concept Questions/m1_concept_distortion.png",
+    "wordingSource": "midterm-assets/Concept Questions/m1_concept_distortion.png",
+    "number": 8
+  },
+  {
+    "id": "m1_concept_matching",
+    "source": "concept-screenshots",
+    "category": "concept",
+    "type": "open",
+    "stem": "The slope of the Indifference Curve\nU'(l) / U'(C)\nY'(N)",
+    "note": "C ở vertical axis, leisure ở horizontal axis: slope IC = −MRS; U_l/U_C = MRS; Y′(N) = MPN. MRS là độ lớn dương, signed slope IC có dấu âm. Screenshot không mở các dropdown nên không có đủ lựa chọn để chép lại. Giữ bài này dạng tự đối chiếu, không dựng thêm lựa chọn.",
+    "chapters": [
+      4,
+      5
+    ],
+    "pts": 1,
+    "verified": "derived",
+    "sim": false,
+    "wordingVerified": true,
+    "sourceImage": "midterm-assets/Concept Questions/m1_concept_matching.png",
+    "wordingSource": "midterm-assets/Concept Questions/m1_concept_matching.png",
+    "number": 9
+  },
+  {
+    "id": "m1_concept_leisure_log",
+    "source": "concept-screenshots",
+    "category": "concept",
+    "type": "fill",
+    "stem": "Enter the numeric value for leisure up to 2 decimal points\n\nSolve the log Utility maximization problem where\n\nU = .33 ln (C) + .66 ln (l)\n\nC = w(h-l)(1-t)\n\nh = 16\n\nw = 100\n\nt = .10",
+    "note": "U = a ln C + b ln l, budget chỉ có earnings: l = bh/(a+b). Thế a = .33, b = .66, h = 16: l = .66×16/(.33+.66) = 10.6667. Nhập 10.67. After-tax wage = 90 nhưng triệt tiêu khỏi công thức leisure. Không tự đặt a+b = 1.",
+    "chapters": [
+      4,
+      5
+    ],
+    "pts": 1,
+    "verified": "derived",
+    "sim": false,
+    "wordingVerified": true,
+    "answer": "10.67",
+    "sourceImage": "midterm-assets/Concept Questions/m1_concept_leisure_log.png",
+    "wordingSource": "midterm-assets/Concept Questions/m1_concept_leisure_log.png",
+    "number": 10
+  },
+  {
+    "id": "m1_concept_mrs_power",
+    "source": "concept-screenshots",
+    "category": "concept",
+    "type": "fill",
+    "stem": "Consider the environment where\n\nU = C^.66 + .33 (l)\n\nFill in the blank for the MRS (up to 2 decimal points). Your answer should be in the form (where \"^\" indicates an exponent)\n\n#C^# (no spaces)",
+    "note": "MU_l = .33. MU_C = .66C^(−.34). MRS = MU_l/MU_C = .33/(.66C^(−.34)) = .50C^.34. Nhập 0.50C^0.34. Đây là l tuyến tính, không phải ln(l). MRS không thêm dấu âm; slope IC mới là −MRS.",
+    "chapters": [
+      4
+    ],
+    "pts": 1,
+    "verified": "derived",
+    "sim": false,
+    "wordingVerified": true,
+    "answer": "0.50C^0.34",
+    "answerFormat": "power",
+    "sourceImage": "midterm-assets/Concept Questions/m1_concept_mrs_power.png",
+    "wordingSource": "midterm-assets/Concept Questions/m1_concept_mrs_power.png",
+    "number": 11
+  },
+  {
+    "id": "m1_concept_productive_g",
+    "source": "concept-screenshots",
+    "category": "concept",
+    "type": "mcq",
+    "stem": "Assume Government spending increases Total Factor Productivity such that\n\nz_with G = z_TFP (1 + .10G)\n\nWhat impact will this have on the efficient level of employment relative to the case where G is not productive?\n\nSolve assuming the following economic environment:\n\nU = ln (C) + ln (l)\n\nY = C + G = z(1 + .10G)(h-l)",
+    "opts": [
+      "N* increases as real wages increase",
+      "N* decreases as real wages decrease",
+      "N* decreases as it is easier to pay off government taxes",
+      "Changes in N are always ambiguous"
+    ],
+    "ans": 2,
+    "note": "So cùng G trong hai cases. Đặt Z = z(1 + .10G). Production Y = ZN nên MPN = Z. MRS = C/l; efficient interior optimum cho C/l = Z. Thế C = Z(h − l) − G: l = h/2 − G/(2Z), N = h/2 + G/(2Z). Productive G làm Z cao hơn, G/(2Z) nhỏ hơn nên N giảm. Cần ít giờ làm hơn để trả cùng G. Real wage tăng, không giảm. Kết luận này dựa vào utility và linear production đề cho, không dùng cho mọi productive-G shock.",
+    "chapters": [
+      5
+    ],
+    "pts": 1,
+    "verified": "derived",
+    "sim": false,
+    "wordingVerified": true,
+    "warning": "So productive G với unproductive G tại cùng G. Đây không phải câu hỏi tăng G so với trước shock.",
+    "sourceImage": "midterm-assets/Concept Questions/m1_concept_productive_g.png",
+    "wordingSource": "midterm-assets/Concept Questions/m1_concept_productive_g.png",
+    "number": 12
+  },
+  {
+    "id": "m1_concept_forecasts",
+    "source": "concept-screenshots",
+    "category": "concept",
+    "type": "mcq",
+    "stem": "When forecasting the effect of a change in economic policy, reasonable economists will get different forecasts based on slight differences in their assumptions about utility and production functions. This means that",
+    "opts": [
+      "no forecast is economically sensible",
+      "there is a range forecasts that are economically sensible",
+      "any forecast is economically sensible"
+    ],
+    "ans": 1,
+    "note": "Assumptions khác nhau có thể cho các forecast khác nhau nhưng vẫn có logic economics. Vì vậy có một range forecasts hợp lý. Không có nghĩa mọi forecast đều hợp lý; vẫn phải nhất quán với assumptions và data.",
+    "chapters": [
+      1,
+      4
+    ],
+    "pts": 1,
+    "verified": "derived",
+    "sim": false,
+    "wordingVerified": true,
+    "sourceImage": "midterm-assets/Concept Questions/m1_concept_forecasts.png",
+    "wordingSource": "midterm-assets/Concept Questions/m1_concept_forecasts.png",
+    "number": 13
+  },
+  {
+    "id": "m1_concept_horizons",
+    "source": "concept-screenshots",
+    "category": "concept",
+    "type": "mcq",
+    "stem": "If an economist were to make a forecast of the effect of an increase in worker take-home pay on labor force participation, s/he would likely make the best forecast using ____________ utility for the near-term forecast and ____________ utility for the long-term forecast.",
+    "opts": [
+      "log-linear; quasi-linear",
+      "quasi-linear with leisure entering as a function fo C; quasi-linear",
+      "quasi-linear; quasi-linear utility with leisure entering as a function fo C",
+      "quasi-linear; log-linear"
+    ],
+    "ans": 2,
+    "note": "Canvas đánh quasi-linear; log-linear sai. Feedback trong bài cũ: log-linear IE và SE cancel; quasi-linear SE offset IE; dạng quasi-linear có leisure kết hợp C cho IE dominate SE. Từ feedback, lựa chọn thứ ba là đáp án suy ra phù hợp. Đây chưa phải ảnh hiện correct answer. Lecture hiện tại nói long-run effects gần offset sau composition effects; không học thuộc rằng mọi long-term forecast phải dùng lựa chọn này.",
+    "chapters": [
+      3,
+      4,
+      5
+    ],
+    "pts": 1,
+    "verified": "feedback-derived",
+    "sim": false,
+    "wordingVerified": true,
+    "referenceOnly": true,
+    "warning": "Historical question. Đáp án suy ra từ feedback; lecture hiện tại có cách diễn giải long-run khác. Không đưa vào chấm tự động.",
+    "feedbackText": "With log-linear utility, income and substitution effects exactly cancel\n\nWith quasi-linear utility, substitution effects offset income effects\n\nWith quasi-linear utility with leisure entering in combination with C, leisure is more valuable as C rises and so income effects dominate substitution effect",
+    "sourceImage": "midterm-assets/Concept Questions/m1_concept_horizons.png",
+    "wordingSource": "midterm-assets/Concept Questions/m1_concept_horizons.png",
+    "number": 14
+  },
+  {
+    "id": "m1_concept_convex",
+    "source": "concept-screenshots",
+    "category": "concept",
+    "type": "mcq",
+    "stem": "What does it mean for an indifference curve to be convex?",
+    "opts": [
+      "utility increases with an increase in good X",
+      "consumers prefer more to less",
+      "utility increases with an increase in good Y",
+      "law of decreasing marginal utility holds"
+    ],
+    "ans": 3,
+    "note": "Định nghĩa chuẩn trong model: consumers thích diversity, IC bowed in toward the origin, MRS giảm khi đi dọc IC sang leisure nhiều hơn. Ba lựa chọn đầu nói monotonicity, không xác định convexity. Lựa chọn cuối gần ý bài nhất nhưng diminishing marginal utility không phải định nghĩa chính xác hay điều kiện tương đương với convex IC. Chưa có official key để xác nhận lựa chọn trong câu này.",
+    "chapters": [
+      4
+    ],
+    "pts": 1,
+    "verified": "unverified",
+    "sim": false,
+    "wordingVerified": true,
+    "referenceOnly": true,
+    "warning": "Lựa chọn của đề diễn đạt không chính xác về convexity. Giữ nguyên văn và chưa chấm khi chưa có official key.",
+    "sourceImage": "midterm-assets/Concept Questions/m1_concept_convex.png",
+    "wordingSource": "midterm-assets/Concept Questions/m1_concept_convex.png",
+    "number": 15
+  },
+  {
+    "id": "m1_concept_inferior_labor",
+    "source": "concept-screenshots",
+    "category": "concept",
+    "type": "mcq",
+    "stem": "If labor were an inferior good then an increase in taxes would ________ the demand for labor",
+    "opts": [
+      "decrease",
+      "increase"
+    ],
+    "ans": 1,
+    "note": "Nếu câu muốn áp dụng pure income effect: lump-sum taxes tăng làm income giảm, inferior good được chọn nhiều hơn, nên increase là lựa chọn dự kiến. Nhưng ảnh viết labor và demand for labor, không phải leisure hay labor supply, và không chỉ rõ lump-sum tax. Không thay chữ đề để làm cho nó đúng. Chưa có official key; proportional tax còn có SE nên kết luận tổng cần thêm assumptions.",
+    "chapters": [
+      4
+    ],
+    "pts": 1,
+    "verified": "unverified",
+    "sim": false,
+    "wordingVerified": true,
+    "referenceOnly": true,
+    "warning": "Đề không nêu loại tax và dùng demand for labor. Increase là suy luận có điều kiện, chưa phải official key.",
+    "sourceImage": "midterm-assets/Concept Questions/m1_concept_inferior_labor.png",
+    "wordingSource": "midterm-assets/Concept Questions/m1_concept_inferior_labor.png",
+    "number": 16
+  },
+  {
+    "id": "m1_concept_pareto",
+    "source": "concept-screenshots",
+    "category": "concept",
+    "type": "mcq",
+    "stem": "The concept of Pareto optimality is a",
+    "opts": [
+      "utopian concept",
+      "useful concept because it guarantees economic equality",
+      "useful concept that carefully balances a society's desires for equality and efficiency.",
+      "useful concept because it defines economic efficiency"
+    ],
+    "ans": 3,
+    "note": "Pareto optimality định nghĩa economic efficiency: không có feasible reallocation làm ít nhất một người tốt hơn mà không làm ai khác tệ đi. Không bảo đảm equality và không lựa chọn cách cân bằng fairness với efficiency.",
+    "chapters": [
+      5
+    ],
+    "pts": 1,
+    "verified": "derived",
+    "sim": false,
+    "wordingVerified": true,
+    "sourceImage": "midterm-assets/Concept Questions/m1_concept_pareto.png",
+    "wordingSource": "midterm-assets/Concept Questions/m1_concept_pareto.png",
+    "number": 17
+  },
+  {
+    "id": "m1_concept_demographics",
+    "source": "concept-screenshots",
+    "category": "concept",
+    "type": "mcq",
+    "stem": "Labor force participation rates have trended downward in recent years. Survey data and careful analysis of the reasons for this decline indicate that it reflects demographic changes. In other words, that young people are choosing to spend more time in school/training and the elderly are choosing to reduce hours worked before fulling entering retirement. Which of the following best describes how that change in preferences would be reflected in the Chapter 5 model from class?",
+    "opts": [
+      "Leisure up, Consumption down, GDP down, real wages down, welfare unknown",
+      "Leisure up, Consumption down, GDP down, real wages up, welfare up",
+      "Leisure up, Consumption down, GDP down, real wages down, welfare up",
+      "Leisure up, Consumption down, GDP down, real wages up, welfare unknown"
+    ],
+    "ans": 3,
+    "note": "Preferences toward leisure: l tăng, N = h − l giảm. Trên cùng PPF, N ít hơn cho GDP và C giảm. Diminishing MPN: N giảm làm MPN và real wage tăng. Welfare unknown vì preferences đã đổi, chưa có rule để so utility qua hai preferences.",
+    "chapters": [
+      4,
+      5
+    ],
+    "pts": 1,
+    "verified": "derived",
+    "sim": false,
+    "wordingVerified": true,
+    "sourceImage": "midterm-assets/Concept Questions/m1_concept_demographics.png",
+    "wordingSource": "midterm-assets/Concept Questions/m1_concept_demographics.png",
+    "number": 18
+  },
+  {
+    "id": "m1_concept_corporate_jobs",
+    "source": "concept-screenshots",
+    "category": "concept",
+    "type": "mcq",
+    "stem": "President Trump forecasts that corporate profit tax cuts will bring about a large increase in job creation. What economic assumption is he implicitly making when he makes that prediction?",
+    "opts": [
+      "utility is log-linear",
+      "none of these assumptions",
+      "capital is labor-replacing rather than labor-augmenting",
+      "income effects dominate substitution effects"
+    ],
+    "ans": 1,
+    "note": "Best listed answer: none of these assumptions. Trong earnings-only log-linear model, IE và SE cancel, không cho large labor response từ wage. Labor-replacing capital không phải giả định hỗ trợ tăng job creation. IE dominate SE khi wage tăng kéo leisure tăng, labor giảm. Muốn lập luận job creation qua capital cần kênh capital hỗ trợ labor demand cùng assumptions thích hợp. Corporate profit tax không tự đồng nghĩa proportional labor income tax.",
+    "chapters": [
+      3,
+      4,
+      5
+    ],
+    "pts": 1,
+    "verified": "derived",
+    "sim": false,
+    "wordingVerified": true,
+    "sourceImage": "midterm-assets/Concept Questions/m1_concept_corporate_jobs.png",
+    "wordingSource": "midterm-assets/Concept Questions/m1_concept_corporate_jobs.png",
+    "number": 19
+  },
+  {
+    "id": "m1_concept_g_2018",
+    "source": "concept-screenshots",
+    "category": "concept",
+    "type": "mcq",
+    "stem": "US federal expenditures increased by about 300 billion dollars in 2018 relative to 2017. Which of the following predictions is consistent with the effect of an increase in government spending in the model from Chapter 5? (You should assume the use of lump-sum taxes to finance the spending.)",
+    "opts": [
+      "GDP down, employment down, real wages up",
+      "GDP down, employment down, real wages down",
+      "GDP up, employment up, real wages down",
+      "GDP up, employment up, real wages up"
+    ],
+    "ans": 2,
+    "note": "G tăng, lump-sum taxes tăng: negative IE làm normal leisure giảm. N tăng, GDP tăng. Với diminishing MPN, N tăng làm MPN và real wage giảm. Chọn GDP up, employment up, real wages down.",
+    "chapters": [
+      5
+    ],
+    "pts": 1,
+    "verified": "derived",
+    "sim": false,
+    "wordingVerified": true,
+    "sourceImage": "midterm-assets/Concept Questions/m1_concept_g_2018.png",
+    "wordingSource": "midterm-assets/Concept Questions/m1_concept_g_2018.png",
+    "number": 20
+  }
+]
