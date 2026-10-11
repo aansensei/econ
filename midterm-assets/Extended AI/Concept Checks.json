@@ -1,0 +1,435 @@
+{
+  "provenance": "AI-authored practice based on saved ECON 302 materials. These are not instructor-authored questions or predictions of the exam.",
+  "chapters": {
+    "1": [
+      {
+        "topic": "Endogenous and exogenous variables",
+        "stem": "In the Chapter 5 one-period model, a researcher increases the externally specified level of government spending and then solves for the new real wage. Which statement best describes these variables?",
+        "correct": "Government spending is exogenous, while the equilibrium real wage is endogenous.",
+        "distractors": ["Both are exogenous because the researcher observes them in the data.", "Both are endogenous because government spending affects the real wage.", "Government spending is endogenous, while the real wage is exogenous."],
+        "note": "Exogenous là đầu vào cho trước của model. Endogenous là kết quả model giải ra. G ảnh hưởng w không biến G thành endogenous; vai trò của biến phụ thuộc model đang dùng."
+      },
+      {
+        "topic": "Ceteris paribus",
+        "stem": "An economist asks how a change in household profits affects labor supply, ceteris paribus. In the Chapter 4 household problem, this means that the economist should",
+        "correct": "Hold wages, taxes, available time, and preferences fixed while changing profits.",
+        "distractors": ["Hold labor supply fixed because it is the outcome being studied.", "Allow every other determinant of labor supply to change at the same time.", "Assume profits cannot affect the household budget constraint."],
+        "note": "Ceteris paribus giữ các yếu tố khác cố định để cô lập tác động của π. N là outcome cần tìm nên không được giữ N cố định ngay từ đầu."
+      },
+      {
+        "topic": "Representative household",
+        "stem": "Two households have different wages but share the preferences assumed by the representative-household model. Which implication is most consistent with that assumption?",
+        "correct": "They would make the same choices under identical circumstances, but their current choices can differ because their constraints differ.",
+        "distractors": ["They must currently choose identical consumption and leisure.", "The model guarantees that real-world households have identical tastes.", "Different wages imply that utility maximization cannot be used."],
+        "note": "Representative household giả định cùng cách phản ứng khi ở cùng hoàn cảnh. Khác budget constraints vẫn có thể dẫn tới khác choices. Đây là giả định của model, không phải khẳng định mọi người ngoài đời giống nhau."
+      },
+      {
+        "topic": "Conditional forecasts",
+        "stem": "Two economists use the same wage forecast but different plausible utility functions. Their labor-supply forecasts differ. What can reasonably be concluded?",
+        "correct": "A range of forecasts can be economically sensible because predictions depend on behavioral assumptions.",
+        "distractors": ["Every conceivable forecast is economically sensible.", "Neither forecast can be economically sensible.", "Utility assumptions are irrelevant once the wage forecast is known."],
+        "note": "Forecast phụ thuộc utility và assumptions về IE/SE. Nhiều dự báo có thể hợp lý, nhưng vẫn phải nhất quán với model và được kiểm tra bằng data. Không có nghĩa mọi dự báo đều đúng."
+      },
+      {
+        "topic": "Testing a model",
+        "stem": "A model predicts that a particular shock makes real wages move opposite to GDP, while the business-cycle data discussed in class show them moving together. This observation most directly suggests that",
+        "correct": "The proposed shock may be a poor explanation of typical business cycles under the model's assumptions.",
+        "distractors": ["The shock can never occur in the real world.", "Every equation in the model must be false.", "The data must be discarded because the model is internally consistent."],
+        "note": "Dùng Scientific Method: so prediction với data để đánh giá model và shock. Sai một stylized fact làm lời giải thích đó yếu đi; không chứng minh shock không bao giờ xảy ra."
+      },
+      {
+        "topic": "Price taking",
+        "stem": "In the Chapter 4 household problem, the household treats the real wage as given. This is consistent with",
+        "correct": "A price-taking household choosing labor supply at a wage it does not individually control.",
+        "distractors": ["A household choosing the market wage to maximize its own utility.", "A household being unable to choose its hours of work.", "A household setting the firm's marginal productivity of labor."],
+        "note": "Price taker nhận w cho trước và chọn N hoặc l. Nhận price cho trước không có nghĩa quantity cũng cố định."
+      },
+      {
+        "topic": "Simplifying assumptions",
+        "stem": "An economist objects that the one-period model omits saving. What is the strongest way to evaluate that objection?",
+        "correct": "Ask whether omitting saving matters for the particular question and prediction the model is intended to study.",
+        "distractors": ["Reject every model that leaves out any real-world activity.", "Accept the model without testing it because simpler models are always correct.", "Conclude that the model includes future consumption implicitly even though there is no future period."],
+        "note": "Model đơn giản hóa để tập trung vào một câu hỏi. Muốn phản biện assumption cần nối assumption với consequence cụ thể, chẳng hạn không phân tích được intertemporal saving."
+      },
+      {
+        "topic": "Model versus observation",
+        "stem": "A competitive model assumes that the labor market clears. Which statement correctly distinguishes an assumption from evidence?",
+        "correct": "Market clearing is a condition imposed by the model, and whether it is useful must be evaluated against the question and data.",
+        "distractors": ["Market clearing proves that involuntary unemployment cannot exist outside the model.", "Any unemployed person must therefore prefer unemployment.", "An assumption becomes an observed fact once it appears in an equilibrium equation."],
+        "note": "Assumption của model không tự trở thành fact ngoài đời. Labor-market clearing làm model cơ bản không mô tả được mọi dạng involuntary unemployment."
+      },
+      {
+        "topic": "One-period environment",
+        "stem": "A household is described as maximizing utility from current consumption and leisure in a one-period model. Which prediction cannot be obtained from that environment without extending it?",
+        "correct": "How the household reallocates saving between current and future consumption.",
+        "distractors": ["How its current leisure choice responds to non-labor income.", "How a current wage changes the opportunity cost of leisure.", "How its current consumption depends on the budget constraint."],
+        "note": "One-period model có C và l hiện tại, không có future period để giải quyết saving giữa các thời kỳ. Các quyết định current C và l vẫn giải được."
+      },
+      {
+        "topic": "Changing the model",
+        "stem": "The real wage is exogenous in the Chapter 4 household problem but endogenous in the Chapter 5 general equilibrium model. Which explanation is correct?",
+        "correct": "Whether a variable is endogenous depends on which relationships are solved within the model.",
+        "distractors": ["The real wage changes from a price into a quantity in Chapter 5.", "An observed variable must always be endogenous in every model.", "An exogenous variable can never change between two scenarios."],
+        "note": "Chap 4 giải household hoặc firm với w cho trước. Chap 5 kết hợp cả hai và market clearing để giải w. Exogenous vẫn có thể bị shock; nó chỉ không được giải bên trong model đó."
+      }
+    ],
+    "2": [
+      {
+        "topic": "Final and intermediate goods",
+        "stem": "A domestic bakery buys flour and uses it to make bread sold to households in the same period. To avoid double counting GDP, the expenditure approach should include",
+        "correct": "The final bread purchase, rather than adding the flour purchase again as a separate final expenditure.",
+        "distractors": ["Both the flour and bread purchases as separate final expenditures.", "Only the flour because it is produced before the bread.", "Neither purchase because the bakery is a private firm."],
+        "note": "Flour là intermediate input trong bread. Giá final bread đã chứa giá trị của flour. Có thể cộng value added từng khâu, nhưng không cộng lại toàn bộ intermediate sale vào final expenditure."
+      },
+      {
+        "topic": "Imports in GDP",
+        "stem": "A household buys a newly produced imported appliance. Its purchase is recorded in consumption. Why are imports also subtracted in the GDP identity?",
+        "correct": "To remove foreign production already included in expenditure categories.",
+        "distractors": ["Because buying any imported good necessarily destroys an equal amount of domestic production.", "Because imported appliances provide no utility.", "Because consumption excludes all purchases of imported goods."],
+        "note": "C có thể chứa imported goods. Trừ M loại foreign production khỏi GDP. Đây là accounting adjustment, không phải kết luận nhân quả rằng imports tự làm domestic production giảm."
+      },
+      {
+        "topic": "Transfers and government purchases",
+        "stem": "The government sends a retirement benefit to a household without receiving a newly produced good or service in return. The payment itself is",
+        "correct": "A transfer, rather than a government purchase counted directly in G.",
+        "distractors": ["A government purchase because every government payment belongs in G.", "New production because the household receives income.", "An export because the payment comes from outside the household."],
+        "note": "Transfer chuyển purchasing power, không mua current production. Nếu household dùng khoản đó mua goods, purchase mới được ghi vào C. Government outlays rộng hơn G trong national accounts."
+      },
+      {
+        "topic": "Nominal and real GDP",
+        "stem": "Suppose an economy produces the same quantities of all goods as before, but all their current prices rise. Which statement is correct?",
+        "correct": "Nominal GDP can rise even though real output has not increased.",
+        "distractors": ["Real GDP must rise because nominal GDP rises.", "Nominal GDP must remain unchanged because quantities are unchanged.", "Higher prices prove that productivity has increased."],
+        "note": "Nominal GDP dùng current prices. Tách thay đổi quantities khỏi prices bằng real GDP. Giá tăng riêng không chứng minh economy tạo thêm goods hoặc TFP tăng."
+      },
+      {
+        "topic": "Stocks and flows",
+        "stem": "An analyst compares the capital stock at the end of a year with investment undertaken during that year. Which description is correct?",
+        "correct": "Capital is a stock measured at a point in time, while investment is a flow measured over a period.",
+        "distractors": ["Both are flows because both can change.", "Capital is a flow, while investment is a stock.", "Any quantity measured in dollars must be a stock."],
+        "note": "Stock là mức tại một thời điểm; flow là lượng trong một khoảng thời gian. Có thể thay đổi không làm stock biến thành flow. Investment thêm vào capital, còn depreciation làm capital giảm."
+      },
+      {
+        "topic": "Used goods",
+        "stem": "A household sells a used car to another household this year. A dealer earns a fee for arranging the sale. Which part represents current production for GDP?",
+        "correct": "The dealer's newly provided service, rather than the value of the previously produced car.",
+        "distractors": ["The entire resale value of the used car plus the dealer's fee.", "The used car's original production value again.", "Neither the car nor the dealer's newly provided service."],
+        "note": "Used car đã được sản xuất và tính ở kỳ trước. Dealer cung cấp service mới trong kỳ này, nên service đó có thể được tính vào current GDP."
+      },
+      {
+        "topic": "Inventories",
+        "stem": "A domestic firm produces a final good this year but does not sell it before year-end. How can national income accounting record the production?",
+        "correct": "As inventory investment, even though no household has purchased the good yet.",
+        "distractors": ["It cannot enter GDP until a household buys it.", "As an import because the good has no domestic buyer yet.", "As a transfer because no sale occurred."],
+        "note": "GDP đo current production, không chỉ goods đã bán cho households. Unsold output được ghi vào change in inventories thuộc I. Khi bán inventory cũ sau này, accounting tránh tính production đó lần nữa."
+      },
+      {
+        "topic": "Domestic production",
+        "stem": "A foreign-owned company produces goods in a factory located inside the United States. For the purpose of US GDP, the relevant fact is that",
+        "correct": "The production occurs within US borders, regardless of the owners' nationality.",
+        "distractors": ["Only production by US citizens can count in US GDP.", "Foreign ownership automatically makes the output an import.", "The output counts only if every buyer is a US resident."],
+        "note": "Domestic trong GDP nói nơi production diễn ra. Nationality của owners và nơi khách hàng sống không phải tiêu chí đó. GDP và measures of national income có thể khác nhau."
+      },
+      {
+        "topic": "GDP and wellbeing",
+        "stem": "Measured real GDP rises while households give up leisure and environmental quality deteriorates. Which conclusion is justified by the GDP increase alone?",
+        "correct": "Measured production has risen, but the increase alone does not establish that welfare has risen.",
+        "distractors": ["Every household must be better off.", "Leisure must have increased because the economy is richer.", "Economic inequality must have fallen."],
+        "note": "GDP đo production, không trực tiếp đo utility, leisure, environment hay distribution. Cần thông tin thêm để kết luận welfare. Bẫy là đồng nhất GDP với mọi khía cạnh wellbeing."
+      },
+      {
+        "topic": "Accounting identity versus behavior",
+        "stem": "In the simplified closed one-period economy, Y = C + G. Does this identity alone prove that an increase in G raises Y by exactly the same amount?",
+        "correct": "No. Consumption and production can respond, so behavioral relationships are needed to determine the change in Y.",
+        "distractors": ["Yes, because consumption is fixed by the identity.", "Yes, because government spending has no resource cost.", "No, because accounting identities are false whenever policy changes."],
+        "note": "Y=C+G là identity, không tự giữ C cố định. Muốn biết shock G đổi Y bao nhiêu cần household choice, production và equilibrium. Identity vẫn đúng ở cả hai allocations."
+      }
+    ],
+    "3": [
+      {
+        "topic": "Trend and cycle",
+        "stem": "Real GDP is growing, but it remains below its estimated trend. Which statement best describes this observation?",
+        "correct": "Positive GDP growth can coexist with a negative deviation from trend.",
+        "distractors": ["Growing GDP must always lie above its trend.", "A negative deviation from trend means that the level of GDP is negative.", "The economy has no business cycle whenever GDP growth is positive."],
+        "note": "Growth so mức GDP với kỳ trước. Deviation from trend so mức GDP với trend tại cùng thời điểm. GDP có thể đang tăng mà vẫn thấp hơn trend."
+      },
+      {
+        "topic": "Procyclicality",
+        "stem": "Employment tends to be above its trend when GDP is above its trend and below its trend when GDP is below its trend. This makes employment",
+        "correct": "Procyclical, without by itself proving that employment causes the cycle.",
+        "distractors": ["Countercyclical because it sometimes falls.", "A leading indicator by definition.", "A proven independent cause of GDP fluctuations."],
+        "note": "Procyclical nói cùng chiều với cyclical GDP. Không nói biến luôn tăng, không tự nói lead/lag và không chứng minh causality."
+      },
+      {
+        "topic": "Leading versus procyclical",
+        "stem": "An economic variable typically reaches its cyclical peak before GDP does. What does this timing alone establish?",
+        "correct": "The variable leads GDP, but its timing alone does not establish a causal relationship.",
+        "distractors": ["The variable must be countercyclical.", "The variable must be less volatile than GDP.", "The variable necessarily causes every GDP peak."],
+        "note": "Leading nói timing trước GDP. Cyclicality nói cùng hoặc ngược chiều. Volatility nói mức dao động. Ba thuộc tính khác nhau."
+      },
+      {
+        "topic": "Volatility and cyclicality",
+        "stem": "Investment is more volatile than consumption in the business-cycle data discussed in class. Which inference follows?",
+        "correct": "Investment's cyclical fluctuations are larger, but volatility alone does not determine whether a variable is procyclical.",
+        "distractors": ["Investment must move opposite to GDP.", "Investment must be larger than consumption in every period.", "Consumption cannot be procyclical because it is less volatile."],
+        "note": "Volatility so độ dao động, không so levels và không tự cho correlation. C và I đều có thể procyclical dù I biến động mạnh hơn."
+      },
+      {
+        "topic": "Diminishing MPN",
+        "stem": "With capital and TFP fixed, additional workers raise total output but add successively smaller amounts. Which description fits?",
+        "correct": "The production function is increasing and concave in labor, with positive but diminishing MPN.",
+        "distractors": ["Total output falls whenever MPN falls.", "MPN becomes negative as soon as it starts to decrease.", "The production function shifts down whenever the firm hires another worker."],
+        "note": "MPN positive làm Y tăng; MPN diminishing làm slope nhỏ dần. Output vẫn tăng với tốc độ chậm hơn. N thay đổi là move along Y(N), không phải shift production function."
+      },
+      {
+        "topic": "Returns to scale versus marginal returns",
+        "stem": "A production function has constant returns to scale and diminishing marginal productivity of labor. Are these properties inconsistent?",
+        "correct": "No. Returns to scale change all inputs together, whereas diminishing MPN changes labor holding other inputs fixed.",
+        "distractors": ["Yes, because constant returns to scale require MPN to be constant.", "Yes, because diminishing MPN means doubling all inputs lowers output.", "No, because both properties describe changing only labor."],
+        "note": "CRS xét scale K và N cùng tỷ lệ. Diminishing MPN xét tăng N riêng với K,z cố định. Hai thí nghiệm khác nhau nên có thể cùng đúng."
+      },
+      {
+        "topic": "TFP shift versus movement",
+        "stem": "A new production method allows a firm to produce more output at every given combination of capital and labor. In Y = zF(K,N), this is best represented by",
+        "correct": "An increase in z that shifts the production function upward.",
+        "distractors": ["Movement along an unchanged production function caused only by hiring more labor.", "A necessary increase in the number of machines.", "A fall in MPN at every fixed labor input."],
+        "note": "More Y với cùng measured inputs là tăng productivity z. Tăng N riêng đi dọc curve; tăng K là input change. Đừng đồng nhất technology tốt hơn với nhiều machines hơn."
+      },
+      {
+        "topic": "Solow residual and omitted inputs",
+        "stem": "A researcher measures productivity using only capital and labor. An omitted input becomes more intensively used during expansions. What can happen to the measured Solow residual?",
+        "correct": "It can appear procyclical even if true technology does not change.",
+        "distractors": ["It cannot change because every input is already included by definition.", "It proves that true technology must improve during every expansion.", "It must become countercyclical because the input was omitted."],
+        "note": "Residual chứa phần Y chưa giải thích bởi measured K,N. Omitted input hoặc utilization tăng có thể làm measured residual tăng dù true z không đổi."
+      },
+      {
+        "topic": "Average versus marginal productivity",
+        "stem": "For Y = zK^αN^β with positive inputs and 0 < β < 1, which statement is correct?",
+        "correct": "Average labor productivity Y/N and MPN are different concepts, even though both depend on productivity and input levels.",
+        "distractors": ["MPN must equal z for every Cobb-Douglas production function.", "Y/N is the output added by the next worker by definition.", "Positive MPN requires average labor productivity to increase whenever labor increases."],
+        "note": "Y/N là average; MPN là derivative ∂Y/∂N. Trong Cobb-Douglas, MPN=βY/N. Chỉ production function đặc biệt như Y=zN mới cho MPN=z. Không cần tính số để phân biệt."
+      },
+      {
+        "topic": "Correlation and a common shock",
+        "stem": "GDP, employment, and real wages move together during an expansion. Why does this observation alone not identify the direction of causation among them?",
+        "correct": "A common shock could jointly affect all three variables.",
+        "distractors": ["Variables that move together cannot belong to the same model.", "The variable with the largest level must cause the others.", "Procyclical variables are always exogenous."],
+        "note": "Một shock z có thể làm nhiều endogenous outcomes đổi cùng lúc. Correlation không tự chỉ ra biến nào gây ra biến nào và không tự xác định exogenous/endogenous."
+      }
+    ],
+    "4": [
+      {
+        "topic": "Extensive and intensive margins",
+        "stem": "After a wage increase, a retired person begins working part-time, while an existing employee reduces her weekly hours because income effects dominate substitution effects. Which statement is correct?",
+        "correct": "The retired person responds along the extensive margin, while the existing employee responds along the intensive margin.",
+        "distractors": ["Both respond along the intensive margin because both choose hours.", "The retired person responds along the intensive margin and the existing employee along the extensive margin.", "Both respond along the extensive margin because labor supply changes."],
+        "note": "Extensive hỏi có tham gia work hay không: retired bắt đầu làm. Intensive hỏi làm bao nhiêu khi đang làm: existing employee giảm hours. Đi làm part-time vẫn có extensive response khi chuyển từ không làm sang làm."
+      },
+      {
+        "topic": "Composition of average hours",
+        "stem": "A tax cut brings previously non-employed people into part-time jobs. Existing employees keep their hours unchanged, but average hours per employed worker fall. Which conclusion is best supported?",
+        "correct": "The extensive margin increases, while average hours can fall because the composition of employment changes.",
+        "distractors": ["Existing employees necessarily reduce their hours along the intensive margin.", "The extensive margin decreases because average hours decrease.", "There is no labor-supply response because existing employees keep their hours unchanged."],
+        "note": "Người mới vào làm part-time kéo average hours xuống. Incumbent workers không giảm hours, nên không thể gán thay đổi average cho intensive response của họ. Extensive margin tăng vì thêm người bắt đầu làm."
+      },
+      {
+        "topic": "Labor force versus employment",
+        "stem": "A non-employed person begins actively searching for a job but has not found one. Which statement is correct?",
+        "correct": "Labor force participation can increase without employment increasing.",
+        "distractors": ["The person must be counted as employed because she is participating.", "The person increases hours worked along the intensive margin.", "Unemployed job seekers are necessarily outside the labor force."],
+        "note": "Labor force gồm employed và unemployed đang tìm việc theo tiêu chí đo lường. Participation không đồng nghĩa có job. Trường hợp này đổi participation, chưa đổi employed hours."
+      },
+      {
+        "topic": "Pure income effect",
+        "stem": "In C = w(h-l) + π - T, profits rise while w, T, h, and preferences remain fixed. Consumption and leisure are normal goods. The household is predicted to choose",
+        "correct": "More consumption and leisure through an income effect, with no direct substitution effect.",
+        "distractors": ["More labor because leisure becomes more expensive.", "More leisure because the budget constraint becomes flatter.", "Less consumption and more leisure because profits replace consumption."],
+        "note": "π tăng shift budget song song ra ngoài, slope vẫn -w. Normal C,l tăng; N=h-l giảm. Relative price không đổi nên direct effect là pure IE."
+      },
+      {
+        "topic": "Lump-sum versus proportional taxes",
+        "stem": "At a fixed real wage, which policy directly changes the household's opportunity cost of an additional hour of leisure?",
+        "correct": "A change in the proportional labor-income tax rate.",
+        "distractors": ["A change in a lump-sum tax alone.", "A change in a fixed inheritance payment alone.", "A change in fixed profit income alone."],
+        "note": "Opportunity cost của l là after-tax wage w(1-t). Đổi t đổi slope. T, inheritance và fixed π chỉ đổi non-labor income khi wage được giữ cố định."
+      },
+      {
+        "topic": "Normal leisure and wage effects",
+        "stem": "Leisure is a normal good. The real wage rises, but the problem gives no assumption about the relative sizes of income and substitution effects. What can be concluded about leisure?",
+        "correct": "Its total response is ambiguous because the income and substitution effects work in opposite directions.",
+        "distractors": ["It must rise because leisure is normal.", "It must fall because leisure becomes more expensive.", "It must remain unchanged for every utility function."],
+        "note": "w tăng: SE làm l giảm vì nghỉ đắt hơn; IE làm normal l tăng vì household giàu hơn. Normal good chỉ xác định IE, không xác định total wage response."
+      },
+      {
+        "topic": "Inferring IE versus SE",
+        "stem": "Preferences, non-labor income, taxes, and available time are unchanged. After-tax real wages rise and a worker chooses fewer hours of leisure. Which inference is supported?",
+        "correct": "The substitution effect dominates the income effect on leisure.",
+        "distractors": ["The income effect dominates the substitution effect on leisure.", "The worker must regard leisure as a normal good solely because leisure falls.", "The budget constraint shifted in parallel rather than changing slope."],
+        "note": "Net result l giảm khi W tăng cho biết SE thắng IE. Dấu total response riêng không đủ chứng minh leisure normal, và wage đổi làm slope đổi."
+      },
+      {
+        "topic": "IC slope versus MRS",
+        "stem": "Consumption is on the vertical axis and leisure is on the horizontal axis. Which statement correctly distinguishes the indifference-curve slope from MRS?",
+        "correct": "The signed slope is -MU_l/MU_C, while MRS is the positive magnitude MU_l/MU_C.",
+        "distractors": ["Both must be positive because the household likes both goods.", "The signed slope is -MU_C/MU_l because consumption is on the vertical axis.", "MRS equals the wage at every bundle, whether or not the household is optimizing."],
+        "note": "Giữ U constant: MU_C dC + MU_l dl=0, nên dC/dl=-MU_l/MU_C. MRS dùng positive magnitude. MRS=W chỉ ở interior optimum phù hợp, không ở mọi bundle."
+      },
+      {
+        "topic": "Before the optimum",
+        "stem": "At an interior point on the budget line, a household has MRS greater than the after-tax real wage. Preferences are smooth and both goods are desirable. A small feasible change that improves utility is to",
+        "correct": "Take more leisure and give up the consumption needed to pay for it.",
+        "distractors": ["Work more because leisure is worth less than its market cost.", "Remain at the point because every budget-line point is optimal.", "Shift the budget line outward by changing preferences."],
+        "note": "MRS>W: household sẵn sàng trả nhiều C cho thêm l hơn market cost W. Tăng l một chút dọc budget làm utility tăng. Khi MRS<W thì hướng cải thiện ngược lại."
+      },
+      {
+        "topic": "Convex IC versus concave production",
+        "stem": "Which pairing correctly describes the usual curves in the household and firm problems?",
+        "correct": "Indifference curves are convex toward the origin because diversity is valued; production in labor is concave when MPN diminishes.",
+        "distractors": ["Indifference curves are concave toward the origin because more is preferred to less.", "An increasing production function must be convex because output rises.", "Convex indifference curves mean the household dislikes bundles containing both goods."],
+        "note": "Diversity có giá trị nên IC bowed inward, MRS diminishing. Diminishing MPN làm Y(N) concave. More is preferred to less giải thích downward-sloping IC, không tự giải thích convexity."
+      },
+      {
+        "topic": "Price changes along labor demand",
+        "stem": "A price-taking firm faces a lower real wage. Its capital stock and technology are unchanged, and MPN is positive and diminishing. The firm should",
+        "correct": "Hire more labor by moving along its existing labor-demand curve.",
+        "distractors": ["Shift its labor-demand curve outward because technology improved.", "Hire less labor because MPN falls as labor increases.", "Treat the lower wage as a decrease in TFP."],
+        "note": "Labor demand là MPN schedule với K,z cho trước. w giảm làm firm đi dọc curve đến N lớn hơn, nơi MPN thấp hơn bằng wage mới. Wage change không phải productivity shift."
+      },
+      {
+        "topic": "Labor-demand shifts",
+        "stem": "In the Chapter 4 firm problem, capital increases and raises MPN at every fixed labor input. The real wage is held constant. What happens to labor demand?",
+        "correct": "Labor demand shifts outward, and the firm hires more labor at the given wage.",
+        "distractors": ["The firm moves along an unchanged labor-demand curve because only the wage changed.", "Labor demand must decrease because capital always replaces labor.", "MPN remains unchanged because the real wage is exogenous."],
+        "note": "Đề đã nói K tăng làm MPN tại mỗi N tăng, nên demand schedule shift. w exogenous không giữ MPN tại mọi N cố định; firm đổi N đến MPN=w. Đừng mặc định mọi capital đều labor-replacing."
+      },
+      {
+        "topic": "MPN versus TFP",
+        "stem": "Which claim is NOT generally true for a competitive firm with production Y = zF(K,N)?",
+        "correct": "MPN must equal z, regardless of the form of F.",
+        "distractors": ["MPN measures the extra output from a marginal increase in labor, holding other inputs fixed.", "An interior optimum without taxes or subsidies on the firm equates MPN with the real wage.", "Increasing z scales output at a fixed combination of inputs."],
+        "note": "MPN=zF_N(K,N), không nói chung bằng z. Với Y=zN mới có F_N=1. Firm interior optimum với output price normalized cho MPN=w."
+      },
+      {
+        "topic": "Preference change versus budget change",
+        "stem": "A household places greater value on leisure relative to consumption. At the same bundle, MRS rises. Wages, taxes, profits, and available time are unchanged. Which curve changes directly?",
+        "correct": "The indifference-curve map, while the budget constraint remains unchanged.",
+        "distractors": ["The budget constraint rotates because the household wants more leisure.", "The production function shifts because MRS rises.", "The budget constraint shifts outward because preferences are stronger."],
+        "note": "Preferences đổi utility và IC. Budget phụ thuộc W,h,π,T nên giữ nguyên nếu các biến đó không đổi. Household có thể đổi optimal bundle dọc cùng budget."
+      },
+      {
+        "topic": "Marginal versus total utility",
+        "stem": "A household has diminishing marginal utility of consumption but positive marginal utility at every consumption level under consideration. As consumption rises with leisure fixed, total utility",
+        "correct": "Rises, but the gain from each additional unit becomes smaller.",
+        "distractors": ["Falls because marginal utility is diminishing.", "Stays constant because marginal utility is positive.", "Must become negative as soon as marginal utility decreases."],
+        "note": "Positive MU_C làm total U tăng. Diminishing MU_C chỉ nói mức tăng nhỏ dần. Cùng bẫy như positive but diminishing MPN: marginal giảm không có nghĩa total giảm."
+      }
+    ],
+    "5": [
+      {
+        "topic": "General equilibrium",
+        "stem": "A household wants to work more at the initial wage after a policy change. In general equilibrium, can this alone determine the final change in employment?",
+        "correct": "No. The firm's labor demand and wage adjustment must also be considered.",
+        "distractors": ["Yes, because labor supply alone determines every equilibrium quantity.", "Yes, because general equilibrium holds the real wage fixed by definition.", "No, because households do not optimize in general equilibrium."],
+        "note": "General equilibrium kết hợp household optimization, firm optimization và market clearing. Response tại initial w chưa phải final equilibrium vì w có thể đổi."
+      },
+      {
+        "topic": "Choice versus feasible intercept",
+        "stem": "Preferences shift toward leisure while technology, capital, available time, and government spending stay fixed. Which statement is correct?",
+        "correct": "The chosen leisure level can rise while the PPF's maximum feasible leisure remains unchanged.",
+        "distractors": ["The PPF must shift outward because leisure becomes more desirable.", "The maximum feasible leisure must rise by exactly as much as chosen leisure.", "The PPF's leisure intercept is determined by MRS alone."],
+        "note": "l* là choice dựa vào IC và PPF. l_max là feasibility intercept tại C=0, dựa vào resources và G. Đổi preferences không đổi resource constraint."
+      },
+      {
+        "topic": "Moving along a curved PPF",
+        "stem": "Preferences shift toward consumption. Technology and capital are unchanged, and the production function has diminishing MPN. As equilibrium employment rises, which statement is correct?",
+        "correct": "The economy moves along the same PPF, and the absolute slope at the new point becomes smaller as MPN falls.",
+        "distractors": ["The PPF shifts inward because MPN falls.", "The entire PPF becomes flatter because technology deteriorates.", "MPN rises because GDP rises."],
+        "note": "N tăng với K,z cố định làm MPN giảm. Trên đồ thị C vertical, l horizontal, slope=-MPN. Đó là slope tại điểm mới trên cùng PPF, không phải shift toàn curve."
+      },
+      {
+        "topic": "Unproductive G and normal goods",
+        "stem": "Unproductive government spending increases and is financed by lump-sum taxes. Consumption and leisure are normal, technology is unchanged, and MPN is diminishing. Which prediction fits the Chapter 5 model?",
+        "correct": "Employment and GDP rise, while consumption and real wages fall.",
+        "distractors": ["Employment, GDP, consumption, and real wages all rise.", "Employment and GDP fall, while real wages rise.", "GDP is unchanged because a lump-sum tax has no substitution effect."],
+        "note": "G↑ gây negative wealth effect, l↓ và N↑. Y↑ nhưng không đủ bù G↑ nên C↓. Với diminishing MPN, N↑ làm w=MPN↓. Pure direct IE không có nghĩa quantity không đổi."
+      },
+      {
+        "topic": "GDP versus welfare after a G shock",
+        "stem": "In the model where G is unproductive and does not enter household utility, a fall in G financed by lower lump-sum taxes makes households choose more consumption and leisure. GDP falls. Which conclusion is correct?",
+        "correct": "Welfare can rise even though GDP falls.",
+        "distractors": ["Welfare must fall whenever GDP falls.", "The allocation must be infeasible because consumption rises while GDP falls.", "A GDP decline proves that the policy creates a tax distortion."],
+        "note": "G↓ giải phóng resources: household có C↑ và l↑, N↓ nên Y↓. Vì G không tạo utility trong model này, welfare tăng. Y=C+G vẫn đúng vì G giảm."
+      },
+      {
+        "topic": "TFP and labor ambiguity",
+        "stem": "TFP rises with government spending and capital fixed. Consumption and leisure are normal, but no dominance between income and substitution effects is specified. Which response is ambiguous in the standard Chapter 5 comparative statics?",
+        "correct": "Employment, because the productivity increase creates opposing income and substitution effects on leisure.",
+        "distractors": ["Whether output is higher at every fixed labor input.", "Whether the feasible set expands.", "Whether productivity has increased, since z is held constant by definition."],
+        "note": "z↑ mở rộng feasible set và nâng output tại mỗi N. IE muốn l↑, SE muốn l↓ nên N response ambiguous khi không cho dominance. Không cần mặc định SE>IE từ câu khác."
+      },
+      {
+        "topic": "Shock and business-cycle signs",
+        "stem": "Why is an unproductive government-spending increase financed by lump-sum taxes a weak explanation of typical business cycles in the Chapter 5 model?",
+        "correct": "It predicts real wages moving opposite to GDP, rather than the procyclical real wages discussed in class.",
+        "distractors": ["It predicts employment moving opposite to GDP.", "It predicts no change in GDP under any utility function.", "Every increase in government spending necessarily improves TFP."],
+        "note": "G↑ cho Y↑,N↑ nhưng w↓ trong model với diminishing MPN. Employment cùng chiều GDP; real wages mới là dấu không khớp stylized facts."
+      },
+      {
+        "topic": "Tax wedge",
+        "stem": "A household faces a positive proportional labor-income tax, while a competitive firm faces no labor tax or subsidy. At interior optima, which relationship holds?",
+        "correct": "The household's MRS equals the after-tax wage, which is below MPN and the firm's real wage.",
+        "distractors": ["MRS must equal MPN because both agents optimize.", "The firm's MPN equals the household's after-tax wage rather than the wage paid by the firm.", "The tax changes fixed income but cannot change a marginal incentive."],
+        "note": "Household: MRS=w(1-t). Firm: MPN=w. t>0 tạo wedge MRS<MPN. Theo notation trong lecture, household after-tax trade-off được gọi MRT=MPN(1-t)."
+      },
+      {
+        "topic": "Laffer curve movement versus shift",
+        "stem": "On a graph with the proportional tax rate on the horizontal axis and tax revenue on the vertical axis, what distinguishes a tax-rate change from a productivity change?",
+        "correct": "A tax-rate change moves along a given Laffer curve; a productivity change can shift the revenue schedule.",
+        "distractors": ["Both always move along the same curve because tax revenue changes.", "A tax-rate change always shifts the curve, while productivity only moves along it.", "The Laffer curve cannot depend on the tax base."],
+        "note": "Horizontal-axis variable t đổi là movement along khi các determinants khác giữ nguyên. z đổi tax base và revenue tại mỗi t nên có thể shift curve. Curve không phải income-independent."
+      },
+      {
+        "topic": "Good side of the Laffer curve",
+        "stem": "The economy is on the good side of its Laffer curve, and other determinants of the curve are fixed. A small increase in the proportional tax rate is predicted to",
+        "correct": "Increase tax revenue, despite any reduction in the tax base embodied in that curve.",
+        "distractors": ["Reduce tax revenue because workers may work less.", "Leave revenue unchanged because the tax rate and tax base always offset exactly.", "Increase revenue only if labor supply is completely fixed."],
+        "note": "Good side là upward-sloping segment: tăng t làm total revenue tăng ở margin. N có thể giảm nhưng chưa đủ lấn át rate increase. Bad side mới cho dấu ngược lại."
+      },
+      {
+        "topic": "Equilibrium tax rate and fixed G",
+        "stem": "Productivity increases tax revenue at each given tax rate. Government spending is fixed, financed entirely by this tax, and equilibrium stays on the good side of the Laffer curve. The tax rate required to balance the budget",
+        "correct": "Falls because the larger tax base can finance the same spending at a lower rate.",
+        "distractors": ["Rises because a richer economy must collect more revenue than the fixed spending requirement.", "Must remain fixed because government spending is exogenous.", "Is determined solely by household preferences, independently of the tax base."],
+        "note": "Curve shift up, target revenue=G giữ nguyên. Trên good side, giao điểm với cùng G chuyển sang t thấp hơn. Fixed G là assumption thiết yếu; không tự suy dấu khi G cũng đổi."
+      },
+      {
+        "topic": "Productive G comparison",
+        "stem": "An economy is compared under the same positive level of G in two cases. In one case G raises productivity; in the other it does not. Why is this different from asking what happens when G increases from its original level?",
+        "correct": "The same-G comparison isolates the productivity benefit, whereas an increase in G also changes the resource cost of government spending.",
+        "distractors": ["Productive G has no resource cost, so the comparisons are identical.", "The same-G comparison must hold productivity fixed in both cases.", "An increase in G changes preferences rather than production possibilities."],
+        "note": "So productive và unproductive tại cùng G giữ resource cost giống nhau, khác productivity benefit. Shock tăng G vừa đổi cost vừa có thể đổi z. Phải đọc baseline để tránh chọn dấu sai."
+      },
+      {
+        "topic": "Pareto efficiency versus equality",
+        "stem": "An allocation is highly unequal but no feasible reallocation can make someone better off without making someone else worse off. Which statement is correct?",
+        "correct": "It can be Pareto efficient even though it is unequal.",
+        "distractors": ["It cannot be Pareto efficient because efficiency requires equal consumption.", "It must maximize the sum of money incomes because it is Pareto efficient.", "Pareto efficiency guarantees that everyone considers the allocation fair."],
+        "note": "Pareto efficiency nói không còn feasible Pareto improvement. Không đảm bảo equality hoặc fairness. Đây là lý do efficiency và distribution là hai câu hỏi khác nhau."
+      },
+      {
+        "topic": "Necessary versus sufficient conditions",
+        "stem": "A student identifies an interior feasible allocation where MRS equals MPN and immediately calls it the efficient optimum. Without the usual convexity and concavity assumptions, what is the missing step?",
+        "correct": "Check that the allocation actually maximizes utility over the feasible set, rather than merely satisfying a first-order condition.",
+        "distractors": ["Check that consumption equals leisure, since efficiency requires equal quantities.", "Check that the wage is exogenous, since the planner must take wages as given.", "Check that GDP is the largest possible, regardless of leisure."],
+        "note": "Tangency là first-order condition ở interior. Muốn kết luận global optimum cần highest feasible utility hoặc đủ shape assumptions. Planner maximize U, không đơn thuần maximize GDP."
+      },
+      {
+        "topic": "Preferences and welfare comparisons",
+        "stem": "Preferences change toward leisure, and the new equilibrium has lower GDP. Without a rule for comparing welfare across the old and new preferences, which conclusion is justified?",
+        "correct": "The GDP decline alone cannot establish whether welfare rose or fell.",
+        "distractors": ["Welfare must fall because production falls.", "Welfare must rise because the new household chooses more leisure.", "The PPF must have shifted inward because measured GDP fell."],
+        "note": "Preference shock đổi ranking và optimal choice, không đổi PPF nếu resources giữ nguyên. Không tự so utility numbers giữa preference systems. Lower GDP riêng không xác định welfare."
+      }
+    ]
+  }
+}

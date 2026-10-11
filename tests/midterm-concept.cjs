@@ -8,7 +8,7 @@ const data=JSON.parse(JSON.stringify(ctx.window.MIDTERM_DATA)),bank=data.bank;
 const byId=new Map(bank.map(q=>[q.id,q]));
 assert.equal(byId.size,bank.length);
 assert.equal(data.version,1);
-const originals=bank.filter(q=>q.category!=='concept');
+const originals=bank.filter(q=>q.category!=='concept'&&!q.id.startsWith('m1_ai_cc_'));
 const keys=originals.map(q=>({...Object.fromEntries(['id','ans','answer'].filter(k=>k in q).map(k=>[k,q[k]])),blanks:(q.blanks||[]).map(b=>b.ans)}));
 assert.equal(crypto.createHash('sha256').update(JSON.stringify(keys)).digest('hex'),'42790487f49a01504b16e366f6bffa58672e9a0dc42fc3063d90c0f3897aeacb');
 const ayn=byId.get('m1_ayn_3_1');
