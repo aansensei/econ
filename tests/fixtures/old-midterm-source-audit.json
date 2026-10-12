@@ -1,0 +1,1572 @@
+{
+  "scope": {
+    "f16": {
+      "mcq": 36,
+      "shortAnswer": 5
+    },
+    "s17": {
+      "mcq": 37,
+      "shortAnswer": 9
+    },
+    "f19": {
+      "mcq": 40,
+      "shortAnswer": 0
+    }
+  },
+  "normalization": "Whitespace and mathematical font variants normalized; superscripts, subscripts and fractions are written in linear notation. Text comes from question documents, answer indices and full rubrics from separate answer keys.",
+  "visuallyCheckedMath": [
+    "m1_f16_21",
+    "m1_f16_35",
+    "m1_f19_5",
+    "m1_f19_7",
+    "m1_f19_18",
+    "m1_f19_20",
+    "m1_f19_37"
+  ],
+  "sources": {
+    "302_f19_midterm1_version2_answer key.docx": "eb8e2d83cbecb751bd5d53eb696ad6bac6a98bd099c744064148c1965b341f34",
+    "Econ 302 f19_v2 mid1 scans.pdf": "9ae27bd6dbb75c6448daa3c90cbcff5fcabd807fb6768fd909417ca84caea30a",
+    "Econ 302 f19_v2 mid1.pdf": "ff100ba2e3215e130386b1e488c0d51ebfb806a05add29c29ae77750b640b231",
+    "First Exam Answer Key f16 Version1.docx": "e9fde5df769f72a27ffc2965a00e493a5bbaaa1e2d9f1df701a894986a447a19",
+    "First Exam_Part1_Ver1_302_f16.pdf": "103f6cbd8c42c93669d266d82df4f84cde5a46270221d141c3f902ef182f450a",
+    "First Exam_Part2_Ver1_302_f16.pdf": "a676c3574893b791884dc8e5dd97cc4e71537f0867d3a31ee9d27f545ca2dc55",
+    "mid1_version1_AnswerKey.docx": "425e336c8725b8e9dd8c94030657264737f9147d2cf4eb39bc15bca51d0b3572",
+    "Version 1_ Part 1_ Midterm1.docx": "65602bb230f2686307adf69c2a294b2a15e81bf120658c8d8532991f64d24ff2",
+    "Version 1_ Part 2_ Midterm1.docx": "d14ebdda8da6e079b229d8098445bc5fea68b94f402235b316aff0c0fefdb650"
+  },
+  "questions": {
+    "m1_f16_1": {
+      "stem": "When a macroeconomic aggregate is procyclical",
+      "opts": [
+        "it grows faster than GDP.",
+        "its deviations from trend generally change before the deviations from trend in GDP do.",
+        "its deviations from trend generally change more that the deviations from trend in GDP.",
+        "its deviations from trend are more often of the same sign as the deviations from trend in GDP."
+      ],
+      "page": 2,
+      "ans": 3,
+      "keyText": "Answer: D",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_2": {
+      "stem": "Average labor productivity tends to be",
+      "opts": [
+        "procyclical and less variable than real GDP.",
+        "procyclical and more variable than real GDP.",
+        "countercyclical and less variable than real GDP.",
+        "countercyclical and more variable than real GDP."
+      ],
+      "page": 2,
+      "ans": 0,
+      "keyText": "Answer: A",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_3": {
+      "stem": "Real business cycle theory argues that the primary cause of business cycles is fluctuations in",
+      "opts": [
+        "preferences.",
+        "government spending.",
+        "the importance of externalities.",
+        "total factor productivity."
+      ],
+      "page": 2,
+      "ans": 3,
+      "keyText": "Answer: D",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_4": {
+      "stem": "The weight of empirical evidence suggests that in the United States, the real wage rate is",
+      "opts": [
+        "acyclical.",
+        "bicyclical.",
+        "procyclical.",
+        "countercyclical."
+      ],
+      "page": 2,
+      "ans": 2,
+      "keyText": "Answer: C",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_5": {
+      "stem": "In the one-period model, what do we assume about household preferences?",
+      "opts": [
+        "Households prefer more to less.",
+        "Households like money.",
+        "Households dislike taxes.",
+        "Households care about others."
+      ],
+      "page": 2,
+      "ans": 0,
+      "keyText": "Answer: A",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_6": {
+      "stem": "A consumer is said to be indifferent between two consumption bundles",
+      "opts": [
+        "when the consumer doesn't care about his or her consumption bundle.",
+        "when the two bundles provide equal amounts of utility.",
+        "when the consumer chooses the bundles equally often.",
+        "when the consumer is indecisive."
+      ],
+      "page": 3,
+      "ans": 1,
+      "keyText": "Answer: B",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_7": {
+      "stem": "According to our model it is likely that an increase in government spending",
+      "opts": [
+        "increases consumption, increases hours worked, and increases the real wage.",
+        "reduces consumption, increases hours worked, and increases the real wage.",
+        "reduces consumption, increases hours worked, and reduces the real wage.",
+        "reduces consumption, reduces hours worked, and reduces the real wage."
+      ],
+      "page": 3,
+      "ans": 2,
+      "keyText": "Answer: C",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_8": {
+      "stem": "We assume that the representative consumer's preferences exhibit the properties that",
+      "opts": [
+        "it is preferred to have more of one and less of another than more of everything",
+        "more is always preferred to less and that each consumer has one strictly favorite good.",
+        "each consumer has one strictly preferred good and that consumption and leisure are both normal goods.",
+        "consumption and leisure are both normal goods and that the consumer likes diversity in his or her consumption bundle."
+      ],
+      "page": 3,
+      "ans": 3,
+      "keyText": "Answer: D",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_9": {
+      "stem": "An increase in lump-sum taxes has the following impact on the budget constraint",
+      "opts": [
+        "a parallel move down.",
+        "a parallel move up.",
+        "a tilting downward to the left.",
+        "a tilting upward to the right."
+      ],
+      "page": 3,
+      "ans": 0,
+      "keyText": "Answer: A",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_10": {
+      "stem": "A positive, pure income effect can be obtained by",
+      "opts": [
+        "increasing the real wage.",
+        "increasing the tax.",
+        "increasing the dividend.",
+        "decreasing leisure."
+      ],
+      "page": 4,
+      "ans": 2,
+      "keyText": "Answer: C",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_11": {
+      "stem": "When the wage increases, the substitution effect in the household's choices leads to",
+      "opts": [
+        "a decrease in consumption and leisure.",
+        "a decrease in consumption and an increase in leisure.",
+        "an increase in consumption and a decrease in leisure.",
+        "an increase in consumption and leisure."
+      ],
+      "page": 4,
+      "ans": 2,
+      "keyText": "Answer: C",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_12": {
+      "stem": "According to our model a shift in increase in preferences away from leisure is likely to result in",
+      "opts": [
+        "increased consumption, increased hours worked, and increased real wage.",
+        "increased consumption, increased hours worked, and increased real wage.",
+        "reduced consumption, increased hours worked, and reduced real wage.",
+        "reduced consumption, reduced hours worked, and reduced real wage."
+      ],
+      "page": 4,
+      "ans": 1,
+      "keyText": "Answer: B (but because of the typo we gave credit to all answers)",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_13": {
+      "stem": "Changes in government spending are not likely causes of business cycles because changes in government spending predict",
+      "opts": [
+        "countercyclical real wages.",
+        "procyclical real wages.",
+        "countercyclical employment.",
+        "procyclical employment."
+      ],
+      "page": 4,
+      "ans": 0,
+      "keyText": "Answer: A",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_14": {
+      "stem": "In the production function, Y = zF(K, Nd), total factor productivity is",
+      "opts": [
+        "Y/K.",
+        "Y/Nd.",
+        "F/Y.",
+        "z."
+      ],
+      "page": 4,
+      "ans": 3,
+      "keyText": "Answer: D",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_15": {
+      "stem": "The Social Planner’s solution is found where",
+      "opts": [
+        "MRS = w",
+        "MRS = -U(l)/U(C)",
+        "MRS = MRT",
+        "MRT = z."
+      ],
+      "page": 5,
+      "ans": 2,
+      "keyText": "Answer: C",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_16": {
+      "stem": "The first fundamental theorem of welfare economics states that",
+      "opts": [
+        "under certain conditions, a competitive equilibrium is Pareto optimal.",
+        "a competitive equilibrium is always Pareto optimal.",
+        "under certain conditions, a Pareto optimum is a competitive equilibrium.",
+        "a Pareto optimum is always a competitive equilibrium."
+      ],
+      "page": 5,
+      "ans": 0,
+      "keyText": "Answer: A",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_17": {
+      "stem": "When the representative firm maximizes profits",
+      "opts": [
+        "production is at its maximum.",
+        "the slope of the production function is at its flattest.",
+        "labor costs are minimized.",
+        "the marginal product of labor equals the wage."
+      ],
+      "page": 5,
+      "ans": 3,
+      "keyText": "Answer: D",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_18": {
+      "stem": "In response to an increase in total factor productivity",
+      "opts": [
+        "both the substitution effect and the income effect suggest that hours worked should increase.",
+        "the substitution effect suggests that hours worked should increase, while the income effect suggests that hours worked should decrease.",
+        "the substitution effect suggests that hours worked should decrease, while the income effect suggests that hours worked should increase.",
+        "both the substitution effect and the income effect suggest that hours worked should decrease."
+      ],
+      "page": 5,
+      "ans": 1,
+      "keyText": "Answer: B",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_19": {
+      "stem": "In a competitive equilibrium all these relationships must hold except one. Which one?",
+      "opts": [
+        "Nd=Ns",
+        "Y=G+C",
+        "G=T",
+        "w=z"
+      ],
+      "page": 6,
+      "ans": 3,
+      "keyText": "Answer: D",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_20": {
+      "stem": "In the one-period competitive model we have been studying",
+      "opts": [
+        "both consumption and total factor productivity are exogenous.",
+        "consumption is exogenous and total factor productivity is endogenous.",
+        "consumption is endogenous and total factor productivity is exogenous.",
+        "both consumption and total factor productivity are endogenous."
+      ],
+      "page": 6,
+      "ans": 2,
+      "keyText": "Answer: C",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_21": {
+      "stem": "A Pareto optimum requires all of the following except",
+      "opts": [
+        "MPN = -slope of PPF.",
+        "MRS1,C = MRT1,C.",
+        "MRS1,C = MPN.",
+        "MPN = w."
+      ],
+      "page": 6,
+      "ans": 3,
+      "keyText": "Answer: D",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_22": {
+      "stem": "A competitive equilibrium",
+      "opts": [
+        "is always economically efficient.",
+        "is efficient only if there is an externality.",
+        "is economically efficient only given some special conditions.",
+        "does not exist without government taxation."
+      ],
+      "page": 6,
+      "ans": 2,
+      "keyText": "Answer: C",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_23": {
+      "stem": "Under a Pareto Optimum",
+      "opts": [
+        "it is always possible to improve someone's welfare.",
+        "it is never possible to improve someone's welfare.",
+        "one can only reduce someone's welfare.",
+        "it is impossible to reduce someone's welfare."
+      ],
+      "page": 6,
+      "ans": 2,
+      "keyText": "Answer: C",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_24": {
+      "stem": "A competitive equilibrium may fail to be Pareto optimal due to all of the following except",
+      "opts": [
+        "inequality.",
+        "externalities.",
+        "distorting taxes.",
+        "non-price-taking firms."
+      ],
+      "page": 7,
+      "ans": 0,
+      "keyText": "Answer: A",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_25": {
+      "stem": "The presence of a distorting tax on wage income can result in",
+      "opts": [
+        "MPN < MRT1,C.",
+        "MRT1,C < MRS1,C.",
+        "MPN < w.",
+        "MRS1,C < MPN"
+      ],
+      "page": 7,
+      "ans": 3,
+      "keyText": "Answer: D",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_26": {
+      "stem": "An increase in government spending shifts the PPF",
+      "opts": [
+        "upward, but does not change its slope.",
+        "upward, and also changes its slope.",
+        "downward, but does not change its slope.",
+        "downward, and also changes its slope."
+      ],
+      "page": 7,
+      "ans": 2,
+      "keyText": "Answer: C",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_27": {
+      "stem": "Changes in total factor productivity are plausible causes of business cycles because",
+      "opts": [
+        "of the welfare theorems.",
+        "the U.S. government is following supply-side economic policy.",
+        "the model matches many stylized facts.",
+        "prices are countercyclical."
+      ],
+      "page": 7,
+      "ans": 2,
+      "keyText": "Answer: C",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_28": {
+      "stem": "If the government replaces a lump sum tax with a proportional labor income tax, then",
+      "opts": [
+        "employment and output increase.",
+        "employment increases and output decreases.",
+        "employment decreases and output increases.",
+        "employment and output decrease."
+      ],
+      "page": 8,
+      "ans": 3,
+      "keyText": "Answer: D",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_29": {
+      "stem": "The assumption of the model used in class is that when capital and technology increase",
+      "opts": [
+        "They increase with labor demand",
+        "They substitute for labor demand",
+        "They increase because of an increase in labor demand",
+        "They increase because of a decrease in labor demand"
+      ],
+      "page": 8,
+      "ans": 0,
+      "keyText": "Answer: A",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_30": {
+      "stem": "The competitive equilibrium is the most efficient allocation if",
+      "opts": [
+        "there are no externalities",
+        "there are no income taxes",
+        "there is perfect information",
+        "all of the above"
+      ],
+      "page": 8,
+      "ans": 3,
+      "keyText": "Answer: D",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_31": {
+      "stem": "With a linear production function in labor only, which of the following must be true?",
+      "opts": [
+        "The representative household works as much as possible.",
+        "The representative firm makes large profits.",
+        "The real wage equals total factor productivity.",
+        "The marginal product of labor exceeds the real wage."
+      ],
+      "page": 8,
+      "ans": 2,
+      "keyText": "Answer: C",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_32": {
+      "stem": "At the competitive equilibrium with a positive proportional labor income tax",
+      "opts": [
+        "the real wage after tax exceeds the marginal product of labor.",
+        "the real wage after tax equals the marginal product of labor.",
+        "the real wage after tax is lower than the marginal product of labor.",
+        "We cannot say."
+      ],
+      "page": 9,
+      "ans": 2,
+      "keyText": "Answer: C",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_33": {
+      "stem": "Assume that the representative household has utility represented by U = αlnC + βlnl. This implies that when real wages increase, we expect",
+      "opts": [
+        "Income effects to dominate substitution effects and for employment to rise",
+        "Income effects to be dominated by substitution effects and for employment to rise",
+        "Income effects to exactly offset substitution effects and for employment to be unchanged",
+        "Income effects to dominate substitution effects and for employment to fall"
+      ],
+      "page": 9,
+      "ans": 2,
+      "keyText": "Answer: C",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_34": {
+      "stem": "Which of the following utility functions is most consistent with an observation that rich people in the country of Eudeyland work about the same amount as do the poor?",
+      "opts": [
+        "U = αlnC + βlnl",
+        "U = αC + βl",
+        "U = αC+ βlnl",
+        "U = αlnC + βl"
+      ],
+      "page": 9,
+      "ans": 0,
+      "keyText": "Answer: A",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_35": {
+      "stem": "In the production function Y= zK^(α)N^(β) constant returns to scale will be satisfied when",
+      "opts": [
+        "α+β = 1",
+        "α and β = 1",
+        "α+(1-α)=β",
+        "1+α=β"
+      ],
+      "page": 9,
+      "ans": 0,
+      "keyText": "Answer: A",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_f16_36": {
+      "stem": "In the model from class, an increase in the minimum wage would most likely result in",
+      "opts": [
+        "Unemployment",
+        "Less employment",
+        "Lower MPN",
+        "all of the above"
+      ],
+      "page": 10,
+      "ans": 1,
+      "keyText": "Answer: B",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf"
+    },
+    "m1_s17_1": {
+      "stem": "Assume the Cobb-Douglas production function we have seen in class. If there is an increase in capital stock, we would expect an",
+      "opts": [
+        "Increase in MPK",
+        "Increase in MPN.",
+        "Decrease in MPN.",
+        "No change in MPK."
+      ],
+      "ans": 1,
+      "keyText": "Answer B",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_2": {
+      "stem": "Consider the one-period model from class. A decrease in technology would always be associated with",
+      "opts": [
+        "An increase in GDP.",
+        "An increase in employment.",
+        "A decrease in consumption.",
+        "No change in wage rate."
+      ],
+      "ans": 2,
+      "keyText": "Answer C",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_3": {
+      "stem": "Consider the model from class. According to the model, shocks to preferences cannot be a source for business cycle fluctuations because the model counter-factually predicts",
+      "opts": [
+        "Countercyclical consumption.",
+        "Countercyclical wages.",
+        "Pro-cyclical labor hours.",
+        "Pro-cyclical technology."
+      ],
+      "ans": 1,
+      "keyText": "Answer B",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_4": {
+      "stem": "Based on our one-period model from class, an increase in lump-sum taxes (T) causes",
+      "opts": [
+        "Negative income effects.",
+        "Positive income effects.",
+        "Substitution effects from leisure to consumption",
+        "No effect on the model."
+      ],
+      "ans": 0,
+      "keyText": "Answer A",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_5": {
+      "stem": "In the social planner’s problem with government spending, households will",
+      "opts": [
+        "Work less compared to when there is no government.",
+        "Consume more compared to when there is no government.",
+        "Work more compared to the corresponding competitive equilibrium with proportional income taxes.",
+        "Consume less compared to the corresponding competitive equilibrium with proportional income taxes."
+      ],
+      "ans": 2,
+      "keyText": "Answer C",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_6": {
+      "stem": "In the one-period model, the assumption that everyone would behave the same way under the same circumstance is reflected in",
+      "opts": [
+        "All of the following.",
+        "Real wage equaling MPN.",
+        "The use of a representative consumer.",
+        "The use of a general equilibrium framework."
+      ],
+      "ans": 2,
+      "keyText": "Answer C",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_7": {
+      "stem": "Using the notation from class, all of the following are implications of the utility function defined by U = C+ lnL except that",
+      "opts": [
+        "We know we are on the “good side” of the Laffer Curve.",
+        "We know that, in equilibrium, substitution effects dominate income effects",
+        "We know that the leisure choice will depend on the wage rate.",
+        "These are all consistent with quasi-linear utility."
+      ],
+      "ans": 0,
+      "keyText": "Answer A",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_8": {
+      "stem": "The assumption that leisure is an inferior good implies, all other things being equal, that as lump-sum tax increases, household will choose to have",
+      "opts": [
+        "Lower labor demand.",
+        "Higher labor supply.",
+        "More leisure hours.",
+        "More consumption goods."
+      ],
+      "ans": 2,
+      "keyText": "Answer C",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_9": {
+      "stem": "An increasing returns to scale production function means",
+      "opts": [
+        "F(xK, xN) < xF(K,N)",
+        "F(xK, xN) = xF(K,N)",
+        "F(xK, xN) > xF(K,N)",
+        "F(xK, N) > xF(K,xN)"
+      ],
+      "ans": 2,
+      "keyText": "Answer C",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_10": {
+      "stem": "Which of the following is NOT always true for the perfectly competitive firm?",
+      "opts": [
+        "The firm has 0 economic profit.",
+        "The firm pays a wage equaling marginal product of labor (MPN).",
+        "The firm pays a wage equaling technology (z).",
+        "The firm chooses production inputs to maximize profit."
+      ],
+      "ans": 2,
+      "keyText": "Answer C",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_11": {
+      "stem": "In the general equilibrium framework of the one-period model, we always have",
+      "opts": [
+        "C+ G = Y –T",
+        "U = lnC + lnL",
+        "C+ L = Y",
+        "Ns = Nd"
+      ],
+      "ans": 3,
+      "keyText": "Answer D",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_12": {
+      "stem": "A Cobb-Douglas production function, Y = z F(K,N), implies",
+      "opts": [
+        "Increasing returns to labor.",
+        "A curve-shaped PPF.",
+        "MRS_(l,C) = MRT_(l,C)",
+        "MP_(N) increases as N increases."
+      ],
+      "ans": 1,
+      "keyText": "Answer B",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_13": {
+      "stem": "Which of the following statement is true?",
+      "opts": [
+        "The social planner’s solution is always Pareto optimal.",
+        "The competitive equilibrium is always Pareto optimal.",
+        "The social planner’s solution is always the Nash equilibrium.",
+        "The competitive equilibrium is always efficient."
+      ],
+      "ans": 0,
+      "keyText": "Answer A",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_14": {
+      "stem": "Which of the following is NOT consistent with the data we see in class?",
+      "opts": [
+        "There is no conclusive correlation between US tax rates and US labor hours worked at the extensive margin.",
+        "Americans work more hours on average compared to the Europeans.",
+        "Americans have lower labor force participation rates than most countries in Europe.",
+        "All of the above."
+      ],
+      "ans": 2,
+      "keyText": "Answer C",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_15": {
+      "stem": "If we want to test the co-movements between economic variables, it’s best to use",
+      "opts": [
+        "The trends in economic data.",
+        "The cycles in economic data.",
+        "The standard deviations in economic data.",
+        "All of the above work equally well."
+      ],
+      "ans": 1,
+      "keyText": "Answer B",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_16": {
+      "stem": "If the household’s indifference curve becomes steeper, it implies that",
+      "opts": [
+        "The household prefers more leisure to consumption.",
+        "The household prefers more consumption to leisure.",
+        "The household has a log-log utility function.",
+        "The household is not maximizing utility."
+      ],
+      "ans": 0,
+      "keyText": "Answer A",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_17": {
+      "stem": "Which of the following is NOT always true in a competitive equilibrium model?",
+      "opts": [
+        "Firms maximize profits.",
+        "Households maximize utility.",
+        "Governments impose lump-sum taxes.",
+        "Consumption is equal to the sum of labor and non-labor income."
+      ],
+      "ans": 2,
+      "keyText": "Answer C",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_18": {
+      "stem": "The Social Planner would never choose to use marginal income taxes to pay for Government spending because",
+      "opts": [
+        "They decrease government spending.",
+        "They are efficient.",
+        "They do not maximize firm’s profit.",
+        "They distort labor supply."
+      ],
+      "ans": 3,
+      "keyText": "Answer D",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_19": {
+      "stem": "The competitive equilibrium solution under proportional tax rates is not the same as the social planner’s solution because",
+      "opts": [
+        "MRS_(l,C) ≠ MRS_(C,l)",
+        "MRT_(l,C) ≠ MRS_(l,C)",
+        "MRT_(l,C) ≠ MP_(N)",
+        "MP_(N) ≠ W"
+      ],
+      "ans": 1,
+      "keyText": "Answer B",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_20": {
+      "stem": "In our one-period model from class, if government spending decreases, it is most plausible that the model will predict",
+      "opts": [
+        "Increased consumption, increased output, decreased employment, decreased wage rate.",
+        "Increased taxes, decreased output, increased employment, increased wage rate.",
+        "Decreased consumption, increased output, increased employment, decreased wage rate.",
+        "Decreased taxes, decreased output, decreased employment, increased wage rate."
+      ],
+      "ans": 3,
+      "keyText": "Answer D",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_21": {
+      "stem": "In our one-period model from class, if the household utility function changes from: U = 0.9 lnC + 0.1 lnL to : U = 0.1 lnC + 0.9 lnL, it is most likely to result in",
+      "opts": [
+        "Increased consumption, increased leisure, decreased wage, decreased output.",
+        "Decreased consumption, decreased leisure, increased wage, increased output.",
+        "Decreased consumption, increased leisure, increased wage, decreased output.",
+        "Increased consumption, decreased leisure, decreased wage, increased output."
+      ],
+      "ans": 2,
+      "keyText": "Answer C",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_22": {
+      "stem": "Which of the following gives a direct measure of Total Factor Productivity?",
+      "opts": [
+        "The GDP growth rate.",
+        "The marginal product of labor.",
+        "The unemployment rate.",
+        "The Solow residual."
+      ],
+      "ans": 3,
+      "keyText": "Answer D",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_23": {
+      "stem": "The US tax rate has been decreasing during the last several decades. What would you expect to see in the labor market with respect to the intensive margin?",
+      "opts": [
+        "Participation rate should increase if the utility function is quasi-linear",
+        "Participation rate should increase if the utility function is Cobb-Douglas",
+        "Average working hours should increase if the utility function is quasi-linear",
+        "Average working hours should increase if the utility function is Cobb-Douglas"
+      ],
+      "ans": 2,
+      "keyText": "Answer C",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_24": {
+      "stem": "If the economy is on the “good side” of the Laffer curve (positive slope range of the curve) then what is the most likely household utility function?",
+      "opts": [
+        "Utility function is quasi-linear (U= C+ln(L) )",
+        "Utility function is Cobb-Douglas (U= Ln(C)+ln(L) )",
+        "We can’t tell anything about the utility function",
+        "The indifference curves are positively sloped"
+      ],
+      "ans": 2,
+      "keyText": "Answer C",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_25": {
+      "stem": "In the model studied in class with a Cobb-Douglas utility function ( U=Ln(C)+Ln(L) ), which of the following business cycle facts cannot be explained by technology shocks?",
+      "opts": [
+        "Corr(GDP,z) > 0",
+        "Corr(GDP,C) > 0",
+        "Corr(GDP,w) > 0",
+        "Corr(GDP,N) > 0"
+      ],
+      "ans": 3,
+      "keyText": "Answer D",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_26": {
+      "stem": "If indifference curves get steeper, it means that:",
+      "opts": [
+        "Households are willing to give up more leisure for consumption",
+        "Households now earn higher real wages.",
+        "Households are willing to give up more consumption for leisure.",
+        "Households now earn lower real wages."
+      ],
+      "ans": 2,
+      "keyText": "Answer C",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_27": {
+      "stem": "In the model studied in class with a quasi-linear utility function (U=C+Ln(L) ), which of the following statements is NOT correct?",
+      "opts": [
+        "When proportional taxes increase, the substitution effect is larger than the income effect",
+        "When proportional taxes decrease, the substitution effect is larger than the income effect",
+        "When proportional taxes decrease, people work more.",
+        "When proportional taxes increase, the effect on consumption is ambiguous"
+      ],
+      "ans": 3,
+      "keyText": "Answer D",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_28": {
+      "stem": "Which of the following statements is true?",
+      "opts": [
+        "When there are externalities, the social planner’s outcome is not efficient",
+        "When there are externalities, the First Welfare Theorem is not satisfied.",
+        "When there are lump sum taxes, the competitive equilibrium is not efficient",
+        "When there are lump sum taxes, the social planner’s outcome is not efficient"
+      ],
+      "ans": 1,
+      "keyText": "Answer B",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_29": {
+      "stem": "If the production function exhibits Constant Returns to Scale, it means that:",
+      "opts": [
+        "There are diminishing returns to labor",
+        "There are constant returns to capital",
+        "There are constant returns to labor",
+        "None of the above"
+      ],
+      "ans": 3,
+      "keyText": "Answer D",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_30": {
+      "stem": "Assume the model studied in class. Which of the following business cycle facts is well explained by an increase in government spending?",
+      "opts": [
+        "Corr(GDP,P) > 0",
+        "Corr(GDP,N) > 0",
+        "Corr(GDP,C) > 0",
+        "Corr(GDP,w) > 0"
+      ],
+      "ans": 1,
+      "keyText": "Answer B",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_31": {
+      "stem": "In the following model: 1) U= Ln(C) +Ln(l) ; 2) Y = zN ; 3) C=wN(1-t) + π ; 4) h=l+N Which of the following statements is true?",
+      "opts": [
+        "Labor is increasing with wages",
+        "The substitution effect is larger than the income effect",
+        "The income effect is larger than the substitution effect",
+        "The substitution effect is equal to the income effect"
+      ],
+      "ans": 3,
+      "keyText": "Answer D",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_32": {
+      "stem": "In the following model: 1) U = C +Ln(l) ; 2) Y = zN ; 3) C=wN(1-t) + π ;4) h=l+N What is the maximum consumption that households can choose?",
+      "opts": [
+        "π",
+        "w+π",
+        "w(1-t)+ π",
+        "w(1-t)h+ π"
+      ],
+      "ans": 3,
+      "keyText": "Answer D",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_33": {
+      "stem": "In the following model: 1) U = C +Ln(l) ; 2) Y = zN ; 3) C=wN(1-t) + π ;4) h=l+N Which of the following statements is true?",
+      "opts": [
+        "Consumption in the competitive equilibrium is equal to the social planner’s solution",
+        "Consumption in the competitive equilibrium is lower than in the social planner’s solution",
+        "Consumption in the competitive equilibrium is higher than in the social planner’s solution",
+        "We cannot know whether consumption in the competitive equilibrium is lower or higher than in the social planner’s solution."
+      ],
+      "ans": 1,
+      "keyText": "Answer B",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_34": {
+      "stem": "Consider the social planner’s problem. Which of the following statements is true?",
+      "opts": [
+        "When there are externalities, the social planner’s solution is not Pareto efficient.",
+        "When there are proportional taxes, the social planner’s solution is not Pareto efficient.",
+        "When firms have monopolistic power, the social planner’s solution is not Pareto efficient.",
+        "None of the above."
+      ],
+      "ans": 3,
+      "keyText": "Answer D",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_35": {
+      "stem": "If the assumption “Diversity has value” is violated, the effects on indifference curves would be:",
+      "opts": [
+        "Indifference curves would be positively sloped",
+        "The MRS wouldn’t be decreasing as we increase leisure.",
+        "The MRS would be decreasing as we increase leisure.",
+        "The indifference curves would cross."
+      ],
+      "ans": 1,
+      "keyText": "Answer B",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_36": {
+      "stem": "Consider the model studied in class. If the economy is in a recession, what policy would be most effective in increasing both GDP and employment?",
+      "opts": [
+        "Increase in government spending (G)",
+        "Decrease in lump sum taxes (T)",
+        "Increase in proportional taxes",
+        "None of the above would be effective"
+      ],
+      "ans": 0,
+      "keyText": "Answer A",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_s17_37": {
+      "stem": "Consider the model studied in class. Suppose that we observe in the data that real wages are going up. Which of the following shocks could NOT explain this information?",
+      "opts": [
+        "Decrease in government spending (G)",
+        "Decrease in lump sum taxes (T)",
+        "More preferences toward leisure",
+        "Indifference curves are flatter"
+      ],
+      "ans": 3,
+      "keyText": "Answer D",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx"
+    },
+    "m1_f19_1": {
+      "stem": "What color is your exam booklet? (What color is this page?)",
+      "opts": [
+        "White",
+        "Yellow",
+        "Green",
+        "Pink"
+      ],
+      "page": 2,
+      "ans": 1,
+      "keyText": "Answer: B",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_2": {
+      "stem": "The property of diminishing marginal rate of substitution follows from the property that the indifference curve is",
+      "opts": [
+        "Downward-sloping",
+        "Bowed in toward the origin",
+        "Rankable",
+        "All of these things"
+      ],
+      "page": 2,
+      "ans": 1,
+      "keyText": "Answer: B",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_3": {
+      "stem": "If a forecaster uses a log-linear utility function to make a labor market forecast over (for each of) the next twelve months, the forecaster is likely going to",
+      "opts": [
+        "Over-estimate the increase in labor supply in response to a rising real wage",
+        "Under-estimate the increase in labor supply in response to a rising real wage",
+        "Over-estimate the decrease in labor supply in response to a rising real wage",
+        "Under-estimate the decrease in labor supply in response to a rising real wage"
+      ],
+      "page": 2,
+      "ans": 1,
+      "keyText": "Answer: B",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_4": {
+      "stem": "Which effect (income or substitution) always dominates when there is a change in the lump-sum tax?",
+      "opts": [
+        "Income effect dominates",
+        "Substitution effect dominates",
+        "The two effects cancel out",
+        "We cannot be sure which effect is larger"
+      ],
+      "page": 2,
+      "ans": 0,
+      "keyText": "Answer: A",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_5": {
+      "stem": "If wages remain constant over time, but we observe people working less, what can we say about the MRS_(l,c)? (HINT: think about marginal utilities)",
+      "opts": [
+        "The MRS must have increased",
+        "The MRS must have decreased",
+        "The MRS must have remained the same",
+        "We cannot be sure what happened to the MRS"
+      ],
+      "page": 2,
+      "ans": 0,
+      "keyText": "Answer: A",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_6": {
+      "stem": "If there is an increase in TFP, z, which effect (substitution vs income) will dominate for leisure?",
+      "opts": [
+        "The income effect will always dominate, and leisure will increase",
+        "The substitution effect will always dominate, and leisure will decrease",
+        "The substitution effect will always dominate, and leisure will increase",
+        "We cannot say what the effect on leisure will be without knowing more about preferences"
+      ],
+      "page": 3,
+      "ans": 3,
+      "keyText": "Answer: D",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_7": {
+      "stem": "Why is it impossible for a consumer to have MRS(l,c)=MU(l)/MU(c)>w(1-t)?",
+      "opts": [
+        "This can only happen if a consumer is on a higher indifference curve than is feasible with the current budget constraint",
+        "The consumer could increase utility by increasing consumption since an additional unit of consumption is worth more than the after-tax real wage",
+        "The relationship fails to take into account lump sum taxes and government spending which impact a consumer’s optimal decision",
+        "The consumer could increase utility by increasing leisure since an additional hour of leisure is worth more than the after-tax real wage"
+      ],
+      "page": 3,
+      "ans": 3,
+      "keyText": "Answer: D",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_8": {
+      "stem": "Suppose a firm originally solves Π = zN−wN. There is a technology shock and z changes to z’. What happens to firm profits in equilibrium?",
+      "opts": [
+        "Profits increase",
+        "Profits decrease",
+        "Profits are unchanged",
+        "We do not know"
+      ],
+      "page": 3,
+      "ans": 2,
+      "keyText": "Answer: C",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_9": {
+      "stem": "Consider the model from class. According to the model, shocks to preferences cannot be a source for business cycle fluctuations because the model counter-factually predicts",
+      "opts": [
+        "Countercyclical consumption.",
+        "Countercyclical wages.",
+        "Pro-cyclical labor hours.",
+        "Pro-cyclical technology."
+      ],
+      "page": 3,
+      "ans": 1,
+      "keyText": "Answer: B",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_10": {
+      "stem": "In the general equilibrium model from Chapter 5, the Production Possibility Frontier is bowed because of",
+      "opts": [
+        "The assumption of diminishing returns to labor.",
+        "The assumption that government spending doesn’t affect output.",
+        "The assumption that technological progress is exogenous.",
+        "All of the above."
+      ],
+      "page": 3,
+      "ans": 0,
+      "keyText": "Answer: A",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_11": {
+      "stem": "If firms are perfectly competitive, the wage rate w will be equal to:",
+      "opts": [
+        "The number of hours worked, divided by total hours",
+        "The marginal productivity of labor",
+        "The marginal productivity of capital",
+        "We don’t have enough information to say what w will be"
+      ],
+      "page": 4,
+      "ans": 1,
+      "keyText": "Answer: B",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_12": {
+      "stem": "Suppose Anne drinks a lot of coffee, which increases her daily hours from 16 productive hours in a day to 20 productive hours in a day (h rises from 16 to 20). Her preferences are captured by U = .9ln(l) + .6ln(c) How does her demand for leisure change?",
+      "opts": [
+        "No change",
+        "We need more information",
+        "Leisure decreases",
+        "Leisure increases"
+      ],
+      "page": 4,
+      "ans": 3,
+      "keyText": "Answer: D",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_13": {
+      "stem": "In the one-period model, the assumption that everyone would behave the same way under the same circumstance is reflected in",
+      "opts": [
+        "All of the following.",
+        "Real wage equaling MPN.",
+        "The use of a representative consumer.",
+        "The use of a general equilibrium framework."
+      ],
+      "page": 4,
+      "ans": 2,
+      "keyText": "Answer: C",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_14": {
+      "stem": "In our one-period model from class, if government spending decreases, it is most plausible that the model will predict",
+      "opts": [
+        "Increased consumption, increased output, decreased employment, decreased wage rate.",
+        "Increased taxes, decreased output, increased employment, increased wage rate.",
+        "Decreased consumption, increased output, increased employment, decreased wage rate.",
+        "Decreased taxes, decreased output, decreased employment, increased wage rate."
+      ],
+      "page": 4,
+      "ans": 3,
+      "keyText": "Answer: D",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_15": {
+      "stem": "In the general equilibrium model from Chapter 5, an increase in total factor productivity shifts the PPF",
+      "opts": [
+        "Upward, but does not change its slope.",
+        "Upward, and also changes its slope.",
+        "Downward, but does not change its slope.",
+        "Downward, and also changes its slope."
+      ],
+      "page": 4,
+      "ans": 1,
+      "keyText": "Answer: B",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_16": {
+      "stem": "Which of the following statements best describes trends in US GDP from the mid-1980s onward?",
+      "opts": [
+        "Trend GDP growth is higher and recessions have been more common relative to before 1985",
+        "Trend GDP growth is higher and recessions have been less common relative to before 1985",
+        "Trend GDP growth is lower and recessions have been more common relative to before 1985",
+        "Trend GDP growth is lower and recessions have been less common relative to before 1985"
+      ],
+      "page": 5,
+      "ans": 3,
+      "keyText": "Answer: D",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_17": {
+      "stem": "Which of the following statements is true of the models that we have seen in Econ 302?",
+      "opts": [
+        "The Social Planner and Representative Household both maximize the same utility function",
+        "The Social Planner maximizes efficiency, whereas the Representative Household maximizes utility",
+        "The Social Planner and Representative Household have different preferences because the Social Planner cares about everyone in the economy",
+        "The Social Planner and the Representative Household both maximize the same utility function if and only if the welfare theorems hold"
+      ],
+      "page": 5,
+      "ans": 0,
+      "keyText": "Answer: A",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_18": {
+      "stem": "Which of the following is used in the Social Planner’s solution?",
+      "opts": [
+        "(b/a) · (C/l) = z",
+        "(b/a) · (C/l) = w(1−t)",
+        "(a/b) · (l/C) = z",
+        "(b/a) · (l/C) = w(1−t)"
+      ],
+      "page": 5,
+      "ans": 0,
+      "keyText": "Answer: A",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf",
+      "scenario": "The next three questions refer to the following economic environment:\nU = a ln(C) + b ln(l)\nC =w(1-t)(h-l) + π\nπ = zN−wN\nY = zN= C + G"
+    },
+    "m1_f19_19": {
+      "stem": "Which of the following is used in the market solution?",
+      "opts": [
+        "0 = MRS",
+        "0 = U’(l)",
+        "0 = π = C +G",
+        "These are all used to find the market equilibrium"
+      ],
+      "page": 5,
+      "ans": 1,
+      "keyText": "Answer: B",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf",
+      "scenario": "The next three questions refer to the following economic environment:\nU = a ln(C) + b ln(l)\nC =w(1-t)(h-l) + π\nπ = zN−wN\nY = zN= C + G"
+    },
+    "m1_f19_20": {
+      "stem": "Which of the following is the market solution?",
+      "opts": [
+        "[b/(a+b)] [h−G/z] = l",
+        "[b/(a+b)] [h−G/[w(1−t)]] = l",
+        "[b/(a+b)] [h] = l",
+        ".5[h] = l"
+      ],
+      "page": 6,
+      "ans": 2,
+      "keyText": "Answer: C",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf",
+      "scenario": "The next three questions refer to the following economic environment:\nU = a ln(C) + b ln(l)\nC =w(1-t)(h-l) + π\nπ = zN−wN\nY = zN= C + G"
+    },
+    "m1_f19_21": {
+      "stem": "If there is an increase in the real wage rate, has leisure gotten more or less “costly” relative to consumption? (HINT: when I take an extra hour of leisure, what am I giving up?)",
+      "opts": [
+        "Leisure has gotten less costly relative to consumption",
+        "Leisure has gotten more costly relative to consumption",
+        "There is no change in how costly leisure is relative to consumption",
+        "The effect is ambiguous"
+      ],
+      "page": 6,
+      "ans": 1,
+      "keyText": "Answer: B",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_22": {
+      "stem": "If there is an increase in the proportional tax rate, t, what can we say happens to our new optimal choice of consumption?",
+      "opts": [
+        "Our choice of consumption is higher than it was before the tax increase",
+        "Our choice of consumption is lower than it was before the tax increase",
+        "Our choice of consumption is unchanged",
+        "The effect of the tax on consumption is ambiguous because the tax is proportional"
+      ],
+      "page": 6,
+      "ans": 1,
+      "keyText": "Answer: B",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_23": {
+      "stem": "Based on the language, theory, and data seen in class, which type of utility function would best be used if one were to be making a long-run forecast for the economy?",
+      "opts": [
+        "One that assumes that income and substitution effects do not exist",
+        "One that assumes that income and substitution effects cancel each other out",
+        "One that assumes that income effects are larger than (dominate) substitution effects",
+        "One that assumes that incomes effects are smaller than (are dominated by) substitution effects"
+      ],
+      "page": 6,
+      "ans": 2,
+      "keyText": "Answer: C",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_24": {
+      "stem": "Real wages and hours worked are _____________ correlated over short periods of time and _____________ correlated over long periods of time.",
+      "opts": [
+        "Positively; positively",
+        "Positively; negatively",
+        "Negatively; positively",
+        "Negatively; negatively"
+      ],
+      "page": 6,
+      "ans": 1,
+      "keyText": "Answer: B",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_25": {
+      "stem": "Loosely defined, what does the household problem represent? In other words, what are consumers or households choosing?",
+      "opts": [
+        "A consumer maximizes their consumption and leisure allocations",
+        "A consumer chooses the optimal allocation of leisure and consumption within their budget",
+        "A consumer maximizes their production of consumption goods subject to technology constraints",
+        "None of the above"
+      ],
+      "page": 7,
+      "ans": 1,
+      "keyText": "Answer: B",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_26": {
+      "stem": "The assumption that leisure is a normal good implies, all other things being equal, that as real wages increase, household will choose to have",
+      "opts": [
+        "Lower labor demand.",
+        "Higher labor supply.",
+        "More leisure hours.",
+        "More consumption goods."
+      ],
+      "page": 7,
+      "ans": 2,
+      "keyText": "Answer: C",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_27": {
+      "stem": "A constant returns to scale production function means",
+      "opts": [
+        "F(xK, N) = F(K,xN)",
+        "F(xK, xN) = xF(K,N)",
+        "F(xK, xN) = F(K,N)",
+        "All of the above"
+      ],
+      "page": 7,
+      "ans": 1,
+      "keyText": "Answer: B",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_28": {
+      "stem": "What type of relationship between the proportional tax rate t, and the optimal choice of leisure L* is necessary to generate the typical hump-shaped Laffer Curve?",
+      "opts": [
+        "The optimal L* must be independent of the tax rate t",
+        "The optimal L* must be decreasing when t increases",
+        "The optimal L* must be increasing when t increases",
+        "Proportional taxes will always generate a hump-shaped Laffer Curve, regardless of the optimal L*"
+      ],
+      "page": 7,
+      "ans": 2,
+      "keyText": "Answer: C",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_29": {
+      "stem": "In 2017 the Trump administration passed a significant corporate profits tax cut that affects the non-labor incomes of many US households. Graphically in the chapter 4 model this would be represented by",
+      "opts": [
+        "A shift out and to the right of the budget constraint; no change in slope",
+        "A shift in and to the left of the budget constraint; no change in slope",
+        "A shift out and to the right of a steeper budget constraint",
+        "A shift in and to the left of a flatter budget constraint"
+      ],
+      "page": 7,
+      "ans": 0,
+      "keyText": "Answer: A",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_30": {
+      "stem": "Suppose preferences are given by U = ln( C ) + ln( L ), and there are no taxes. If we introduce a proportional tax rate t, what will happen to our optimal choice of leisure, L*?",
+      "opts": [
+        "L* will decrease because income effects will dominate substitution effects",
+        "L* will increase because substitution effects will dominate income effects",
+        "L* will be unchanged because income and substitution effects will offset perfectly",
+        "The change in L* is ambiguous"
+      ],
+      "page": 7,
+      "ans": 2,
+      "keyText": "Answer: C",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_31": {
+      "stem": "Suppose there is an increase in total factor productivity. How does this change MPK and MPN in the firm’s problem if production is Constant Returns to Scale?",
+      "opts": [
+        "MPK and MPN increases",
+        "MPK increases and MPN unchanged",
+        "MPK unchanged and MPN increases",
+        "None of the above"
+      ],
+      "page": 8,
+      "ans": 0,
+      "keyText": "Answer: A",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_32": {
+      "stem": "If you saw an economic forecast for a large immediate increase in labor force participation rates in response to a current negative shock, you could reasonably infer that that the forecaster had assumed that",
+      "opts": [
+        "Income effects would dominate (be larger than) substitution effects in the short run",
+        "Income effects would be equal to substitution effects in the short run",
+        "Income effects would be dominated by (be smaller than) substitution effects in the short run",
+        "There weren’t either income or substitution effects from the negative shock"
+      ],
+      "page": 8,
+      "ans": 0,
+      "keyText": "Answer: A",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_33": {
+      "stem": "According to our Chapter 5 model, which of the following would (all other things being equal) lead to an increase in Consumption spending?",
+      "opts": [
+        "A steeper IC",
+        "A steeper PPF",
+        "A bigger lump-sum tax",
+        "All of the above"
+      ],
+      "page": 8,
+      "ans": 1,
+      "keyText": "Answer: B",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_34": {
+      "stem": "Assume government cuts payroll taxes and it leads to an increase in tax revenue collections. We would know from this that",
+      "opts": [
+        "Substitution effects dominate income effects",
+        "Income effects dominate substitution effects",
+        "Markets are efficient",
+        "None of these things can be known with certainty from the information supplied"
+      ],
+      "page": 8,
+      "ans": 0,
+      "keyText": "Answer: A",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_35": {
+      "stem": "In the partial equilibrium model from Chapter 4, if dividend income (π) increases, the following does not happen:",
+      "opts": [
+        "The consumer chooses to consume more leisure.",
+        "The consumer chooses to consume more consumption goods.",
+        "The budget constraint shifts to the right.",
+        "The substitution effect exceeds the income effect."
+      ],
+      "page": 8,
+      "ans": 3,
+      "keyText": "Answer: D",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_36": {
+      "stem": "Military spending, environmental protection, education, immunizations, roadwork, and rule of law are all obvious areas of public goods provision where government can correct a private market failure. The language and theory of the class tells us that",
+      "opts": [
+        "Government involvement in these market can be welfare-improving",
+        "Government involvement in these markets will likely not bring us to the efficient equilibrium",
+        "Real-world governments will likely use inefficient means to pay for these services",
+        "All of these things."
+      ],
+      "page": 9,
+      "ans": 3,
+      "keyText": "Answer: D",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_37": {
+      "stem": "Which of the following statements are true about the Marginal Rate of Substitution between leisure and consumption (MRS_(l,c))?",
+      "opts": [
+        "At the consumer’s optimal choice of consumption and leisure, the MRS must equal the (negative) slope of their budget constraint",
+        "The MRS_(l,c) represents the consumer’s willingness to substitute leisure for consumption",
+        "The MRS_(l,c) is equal to the (negative) slope of the indifference curve",
+        "All of the above are true"
+      ],
+      "page": 9,
+      "ans": 3,
+      "keyText": "Answer: D",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_38": {
+      "stem": "Suppose there is an increase in government spending G. After the increase, will GDP be greater if we fund the spending with a lump-sum tax T, or a proportional tax with rate t?",
+      "opts": [
+        "GDP will be greater if we fund the spending with a lump-sum tax",
+        "GDP will be greater if we fund the spending with a proportional tax",
+        "GDP will be the same regardless of how we fund the spending",
+        "We cannot say which case GDP will be larger in without knowing the representative consumer’s utility function"
+      ],
+      "page": 9,
+      "ans": 0,
+      "keyText": "Answer: A",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_39": {
+      "stem": "Which of the following statements is NOT consistent with the data seen in class?",
+      "opts": [
+        "Americans on average work more than do people with similar incomes in other countries",
+        "Paid maternity leave policies seem to keep more women in the labor force after having children",
+        "US population growth has been trending downward for decades and is now around 0.6% per year",
+        "The long economic expansion since the end of the Great Recession has driven US unemployment rates to zero."
+      ],
+      "page": 9,
+      "ans": 3,
+      "keyText": "Answer: D",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f19_40": {
+      "stem": "Consider the one-period model from class. A decrease in technology would always be associated with",
+      "opts": [
+        "An increase in GDP.",
+        "An increase in employment.",
+        "A decrease in consumption.",
+        "No change in wage rate."
+      ],
+      "page": 9,
+      "ans": 2,
+      "keyText": "Answer: C",
+      "wordingSource": "Old Midterm 1/Econ 302 f19_v2 mid1.pdf"
+    },
+    "m1_f16sa_1": {
+      "stem": "(8 points) What is the market (competitive) equilibrium value for leisure in this model? Show your work (Hint: most of the points come from how you solve the problem not whether your final solution is correct.)",
+      "scenario": "Assume the following model economy:\n1) U = αlnC + βlnl\n2) Y = zN\n3) C=wN(1-t) + π\n4) h=N+l\n5) π= Y – wN\nwhere the variables have the same meanings and definitions that we’ve\nused throughout the term.",
+      "officialRubric": "(8 points) What is the market (competitive) equilibrium value for leisure in this model? Show your work (Hint: most of the points come from how you solve the problem not whether your final solution is correct.)\n1 point: Take first derivative of profits with respect to N, set equal to zero\n1 point: solve for w\n1 point: Substitute for w in the budget constraint and pi=0\n1 point: Replace N with h-leisure\n1 point: solve for C\n1 point: Substitute for C in the utility function\n1 point: Maximize utility—first derivative with respect to leisure = 0\n1 point: Solve for leisure\nIf do it right but mess up the math, deduct 1 point total for minor math errors, if can’t remember to do the firm’s maximization problem and therefore can’t do the last two steps, deduct 4 total for the first 3 and last 2 point allocations (rather than deducting 5)",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf",
+      "keySource": "Old Midterm 1/First Exam Answer Key f16 Version1.docx"
+    },
+    "m1_f16sa_2": {
+      "stem": "(2 points) Would the Social Planner’s solution to the same problem you did in question 1 result in a higher or lower level of employment? Explain why that is, without doing any math.",
+      "scenario": "Assume the following model economy:\n1) U = αlnC + βlnl\n2) Y = zN\n3) C=wN(1-t) + π\n4) h=N+l\n5) π= Y – wN\nwhere the variables have the same meanings and definitions that we’ve\nused throughout the term.",
+      "officialRubric": "(2 points) Would the Social Planner’s solution to the same problem you did in question 1 result in a higher or lower level of employment? Explain why that is, without doing any math.\n1 point The social planner will use lump-sum taxation, which, unlikely the competitive solution, has no substitution effect. The pure income effect of lump-sum taxes causes leisure to fall (it is normal) (they can say won’t distort labor through taxation so L will be higher for full credit here too)\n{Note: they could try to do this graphically, but it would be very tough using the generally equilibrium format and we haven’t shown that in class; I think the most likely effort would be to use the chapter 4 solution and compare a lump sum tax to a proportional one. In truth the graph would be ambiguous so if they go that route they can get full credit here if they discuss income vs substitution effects even if not in the next part}\n1 point: so employment rises relative to the market solution.\n{If they went the graph route and didn’t explain WHY it must be that employment rises, then deduct 1⁄2 point. The explanation could be done tying down ty=T on the graph, but again seems unlikely to happen}",
+      "wordingSource": "Old Midterm 1/First Exam_Part1_Ver1_302_f16.pdf",
+      "keySource": "Old Midterm 1/First Exam Answer Key f16 Version1.docx"
+    },
+    "m1_f16sa_3": {
+      "stem": "(2 points) As we’ve seen in lecture, there is ambiguity in the data about whether real wages or labor taxes affect the labor supply decision. A. Describe the data that we’ve seen in class and in the textbook that suggests that labor supply is affected by the level of income taxes (proportional labor taxes). B. Based on the theory and discussion in class, give a brief reason to be skeptical about the data you describe in part a.",
+      "scenario": "",
+      "officialRubric": "(2 points) As we’ve seen in lecture, there is ambiguity in the data about whether real wages or labor taxes affect the labor supply decision.\nDescribe the data that we’ve seen in class and in the textbook that suggests that labor supply is affected by the level of income taxes (proportional labor taxes).\n1 point: US proportional labor taxes are lower than in Europe, and we work more than they do, which is consistent with leisure rising (labor falling) as tax rates go up.\nBased on the theory and discussion in class, give a brief reason to be skeptical about the data you describe in part a.\n1 point: This may also be the result of legal institutions in Europe requiring more vacation days than in the US or it could be the result of cultural differences or they could point out that within the US there have been large changes in real wages and in marginal income tax rates without noticeable changes in either hours worked or male participation rates.",
+      "wordingSource": "Old Midterm 1/First Exam_Part2_Ver1_302_f16.pdf",
+      "keySource": "Old Midterm 1/First Exam Answer Key f16 Version1.docx"
+    },
+    "m1_f16sa_4": {
+      "stem": "(3 points) These questions will ask about how the Scientific Method is used to evaluate and develop models of the economy. A. Why do economists look at correlations between pieces of economic data? Explain why they are useful statistics. B. How do economists use economic models to get model predictions that can be compared to the correlations in the data? C. Explain why “shocks” to the demand side of our one-period model (preferences or Government) are never going to explain all the key business cycle statistics we’ve seen in class.",
+      "scenario": "",
+      "officialRubric": "(3 points) These questions will ask about how the Scientific Method is used to evaluate and develop models of the economy.\nWhy do economists look at correlations between pieces of economic data? Explain why they are useful statistics.\n1 point: There are common relationships between variables that exist across all business cycles, even though plausibly each of the many cycles may have been caused for different reasons. Those correlations are therefore stable and our models should be able to replicate them no matter what is going on.\nHow do economists use economic models to get model predictions that can be compared to the correlations in the data?\n1 point: We can’t get ‘correlations’ between equations because equations don’t move. But we can look at first derivatives to see how endogenous variables defined at the equilibrium respond to changes in exogenous variables to see if the size of correlations is roughly the same as in the data.\nExplain why “shocks” to the demand side of our one-period model (preferences or Government) are never going to explain all the key business cycle statistics we’ve seen in class.\n1 point: Real wages are procyclical in the data. The only way for the real wage to rise as GDP rises in the model is if productivity has increased, and so the only way to get real wages to be procyclical is from a productivity shock, not a preference change or change in Government/taxes.",
+      "wordingSource": "Old Midterm 1/First Exam_Part2_Ver1_302_f16.pdf",
+      "keySource": "Old Midterm 1/First Exam Answer Key f16 Version1.docx"
+    },
+    "m1_f16sa_5": {
+      "stem": "(3 points) What is your least favorite assumption in the model and why is it your least favorite assumption? How does that assumption affect the model results? Note how many points this is worth, so treat the question seriously!",
+      "scenario": "",
+      "officialRubric": "(3 points) What is your least favorite assumption in the model and why is it your least favorite assumption? How does that assumption affect the model results? Note how many points this is worth, so treat the question seriously!\n1 point for the assumption\n1 point for why it is the least favorite\n1 point for how that assumption affects the model results",
+      "wordingSource": "Old Midterm 1/First Exam_Part2_Ver1_302_f16.pdf",
+      "keySource": "Old Midterm 1/First Exam Answer Key f16 Version1.docx"
+    },
+    "m1_s17sa_1": {
+      "stem": "(2 points) When solving for the firm’s equilibrium labor input decision, we set a first derivative equal to zero. What derivative from what equation? What is the economic logic behind using the value of zero? Explain in words.",
+      "scenario": "Assume the following model economy:\n1) U = .5lnC + .5lnl\n2) Y = zK^(0.6) N^(0.4)\n3) C=wN(1-t) + π\n4) 16=N+l\n5) π= Y – wN\nwhere the variables have the same meanings and definitions that we’ve used throughout the term.",
+      "officialRubric": "(2 points) When solving for the firm’s equilibrium labor input decision, we set a first derivative equal to zero. What derivative from what equation? What is the economic logic behind using the value of zero? Explain in words.\n1 point: If the firm is maximizing profits, then no marginal change will either increase or decrease profits, so there is no reason for the firm to leave that point and it is an equilibrium\n1 point: Thus the derivative is the first derivative of the profit equation with respect to the only choice variable, which is N.",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx",
+      "keySource": "Old Midterm 1/mid1_version1_AnswerKey.docx"
+    },
+    "m1_s17sa_2": {
+      "stem": "(2 points) Solve the firm’s profit maximization problem for a wage-taking, perfectly-competitive firm. Express the equilibrium value of N=N* as a function of exogenous variables.",
+      "scenario": "Assume the following model economy:\n1) U = .5lnC + .5lnl\n2) Y = zK^(0.6) N^(0.4)\n3) C=wN(1-t) + π\n4) 16=N+l\n5) π= Y – wN\nwhere the variables have the same meanings and definitions that we’ve used throughout the term.",
+      "officialRubric": "(2 points) Solve the firm’s profit maximization problem for a wage-taking, perfectly-competitive firm. Express the equilibrium value of N=N* as a function of exogenous variables.\n1⁄2 point substitute Equation (2) into Equation (5)\n1 point Solve for w = MPN = .4zK^(.6) N^(-.6) (only give 1⁄2 point if just know that w=MPN)\n1⁄2 point:\nN^(.6)w = .4zK^(.6)\nN* = {.4zK^(.6)w^(-1)}^((1/.6))",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx",
+      "keySource": "Old Midterm 1/mid1_version1_AnswerKey.docx"
+    },
+    "m1_s17sa_3": {
+      "stem": "(1 point) Either using economic logic or making reference to your answer to part 2, will there be an increase, decrease, no change, or unknown change in N as the result of the imposition of a minimum wage such that: w^(minimum) > w",
+      "scenario": "Assume the following model economy:\n1) U = .5lnC + .5lnl\n2) Y = zK^(0.6) N^(0.4)\n3) C=wN(1-t) + π\n4) 16=N+l\n5) π= Y – wN\nwhere the variables have the same meanings and definitions that we’ve used throughout the term.",
+      "officialRubric": "(1 point) Either using economic logic or making reference to your answer to part 2, will there be an increase, decrease, no change, or unknown change in N as the result of the imposition of a minimum wage such that\nw^(minimum) > w\n1 point: If w goes up then N goes down—can either refer to their answer above or say that MPN must rise if w rises, and can only do that by choosing lower N",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx",
+      "keySource": "Old Midterm 1/mid1_version1_AnswerKey.docx"
+    },
+    "m1_s17sa_4": {
+      "stem": "(1 point) What does it mean to say an economy has achieved the “Pareto optimum”?",
+      "scenario": "Assume the following model economy:\n1) U = .5lnC + .5lnl\n2) Y = zK^(0.6) N^(0.4)\n3) C=wN(1-t) + π\n4) 16=N+l\n5) π= Y – wN\nwhere the variables have the same meanings and definitions that we’ve used throughout the term.",
+      "officialRubric": "(1 point) What does it mean to say an economy has achieved the “Pareto optimum”?\nIt means there is no way to make any individual better off without making someone else worse off. (Or can say that it is an efficient allocation of resources)",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx",
+      "keySource": "Old Midterm 1/mid1_version1_AnswerKey.docx"
+    },
+    "m1_s17sa_5": {
+      "stem": "(2 points) Explain why this model economy will not achieve the Pareto optimum and tell us how you know whether employment would be higher or lower at the Pareto optimum than it will be in the competitive solution to the model. (You don’t need to use any math to do this but you must explain the logic to us)",
+      "scenario": "Assume the following model economy:\n1) U = .5lnC + .5lnl\n2) Y = zK^(0.6) N^(0.4)\n3) C=wN(1-t) + π\n4) 16=N+l\n5) π= Y – wN\nwhere the variables have the same meanings and definitions that we’ve used throughout the term.",
+      "officialRubric": "(2 points) Explain why this model economy will not achieve the Pareto optimum and tell us how you know whether employment would be higher or lower at the Pareto optimum than it will be in the competitive solution to the model. (You don’t need to use any math to do this but you must explain the logic to us)\n1⁄2 point The social planner will use lump-sum taxation,\n1⁄2 point: which, unlikely the competitive solution, has no substitution effect. Therefore the solution to the two models (competitive and social planner) will be different\n1⁄2 point: The substitution effect in the competitive model will lead to a reduction in labor relative to the social planner’s problem,\n1⁄2 point: as households will respond to lower after-tax wages by substituting into leisure (or can say there is a lower opportunity cost of leisure)",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 1_ Midterm1.docx",
+      "keySource": "Old Midterm 1/mid1_version1_AnswerKey.docx"
+    },
+    "m1_s17sa_6": {
+      "stem": "(3 points) Consider the many assumptions behind the model from class. Pick one model assumption that you find most troubling, least consistent with your personal experience, or not in agreement with your view of the world.\na. Tell us what the assumption is\nb. Teach us the model result that is a direct consequence of that assumption that you also think might be incorrect\nc. Explain in words (you don’t have to do the math or set up the new model) what you could do to “fix” the model and tell us what impact you think this would likely have on the result you describe in part b",
+      "scenario": "",
+      "officialRubric": "(3 points) Consider the many assumptions behind the model from class. Pick one model assumption that you find most troubling, least consistent with your personal experience, or not in agreement with your view of the world.\nTell us what the assumption is\n1 point\nTeach us the model result that is a direct consequence of that assumption that you also think might be incorrect\n1 point\nExplain in words (you don’t have to do the math or set up the new model) what you could do to “fix” the model and tell us what impact you think this would likely have on the result you describe in part b\n1⁄2 point—the new assumption\n1⁄2 point—the new result",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 2_ Midterm1.docx",
+      "keySource": "Old Midterm 1/mid1_version1_AnswerKey.docx"
+    },
+    "m1_s17sa_7": {
+      "stem": "(2 points) The Solow Residual\na. What is the Solow Residual and how is it measured?\nb. Explain one reason that measurement error in the Solow Residual may make our one-period model from class look like a better explanation of business cycles than it actually is.",
+      "scenario": "",
+      "officialRubric": "(2 points) The Solow Residual\nWhat is the Solow Residual and how is it measured?\n1⁄2 point: It is a measure of technology\n1⁄2 point: It is measured as the residual of output and the contributions of K and L to GDP\nExplain one reason that measurement error in the Solow Residual may make our one-period model from class look like a better explanation of business cycles than it actually is.\n1 point Movements in the Solow Residual look like movements in GDP, which is what the model says, but those movements in the Solow residual may really be caused by a missing input in the production function that isn’t being measured separately and is instead lumped in with productivity in the Solow Residual. Thus the thing that works best in the model-productivity—might not matter much in the real world",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 2_ Midterm1.docx",
+      "keySource": "Old Midterm 1/mid1_version1_AnswerKey.docx"
+    },
+    "m1_s17sa_8": {
+      "stem": "(3 points) What three properties do the preferences of the representative consumer have? Explain the importance of each to our one-period model.",
+      "scenario": "",
+      "officialRubric": "(3 points) What three properties do the preferences of the representative consumer have? Explain the importance of each to our one-period model.\n1 point: Utility is increasing in both consumption and leisure. This assumption gives us a substitution effect between the two (as leisure foregone earns income to buy consumption goods)—or can say an opportunity cost or tradeoff or points of indifference.\n1 point: Consumer prefer more to less (or can say both Consumption and leisure are normal goods). As incomes rise, households prefer more of the goods in their utility functions—they are normal. That also means that we can rank utility so that as income rises we are on a higher indifference curve. (Any of these arguments are valid)\n1 point: Consumers prefer diversity. That causes our indifference curves to be convex, which means that high degrees of specialization in either C or leisure must be the result of extremes in slope of the budget constraint.",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 2_ Midterm1.docx",
+      "keySource": "Old Midterm 1/mid1_version1_AnswerKey.docx"
+    },
+    "m1_s17sa_9": {
+      "stem": "(1 point) Other than the use of distorting proportional income taxes, list one market condition that might cause the First Welfare Theorem to fail and briefly explain why the Social Planner would likely choose a different allocation than the market.",
+      "scenario": "",
+      "officialRubric": "(1 point) Other than the use of distorting proportional income taxes, list one market condition that might cause the First Welfare Theorem to fail and briefly explain why the Social Planner would likely choose a different allocation than the market.\n1⁄2 point Positive externalities:\n1⁄2 point the market would underproduce relative to the Social Planner, who would take the externality into consideration before allocating resources (or can say would allocate resources without a substitution effect, where as private markets would likely use distorting “incentives”)\nor\n1⁄2 point Negative externalities:\n1⁄2 point exact reverse of the previous example!\n1 point Imperfect information: the Social Planner would have perfect information and a more efficient job allocating resources",
+      "wordingSource": "Old Midterm 1/Version 1_ Part 2_ Midterm1.docx",
+      "keySource": "Old Midterm 1/mid1_version1_AnswerKey.docx"
+    }
+  }
+}
