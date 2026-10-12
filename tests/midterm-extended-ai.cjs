@@ -16,7 +16,7 @@ function load(hash='#ai'){
 let model=load();
 const bank=JSON.parse(JSON.stringify(model.bank)),byId=new Map(bank.map(q=>[q.id,q]));
 const ai=bank.filter(q=>q.category==='ai'),added=ai.filter(q=>q.id.startsWith('m1_ai_cc_'));
-assert.equal(ai.length,90);assert.equal(added.length,60);assert.equal(byId.size,bank.length);
+assert.equal(ai.length,114);assert.equal(added.length,60);assert.equal(byId.size,bank.length);
 const manifest=JSON.parse(fs.readFileSync(path.join(root,'midterm-assets/Extended AI/Concept Checks.json'),'utf8'));
 for(const [chapter,expected] of [[1,10],[2,10],[3,10],[4,15],[5,15]]){
  const qs=added.filter(q=>q.chapters.includes(chapter));assert.equal(qs.length,expected);
@@ -28,10 +28,10 @@ for(const [chapter,expected] of [[1,10],[2,10],[3,10],[4,15],[5,15]]){
   for(let choice=0;choice<4;choice++)assert.equal(core.grade(q,choice),choice===q.ans,q.id);
  }
 }
-assert.equal(core.filterQuestions(ai,{aiKind:'concept'}).length,76);
+assert.equal(core.filterQuestions(ai,{aiKind:'concept'}).length,100);
 assert.equal(core.filterQuestions(ai,{aiKind:'calculations'}).length,14);
-assert.equal(core.filterQuestions(ai,{aiKind:'all'}).length,90);
-assert.equal(model.api.selectQuestions().length,76);
+assert.equal(core.filterQuestions(ai,{aiKind:'all'}).length,114);
+assert.equal(model.api.selectQuestions().length,100);
 assert(model.api.selectQuestions().every(q=>q.type==='mcq'));
 assert(model.node('app').innerHTML.includes('data-ai-chapter="5"'));
 assert(model.node('app').innerHTML.includes('aria-label="Question focus"'));
@@ -47,6 +47,32 @@ const q=model.api.selectQuestions()[0];model.api.record(q,false,(q.ans+1)%4);
 model=load('#mistakes');assert(model.api.selectQuestions().some(x=>x.id===q.id));
 for(let i=0;i<100;i++)assert(core.simulation(bank).every(x=>byId.get(x.id).category!=='ai'));
 for(let i=1;i<=30;i++)assert(byId.has('m1_ai_'+i));
+
+const real=ai.filter(q=>q.studyKind==='real-data');
+const realManifest=JSON.parse(fs.readFileSync(path.join(root,'midterm-assets/Extended AI/Real Data Questions.json'),'utf8'));
+assert.equal(real.length,24);
+for(const [i,q] of real.entries()){
+ assert.equal(q.opts[q.ans],realManifest.questions[i].correct,q.id);
+ assert.equal(q.type,'mcq');assert.equal(q.opts.length,4);assert.equal(new Set(q.opts).size,4);
+ assert.equal(q.sim,false);assert.equal(q.verified,'ai-checked');assert(q.note.length>70);
+ assert(q.dataSources.length>0);
+ for(const f of q.dataSources){assert(fs.existsSync(path.join(root,f.url)),f.url);if(f.page)assert(Number.isInteger(f.page)&&f.page>0);}
+ for(let choice=0;choice<4;choice++)assert.equal(core.grade(q,choice),choice===q.ans,q.id);
+}
+assert.equal(core.filterQuestions(ai,{aiKind:'real-data'}).length,24);
+for(const [chapter,count] of [[1,0],[2,0],[3,10],[4,10],[5,4]])assert.equal(core.filterQuestions(ai,{aiKind:'real-data',chapter:String(chapter)}).length,count);
+model=load('#ai');
+model.node('app').handlers.click({target:{closest:()=>({dataset:{aiChapter:'4'}})}});
+model.node('app').handlers.change({target:{id:'ai-kind',value:'real-data'}});
+assert.equal(model.api.selectQuestions().length,10);
+assert(model.api.selectQuestions().every(q=>q.studyKind==='real-data'));
+assert(model.node('app').innerHTML.includes('#page=7'));
+model=load();assert.equal(model.api.getFilter().aiKind,'real-data');assert.equal(model.api.getFilter().chapter,'4');
+model.node('app').handlers.click({target:{closest:()=>({dataset:{aiChapter:'5'}})}});
+assert.equal(model.api.selectQuestions().length,4);
+const dataQuestion=model.api.selectQuestions()[0];model.api.record(dataQuestion,false,(dataQuestion.ans+1)%4);
+model=load('#mistakes');assert(model.api.selectQuestions().some(q=>q.id===dataQuestion.id));
+
 storage.clear();
 model=load('#mistakes');
 const household=model.bank.find(q=>q.id==='m1_f19_25');
@@ -65,4 +91,4 @@ assert(!model.api.selectQuestions().some(q=>q.id===household.id));
 model.api.record(household,false,0);
 model=load('#mistakes');
 assert(model.api.selectQuestions().some(q=>q.id===household.id));
-console.log('PASS: 60 pure concept checks, answer mappings, chapter navigation, concept/calculation filters, saved preferences, Mistakes and simulation exclusions.');
+console.log('PASS: 60 concept checks and 24 sourced real-data MCQs, answer mappings, chapter navigation, concept/calculation filters, saved preferences, Mistakes and simulation exclusions.');

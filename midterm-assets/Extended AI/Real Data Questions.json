@@ -1,0 +1,521 @@
+{
+  "title": "Real data concept checks from ECON 302 class sources",
+  "scope": "Historical comparisons and interpretations taught in class, not current economic statistics. New AI practice, not original instructor questions.",
+  "questions": [
+    {
+      "chapter": 3,
+      "topic": "GDP trends and recession frequency",
+      "stem": "Based on the historical US GDP comparisons emphasized in class, which combination best describes the more recent period relative to the earlier post-war period?",
+      "correct": "Lower trend GDP growth and less frequent recessions.",
+      "distractors": [
+        "Higher trend GDP growth and more frequent recessions.",
+        "Lower trend GDP growth and more frequent recessions.",
+        "Higher trend GDP growth and less frequent recessions."
+      ],
+      "note": "Cô phân biệt hai facts: trend GDP growth thấp hơn và recessions ít thường xuyên hơn. Lower growth không có nghĩa GDP level liên tục giảm. Đây là so sánh lịch sử trong slides của lớp, không phải dự báo rằng recessions sẽ không còn xảy ra.",
+      "dataSources": [
+        {
+          "name": "Econ 302_Ch 1_2_3 lecture material.pdf",
+          "url": "midterm-assets/Lecture References/Econ 302_Ch 1_2_3 lecture material.pdf",
+          "page": 3
+        },
+        {
+          "name": "September 9 Scans Ch 3.pdf",
+          "url": "midterm-assets/Lecture References/September 9 Scans Ch 3.pdf",
+          "page": 4
+        }
+      ]
+    },
+    {
+      "chapter": 3,
+      "topic": "Population and GDP trends",
+      "stem": "The class slides show flatter trend population growth and a flatter GDP trend. Which interpretation is consistent with the discussion in class?",
+      "correct": "Slower population growth can reduce the contribution of labor input to GDP growth, holding other influences fixed.",
+      "distractors": [
+        "A flatter GDP trend means real GDP must fall every year.",
+        "Population growth alone completely determines every business cycle.",
+        "Slower population growth necessarily increases GDP growth."
+      ],
+      "note": "Population growth chậm lại có thể làm labor input growth đóng góp ít hơn vào GDP growth. Cô dùng câu “in part”, nên không kết luận population là nguyên nhân duy nhất; capital và productivity vẫn quan trọng.",
+      "dataSources": [
+        {
+          "name": "September 9 Scans Ch 3.pdf",
+          "url": "midterm-assets/Lecture References/September 9 Scans Ch 3.pdf",
+          "page": 5
+        }
+      ]
+    },
+    {
+      "chapter": 3,
+      "topic": "Procyclical and countercyclical data",
+      "stem": "Based on the business-cycle data used in class, which statement is most accurate?",
+      "correct": "Consumption, employment and real wages are generally procyclical, while unemployment is countercyclical.",
+      "distractors": [
+        "Consumption is countercyclical while unemployment is procyclical.",
+        "Employment and real wages always move opposite to GDP.",
+        "Procyclical variables must move with GDP in every individual observation."
+      ],
+      "note": "Các business-cycle facts là quan hệ thường gặp sau khi detrend: C, employment, real wage cùng chiều GDP; unemployment ngược chiều. Correlation là pattern trung bình, không bảo đảm từng quan sát đều đi cùng chiều.",
+      "dataSources": [
+        {
+          "name": "Econ 302_Ch 1_2_3 lecture material.pdf",
+          "url": "midterm-assets/Lecture References/Econ 302_Ch 1_2_3 lecture material.pdf",
+          "page": 13
+        },
+        {
+          "name": "Chapter 3 notes-- Trends and Cycles in GDP-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 3 notes-- Trends and Cycles in GDP-1.docx"
+        }
+      ]
+    },
+    {
+      "chapter": 3,
+      "topic": "Consumption and investment volatility",
+      "stem": "According to the variability comparisons in the class data, which statement about consumption and investment is correct?",
+      "correct": "Both are procyclical, but consumption varies less than GDP and investment varies more than GDP.",
+      "distractors": [
+        "Both are procyclical and therefore equally volatile.",
+        "Consumption varies more than GDP, while investment varies less.",
+        "Investment is countercyclical because it is highly volatile."
+      ],
+      "note": "Table 3.1 và 3.2: consumption procyclical và less variable than GDP; investment procyclical và more variable. Cyclicality nói về chiều, volatility nói về độ lớn fluctuations. Hai khái niệm khác nhau.",
+      "dataSources": [
+        {
+          "name": "Econ 302_Ch 1_2_3 lecture material.pdf",
+          "url": "midterm-assets/Lecture References/Econ 302_Ch 1_2_3 lecture material.pdf",
+          "page": 12
+        },
+        {
+          "name": "Econ 302_Ch 1_2_3 lecture material.pdf",
+          "url": "midterm-assets/Lecture References/Econ 302_Ch 1_2_3 lecture material.pdf",
+          "page": 13
+        }
+      ]
+    },
+    {
+      "chapter": 3,
+      "topic": "Employment and average productivity volatility",
+      "stem": "The business-cycle table in class compares employment and average labor productivity with GDP. Which statement matches that table?",
+      "correct": "Both are procyclical and less variable than GDP.",
+      "distractors": [
+        "Both are countercyclical and more variable than GDP.",
+        "Employment is procyclical, but average labor productivity is countercyclical.",
+        "Both must be more variable than GDP because they help determine output."
+      ],
+      "note": "Theo bảng lớp: employment và average labor productivity đều positively correlated với cyclical GDP, nhưng mức biến động nhỏ hơn GDP. Một biến giúp tạo output không có nghĩa biến đó phải volatile hơn output.",
+      "dataSources": [
+        {
+          "name": "Econ 302_Ch 1_2_3 lecture material.pdf",
+          "url": "midterm-assets/Lecture References/Econ 302_Ch 1_2_3 lecture material.pdf",
+          "page": 12
+        },
+        {
+          "name": "Econ 302_Ch 1_2_3 lecture material.pdf",
+          "url": "midterm-assets/Lecture References/Econ 302_Ch 1_2_3 lecture material.pdf",
+          "page": 13
+        }
+      ]
+    },
+    {
+      "chapter": 3,
+      "topic": "Leading, lagging and coincident variables",
+      "stem": "Which timing pattern is reported in the class summary of business-cycle facts?",
+      "correct": "Consumption and investment are coincident, while employment is lagging.",
+      "distractors": [
+        "Employment is leading, while consumption and investment are lagging.",
+        "All procyclical variables must also be leading variables.",
+        "Investment is lagging solely because it is more volatile than GDP."
+      ],
+      "note": "Table 3.2 ghi consumption và investment coincident, employment lagging. Lead/lag là timing; procyclical/countercyclical là chiều; volatility là độ lớn. Không dùng một tính chất để tự suy hai tính chất còn lại.",
+      "dataSources": [
+        {
+          "name": "Econ 302_Ch 1_2_3 lecture material.pdf",
+          "url": "midterm-assets/Lecture References/Econ 302_Ch 1_2_3 lecture material.pdf",
+          "page": 13
+        }
+      ]
+    },
+    {
+      "chapter": 3,
+      "topic": "Limits of the business-cycle table",
+      "stem": "The class table lists real wages as procyclical but places question marks in the lead/lag and relative-variation columns. What can we infer from that table alone?",
+      "correct": "The table supports procyclicality but does not establish whether wages lead or lag GDP or their relative volatility.",
+      "distractors": [
+        "Real wages must lead GDP and be more volatile than GDP.",
+        "Real wages must lag GDP because employment lags GDP.",
+        "Question marks mean real wages are countercyclical."
+      ],
+      "note": "Bảng cho procyclical, nhưng để dấu hỏi ở timing và relative variation. Không tự điền kết luận không được bảng cung cấp. Real wage và employment là hai variables khác nhau.",
+      "dataSources": [
+        {
+          "name": "Econ 302_Ch 1_2_3 lecture material.pdf",
+          "url": "midterm-assets/Lecture References/Econ 302_Ch 1_2_3 lecture material.pdf",
+          "page": 13
+        }
+      ]
+    },
+    {
+      "chapter": 3,
+      "topic": "TFP growth versus cyclicality",
+      "stem": "The lecture reports that productivity growth has slowed while measured TFP remains procyclical. Are these observations inconsistent?",
+      "correct": "No. Trend growth and cyclical co-movement describe different features of the data.",
+      "distractors": [
+        "Yes. Slower productivity growth requires TFP to be countercyclical.",
+        "Yes. Any procyclical variable must have accelerating long-run growth.",
+        "No, because a slowdown in growth means the productivity level is always falling."
+      ],
+      "note": "Productivity growth chậm lại là trend fact. Measured TFP procyclical là cycle fact. Một series có thể tăng chậm hơn trong long run mà vẫn lên xuống cùng cyclical GDP. Growth chậm lại cũng không đồng nghĩa level luôn giảm.",
+      "dataSources": [
+        {
+          "name": "September 9 Scans Ch 3.pdf",
+          "url": "midterm-assets/Lecture References/September 9 Scans Ch 3.pdf",
+          "page": 9
+        },
+        {
+          "name": "Econ 302_Ch 1_2_3 lecture material.pdf",
+          "url": "midterm-assets/Lecture References/Econ 302_Ch 1_2_3 lecture material.pdf",
+          "page": 11
+        }
+      ]
+    },
+    {
+      "chapter": 3,
+      "topic": "Investment trend versus fluctuations",
+      "stem": "The Chapter 3 scans describe net investment as having a fairly flat trend with large cyclical fluctuations. Which interpretation is correct?",
+      "correct": "A flat trend can coexist with substantial movements around that trend.",
+      "distractors": [
+        "A flat trend means net investment is constant in every period.",
+        "Large cyclical fluctuations prove the trend must be steeply rising.",
+        "A flat trend means investment cannot be related to GDP over the cycle."
+      ],
+      "note": "Trend và fluctuations là hai thành phần khác nhau. Cô ghi net investment khá flat về trend nhưng có cyclical fluctuations lớn. Không đọc “flat trend” thành “không dao động”.",
+      "dataSources": [
+        {
+          "name": "September 9 Scans Ch 3.pdf",
+          "url": "midterm-assets/Lecture References/September 9 Scans Ch 3.pdf",
+          "page": 8
+        }
+      ]
+    },
+    {
+      "chapter": 3,
+      "topic": "Detrended GDP and recession",
+      "stem": "Using the detrending approach described in class, real GDP is below its estimated trend but is beginning to rise. Which statement is correct?",
+      "correct": "GDP can be growing while its deviation from trend remains negative.",
+      "distractors": [
+        "Growing GDP must already be above trend.",
+        "A negative deviation from trend requires GDP to fall in every period.",
+        "The estimated trend is identical under every statistical detrending method."
+      ],
+      "note": "Level thay đổi và deviation from trend là hai phép so khác nhau. GDP có thể tăng từ mức thấp nhưng vẫn dưới trend. Notes của cô cũng nói cách estimate trend có thể làm thay đổi độ lớn cyclical deviations.",
+      "dataSources": [
+        {
+          "name": "Chapter 3 notes-- Trends and Cycles in GDP-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 3 notes-- Trends and Cycles in GDP-1.docx"
+        }
+      ]
+    },
+    {
+      "chapter": 4,
+      "topic": "Extensive and intensive margins in data",
+      "stem": "Female labor force participation rises while hours per employed woman stay unchanged. Which margin has changed in these observations?",
+      "correct": "The extensive margin changes, while the measured intensive margin stays unchanged.",
+      "distractors": [
+        "Only the intensive margin changes because women are working.",
+        "Both margins necessarily change whenever participation rises.",
+        "Neither margin changes unless the real wage changes."
+      ],
+      "note": "Participation rate cho biết có tham gia labor force hay không, nên là extensive margin. Hours per employed worker là intensive margin. Participation có thể tăng mà hours của người đang làm không đổi.",
+      "dataSources": [
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 6
+        },
+        {
+          "name": "About the tax and work data.docx",
+          "url": "midterm-assets/Lecture References/About the tax and work data.docx"
+        }
+      ]
+    },
+    {
+      "chapter": 4,
+      "topic": "Hours per job and hours per worker",
+      "stem": "In the employment-data discussion, one worker replaces a full-time job with two part-time jobs that together involve the same total hours. What is the relevant measurement lesson?",
+      "correct": "Hours per job may fall even though total hours per worker do not fall.",
+      "distractors": [
+        "Hours per worker must fall by the same proportion as hours per job.",
+        "The number of jobs always equals the number of workers.",
+        "This observation proves income effects dominate substitution effects."
+      ],
+      "note": "Một người có thể giữ nhiều jobs. Average hours per job không phải hours per worker. Cô dùng khác biệt này để giải thích vì sao đọc aggregate hours có thể gây hiểu nhầm về individual labor supply.",
+      "dataSources": [
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 4
+        }
+      ]
+    },
+    {
+      "chapter": 4,
+      "topic": "Female participation and composition",
+      "stem": "More women enter the labor force, and women work fewer annual hours on average than men in the historical comparisons used in class. What can happen even if existing workers keep their own hours unchanged?",
+      "correct": "Average hours across the workforce can fall because its composition changes.",
+      "distractors": [
+        "Every existing worker must reduce hours.",
+        "Average hours cannot change unless every individual changes behavior.",
+        "The observation alone proves the income effect dominates for every worker."
+      ],
+      "note": "Average của nhóm phụ thuộc tỷ trọng các nhóm. Khi nhóm có average hours thấp hơn chiếm tỷ trọng lớn hơn, workforce average có thể giảm dù từng người không giảm hours. Đây là compositional effect.",
+      "dataSources": [
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 5
+        }
+      ]
+    },
+    {
+      "chapter": 4,
+      "topic": "Modern long-run wage-hours evidence",
+      "stem": "After considering hours-per-worker measurement and workforce composition, what long-run benchmark does the current lecture emphasize?",
+      "correct": "Hours worked show little response to rising real compensation, consistent with income and substitution effects approximately offsetting.",
+      "distractors": [
+        "Rising compensation necessarily causes every worker to sharply reduce hours.",
+        "The current lecture still concludes that income effects must dominate in the long run.",
+        "Hours must rise proportionately with wages in the long run."
+      ],
+      "note": "Lecture hiện tại dùng gần offset trong long run sau khi xét composition. Old exam keys có IE dominates hoặc long-run negative correlation là outdated. Đây là benchmark để forecast, không phải chứng minh mọi người có cùng preferences.",
+      "dataSources": [
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 4
+        },
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 7
+        }
+      ]
+    },
+    {
+      "chapter": 4,
+      "topic": "Short-run and long-run correlation",
+      "stem": "Which comparison matches the wage-hours discussion in the current lecture?",
+      "correct": "Real wages and hours are positively correlated over business cycles but approximately uncorrelated over long periods after considering composition.",
+      "distractors": [
+        "They are negatively correlated at both horizons.",
+        "Positive short-run correlation proves the same relationship must hold over every long-run comparison.",
+        "Long-run negative correlation is the current benchmark because old exam keys say so."
+      ],
+      "note": "Cô phân biệt short run và modern long run. Short run w và hours cùng chiều; long run sau composition, hours khá flat dù compensation tăng. Không dùng key cũ để thay kết luận cô đã sửa.",
+      "dataSources": [
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 7
+        },
+        {
+          "name": "Econ 302 f19_v2 mid1 scans.pdf",
+          "url": "midterm-assets/Old Midterm 1/Econ 302 f19_v2 mid1 scans.pdf",
+          "page": 6
+        }
+      ]
+    },
+    {
+      "chapter": 4,
+      "topic": "US and Europe labor comparisons",
+      "stem": "According to the US-Europe comparisons discussed in the class tax-and-work notes, Americans work more at which margin?",
+      "correct": "Both the extensive margin and the intensive margin.",
+      "distractors": [
+        "Only the extensive margin, with identical hours and weeks worked.",
+        "Only the intensive margin, with identical participation rates.",
+        "Neither margin; the notes claim identical work patterns."
+      ],
+      "note": "Notes lịch sử cô dùng nói US có participation cao hơn và làm nhiều hours/weeks hơn Europe. Đây là dữ liệu so sánh trong lớp, không phải khẳng định mọi nước hoặc mọi năm đều giống nhau.",
+      "dataSources": [
+        {
+          "name": "About the tax and work data.docx",
+          "url": "midterm-assets/Lecture References/About the tax and work data.docx"
+        }
+      ]
+    },
+    {
+      "chapter": 4,
+      "topic": "Cross-country correlations and taxes",
+      "stem": "A student observes higher labor income taxes and fewer hours worked in the European comparisons used in class. What is the strongest justified conclusion?",
+      "correct": "The pattern is consistent with tax effects, but institutions, preferences and other differences prevent the correlation alone from proving causation.",
+      "distractors": [
+        "The correlation proves taxes alone explain the entire difference.",
+        "The correlation proves households have no substitution effect.",
+        "Every difference between countries can be ignored once tax rates are known."
+      ],
+      "note": "Cô nhắc vacation rules, cultural differences và schooling có thể ảnh hưởng labor. Correlation có thể consistent với SE nhưng chưa tách riêng causal effect của taxes. Không tự chuyển lesson của labor taxes sang capital taxes.",
+      "dataSources": [
+        {
+          "name": "About the tax and work data.docx",
+          "url": "midterm-assets/Lecture References/About the tax and work data.docx"
+        }
+      ]
+    },
+    {
+      "chapter": 4,
+      "topic": "Female participation explanations",
+      "stem": "Which combination is consistent with the explanations for increased female labor force participation discussed in class?",
+      "correct": "Higher relative after-tax wages, changes in market opportunities, and changes in home production or household circumstances can all contribute.",
+      "distractors": [
+        "Only a rise in total time available can explain the historical increase.",
+        "Only a uniform wage increase affecting men and women identically can explain it.",
+        "Improved home-production technology necessarily reduces female participation."
+      ],
+      "note": "Cô đưa nhiều mechanisms: female-specific wage gains, gender equality, giảm marriage tax, thay đổi preferences và household circumstances. Không kết luận chỉ có một nguyên nhân từ participation trend.",
+      "dataSources": [
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 6
+        },
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 7
+        },
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 8
+        },
+        {
+          "name": "Ask your neighbor_Chapter 4 data.pdf",
+          "url": "midterm-assets/Ask Your Neighbor/Ask your neighbor_Chapter 4 data.pdf",
+          "page": 3
+        }
+      ]
+    },
+    {
+      "chapter": 4,
+      "topic": "Older-age participation and benefits",
+      "stem": "Lower labor force participation among older people is associated in the class discussion with more generous retirement benefits. How is the benefit mechanism represented in the household model?",
+      "correct": "A positive non-labor income effect can increase leisure and reduce participation or work.",
+      "distractors": [
+        "A reduction in the wage earned from each additional hour necessarily creates a substitution effect.",
+        "Retirement benefits are a negative income effect because participation falls.",
+        "Higher benefits imply that labor demand must increase."
+      ],
+      "note": "Benefits là non-labor income. Thu nhập cao hơn tạo positive IE; với normal leisure, household muốn nghỉ nhiều hơn và work/participation có thể giảm. Positive/negative nói về income, không phải chiều của mọi variable.",
+      "dataSources": [
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 9
+        },
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 10
+        }
+      ]
+    },
+    {
+      "chapter": 4,
+      "topic": "Age composition of the labor force",
+      "stem": "The class employment-data slides describe more young women working and fewer older men working. Which statement correctly interprets these observations?",
+      "correct": "Participation changes can differ across age and gender groups, so an aggregate trend need not describe every group.",
+      "distractors": [
+        "Every age and gender group must have the same participation trend.",
+        "Fewer older men working is necessarily an intensive-margin change.",
+        "Aggregate participation is determined only by a common wage and cannot reflect age composition."
+      ],
+      "note": "Employment slides nhấn mạnh composition theo age và gender. Working/not participating là extensive margin. Những group khác nhau có thể đi khác chiều; aggregate average không mô tả mọi cá nhân.",
+      "dataSources": [
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 9
+        }
+      ]
+    },
+    {
+      "chapter": 5,
+      "topic": "Deflators and productivity-pay gaps",
+      "stem": "The Chapter 5 data slides show a smaller productivity-pay gap when wages are deflated with PCE rather than CPI. What is the key lesson?",
+      "correct": "Measurement choices affect the observed size of the gap, so comparing productivity and pay requires attention to the deflator.",
+      "distractors": [
+        "Changing the deflator changes the actual physical quantity each worker produced.",
+        "PCE and CPI must give identical real-wage trends.",
+        "A smaller measured gap proves all distributional concerns have disappeared."
+      ],
+      "note": "Slide nói gap shrinks khi dùng PCE thay CPI. Deflator thay đổi measured purchasing power, không tự làm worker thực sự sản xuất nhiều hay ít hơn. Đừng xem một measured gap là độc lập với cách đo.",
+      "dataSources": [
+        {
+          "name": "Econ 302 Chapter 5 data.pdf",
+          "url": "midterm-assets/Lecture References/Econ 302 Chapter 5 data.pdf",
+          "page": 4
+        }
+      ]
+    },
+    {
+      "chapter": 5,
+      "topic": "Wages and benefits over the cycle",
+      "stem": "According to the compensation breakdown in the Chapter 5 data slides, which statement is correct?",
+      "correct": "Wages are more procyclical than benefits, so wages and total compensation need not move identically.",
+      "distractors": [
+        "Benefits are the same thing as take-home wages.",
+        "Benefits are reported as more procyclical than wages.",
+        "A stable benefits series means total compensation is unrelated to wages."
+      ],
+      "note": "Slide compensation breakdown ghi wages more procyclical than benefits. Total compensation gồm wages và benefits, nên không dùng take-home pay như thể đó là toàn bộ compensation.",
+      "dataSources": [
+        {
+          "name": "Econ 302 Chapter 5 data.pdf",
+          "url": "midterm-assets/Lecture References/Econ 302 Chapter 5 data.pdf",
+          "page": 6
+        }
+      ]
+    },
+    {
+      "chapter": 5,
+      "topic": "Government spending and World War II data",
+      "stem": "Which combination matches the World War II example in the Chapter 5 data slides?",
+      "correct": "A very large increase in government spending, a relatively small decline in private consumption, and an increase in GDP.",
+      "distractors": [
+        "Government spending and GDP both fell while consumption rose.",
+        "Government spending rose while both consumption and GDP fell sharply.",
+        "Consumption and GDP must always rise together whenever government spending rises."
+      ],
+      "note": "Đây là pattern cô ghi trên slide WW2: G tăng rất lớn, C giảm tương đối nhỏ, GDP tăng. Không nhầm consumption với total GDP, và không dùng correlation này như bằng chứng đủ cho toàn bộ causal mechanism.",
+      "dataSources": [
+        {
+          "name": "Econ 302 Chapter 5 data.pdf",
+          "url": "midterm-assets/Lecture References/Econ 302 Chapter 5 data.pdf",
+          "page": 7
+        }
+      ]
+    },
+    {
+      "chapter": 5,
+      "topic": "Measured TFP and omitted inputs",
+      "stem": "Measured TFP moves with GDP in the class data. Why can a TFP-driven model appear more successful than it really is?",
+      "correct": "Omitted inputs and measurement errors may move with GDP and be included in the Solow residual rather than reflect true technology shocks.",
+      "distractors": [
+        "A procyclical Solow residual proves exogenous technology causes every recession.",
+        "The residual directly observes all inputs and therefore contains no measurement error.",
+        "Capital and labor being observed guarantees all remaining output variation is pure technology."
+      ],
+      "note": "Solow residual là phần output chưa được measured K,N giải thích. Missing inputs, utilization hoặc measurement error có thể bị gộp vào measured z. Measured TFP procyclical chưa chứng minh true technology là nguyên nhân duy nhất của cycles.",
+      "dataSources": [
+        {
+          "name": "Econ 302_Ch 1_2_3 lecture material.pdf",
+          "url": "midterm-assets/Lecture References/Econ 302_Ch 1_2_3 lecture material.pdf",
+          "page": 11
+        },
+        {
+          "name": "Chapter 5 notes--Shocking the general equilibrium model-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 5 notes--Shocking the general equilibrium model-1.docx"
+        }
+      ]
+    }
+  ]
+}

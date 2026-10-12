@@ -1,0 +1,125 @@
+{
+  "scope": "Model-derived numerical variants of the Chapter 4 and Chapter 5 household examples. Answer only; not original instructor wording.",
+  "questions": [
+    {
+      "id": "m1_numeric_log_leisure",
+      "source": "numeric-practice",
+      "category": "numeric",
+      "type": "fill",
+      "chapters": [
+        4,
+        5
+      ],
+      "pts": 3,
+      "verified": "derived",
+      "sim": true,
+      "numericKind": "log",
+      "stem": "Calculate optimal leisure. Enter only the numerical answer, rounded to two decimal places.",
+      "scenario": "U=0.6 ln C + 0.4 ln l; C=W(h-l); W=10; h=16. Assume an interior choice, no non-labor income and no lump-sum tax.",
+      "answer": "6.40",
+      "note": "MRS=W. Log-linear: l=bh/(a+b)=6.40. N=h-l=9.60; C=WN=96.00. Đề hỏi leisure: nhập 6.40. Chỉ chấm đáp án số, không yêu cầu viết lời giải.",
+      "tag": "Numerical answer only",
+      "studyKind": "numeric"
+    },
+    {
+      "id": "m1_numeric_log_labor",
+      "source": "numeric-practice",
+      "category": "numeric",
+      "type": "fill",
+      "chapters": [
+        4,
+        5
+      ],
+      "pts": 3,
+      "verified": "derived",
+      "sim": true,
+      "numericKind": "log",
+      "stem": "Calculate optimal labor. Enter only the numerical answer, rounded to two decimal places.",
+      "scenario": "U=0.6 ln C + 0.4 ln l; C=W(h-l); W=10; h=16. Assume an interior choice, no non-labor income and no lump-sum tax.",
+      "answer": "9.60",
+      "note": "MRS=W. Log-linear: l=bh/(a+b)=6.40. N=h-l=9.60; C=WN=96.00. Đề hỏi labor: nhập 9.60. Chỉ chấm đáp án số, không yêu cầu viết lời giải.",
+      "tag": "Numerical answer only",
+      "studyKind": "numeric"
+    },
+    {
+      "id": "m1_numeric_log_consumption",
+      "source": "numeric-practice",
+      "category": "numeric",
+      "type": "fill",
+      "chapters": [
+        4,
+        5
+      ],
+      "pts": 3,
+      "verified": "derived",
+      "sim": true,
+      "numericKind": "log",
+      "stem": "Calculate optimal consumption. Enter only the numerical answer, rounded to two decimal places.",
+      "scenario": "U=0.6 ln C + 0.4 ln l; C=W(h-l); W=10; h=16. Assume an interior choice, no non-labor income and no lump-sum tax.",
+      "answer": "96.00",
+      "note": "MRS=W. Log-linear: l=bh/(a+b)=6.40. N=h-l=9.60; C=WN=96.00. Đề hỏi consumption: nhập 96.00. Chỉ chấm đáp án số, không yêu cầu viết lời giải.",
+      "tag": "Numerical answer only",
+      "studyKind": "numeric"
+    },
+    {
+      "id": "m1_numeric_ql_leisure",
+      "source": "numeric-practice",
+      "category": "numeric",
+      "type": "fill",
+      "chapters": [
+        4,
+        5
+      ],
+      "pts": 3,
+      "verified": "derived",
+      "sim": true,
+      "numericKind": "ql",
+      "stem": "Calculate optimal leisure. Enter only the numerical answer, rounded to two decimal places.",
+      "scenario": "U=1 C + 12 ln l; C=W(h-l); W=4; h=16. Assume an interior choice, no non-labor income and no lump-sum tax.",
+      "answer": "3.00",
+      "note": "MRS=W. Quasi-linear: l=b/(aW)=3.00. N=h-l=13.00; C=WN=52.00. Đề hỏi leisure: nhập 3.00. Chỉ chấm đáp án số, không yêu cầu viết lời giải.",
+      "tag": "Numerical answer only",
+      "studyKind": "numeric"
+    },
+    {
+      "id": "m1_numeric_ql_labor",
+      "source": "numeric-practice",
+      "category": "numeric",
+      "type": "fill",
+      "chapters": [
+        4,
+        5
+      ],
+      "pts": 3,
+      "verified": "derived",
+      "sim": true,
+      "numericKind": "ql",
+      "stem": "Calculate optimal labor. Enter only the numerical answer, rounded to two decimal places.",
+      "scenario": "U=1 C + 12 ln l; C=W(h-l); W=4; h=16. Assume an interior choice, no non-labor income and no lump-sum tax.",
+      "answer": "13.00",
+      "note": "MRS=W. Quasi-linear: l=b/(aW)=3.00. N=h-l=13.00; C=WN=52.00. Đề hỏi labor: nhập 13.00. Chỉ chấm đáp án số, không yêu cầu viết lời giải.",
+      "tag": "Numerical answer only",
+      "studyKind": "numeric"
+    },
+    {
+      "id": "m1_numeric_ql_consumption",
+      "source": "numeric-practice",
+      "category": "numeric",
+      "type": "fill",
+      "chapters": [
+        4,
+        5
+      ],
+      "pts": 3,
+      "verified": "derived",
+      "sim": true,
+      "numericKind": "ql",
+      "stem": "Calculate optimal consumption. Enter only the numerical answer, rounded to two decimal places.",
+      "scenario": "U=1 C + 12 ln l; C=W(h-l); W=4; h=16. Assume an interior choice, no non-labor income and no lump-sum tax.",
+      "answer": "52.00",
+      "note": "MRS=W. Quasi-linear: l=b/(aW)=3.00. N=h-l=13.00; C=WN=52.00. Đề hỏi consumption: nhập 52.00. Chỉ chấm đáp án số, không yêu cầu viết lời giải.",
+      "tag": "Numerical answer only",
+      "studyKind": "numeric"
+    }
+  ]
+}

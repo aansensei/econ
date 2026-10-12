@@ -11,7 +11,7 @@ assert.equal(old.length,127);
 assert.equal(Object.keys(fixture.questions).length,127);
 for(const [source,counts] of Object.entries(fixture.scope)){
  assert.equal(old.filter(q=>q.source===source&&q.type==='mcq').length,counts.mcq);
- assert.equal(old.filter(q=>q.source===source+'sa'&&q.type==='open').length,counts.shortAnswer);
+ assert.equal(old.filter(q=>q.source===source+'sa'&&q.originalType==='open'&&q.type==='mcq').length,counts.shortAnswer);
 }
 for(const [filename,hash] of Object.entries(fixture.sources)){
  const bytes=fs.readFileSync(path.join(root,'midterm-assets/Old Midterm 1',filename));
@@ -21,7 +21,7 @@ for(const [id,source] of Object.entries(fixture.questions)){
  const q=byId.get(id);assert(q,id);assert.equal(q.wordingVerified,true,id);
  for(const field of ['stem','scenario','officialRubric'])if(field in source)assert.equal(normalize(q[field]),normalize(source[field]),id+' '+field);
  assert.equal(q.wordingSource,source.wordingSource,id);
- if(q.type==='mcq'){
+ if(q.originalType!=='open'){
   assert.deepEqual(q.opts.map(normalize),source.opts.map(normalize),id+' original choices');
   assert.equal(q.opts.length,4,id);
   assert.equal(q.ans,source.ans,id+' official key');
@@ -30,7 +30,10 @@ for(const [id,source] of Object.entries(fixture.questions)){
  }else{
   assert(q.officialRubric.length>150,id);
   assert.equal(q.keySource,source.keySource,id);
-  assert.equal(core.grade(q,'My written answer'),null,id);
+  assert(q.adaptedStem&&q.adaptedFromOpen,id);
+  assert.equal(q.opts.length,4,id);
+  assert.equal(new Set(q.opts).size,4,id);
+  for(let answer=0;answer<4;answer++)assert.equal(core.grade(q,answer),answer===q.ans,id);
  }
 }
 assert.equal(byId.get('m1_f16_8').opts[0],'it is preferred to have more of one and less of another than more of everything');
@@ -54,4 +57,4 @@ assert(css.includes('.choices label.answer input{accent-color:var(--green)}'));
 const main=fs.readFileSync(path.join(root,'midterm.js'),'utf8');
 assert(main.includes('Rubric nguyên văn từ answer key'));
 assert(main.includes('Giải thích ôn tập bằng tiếng Việt:'));
-console.log('PASS: all 113 MCQs, 14 complete short answers and rubrics, 9 source hashes, historical key separation and answer color specificity.');
+console.log('PASS: all 113 original MCQs and keys, 14 converted short answers with unchanged original text/rubrics, 9 source hashes and answer colors.');

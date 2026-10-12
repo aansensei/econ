@@ -1,0 +1,1040 @@
+{
+  "title": "Forecasting Practice",
+  "scope": "New AI practice based on class benchmarks. Numeric scenarios are illustrative, not observed data. All modeled wage responses assume an interior earnings-only household choice unless stated otherwise.",
+  "questions": [
+    {
+      "id": "m1_forecast_01",
+      "source": "forecasting",
+      "category": "forecast",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "Illustrative numbers, not class data: employment starts at 100. Actual employment is 110, while a model forecasts 120. The model will ______ the resulting level of employment.",
+      "opts": [
+        "Underestimate",
+        "Overestimate",
+        "Perfectly estimate",
+        "Be unable to compare"
+      ],
+      "ans": 1,
+      "note": "Đề hỏi LEVEL. Dự báo 120, thực tế 110. Dự báo cao hơn thực tế nên overestimate employment. Đọc level trước khi xét mức tăng hoặc giảm.",
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "tag": "Forecasting: Level",
+      "concept": "Level",
+      "studyKind": "forecasting",
+      "dataSources": [
+        {
+          "name": "Ask your neighbor_Chapter 4_ans.pdf",
+          "url": "midterm-assets/Ask Your Neighbor/Ask your neighbor_Chapter 4_ans.pdf",
+          "page": 9
+        },
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 7
+        },
+        {
+          "name": "Chapter 4 extension--Mathematical solution to the utility maximization problem.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 extension--Mathematical solution to the utility maximization problem.docx"
+        }
+      ],
+      "base": 100,
+      "actual": 110,
+      "prediction": 120,
+      "target": "level"
+    },
+    {
+      "id": "m1_forecast_02",
+      "source": "forecasting",
+      "category": "forecast",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "Illustrative numbers, not class data: employment starts at 100. Actual employment is 110, while a model forecasts 120. The model will ______ the size of the increase in employment.",
+      "opts": [
+        "Overestimate",
+        "Underestimate",
+        "Perfectly estimate",
+        "Be unable to compare"
+      ],
+      "ans": 0,
+      "note": "Đề hỏi SIZE OF THE INCREASE. Thực tế thay đổi 10, model dự báo thay đổi 20. So độ lớn hai thay đổi, không so hai level. Vì vậy overestimate the increase.",
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "tag": "Forecasting: Magnitude of change",
+      "concept": "Magnitude of change",
+      "studyKind": "forecasting",
+      "dataSources": [
+        {
+          "name": "Ask your neighbor_Chapter 4_ans.pdf",
+          "url": "midterm-assets/Ask Your Neighbor/Ask your neighbor_Chapter 4_ans.pdf",
+          "page": 9
+        },
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 7
+        },
+        {
+          "name": "Chapter 4 extension--Mathematical solution to the utility maximization problem.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 extension--Mathematical solution to the utility maximization problem.docx"
+        }
+      ],
+      "base": 100,
+      "actual": 110,
+      "prediction": 120,
+      "target": "magnitude"
+    },
+    {
+      "id": "m1_forecast_03",
+      "source": "forecasting",
+      "category": "forecast",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "Illustrative numbers, not class data: employment starts at 100. Actual employment is 110, while a model forecasts 100. The model will ______ the resulting level of employment.",
+      "opts": [
+        "Overestimate",
+        "Perfectly estimate",
+        "Be unable to compare",
+        "Underestimate"
+      ],
+      "ans": 3,
+      "note": "Đề hỏi LEVEL. Dự báo 100, thực tế 110. Dự báo thấp hơn thực tế nên underestimate employment. Đọc level trước khi xét mức tăng hoặc giảm.",
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "tag": "Forecasting: Level",
+      "concept": "Level",
+      "studyKind": "forecasting",
+      "dataSources": [
+        {
+          "name": "Ask your neighbor_Chapter 4_ans.pdf",
+          "url": "midterm-assets/Ask Your Neighbor/Ask your neighbor_Chapter 4_ans.pdf",
+          "page": 9
+        },
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 7
+        },
+        {
+          "name": "Chapter 4 extension--Mathematical solution to the utility maximization problem.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 extension--Mathematical solution to the utility maximization problem.docx"
+        }
+      ],
+      "base": 100,
+      "actual": 110,
+      "prediction": 100,
+      "target": "level"
+    },
+    {
+      "id": "m1_forecast_04",
+      "source": "forecasting",
+      "category": "forecast",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "Illustrative numbers, not class data: employment starts at 100. Actual employment is 110, while a model forecasts 100. The model will ______ the size of the increase in employment.",
+      "opts": [
+        "Overestimate",
+        "Perfectly estimate",
+        "Underestimate",
+        "Be unable to compare"
+      ],
+      "ans": 2,
+      "note": "Đề hỏi SIZE OF THE INCREASE. Thực tế thay đổi 10, model dự báo thay đổi 0. So độ lớn hai thay đổi, không so hai level. Vì vậy underestimate the increase.",
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "tag": "Forecasting: Magnitude of change",
+      "concept": "Magnitude of change",
+      "studyKind": "forecasting",
+      "dataSources": [
+        {
+          "name": "Ask your neighbor_Chapter 4_ans.pdf",
+          "url": "midterm-assets/Ask Your Neighbor/Ask your neighbor_Chapter 4_ans.pdf",
+          "page": 9
+        },
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 7
+        },
+        {
+          "name": "Chapter 4 extension--Mathematical solution to the utility maximization problem.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 extension--Mathematical solution to the utility maximization problem.docx"
+        }
+      ],
+      "base": 100,
+      "actual": 110,
+      "prediction": 100,
+      "target": "magnitude"
+    },
+    {
+      "id": "m1_forecast_05",
+      "source": "forecasting",
+      "category": "forecast",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "Illustrative numbers, not class data: employment starts at 100. Actual employment is 90, while a model forecasts 80. The model will ______ the resulting level of employment.",
+      "opts": [
+        "Overestimate",
+        "Underestimate",
+        "Perfectly estimate",
+        "Be unable to compare"
+      ],
+      "ans": 1,
+      "note": "Đề hỏi LEVEL. Dự báo 80, thực tế 90. Dự báo thấp hơn thực tế nên underestimate employment. Đọc level trước khi xét mức tăng hoặc giảm.",
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "tag": "Forecasting: Level",
+      "concept": "Level",
+      "studyKind": "forecasting",
+      "dataSources": [
+        {
+          "name": "Ask your neighbor_Chapter 4_ans.pdf",
+          "url": "midterm-assets/Ask Your Neighbor/Ask your neighbor_Chapter 4_ans.pdf",
+          "page": 9
+        },
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 7
+        },
+        {
+          "name": "Chapter 4 extension--Mathematical solution to the utility maximization problem.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 extension--Mathematical solution to the utility maximization problem.docx"
+        }
+      ],
+      "base": 100,
+      "actual": 90,
+      "prediction": 80,
+      "target": "level"
+    },
+    {
+      "id": "m1_forecast_06",
+      "source": "forecasting",
+      "category": "forecast",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "Illustrative numbers, not class data: employment starts at 100. Actual employment is 90, while a model forecasts 80. The model will ______ the size of the decrease in employment.",
+      "opts": [
+        "Overestimate",
+        "Underestimate",
+        "Perfectly estimate",
+        "Be unable to compare"
+      ],
+      "ans": 0,
+      "note": "Đề hỏi SIZE OF THE DECREASE. Thực tế thay đổi 10, model dự báo thay đổi 20. So độ lớn hai thay đổi, không so hai level. Vì vậy overestimate the decrease.",
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "tag": "Forecasting: Magnitude of change",
+      "concept": "Magnitude of change",
+      "studyKind": "forecasting",
+      "dataSources": [
+        {
+          "name": "Ask your neighbor_Chapter 4_ans.pdf",
+          "url": "midterm-assets/Ask Your Neighbor/Ask your neighbor_Chapter 4_ans.pdf",
+          "page": 9
+        },
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 7
+        },
+        {
+          "name": "Chapter 4 extension--Mathematical solution to the utility maximization problem.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 extension--Mathematical solution to the utility maximization problem.docx"
+        }
+      ],
+      "base": 100,
+      "actual": 90,
+      "prediction": 80,
+      "target": "magnitude"
+    },
+    {
+      "id": "m1_forecast_07",
+      "source": "forecasting",
+      "category": "forecast",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "Illustrative numbers, not class data: employment starts at 100. Actual employment is 90, while a model forecasts 100. The model will ______ the resulting level of employment.",
+      "opts": [
+        "Underestimate",
+        "Perfectly estimate",
+        "Be unable to compare",
+        "Overestimate"
+      ],
+      "ans": 3,
+      "note": "Đề hỏi LEVEL. Dự báo 100, thực tế 90. Dự báo cao hơn thực tế nên overestimate employment. Đọc level trước khi xét mức tăng hoặc giảm.",
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "tag": "Forecasting: Level",
+      "concept": "Level",
+      "studyKind": "forecasting",
+      "dataSources": [
+        {
+          "name": "Ask your neighbor_Chapter 4_ans.pdf",
+          "url": "midterm-assets/Ask Your Neighbor/Ask your neighbor_Chapter 4_ans.pdf",
+          "page": 9
+        },
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 7
+        },
+        {
+          "name": "Chapter 4 extension--Mathematical solution to the utility maximization problem.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 extension--Mathematical solution to the utility maximization problem.docx"
+        }
+      ],
+      "base": 100,
+      "actual": 90,
+      "prediction": 100,
+      "target": "level"
+    },
+    {
+      "id": "m1_forecast_08",
+      "source": "forecasting",
+      "category": "forecast",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "Illustrative numbers, not class data: employment starts at 100. Actual employment is 90, while a model forecasts 100. The model will ______ the size of the decrease in employment.",
+      "opts": [
+        "Overestimate",
+        "Perfectly estimate",
+        "Underestimate",
+        "Be unable to compare"
+      ],
+      "ans": 2,
+      "note": "Đề hỏi SIZE OF THE DECREASE. Thực tế thay đổi 10, model dự báo thay đổi 0. So độ lớn hai thay đổi, không so hai level. Vì vậy underestimate the decrease.",
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "tag": "Forecasting: Magnitude of change",
+      "concept": "Magnitude of change",
+      "studyKind": "forecasting",
+      "dataSources": [
+        {
+          "name": "Ask your neighbor_Chapter 4_ans.pdf",
+          "url": "midterm-assets/Ask Your Neighbor/Ask your neighbor_Chapter 4_ans.pdf",
+          "page": 9
+        },
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 7
+        },
+        {
+          "name": "Chapter 4 extension--Mathematical solution to the utility maximization problem.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 extension--Mathematical solution to the utility maximization problem.docx"
+        }
+      ],
+      "base": 100,
+      "actual": 90,
+      "prediction": 100,
+      "target": "magnitude"
+    },
+    {
+      "id": "m1_forecast_09",
+      "source": "forecasting",
+      "category": "forecast",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "Assume an interior household choice with C=w(h-l), fixed available time, and no non-labor income. A forecaster uses U=a ln C+b ln l to make a forecast for each of the next twelve months. Relative to the short-run benchmark discussed in class, the forecaster will likely ______ the size of the increase in labor supply in response to a rising real wage.",
+      "opts": [
+        "Overestimate",
+        "Underestimate",
+        "Perfectly estimate",
+        "Be unable to predict a direction"
+      ],
+      "ans": 1,
+      "note": "SHORT RUN: cô dùng SE > IE, N cùng chiều wage. Log-linear earnings-only dự báo N không đổi vì IE và SE cancel. Wage tăng: forecast level N thấp hơn benchmark; mức tăng bị dự báo quá nhỏ. Câu này hỏi size of the increase in labor supply, nên chọn underestimate.",
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "tag": "Forecasting: Short run",
+      "concept": "Short run",
+      "studyKind": "forecasting",
+      "dataSources": [
+        {
+          "name": "Ask your neighbor_Chapter 4_ans.pdf",
+          "url": "midterm-assets/Ask Your Neighbor/Ask your neighbor_Chapter 4_ans.pdf",
+          "page": 9
+        },
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 7
+        },
+        {
+          "name": "Chapter 4 extension--Mathematical solution to the utility maximization problem.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 extension--Mathematical solution to the utility maximization problem.docx"
+        }
+      ],
+      "horizon": "short",
+      "utility": "log",
+      "wageDirection": "up",
+      "target": "increase"
+    },
+    {
+      "id": "m1_forecast_10",
+      "source": "forecasting",
+      "category": "forecast",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "Assume an interior household choice with C=w(h-l), fixed available time, and no non-labor income. A forecaster uses U=a ln C+b ln l to make a forecast for each of the next twelve months. Relative to the short-run benchmark discussed in class, the forecaster will likely ______ the size of the decrease in labor supply in response to a declining real wage.",
+      "opts": [
+        "Underestimate",
+        "Overestimate",
+        "Perfectly estimate",
+        "Be unable to predict a direction"
+      ],
+      "ans": 0,
+      "note": "SHORT RUN: cô dùng SE > IE, N cùng chiều wage. Log-linear earnings-only dự báo N không đổi vì IE và SE cancel. Wage giảm: forecast level N cao hơn benchmark, nhưng mức giảm bị dự báo quá nhỏ. Overestimate level và underestimate decrease cùng đúng. Câu này hỏi size of the decrease in labor supply, nên chọn underestimate.",
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "tag": "Forecasting: Short run",
+      "concept": "Short run",
+      "studyKind": "forecasting",
+      "dataSources": [
+        {
+          "name": "Ask your neighbor_Chapter 4_ans.pdf",
+          "url": "midterm-assets/Ask Your Neighbor/Ask your neighbor_Chapter 4_ans.pdf",
+          "page": 9
+        },
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 7
+        },
+        {
+          "name": "Chapter 4 extension--Mathematical solution to the utility maximization problem.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 extension--Mathematical solution to the utility maximization problem.docx"
+        }
+      ],
+      "horizon": "short",
+      "utility": "log",
+      "wageDirection": "down",
+      "target": "decrease"
+    },
+    {
+      "id": "m1_forecast_11",
+      "source": "forecasting",
+      "category": "forecast",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "Assume an interior household choice with C=w(h-l), fixed available time, and no non-labor income. A forecaster uses U=a ln C+b ln l to make a forecast for each of the next twelve months. Relative to the short-run benchmark discussed in class, the forecaster will likely ______ the resulting level of labor input in response to a rising real wage.",
+      "opts": [
+        "Overestimate",
+        "Perfectly estimate",
+        "Be unable to predict a direction",
+        "Underestimate"
+      ],
+      "ans": 3,
+      "note": "SHORT RUN: cô dùng SE > IE, N cùng chiều wage. Log-linear earnings-only dự báo N không đổi vì IE và SE cancel. Wage tăng: forecast level N thấp hơn benchmark; mức tăng bị dự báo quá nhỏ. Câu này hỏi resulting level of labor input, nên chọn underestimate.",
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "tag": "Forecasting: Short run",
+      "concept": "Short run",
+      "studyKind": "forecasting",
+      "dataSources": [
+        {
+          "name": "Ask your neighbor_Chapter 4_ans.pdf",
+          "url": "midterm-assets/Ask Your Neighbor/Ask your neighbor_Chapter 4_ans.pdf",
+          "page": 9
+        },
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 7
+        },
+        {
+          "name": "Chapter 4 extension--Mathematical solution to the utility maximization problem.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 extension--Mathematical solution to the utility maximization problem.docx"
+        }
+      ],
+      "horizon": "short",
+      "utility": "log",
+      "wageDirection": "up",
+      "target": "level"
+    },
+    {
+      "id": "m1_forecast_12",
+      "source": "forecasting",
+      "category": "forecast",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "Assume an interior household choice with C=w(h-l), fixed available time, and no non-labor income. A forecaster uses U=a ln C+b ln l to make a forecast for each of the next twelve months. Relative to the short-run benchmark discussed in class, the forecaster will likely ______ the resulting level of labor input in response to a declining real wage.",
+      "opts": [
+        "Underestimate",
+        "Perfectly estimate",
+        "Overestimate",
+        "Be unable to predict a direction"
+      ],
+      "ans": 2,
+      "note": "SHORT RUN: cô dùng SE > IE, N cùng chiều wage. Log-linear earnings-only dự báo N không đổi vì IE và SE cancel. Wage giảm: forecast level N cao hơn benchmark, nhưng mức giảm bị dự báo quá nhỏ. Overestimate level và underestimate decrease cùng đúng. Câu này hỏi resulting level of labor input, nên chọn overestimate.",
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "tag": "Forecasting: Short run",
+      "concept": "Short run",
+      "studyKind": "forecasting",
+      "dataSources": [
+        {
+          "name": "Ask your neighbor_Chapter 4_ans.pdf",
+          "url": "midterm-assets/Ask Your Neighbor/Ask your neighbor_Chapter 4_ans.pdf",
+          "page": 9
+        },
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 7
+        },
+        {
+          "name": "Chapter 4 extension--Mathematical solution to the utility maximization problem.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 extension--Mathematical solution to the utility maximization problem.docx"
+        }
+      ],
+      "horizon": "short",
+      "utility": "log",
+      "wageDirection": "down",
+      "target": "level"
+    },
+    {
+      "id": "m1_forecast_13",
+      "source": "forecasting",
+      "category": "forecast",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "Assume an interior household choice with C=w(h-l), fixed available time, and no non-labor income. A forecaster uses U=aC+b ln l for a long-run forecast. Use the modern class benchmark of approximately unchanged hours worked as real wages change. The forecaster will likely ______ the size of the increase in hours worked in response to a rising real wage.",
+      "opts": [
+        "Underestimate",
+        "Overestimate",
+        "Perfectly estimate",
+        "Predict no labor-supply response"
+      ],
+      "ans": 1,
+      "note": "LONG RUN: benchmark hiện tại của cô là hours gần không đổi, IE và SE gần cancel. Quasi-linear in C có l=b/(aw), nên wage tăng dự báo N tăng, wage giảm dự báo N giảm. Forecast level quá cao và dự báo increase quá lớn. Đề hỏi size of the increase in hours worked, nên chọn overestimate. Đây là comparison với long-run benchmark, không phải short-run data.",
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "tag": "Forecasting: Long run",
+      "concept": "Long run",
+      "studyKind": "forecasting",
+      "dataSources": [
+        {
+          "name": "Ask your neighbor_Chapter 4_ans.pdf",
+          "url": "midterm-assets/Ask Your Neighbor/Ask your neighbor_Chapter 4_ans.pdf",
+          "page": 9
+        },
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 7
+        },
+        {
+          "name": "Chapter 4 extension--Mathematical solution to the utility maximization problem.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 extension--Mathematical solution to the utility maximization problem.docx"
+        }
+      ],
+      "horizon": "long",
+      "utility": "ql",
+      "wageDirection": "up",
+      "target": "increase"
+    },
+    {
+      "id": "m1_forecast_14",
+      "source": "forecasting",
+      "category": "forecast",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "Assume an interior household choice with C=w(h-l), fixed available time, and no non-labor income. A forecaster uses U=aC+b ln l for a long-run forecast. Use the modern class benchmark of approximately unchanged hours worked as real wages change. The forecaster will likely ______ the size of the decrease in hours worked in response to a declining real wage.",
+      "opts": [
+        "Overestimate",
+        "Underestimate",
+        "Perfectly estimate",
+        "Predict no labor-supply response"
+      ],
+      "ans": 0,
+      "note": "LONG RUN: benchmark hiện tại của cô là hours gần không đổi, IE và SE gần cancel. Quasi-linear in C có l=b/(aw), nên wage tăng dự báo N tăng, wage giảm dự báo N giảm. Forecast level quá thấp, nhưng dự báo decrease quá lớn. Đề hỏi size of the decrease in hours worked, nên chọn overestimate. Đây là comparison với long-run benchmark, không phải short-run data.",
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "tag": "Forecasting: Long run",
+      "concept": "Long run",
+      "studyKind": "forecasting",
+      "dataSources": [
+        {
+          "name": "Ask your neighbor_Chapter 4_ans.pdf",
+          "url": "midterm-assets/Ask Your Neighbor/Ask your neighbor_Chapter 4_ans.pdf",
+          "page": 9
+        },
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 7
+        },
+        {
+          "name": "Chapter 4 extension--Mathematical solution to the utility maximization problem.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 extension--Mathematical solution to the utility maximization problem.docx"
+        }
+      ],
+      "horizon": "long",
+      "utility": "ql",
+      "wageDirection": "down",
+      "target": "decrease"
+    },
+    {
+      "id": "m1_forecast_15",
+      "source": "forecasting",
+      "category": "forecast",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "Assume an interior household choice with C=w(h-l), fixed available time, and no non-labor income. A forecaster uses U=aC+b ln l for a long-run forecast. Use the modern class benchmark of approximately unchanged hours worked as real wages change. The forecaster will likely ______ the resulting level of hours worked in response to a rising real wage.",
+      "opts": [
+        "Underestimate",
+        "Perfectly estimate",
+        "Predict no labor-supply response",
+        "Overestimate"
+      ],
+      "ans": 3,
+      "note": "LONG RUN: benchmark hiện tại của cô là hours gần không đổi, IE và SE gần cancel. Quasi-linear in C có l=b/(aw), nên wage tăng dự báo N tăng, wage giảm dự báo N giảm. Forecast level quá cao và dự báo increase quá lớn. Đề hỏi resulting level of hours worked, nên chọn overestimate. Đây là comparison với long-run benchmark, không phải short-run data.",
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "tag": "Forecasting: Long run",
+      "concept": "Long run",
+      "studyKind": "forecasting",
+      "dataSources": [
+        {
+          "name": "Ask your neighbor_Chapter 4_ans.pdf",
+          "url": "midterm-assets/Ask Your Neighbor/Ask your neighbor_Chapter 4_ans.pdf",
+          "page": 9
+        },
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 7
+        },
+        {
+          "name": "Chapter 4 extension--Mathematical solution to the utility maximization problem.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 extension--Mathematical solution to the utility maximization problem.docx"
+        }
+      ],
+      "horizon": "long",
+      "utility": "ql",
+      "wageDirection": "up",
+      "target": "level"
+    },
+    {
+      "id": "m1_forecast_16",
+      "source": "forecasting",
+      "category": "forecast",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "Assume an interior household choice with C=w(h-l), fixed available time, and no non-labor income. A forecaster uses U=aC+b ln l for a long-run forecast. Use the modern class benchmark of approximately unchanged hours worked as real wages change. The forecaster will likely ______ the resulting level of hours worked in response to a declining real wage.",
+      "opts": [
+        "Overestimate",
+        "Perfectly estimate",
+        "Underestimate",
+        "Predict no labor-supply response"
+      ],
+      "ans": 2,
+      "note": "LONG RUN: benchmark hiện tại của cô là hours gần không đổi, IE và SE gần cancel. Quasi-linear in C có l=b/(aw), nên wage tăng dự báo N tăng, wage giảm dự báo N giảm. Forecast level quá thấp, nhưng dự báo decrease quá lớn. Đề hỏi resulting level of hours worked, nên chọn underestimate. Đây là comparison với long-run benchmark, không phải short-run data.",
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "tag": "Forecasting: Long run",
+      "concept": "Long run",
+      "studyKind": "forecasting",
+      "dataSources": [
+        {
+          "name": "Ask your neighbor_Chapter 4_ans.pdf",
+          "url": "midterm-assets/Ask Your Neighbor/Ask your neighbor_Chapter 4_ans.pdf",
+          "page": 9
+        },
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 7
+        },
+        {
+          "name": "Chapter 4 extension--Mathematical solution to the utility maximization problem.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 extension--Mathematical solution to the utility maximization problem.docx"
+        }
+      ],
+      "horizon": "long",
+      "utility": "ql",
+      "wageDirection": "down",
+      "target": "level"
+    },
+    {
+      "id": "m1_forecast_17",
+      "source": "forecasting",
+      "category": "forecast",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "Assume an interior household choice with C=w(h-l), fixed available time, and no non-labor income. A log-linear forecaster predicts unchanged hours worked in response to a rising real wage over the long run. Relative to the modern long-run benchmark discussed in class, this forecast is",
+      "opts": [
+        "Necessarily an overestimate of a large increase in hours.",
+        "Consistent with an approximately unchanged intensive labor input.",
+        "Necessarily an underestimate of a large decrease in hours.",
+        "Evidence that income and substitution effects do not exist."
+      ],
+      "ans": 1,
+      "note": "Log-linear earnings-only cho l=bh/(a+b) và N=ah/(a+b), nên wage không đổi choice N. Long-run benchmark cô dùng là hours gần flat, IE và SE cancel. Hai effects có tồn tại nhưng bù nhau; đây là phù hợp về response direction, không bảo đảm model dự báo chính xác mọi biến ngoài thực tế.",
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "tag": "Forecasting: Long-run log benchmark",
+      "concept": "Long-run log benchmark",
+      "studyKind": "forecasting",
+      "dataSources": [
+        {
+          "name": "Ask your neighbor_Chapter 4_ans.pdf",
+          "url": "midterm-assets/Ask Your Neighbor/Ask your neighbor_Chapter 4_ans.pdf",
+          "page": 9
+        },
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 7
+        },
+        {
+          "name": "Chapter 4 extension--Mathematical solution to the utility maximization problem.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 extension--Mathematical solution to the utility maximization problem.docx"
+        }
+      ],
+      "horizon": "long",
+      "utility": "log",
+      "target": "direction"
+    },
+    {
+      "id": "m1_forecast_18",
+      "source": "forecasting",
+      "category": "forecast",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "Assume an interior household choice with C=w(h-l), fixed available time, and no non-labor income. A log-linear forecaster predicts unchanged hours worked in response to a declining real wage over the long run. Relative to the modern long-run benchmark discussed in class, this forecast is",
+      "opts": [
+        "Consistent with an approximately unchanged intensive labor input.",
+        "Necessarily an overestimate of a large increase in hours.",
+        "Necessarily an underestimate of a large decrease in hours.",
+        "Evidence that income and substitution effects do not exist."
+      ],
+      "ans": 0,
+      "note": "Log-linear earnings-only cho l=bh/(a+b) và N=ah/(a+b), nên wage không đổi choice N. Long-run benchmark cô dùng là hours gần flat, IE và SE cancel. Hai effects có tồn tại nhưng bù nhau; đây là phù hợp về response direction, không bảo đảm model dự báo chính xác mọi biến ngoài thực tế.",
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "tag": "Forecasting: Long-run log benchmark",
+      "concept": "Long-run log benchmark",
+      "studyKind": "forecasting",
+      "dataSources": [
+        {
+          "name": "Ask your neighbor_Chapter 4_ans.pdf",
+          "url": "midterm-assets/Ask Your Neighbor/Ask your neighbor_Chapter 4_ans.pdf",
+          "page": 9
+        },
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 7
+        },
+        {
+          "name": "Chapter 4 extension--Mathematical solution to the utility maximization problem.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 extension--Mathematical solution to the utility maximization problem.docx"
+        }
+      ],
+      "horizon": "long",
+      "utility": "log",
+      "target": "direction"
+    },
+    {
+      "id": "m1_forecast_19",
+      "source": "forecasting",
+      "category": "forecast",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "Based on the business-cycle data discussed in class, which assumption is most useful when selecting a utility function for a short-run labor-supply forecast?",
+      "opts": [
+        "Income effects dominate substitution effects.",
+        "Income and substitution effects exactly cancel.",
+        "Neither income nor substitution effects exists.",
+        "Substitution effects dominate income effects."
+      ],
+      "ans": 3,
+      "note": "Short-run wage và labor procyclical. SE > IE cho wage tăng đi cùng N tăng và wage giảm đi cùng N giảm. Đây là assumption về response trong benchmark lớp, không phải mọi correlation đều chứng minh causation.",
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "tag": "Forecasting: Choosing short-run assumptions",
+      "concept": "Choosing short-run assumptions",
+      "studyKind": "forecasting",
+      "dataSources": [
+        {
+          "name": "Ask your neighbor_Chapter 4_ans.pdf",
+          "url": "midterm-assets/Ask Your Neighbor/Ask your neighbor_Chapter 4_ans.pdf",
+          "page": 9
+        },
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 7
+        },
+        {
+          "name": "Chapter 4 extension--Mathematical solution to the utility maximization problem.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 extension--Mathematical solution to the utility maximization problem.docx"
+        }
+      ],
+      "horizon": "short"
+    },
+    {
+      "id": "m1_forecast_20",
+      "source": "forecasting",
+      "category": "forecast",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "Based on the modern long-run evidence discussed in class, which assumption is most appropriate for a long-run intensive labor-supply forecast?",
+      "opts": [
+        "Income effects dominate substitution effects.",
+        "Substitution effects dominate income effects.",
+        "Income and substitution effects approximately cancel each other out.",
+        "Both effects always increase hours worked."
+      ],
+      "ans": 2,
+      "note": "Cô chọn long-run IE và SE gần cancel. Review nói old answers IE dominates đã lỗi thời do workforce composition. Dùng benchmark hiện tại, không dùng historical key làm current fact.",
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "tag": "Forecasting: Choosing long-run assumptions",
+      "concept": "Choosing long-run assumptions",
+      "studyKind": "forecasting",
+      "dataSources": [
+        {
+          "name": "Ask your neighbor_Chapter 4_ans.pdf",
+          "url": "midterm-assets/Ask Your Neighbor/Ask your neighbor_Chapter 4_ans.pdf",
+          "page": 9
+        },
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 7
+        },
+        {
+          "name": "Chapter 4 extension--Mathematical solution to the utility maximization problem.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 extension--Mathematical solution to the utility maximization problem.docx"
+        }
+      ],
+      "horizon": "long"
+    },
+    {
+      "id": "m1_forecast_21",
+      "source": "forecasting",
+      "category": "forecast",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "Which pattern best matches the current interpretation of real wages and hours worked discussed in class?",
+      "opts": [
+        "Negative correlation over both short and long periods.",
+        "Positive correlation over business cycles and approximately no correlation over long periods.",
+        "Positive correlation over both short and long periods.",
+        "Approximately no correlation over business cycles and negative correlation over long periods."
+      ],
+      "ans": 1,
+      "note": "Short run: wages và hours positively correlated. Modern long run: gần uncorrelated khi chú ý composition. Đọc horizon trước khi chọn utility assumptions.",
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "tag": "Forecasting: Reading the horizon",
+      "concept": "Reading the horizon",
+      "studyKind": "forecasting",
+      "dataSources": [
+        {
+          "name": "Ask your neighbor_Chapter 4_ans.pdf",
+          "url": "midterm-assets/Ask Your Neighbor/Ask your neighbor_Chapter 4_ans.pdf",
+          "page": 9
+        },
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 7
+        },
+        {
+          "name": "Chapter 4 extension--Mathematical solution to the utility maximization problem.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 extension--Mathematical solution to the utility maximization problem.docx"
+        }
+      ]
+    },
+    {
+      "id": "m1_forecast_22",
+      "source": "forecasting",
+      "category": "forecast",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "After a decline in real wages, a log-linear forecast puts employment above the short-run benchmark. Which statement correctly distinguishes the level from the change?",
+      "opts": [
+        "The forecast overestimates employment but underestimates the size of its decrease.",
+        "The forecast overestimates both employment and the size of its decrease.",
+        "The forecast underestimates both employment and the size of its decrease.",
+        "Overestimating employment necessarily means overestimating its decrease."
+      ],
+      "ans": 0,
+      "note": "Ví dụ initial N=100, benchmark N=90, forecast N=100. Level forecast cao hơn 90 nên overestimate employment. Forecast giảm 0 thay vì 10 nên underestimate decrease. Hai đáp án khác chữ vì câu hỏi khác đối tượng.",
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "tag": "Forecasting: Level versus decrease",
+      "concept": "Level versus decrease",
+      "studyKind": "forecasting",
+      "dataSources": [
+        {
+          "name": "Ask your neighbor_Chapter 4_ans.pdf",
+          "url": "midterm-assets/Ask Your Neighbor/Ask your neighbor_Chapter 4_ans.pdf",
+          "page": 9
+        },
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 7
+        },
+        {
+          "name": "Chapter 4 extension--Mathematical solution to the utility maximization problem.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 extension--Mathematical solution to the utility maximization problem.docx"
+        }
+      ]
+    },
+    {
+      "id": "m1_forecast_23",
+      "source": "forecasting",
+      "category": "forecast",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "For U=aC+b ln l and an interior household optimum at a fixed real wage, which statement is correct?",
+      "opts": [
+        "Income and substitution effects exactly cancel for leisure.",
+        "A wage increase necessarily increases leisure because leisure is normal.",
+        "The leisure choice is independent of the wage.",
+        "The income effect on leisure is zero, so a wage increase reduces leisure and increases hours worked."
+      ],
+      "ans": 3,
+      "note": "Quasi-linear IN C cho MU_C=a, MU_l=b/l, MRS=b/(al)=w. l=b/(aw), nên wage tăng làm l giảm và N tăng. Leisure IE bằng 0 ở nghiệm nội; không suy mọi quasi-linear specification có cùng kết quả.",
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "tag": "Forecasting: Quasi-linear mechanism",
+      "concept": "Quasi-linear mechanism",
+      "studyKind": "forecasting",
+      "dataSources": [
+        {
+          "name": "Ask your neighbor_Chapter 4_ans.pdf",
+          "url": "midterm-assets/Ask Your Neighbor/Ask your neighbor_Chapter 4_ans.pdf",
+          "page": 9
+        },
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 7
+        },
+        {
+          "name": "Chapter 4 extension--Mathematical solution to the utility maximization problem.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 extension--Mathematical solution to the utility maximization problem.docx"
+        }
+      ],
+      "utility": "ql"
+    },
+    {
+      "id": "m1_forecast_24",
+      "source": "forecasting",
+      "category": "forecast",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "A decline in real wages makes a household poorer. The income effect encourages more work, while the substitution effect encourages less work. If substitution effects dominate, total labor supply will",
+      "opts": [
+        "Increase.",
+        "Remain unchanged.",
+        "Decrease.",
+        "Become independent of preferences."
+      ],
+      "ans": 2,
+      "note": "Wage giảm: IE kéo l giảm và N tăng, SE kéo l tăng và N giảm. SE > IE nên net N giảm. Chỉ nhìn income effect sẽ chọn nhầm N tăng. Đây là short-run assumption cô dùng.",
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "tag": "Forecasting: Net effect",
+      "concept": "Net effect",
+      "studyKind": "forecasting",
+      "dataSources": [
+        {
+          "name": "Ask your neighbor_Chapter 4_ans.pdf",
+          "url": "midterm-assets/Ask Your Neighbor/Ask your neighbor_Chapter 4_ans.pdf",
+          "page": 9
+        },
+        {
+          "name": "302_Trends in employment data_scans.pdf",
+          "url": "midterm-assets/Lecture References/302_Trends in employment data_scans.pdf",
+          "page": 7
+        },
+        {
+          "name": "Chapter 4 extension--Mathematical solution to the utility maximization problem.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 extension--Mathematical solution to the utility maximization problem.docx"
+        }
+      ],
+      "horizon": "short"
+    }
+  ]
+}
