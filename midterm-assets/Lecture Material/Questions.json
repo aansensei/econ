@@ -1,0 +1,779 @@
+{
+  "title": "Lecture Material",
+  "scope": "New AI-authored MCQs grounded in saved ECON 302 lecture materials. Reframed situations and implications, not verbatim instructor questions. Numerical examples are illustrative.",
+  "questions": [
+    {
+      "id": "m1_lecture_01",
+      "source": "lecture-material",
+      "category": "lecture",
+      "type": "mcq",
+      "chapters": [
+        3
+      ],
+      "stem": "A graph of log real GDP keeps rising, but its estimated trend becomes flatter. Which interpretation is most consistent with the lecture discussion?",
+      "opts": [
+        "Real GDP must now be falling in every period.",
+        "A flatter trend proves that recessions are more frequent.",
+        "The change in slope tells us that investment is now countercyclical.",
+        "Real GDP can continue to rise while its trend growth rate declines."
+      ],
+      "ans": 3,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "studyKind": "lecture-material",
+      "tag": "Lecture Material: Level versus trend growth",
+      "concept": "Level versus trend growth",
+      "note": "Log GDP vẫn đi lên nghĩa output level vẫn tăng. Trend flatter nghĩa tốc độ tăng dài hạn thấp hơn. Growth rate, level và recession frequency là ba thông tin khác nhau; không suy GDP level giảm chỉ từ lower growth.",
+      "dataSources": [
+        {
+          "name": "Econ 302_Ch 1_2_3 lecture material.pdf",
+          "url": "midterm-assets/Lecture References/Econ 302_Ch 1_2_3 lecture material.pdf",
+          "page": 3
+        }
+      ]
+    },
+    {
+      "id": "m1_lecture_02",
+      "source": "lecture-material",
+      "category": "lecture",
+      "type": "mcq",
+      "chapters": [
+        3
+      ],
+      "stem": "Consumption and employment are both listed as procyclical in the class table. Does that establish that they reach turning points at the same time?",
+      "opts": [
+        "Yes. Every procyclical variable must be coincident with GDP.",
+        "Yes. Equal cyclicality implies equal volatility and timing.",
+        "No. The table lists consumption as coincident and employment as lagging.",
+        "No. Employment must be countercyclical if it lags GDP."
+      ],
+      "ans": 2,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "studyKind": "lecture-material",
+      "tag": "Lecture Material: Cyclicality versus timing",
+      "concept": "Cyclicality versus timing",
+      "note": "Procyclical nói về cùng chiều GDP, không nói turning points đồng thời. Table 3.2: C coincident, employment lagging; cả hai vẫn procyclical. Volatility là một khía cạnh riêng nữa.",
+      "dataSources": [
+        {
+          "name": "Econ 302_Ch 1_2_3 lecture material.pdf",
+          "url": "midterm-assets/Lecture References/Econ 302_Ch 1_2_3 lecture material.pdf",
+          "page": 13
+        }
+      ]
+    },
+    {
+      "id": "m1_lecture_03",
+      "source": "lecture-material",
+      "category": "lecture",
+      "type": "mcq",
+      "chapters": [
+        3
+      ],
+      "stem": "For Y=zK^αN^β with α+β=1, suppose capital and labor both double while z remains fixed. Which conclusion follows?",
+      "opts": [
+        "GDP doubles and GDP per unit of labor doubles.",
+        "GDP doubles, but GDP per unit of labor is unchanged.",
+        "GDP is unchanged because marginal products diminish.",
+        "GDP must more than double because both inputs rise."
+      ],
+      "ans": 1,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "studyKind": "lecture-material",
+      "tag": "Lecture Material: Returns to scale versus productivity",
+      "concept": "Returns to scale versus productivity",
+      "note": "CRS: scale cả K và N gấp 2 thì Y gấp 2. Y/N mới = 2Y/(2N) = Y/N, nên không tự nâng output per labor. Diminishing marginal returns xét một input với input kia cố định, khác returns to scale.",
+      "dataSources": [
+        {
+          "name": "What is a Cobb Douglas production function.docx",
+          "url": "midterm-assets/Lecture References/What is a Cobb Douglas production function.docx"
+        }
+      ],
+      "checkKind": "scale",
+      "scaleFactor": 2
+    },
+    {
+      "id": "m1_lecture_04",
+      "source": "lecture-material",
+      "category": "lecture",
+      "type": "mcq",
+      "chapters": [
+        3
+      ],
+      "stem": "For Y=zK^0.6N^0.4, capital and technology are fixed while N doubles. Which statement is correct?",
+      "opts": [
+        "GDP rises by less than double, and the marginal product of labor falls.",
+        "GDP doubles because this production function has constant returns to scale.",
+        "GDP falls because the marginal product of labor falls.",
+        "GDP rises by more than double because labor and capital are complements."
+      ],
+      "ans": 0,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "studyKind": "lecture-material",
+      "tag": "Lecture Material: Single-input scaling",
+      "concept": "Single-input scaling",
+      "note": "K và z giữ nguyên: Y mới/Y cũ = 2^0.4, nằm giữa 1 và 2. MPN có số mũ N là -0.6 nên N tăng làm MPN giảm. CRS chỉ cho Y gấp 2 khi tăng đồng thời cả K và N gấp 2.",
+      "dataSources": [
+        {
+          "name": "What is a Cobb Douglas production function.docx",
+          "url": "midterm-assets/Lecture References/What is a Cobb Douglas production function.docx"
+        },
+        {
+          "name": "Chapter 4 notes-- Firm's Labor Demand Decision-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 notes-- Firm's Labor Demand Decision-1.docx"
+        }
+      ],
+      "checkKind": "single-input",
+      "scaleFactor": 2,
+      "laborExponent": 0.4
+    },
+    {
+      "id": "m1_lecture_05",
+      "source": "lecture-material",
+      "category": "lecture",
+      "type": "mcq",
+      "chapters": [
+        3
+      ],
+      "stem": "An analyst computes z=Y/(K^αN^β), with β>0. Output and capital are measured correctly, but labor input is understated. What happens to measured z, holding the true economy fixed?",
+      "opts": [
+        "Measured z is too low because fewer reported workers must mean less technology.",
+        "Measured z is unaffected because labor is already an observed input.",
+        "True technology necessarily increases by the same percentage as the labor measurement error.",
+        "Measured z is too high because the denominator is too small."
+      ],
+      "ans": 3,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "studyKind": "lecture-material",
+      "tag": "Lecture Material: Measurement bias in the Solow residual",
+      "concept": "Measurement bias in the Solow residual",
+      "note": "Đây là suy luận từ công thức trong lecture: reported N thấp làm K^αN^β thấp, nên measured z cao. Economy thật không đổi. Measurement error có thể làm residual đổi mà không có true technology shock.",
+      "dataSources": [
+        {
+          "name": "Chapter 5 notes--Shocking the general equilibrium model-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 5 notes--Shocking the general equilibrium model-1.docx"
+        }
+      ],
+      "checkKind": "residual",
+      "laborExponent": 0.4
+    },
+    {
+      "id": "m1_lecture_06",
+      "source": "lecture-material",
+      "category": "lecture",
+      "type": "mcq",
+      "chapters": [
+        3
+      ],
+      "stem": "Measured TFP moves with GDP, but a productive input omitted from F(K,N) also moves with GDP. What is the strongest conclusion?",
+      "opts": [
+        "The omitted input cannot matter because GDP is already observed.",
+        "All measured TFP fluctuations must be genuine technology shocks.",
+        "Some apparent TFP fluctuations may reflect the omitted input, so the correlation alone does not establish a true technology explanation.",
+        "A procyclical Solow residual proves the model correctly identifies every cause of recessions."
+      ],
+      "ans": 2,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "studyKind": "lecture-material",
+      "tag": "Lecture Material: Testing a technology explanation",
+      "concept": "Testing a technology explanation",
+      "note": "Solow residual gom phần output không giải thích bằng measured K,N. Omitted inputs có thể bị tính vào z. Cô nói điều này có thể làm productivity shocks trông giải thích cycle tốt hơn thực tế; correlation không đủ xác định cause.",
+      "dataSources": [
+        {
+          "name": "Chapter 5 notes--Shocking the general equilibrium model-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 5 notes--Shocking the general equilibrium model-1.docx"
+        }
+      ]
+    },
+    {
+      "id": "m1_lecture_07",
+      "source": "lecture-material",
+      "category": "lecture",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "With preferences fixed and more preferred to less, bundle B contains strictly more consumption and strictly more leisure than bundle A. Which statement follows?",
+      "opts": [
+        "B must lie on the same indifference curve because it contains a more diverse mix.",
+        "B gives higher utility, so A and B cannot lie on the same indifference curve.",
+        "The household must prefer A if leisure is normal.",
+        "The two bundles must have equal utility whenever income effects cancel."
+      ],
+      "ans": 1,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "studyKind": "lecture-material",
+      "tag": "Lecture Material: More preferred to less",
+      "concept": "More preferred to less",
+      "note": "More preferred to less: tăng cả hai goods làm utility tăng. Cùng IC thì utility bằng nhau. Do đó hai bundles này ở hai utility levels khác nhau; không cần biết income đã thay đổi thế nào.",
+      "dataSources": [
+        {
+          "name": "Chapter 4 notes-- Household Labor Supply Decision-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 notes-- Household Labor Supply Decision-1.docx"
+        }
+      ]
+    },
+    {
+      "id": "m1_lecture_08",
+      "source": "lecture-material",
+      "category": "lecture",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "An indifference curve is a downward-sloping straight line. What can be concluded about its MRS along that line?",
+      "opts": [
+        "Its MRS is constant; downward slope alone does not imply diminishing MRS.",
+        "Its MRS must diminish because the line slopes down.",
+        "Its MRS must increase because consumption falls along the line.",
+        "Its MRS must be zero because the line is straight."
+      ],
+      "ans": 0,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "studyKind": "lecture-material",
+      "tag": "Lecture Material: Slope versus curvature",
+      "concept": "Slope versus curvature",
+      "note": "Signed slope của đường thẳng không đổi. MRS là độ lớn của slope nên cũng không đổi. More preferred to less giải thích dốc xuống; diminishing MRS trong model gắn với convex IC/diversity, không chỉ slope âm.",
+      "dataSources": [
+        {
+          "name": "Chapter 4 notes-- Household Labor Supply Decision-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 notes-- Household Labor Supply Decision-1.docx"
+        }
+      ]
+    },
+    {
+      "id": "m1_lecture_09",
+      "source": "lecture-material",
+      "category": "lecture",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "At a fixed after-tax wage W, a household receives more non-labor income. Consumption and leisure are normal, and the optimum remains interior. What happens?",
+      "opts": [
+        "Consumption and leisure rise, so MRS must rise above W at the new optimum.",
+        "Leisure rises, so the after-tax wage must fall.",
+        "Both goods fall because non-labor income is not earned by working.",
+        "Consumption and leisure rise, while MRS at the new optimum remains W."
+      ],
+      "ans": 3,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "studyKind": "lecture-material",
+      "tag": "Lecture Material: Income changes at a fixed optimum wage",
+      "concept": "Income changes at a fixed optimum wage",
+      "note": "Non-labor income tăng dịch budget ra song song: pure positive IE, C và l normal nên cả hai tăng. W giữ nguyên. Tại interior optimum mới, MRS vẫn bằng W dù C,l đã đổi. Đừng suy MRS từ một mũi tên leisure riêng.",
+      "dataSources": [
+        {
+          "name": "Chapter 4 notes-- Household Labor Supply Decision-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 notes-- Household Labor Supply Decision-1.docx"
+        }
+      ]
+    },
+    {
+      "id": "m1_lecture_10",
+      "source": "lecture-material",
+      "category": "lecture",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "For U=aC+b ln l and C=W(h-l)+π, W is fixed and the optimum remains interior. If π increases, which prediction follows?",
+      "opts": [
+        "Leisure must rise and hours worked must fall by the same amount.",
+        "Both consumption and leisure are unchanged.",
+        "Leisure and hours worked are unchanged, while consumption rises.",
+        "Leisure falls because every income increase has a substitution effect."
+      ],
+      "ans": 2,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "studyKind": "lecture-material",
+      "tag": "Lecture Material: Quasi-linear non-labor income",
+      "concept": "Quasi-linear non-labor income",
+      "note": "MU_l/MU_C=b/(al)=W nên l=b/(aW), không chứa π. N=h-l cũng giữ nguyên. π tăng được dùng cho C. Đây là quasi-linear IN C ở nghiệm nội; không áp quy tắc C,l đều tăng của strictly normal leisure vào special case này.",
+      "dataSources": [
+        {
+          "name": "Chapter 4 extension--Mathematical solution to the utility maximization problem.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 extension--Mathematical solution to the utility maximization problem.docx"
+        },
+        {
+          "name": "Oct 5 Ch 5 wrapup.pdf",
+          "url": "midterm-assets/Lecture References/Oct 5 Ch 5 wrapup.pdf"
+        }
+      ]
+    },
+    {
+      "id": "m1_lecture_11",
+      "source": "lecture-material",
+      "category": "lecture",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "For U=ln C+ln l and C=W(h-l), W is fixed. Available time h rises from 16 to 20. Which change in the optimal allocation follows?",
+      "opts": [
+        "Leisure rises from 8 to 10, so hours worked fall from 8 to 6.",
+        "Leisure rises from 8 to 10, and hours worked also rise from 8 to 10.",
+        "Leisure remains 8 because the wage is unchanged.",
+        "Hours worked rise to 20 and leisure falls to zero."
+      ],
+      "ans": 1,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "studyKind": "lecture-material",
+      "tag": "Lecture Material: More available time versus less work",
+      "concept": "More available time versus less work",
+      "note": "Full log với a=b: l=h/2 và N=h/2. h=16 cho l=N=8; h=20 cho l=N=10. N=h-l nên khi h cũng đổi, leisure tăng không đồng nghĩa work giảm. Các số này là example, không phải real data.",
+      "dataSources": [
+        {
+          "name": "Chapter 4 extension--Mathematical solution to the utility maximization problem.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 extension--Mathematical solution to the utility maximization problem.docx"
+        },
+        {
+          "name": "Chapter 4 notes-- Household Labor Supply Decision-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 notes-- Household Labor Supply Decision-1.docx"
+        }
+      ],
+      "checkKind": "time",
+      "initialTime": 16,
+      "newTime": 20
+    },
+    {
+      "id": "m1_lecture_12",
+      "source": "lecture-material",
+      "category": "lecture",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "A lump-sum tax cut lets a household choose a higher indifference curve with the same preferences. Which description is correct?",
+      "opts": [
+        "The feasible budget expands, while the preference map remains unchanged.",
+        "The tax cut makes the household prefer consumption more at every fixed bundle.",
+        "The entire indifference map shifts because every income change changes tastes.",
+        "The relative price of leisure must change because the household becomes richer."
+      ],
+      "ans": 0,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "studyKind": "lecture-material",
+      "tag": "Lecture Material: An income effect is not a preference shift",
+      "concept": "An income effect is not a preference shift",
+      "note": "T giảm là budget change, không phải taste change. Fixed W thì slope không đổi. Household chọn IC cao hơn trong cùng preference map. Preferences shift là đổi utility ranking/MRS tại cùng bundle, một experiment khác.",
+      "dataSources": [
+        {
+          "name": "Chapter 4 notes-- Household Labor Supply Decision-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 notes-- Household Labor Supply Decision-1.docx"
+        }
+      ]
+    },
+    {
+      "id": "m1_lecture_13",
+      "source": "lecture-material",
+      "category": "lecture",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "At an interior working choice, the real wage rises and all other household circumstances stay fixed. With the normal-good assumptions from class, leisure may rise or fall. What does this imply for optimized utility?",
+      "opts": [
+        "Utility must be ambiguous whenever leisure is ambiguous.",
+        "Utility must fall if leisure falls because leisure is a good.",
+        "Utility cannot change because income and substitution effects always cancel.",
+        "Optimized utility can rise even though the direction of leisure is ambiguous."
+      ],
+      "ans": 3,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "studyKind": "lecture-material",
+      "tag": "Lecture Material: Higher welfare with ambiguous leisure",
+      "concept": "Higher welfare with ambiguous leisure",
+      "note": "Wage tăng cho household nhiều opportunities hơn; ở benchmark interior đang làm việc, optimized U tăng. IE và SE kéo leisure hai chiều nên l có thể ambiguous. Không xác định choice của một good không đồng nghĩa không rank được optimized welfare.",
+      "dataSources": [
+        {
+          "name": "Chapter 4 notes-- Household Labor Supply Decision-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 notes-- Household Labor Supply Decision-1.docx"
+        }
+      ]
+    },
+    {
+      "id": "m1_lecture_14",
+      "source": "lecture-material",
+      "category": "lecture",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "At a feasible interior household choice, MRS=8 while the after-tax wage is 10. Which marginal adjustment increases utility?",
+      "opts": [
+        "Take a little more leisure because the wage is positive.",
+        "Leave the allocation unchanged because every feasible choice is optimal.",
+        "Work a little more and take a little less leisure.",
+        "Raise the market wage until it equals the household MRS."
+      ],
+      "ans": 2,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "studyKind": "lecture-material",
+      "tag": "Lecture Material: A feasible choice that is not optimal",
+      "concept": "A feasible choice that is not optimal",
+      "note": "MRS < W: một giờ leisure household định giá 8 consumption nhưng nghỉ mất 10. Làm thêm một chút mang lại benefit lớn hơn leisure cost, nên N tăng, l giảm. Household price taker điều chỉnh allocation, không tự chọn market wage.",
+      "dataSources": [
+        {
+          "name": "Chapter 4 notes-- Household Labor Supply Decision-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 notes-- Household Labor Supply Decision-1.docx"
+        }
+      ],
+      "checkKind": "mrs",
+      "mrs": 8,
+      "wage": 10
+    },
+    {
+      "id": "m1_lecture_15",
+      "source": "lecture-material",
+      "category": "lecture",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "A wage-taking firm has Y=10√N and π=Y-wN, with w=1 and capital costs outside this stated objective. At N=25, MPN=1. Which statement is correct?",
+      "opts": [
+        "Both marginal profit and total profit must be zero.",
+        "Marginal profit is zero, while the stated profit π is 25.",
+        "Total profit is 50 because all output counts as profit.",
+        "The firm must hire more labor because output exceeds its wage bill."
+      ],
+      "ans": 1,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "studyKind": "lecture-material",
+      "tag": "Lecture Material: Marginal profit versus total profit",
+      "concept": "Marginal profit versus total profit",
+      "note": "Y=10√25=50, wage bill=1×25=25 nên π=25. MPN=10/(2√25)=1=w nên dπ/dN=0. Profit maximum không đồng nghĩa total profit bằng 0 chỉ từ price-taking. Câu này dùng objective Y-wN, không khẳng định long-run zero economic profit.",
+      "dataSources": [
+        {
+          "name": "Chapter 4 notes-- Firm's Labor Demand Decision-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 notes-- Firm's Labor Demand Decision-1.docx"
+        }
+      ],
+      "checkKind": "profit",
+      "productionScale": 10,
+      "labor": 25,
+      "wage": 1
+    },
+    {
+      "id": "m1_lecture_16",
+      "source": "lecture-material",
+      "category": "lecture",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "With Cobb-Douglas production and a fixed real wage, capital increases and raises MPN at the initial N. What does a profit-maximizing firm do?",
+      "opts": [
+        "Hire more labor until diminishing MPN brings MPN back to the given wage.",
+        "Keep N fixed and permanently pay workers less than MPN at the optimum.",
+        "Hire less labor to reduce MPN back to the wage.",
+        "Choose a higher market wage instead of changing its labor input."
+      ],
+      "ans": 0,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "studyKind": "lecture-material",
+      "tag": "Lecture Material: Restoring the firm first-order condition",
+      "concept": "Restoring the firm first-order condition",
+      "note": "K tăng làm MPN tại cùng N cao hơn. Fixed w, firm có MPN>w nên hire more. N tăng làm MPN giảm dọc đường MPN mới, cho đến MPN=w. Đây là partial-equilibrium firm response; wage không phải choice của price-taking firm.",
+      "dataSources": [
+        {
+          "name": "Chapter 4 notes-- Firm's Labor Demand Decision-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 notes-- Firm's Labor Demand Decision-1.docx"
+        }
+      ]
+    },
+    {
+      "id": "m1_lecture_17",
+      "source": "lecture-material",
+      "category": "lecture",
+      "type": "mcq",
+      "chapters": [
+        5
+      ],
+      "stem": "In a one-period economy with Y=z(h-l), C=Y-G and G>0, what happens if leisure is set equal to all available time h?",
+      "opts": [
+        "Consumption is zero, so h is always the feasible leisure intercept.",
+        "Consumption equals G because the government pays for leisure.",
+        "Output remains positive because leisure is part of GDP.",
+        "Output is zero and C=-G, so that point is not feasible with nonnegative consumption."
+      ],
+      "ans": 3,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "studyKind": "lecture-material",
+      "tag": "Lecture Material: The leisure boundary of the PPF",
+      "concept": "The leisure boundary of the PPF",
+      "note": "l=h ⇒ N=0 ⇒ Y=0, nên C=Y-G=-G<0. Nếu phải trả G và C không âm, l_max<h. h là time endowment; l_max là feasible intercept; l* là choice tại optimum, ba khái niệm khác nhau.",
+      "dataSources": [
+        {
+          "name": "Sept 28 Ch 5 Intro.pdf",
+          "url": "midterm-assets/Lecture References/Sept 28 Ch 5 Intro.pdf",
+          "page": 3
+        },
+        {
+          "name": "Chapter 5 notes--General equilibrium-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 5 notes--General equilibrium-1.docx"
+        }
+      ],
+      "checkKind": "ppf-boundary"
+    },
+    {
+      "id": "m1_lecture_18",
+      "source": "lecture-material",
+      "category": "lecture",
+      "type": "mcq",
+      "chapters": [
+        5
+      ],
+      "stem": "The market allocation and the social planner allocation differ because a proportional labor tax is present. Which statement is consistent with the representative-agent model?",
+      "opts": [
+        "The planner must have different preferences whenever market efficiency fails.",
+        "The planner maximizes GDP rather than household utility.",
+        "They can maximize the same utility function while facing different decision trade-offs and constraints.",
+        "The market and planner must agree because their utility function is the same."
+      ],
+      "ans": 2,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "studyKind": "lecture-material",
+      "tag": "Lecture Material: The planner objective versus its constraint",
+      "concept": "The planner objective versus its constraint",
+      "note": "Household và planner cùng U(C,l). Household theo budget và W=w(1-t); planner theo physical resources và social costs/benefits. Cùng objective không đủ cho cùng solution nếu constraints/trade-offs khác nhau.",
+      "dataSources": [
+        {
+          "name": "Chapter 5 notes--General equilibrium-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 5 notes--General equilibrium-1.docx"
+        }
+      ]
+    },
+    {
+      "id": "m1_lecture_19",
+      "source": "lecture-material",
+      "category": "lecture",
+      "type": "mcq",
+      "chapters": [
+        5
+      ],
+      "stem": "A feasible change makes one person strictly better off and leaves everyone else equally well off. What does this prove about the original allocation?",
+      "opts": [
+        "The original allocation was Pareto optimal because no one was initially losing utility.",
+        "The original allocation was not Pareto optimal, but the change does not by itself prove the new allocation is Pareto optimal.",
+        "The new allocation must maximize GDP.",
+        "Both allocations must be Pareto optimal because no one is harmed by the change."
+      ],
+      "ans": 1,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "studyKind": "lecture-material",
+      "tag": "Lecture Material: What a Pareto improvement proves",
+      "concept": "What a Pareto improvement proves",
+      "note": "Một feasible Pareto improvement tồn tại ⇒ initial allocation chưa Pareto optimal. Nhưng new allocation có thể vẫn còn cải thiện khác, nên chưa đủ kết luận new allocation là optimum. Pareto không đồng nghĩa equality hoặc maximize GDP.",
+      "dataSources": [
+        {
+          "name": "Chapter 5 notes--General equilibrium-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 5 notes--General equilibrium-1.docx"
+        }
+      ]
+    },
+    {
+      "id": "m1_lecture_20",
+      "source": "lecture-material",
+      "category": "lecture",
+      "type": "mcq",
+      "chapters": [
+        5
+      ],
+      "stem": "An unchanged PPF is accompanied by a preference shift toward consumption. The household chooses more C and less leisure. Which welfare conclusion is justified by those facts alone?",
+      "opts": [
+        "The welfare change is not determined without a common criterion for comparing the different preferences.",
+        "Welfare must rise because consumption rises.",
+        "Welfare must fall because leisure falls.",
+        "Welfare must remain unchanged because the PPF did not shift."
+      ],
+      "ans": 0,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "studyKind": "lecture-material",
+      "tag": "Lecture Material: Utility comparisons across preferences",
+      "concept": "Utility comparisons across preferences",
+      "note": "Preference shift đổi utility map/ranking, trong khi resources giữ nguyên. C↑ và l↓ không tự rank được welfare trước/sau dưới different preferences. Cô chọn unknown cho utility trong preference-change example.",
+      "dataSources": [
+        {
+          "name": "Chapter 5 notes--Shocking the general equilibrium model-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 5 notes--Shocking the general equilibrium model-1.docx"
+        },
+        {
+          "name": "Chapter 5 notes--General equilibrium-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 5 notes--General equilibrium-1.docx"
+        }
+      ]
+    },
+    {
+      "id": "m1_lecture_21",
+      "source": "lecture-material",
+      "category": "lecture",
+      "type": "mcq",
+      "chapters": [
+        5
+      ],
+      "stem": "Under the class benchmark of unproductive G financed by lump-sum taxes, G increases and equilibrium GDP rises. Can the GDP increase alone establish that household welfare improved?",
+      "opts": [
+        "Yes. GDP and household utility are identical in a one-period model.",
+        "Yes. Any government purchase directly enters household utility in this benchmark.",
+        "No. Higher GDP proves that real wages must increase enough to offset the tax.",
+        "No. The benchmark has lower consumption and leisure, so household utility falls despite higher GDP."
+      ],
+      "ans": 3,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "studyKind": "lecture-material",
+      "tag": "Lecture Material: GDP versus household welfare",
+      "concept": "GDP versus household welfare",
+      "note": "G unproductive tăng làm T tăng, household nghèo hơn nên C,l giảm; N,Y tăng trong model. Utility phụ thuộc C,l, không trực tiếp nhận benefit từ unproductive G. Do đó GDP↑ có thể đi cùng welfare↓.",
+      "dataSources": [
+        {
+          "name": "Chapter 5 notes--Shocking the general equilibrium model-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 5 notes--Shocking the general equilibrium model-1.docx"
+        }
+      ]
+    },
+    {
+      "id": "m1_lecture_22",
+      "source": "lecture-material",
+      "category": "lecture",
+      "type": "mcq",
+      "chapters": [
+        5
+      ],
+      "stem": "An increase in G has both a resource cost and a productivity benefit. Which statement correctly distinguishes the comparisons emphasized in lecture?",
+      "opts": [
+        "Any productivity benefit guarantees that the increase in G improves welfare relative to the initial allocation.",
+        "Productive and unproductive G must give the same allocation because their spending is equal.",
+        "Productive G improves opportunities relative to the same unproductive G, but net welfare relative to the initial allocation can be ambiguous.",
+        "If net welfare is ambiguous, productive G cannot improve productivity."
+      ],
+      "ans": 2,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "studyKind": "lecture-material",
+      "tag": "Lecture Material: Choosing the comparison baseline",
+      "concept": "Choosing the comparison baseline",
+      "note": "Cô tách cost của G tăng khỏi benefit z tăng. Cùng G, thêm productivity benefit tốt hơn unproductive case. So với initial allocation trước khi G tăng, cost có thể lớn hơn benefit nên net U unknown. Luôn đọc baseline.",
+      "dataSources": [
+        {
+          "name": "Oct 5 Ch 5 wrapup.pdf",
+          "url": "midterm-assets/Lecture References/Oct 5 Ch 5 wrapup.pdf"
+        },
+        {
+          "name": "Chapter 5 notes--Shocking the general equilibrium model-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 5 notes--Shocking the general equilibrium model-1.docx"
+        }
+      ]
+    },
+    {
+      "id": "m1_lecture_23",
+      "source": "lecture-material",
+      "category": "lecture",
+      "type": "mcq",
+      "chapters": [
+        5
+      ],
+      "stem": "An economy uses only lump-sum taxes, but firms ignore damage their pollution causes to other people. What follows?",
+      "opts": [
+        "The First Welfare Theorem must hold because taxes are lump-sum.",
+        "Lump-sum financing removes a tax wedge but does not remove the externality, so market efficiency is not guaranteed.",
+        "The social planner must ignore pollution because it does not appear in private prices.",
+        "Competitive equilibrium cannot exist unless the government uses proportional taxes."
+      ],
+      "ans": 1,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "studyKind": "lecture-material",
+      "tag": "Lecture Material: One condition is not enough for efficiency",
+      "concept": "One condition is not enough for efficiency",
+      "note": "Lump-sum taxation không tạo marginal wage wedge. Nhưng externality vẫn làm private costs khác social costs. Welfare theorem cần nhiều assumptions cùng đúng; satisfy một điều kiện không đủ. Planner trong benchmark internalizes pollution.",
+      "dataSources": [
+        {
+          "name": "Chapter 5 notes--General equilibrium-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 5 notes--General equilibrium-1.docx"
+        }
+      ]
+    },
+    {
+      "id": "m1_lecture_24",
+      "source": "lecture-material",
+      "category": "lecture",
+      "type": "mcq",
+      "chapters": [
+        5
+      ],
+      "stem": "Illustrative numbers: the labor tax rate rises from 20% to 25%, labor input falls by 10%, and the pre-tax real wage stays fixed. With R=twN, which statement is correct?",
+      "opts": [
+        "Revenue rises by 12.5%, so falling labor alone does not establish that the tax increase reduced revenue.",
+        "Revenue falls by 10%, proving that any labor decline places the economy on the bad side.",
+        "Revenue rises by 25% because the labor response is irrelevant.",
+        "Revenue is unchanged because the tax rate increase and labor decline cancel."
+      ],
+      "ans": 0,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "studyKind": "lecture-material",
+      "tag": "Lecture Material: Tax revenue versus labor response",
+      "concept": "Tax revenue versus labor response",
+      "note": "R mới/R cũ=(0.25/0.20)×0.90=1.125 ⇒ revenue tăng 12.5%. N giảm chưa đủ kết luận tax increase làm R giảm. Good/bad side nói về revenue response; phải so rate effect và tax-base effect. Đây là numerical illustration, không phải dữ liệu thuế thật.",
+      "dataSources": [
+        {
+          "name": "Chapter 5 notes--General equilibrium-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 5 notes--General equilibrium-1.docx"
+        },
+        {
+          "name": "Oct 5 Ch 5 wrapup.pdf",
+          "url": "midterm-assets/Lecture References/Oct 5 Ch 5 wrapup.pdf"
+        }
+      ],
+      "checkKind": "revenue",
+      "initialRate": 0.2,
+      "newRate": 0.25,
+      "laborRatio": 0.9
+    }
+  ]
+}
