@@ -8,7 +8,7 @@ const data=JSON.parse(JSON.stringify(ctx.window.MIDTERM_DATA)),bank=data.bank;
 const byId=new Map(bank.map(q=>[q.id,q]));
 assert.equal(byId.size,bank.length);
 assert.equal(data.version,1);
-const originals=bank.filter(q=>q.category!=='concept'&&q.category!=='more'&&q.category!=='forecast'&&q.category!=='numeric'&&q.category!=='lecture'&&!q.id.startsWith('m1_ai_cc_')&&!q.id.startsWith('m1_ai_data_'));
+const originals=bank.filter(q=>q.category!=='concept'&&q.category!=='more'&&q.category!=='forecast'&&q.category!=='numeric'&&q.category!=='lecture'&&q.category!=='topic'&&!q.id.startsWith('m1_ai_cc_')&&!q.id.startsWith('m1_ai_data_'));
 const keys=originals.map(q=>{const original=q.originalAnswerKeys?{id:q.id,...q.originalAnswerKeys}:q;return {...Object.fromEntries(['id','ans','answer'].filter(k=>k in original).map(k=>[k,original[k]])),blanks:(q.blanks||[]).map(b=>b.ans)};});
 assert.equal(crypto.createHash('sha256').update(JSON.stringify(keys)).digest('hex'),'5c76c59af836f5f798aaa743764a004d0171c2a94359d5db8ff8e42a1cee53de');
 const ayn=byId.get('m1_ayn_3_1');

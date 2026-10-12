@@ -1,0 +1,473 @@
+{
+  "title": "IC & PPF: slope và curvature",
+  "existingQuestionIds": [
+    "p2_3",
+    "p2_4",
+    "p2_5",
+    "p2_7",
+    "m1_s17_12",
+    "m1_f19_2",
+    "m1_lecture_07",
+    "m1_lecture_08"
+  ],
+  "scope": "Twelve new AI-authored MCQs, plus existing source questions accessed by ID. Original questions, keys and progress IDs are preserved.",
+  "questions": [
+    {
+      "id": "m1_icppf_01",
+      "source": "ic-ppf-practice",
+      "category": "topic",
+      "type": "mcq",
+      "chapters": [
+        4,
+        5
+      ],
+      "stem": "Which pairing correctly connects the curvature of each graph to its underlying explanation in the class model?",
+      "opts": [
+        "Convex IC: diminishing MPN. Concave PPF: diminishing MRS.",
+        "Both curves are explained only by more being preferred to less.",
+        "Convex IC: diversity and diminishing MRS. Concave PPF: diminishing MPN.",
+        "Both curves are concave because consumers prefer diversity."
+      ],
+      "ans": 2,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "topics": [
+        "ic-ppf"
+      ],
+      "topicOrder": 8,
+      "tag": "IC & PPF: slope và curvature",
+      "concept": "IC and PPF shape",
+      "note": "IC mô tả preferences: diversity gắn với convexity và diminishing MRS. Physical PPF mô tả production: diminishing MPN tạo concavity. More preferred to less giải thích IC dốc xuống, không tự quyết định curvature.",
+      "dataSources": [
+        {
+          "name": "Chapter 4 notes-- Household Labor Supply Decision-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 notes-- Household Labor Supply Decision-1.docx"
+        },
+        {
+          "name": "Chapter 4 notes-- Firm's Labor Demand Decision-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 notes-- Firm's Labor Demand Decision-1.docx"
+        },
+        {
+          "name": "Sept 28 Ch 5 Intro.pdf",
+          "url": "midterm-assets/Lecture References/Sept 28 Ch 5 Intro.pdf",
+          "page": 3
+        }
+      ]
+    },
+    {
+      "id": "m1_icppf_02",
+      "source": "ic-ppf-practice",
+      "category": "topic",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "Moving to the right along a convex indifference curve, leisure rises and consumption falls. What happens to the MRS and the absolute steepness of the curve?",
+      "opts": [
+        "MRS rises, and the curve becomes steeper.",
+        "MRS falls, and the curve becomes steeper.",
+        "MRS is unchanged because utility is constant.",
+        "MRS falls, and the curve becomes flatter."
+      ],
+      "ans": 3,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "topics": [
+        "ic-ppf"
+      ],
+      "topicOrder": 9,
+      "tag": "IC & PPF: slope và curvature",
+      "concept": "IC and PPF shape",
+      "note": "Cùng IC thì utility giữ nguyên, nhưng MRS không cần giữ nguyên. Với convex IC trong lớp, đi sang phải đường phẳng dần, magnitude của slope và MRS giảm. Leisure đã nhiều hơn nên willingness to give up C cho thêm leisure nhỏ hơn.",
+      "dataSources": [
+        {
+          "name": "Chapter 4 notes-- Household Labor Supply Decision-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 notes-- Household Labor Supply Decision-1.docx"
+        }
+      ]
+    },
+    {
+      "id": "m1_icppf_03",
+      "source": "ic-ppf-practice",
+      "category": "topic",
+      "type": "mcq",
+      "chapters": [
+        5
+      ],
+      "stem": "With C vertical and leisure horizontal, move right along the physical PPF while technology, capital and G stay fixed. If MPN diminishes as N increases, what happens?",
+      "opts": [
+        "Labor falls, MPN rises, and the PPF becomes steeper in absolute value.",
+        "Labor rises, MPN falls, and the PPF becomes flatter.",
+        "Labor falls, MPN falls, and the PPF becomes flatter.",
+        "MRS must fall because the PPF is an indifference curve."
+      ],
+      "ans": 0,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "topics": [
+        "ic-ppf"
+      ],
+      "topicOrder": 10,
+      "tag": "IC & PPF: slope và curvature",
+      "concept": "IC and PPF shape",
+      "note": "Đi sang phải: l↑ nên N=h-l↓. Diminishing MPN nghĩa N tăng thì MPN giảm, nên N giảm thì MPN tăng. Signed slope physical PPF=-MPN, vì vậy slope âm hơn và đường steeper. Phân biệt với IC đi sang phải phẳng dần.",
+      "dataSources": [
+        {
+          "name": "Sept 28 Ch 5 Intro.pdf",
+          "url": "midterm-assets/Lecture References/Sept 28 Ch 5 Intro.pdf",
+          "page": 3
+        },
+        {
+          "name": "Chapter 4 notes-- Firm's Labor Demand Decision-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 notes-- Firm's Labor Demand Decision-1.docx"
+        }
+      ]
+    },
+    {
+      "id": "m1_icppf_04",
+      "source": "ic-ppf-practice",
+      "category": "topic",
+      "type": "mcq",
+      "chapters": [
+        4,
+        5
+      ],
+      "stem": "Suppose the household MRS is 4 and the marginal product of labor is 7 at a point. With C vertical and leisure horizontal, what are the signed slopes of the IC and physical PPF?",
+      "opts": [
+        "IC slope = 4; physical PPF slope = 7.",
+        "IC slope = -4; physical PPF slope = -7.",
+        "IC slope = -7; physical PPF slope = -4.",
+        "Both slopes are zero because the point is feasible."
+      ],
+      "ans": 1,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "topics": [
+        "ic-ppf"
+      ],
+      "topicOrder": 11,
+      "tag": "IC & PPF: slope và curvature",
+      "concept": "IC and PPF shape",
+      "note": "MRS và MPN được dùng như positive magnitudes. Signed slope IC=-MRS=-4; physical PPF slope=-MPN=-7. Đề chưa nói equilibrium nên không ép hai slopes phải bằng nhau.",
+      "dataSources": [
+        {
+          "name": "Chapter 4 notes-- Household Labor Supply Decision-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 notes-- Household Labor Supply Decision-1.docx"
+        },
+        {
+          "name": "Sept 28 Ch 5 Intro.pdf",
+          "url": "midterm-assets/Lecture References/Sept 28 Ch 5 Intro.pdf",
+          "page": 3
+        }
+      ],
+      "checkKind": "slopes",
+      "mrs": 4,
+      "mpn": 7
+    },
+    {
+      "id": "m1_icppf_05",
+      "source": "ic-ppf-practice",
+      "category": "topic",
+      "type": "mcq",
+      "chapters": [
+        5
+      ],
+      "stem": "Preferences value diversity, but production is linear: Y=zN, with fixed z and G. In the C-leisure graph, which statement follows?",
+      "opts": [
+        "The PPF must be convex because consumers like diversity.",
+        "Both curves must be straight because production is linear.",
+        "The IC can be convex while the physical PPF is a straight line.",
+        "The PPF must be concave because every model has diminishing MPN."
+      ],
+      "ans": 2,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "topics": [
+        "ic-ppf"
+      ],
+      "topicOrder": 12,
+      "tag": "IC & PPF: slope và curvature",
+      "concept": "IC and PPF shape",
+      "note": "Y=zN cho MPN=z constant. C=z(h-l)-G là đường thẳng với slope=-z. Diversity thuộc preferences nên vẫn có convex IC. Không mang preference assumption sang production để quyết định PPF shape.",
+      "dataSources": [
+        {
+          "name": "Chapter 4 notes-- Household Labor Supply Decision-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 notes-- Household Labor Supply Decision-1.docx"
+        },
+        {
+          "name": "Sept 28 Ch 5 Intro.pdf",
+          "url": "midterm-assets/Lecture References/Sept 28 Ch 5 Intro.pdf",
+          "page": 3
+        },
+        {
+          "name": "What is a Cobb Douglas production function.docx",
+          "url": "midterm-assets/Lecture References/What is a Cobb Douglas production function.docx"
+        }
+      ]
+    },
+    {
+      "id": "m1_icppf_06",
+      "source": "ic-ppf-practice",
+      "category": "topic",
+      "type": "mcq",
+      "chapters": [
+        3,
+        4,
+        5
+      ],
+      "stem": "A production function has a positive but diminishing marginal product of labor. Holding other inputs fixed, what happens when the firm adds labor?",
+      "opts": [
+        "Total output falls because marginal output is falling.",
+        "Total output is unchanged because the production function is concave.",
+        "Marginal output rises because more is preferred to less.",
+        "Total output rises, but each additional unit of labor adds less output than the previous one."
+      ],
+      "ans": 3,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "topics": [
+        "ic-ppf"
+      ],
+      "topicOrder": 13,
+      "tag": "IC & PPF: slope và curvature",
+      "concept": "IC and PPF shape",
+      "note": "MPN positive ⇒ thêm N vẫn làm Y tăng. Diminishing MPN ⇒ phần Y thêm từ mỗi đơn vị N nhỏ dần. Total output và marginal output khác nhau. Đây là lý do production function concave trong benchmark.",
+      "dataSources": [
+        {
+          "name": "Chapter 4 notes-- Firm's Labor Demand Decision-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 notes-- Firm's Labor Demand Decision-1.docx"
+        }
+      ]
+    },
+    {
+      "id": "m1_icppf_07",
+      "source": "ic-ppf-practice",
+      "category": "topic",
+      "type": "mcq",
+      "chapters": [
+        4,
+        5
+      ],
+      "stem": "A student says, “The PPF is concave because the household has diminishing MRS.” Which correction is most appropriate?",
+      "opts": [
+        "Diminishing MRS describes preferences along an IC; PPF concavity comes from diminishing MPN in production.",
+        "The claim is correct because the IC and PPF are the same curve.",
+        "Replace diminishing MRS with more preferred to less, which always makes the PPF concave.",
+        "The claim is correct whenever leisure is a normal good."
+      ],
+      "ans": 0,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "topics": [
+        "ic-ppf"
+      ],
+      "topicOrder": 14,
+      "tag": "IC & PPF: slope và curvature",
+      "concept": "IC and PPF shape",
+      "note": "MRS = marginal rate of substitution, thuộc utility/preferences và IC. MPN = marginal product of labor, thuộc production. Trong model có diminishing MPN, physical PPF concave. Tangency tại optimum không khiến hai curves có cùng curvature.",
+      "dataSources": [
+        {
+          "name": "Chapter 4 notes-- Household Labor Supply Decision-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 notes-- Household Labor Supply Decision-1.docx"
+        },
+        {
+          "name": "Chapter 4 notes-- Firm's Labor Demand Decision-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 notes-- Firm's Labor Demand Decision-1.docx"
+        },
+        {
+          "name": "Sept 28 Ch 5 Intro.pdf",
+          "url": "midterm-assets/Lecture References/Sept 28 Ch 5 Intro.pdf",
+          "page": 3
+        }
+      ]
+    },
+    {
+      "id": "m1_icppf_08",
+      "source": "ic-ppf-practice",
+      "category": "topic",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "Which assumption specifically predicts that a household wants more consumption and more leisure when income rises at unchanged prices?",
+      "opts": [
+        "More is preferred to less.",
+        "Consumption and leisure are normal goods.",
+        "The physical PPF is concave.",
+        "The firm has diminishing MPN."
+      ],
+      "ans": 1,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "topics": [
+        "ic-ppf"
+      ],
+      "topicOrder": 15,
+      "tag": "IC & PPF: slope và curvature",
+      "concept": "IC and PPF shape",
+      "note": "Normal goods nói income response. More preferred to less nói ranking bundles khi lượng goods đổi; diversity nói convex IC. Đừng dùng lý do IC dốc xuống thay cho assumption về thay đổi income.",
+      "dataSources": [
+        {
+          "name": "Chapter 4 notes-- Household Labor Supply Decision-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 notes-- Household Labor Supply Decision-1.docx"
+        }
+      ]
+    },
+    {
+      "id": "m1_icppf_09",
+      "source": "ic-ppf-practice",
+      "category": "topic",
+      "type": "mcq",
+      "chapters": [
+        5
+      ],
+      "stem": "Technology, capital, available time and G remain unchanged, but households begin to value leisure more relative to consumption. Which curve is directly affected by this preference change?",
+      "opts": [
+        "The physical PPF changes because MRS is part of the production function.",
+        "The production function changes because leisure is a normal good.",
+        "The indifference map changes; the physical PPF does not change.",
+        "Both curves must remain unchanged because the total time endowment is fixed."
+      ],
+      "ans": 2,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "topics": [
+        "ic-ppf"
+      ],
+      "topicOrder": 16,
+      "tag": "IC & PPF: slope và curvature",
+      "concept": "IC and PPF shape",
+      "note": "Preferences đổi utility ranking/MRS tại cùng bundle nên IC map đổi. Physical PPF được xác định bởi technology, inputs, h và G, đang giữ nguyên. Choice có thể di chuyển trên cùng PPF; curve không tự shift vì taste change.",
+      "dataSources": [
+        {
+          "name": "Chapter 4 notes-- Household Labor Supply Decision-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 notes-- Household Labor Supply Decision-1.docx"
+        },
+        {
+          "name": "Sept 28 Ch 5 Intro.pdf",
+          "url": "midterm-assets/Lecture References/Sept 28 Ch 5 Intro.pdf",
+          "page": 3
+        }
+      ]
+    },
+    {
+      "id": "m1_icppf_10",
+      "source": "ic-ppf-practice",
+      "category": "topic",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "At two points moving right along the same IC, its signed slope changes from -6 to -2. Which interpretation is correct?",
+      "opts": [
+        "MRS rises from -6 to -2, so marginal willingness to trade increases.",
+        "MRS falls from 6 to 2, so the curve becomes steeper.",
+        "MRS stays constant because both points have equal utility.",
+        "MRS falls from 6 to 2, consistent with an IC that becomes flatter."
+      ],
+      "ans": 3,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "topics": [
+        "ic-ppf"
+      ],
+      "topicOrder": 17,
+      "tag": "IC & PPF: slope và curvature",
+      "concept": "IC and PPF shape",
+      "note": "MRS là magnitude dương của signed slope. |-6|=6, |-2|=2, nên MRS giảm và IC phẳng hơn. Signed slope tăng về phía 0 không có nghĩa MRS magnitude tăng. Utility vẫn bằng nhau dọc IC.",
+      "dataSources": [
+        {
+          "name": "Chapter 4 notes-- Household Labor Supply Decision-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 notes-- Household Labor Supply Decision-1.docx"
+        }
+      ],
+      "checkKind": "ic-slope",
+      "initialSlope": -6,
+      "newSlope": -2
+    },
+    {
+      "id": "m1_icppf_11",
+      "source": "ic-ppf-practice",
+      "category": "topic",
+      "type": "mcq",
+      "chapters": [
+        5
+      ],
+      "stem": "Moving right along the physical PPF, its signed slope changes from -2 to -6. Labor input falls along this movement. Which explanation is consistent with diminishing MPN?",
+      "opts": [
+        "MPN rises from 2 to 6 as labor falls, making the PPF steeper.",
+        "MPN must fall from 2 to 6 because leisure rises.",
+        "MRS rises from 2 to 6 because every point on the PPF is an optimum.",
+        "The change proves that production has increasing marginal returns as labor rises."
+      ],
+      "ans": 0,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "topics": [
+        "ic-ppf"
+      ],
+      "topicOrder": 18,
+      "tag": "IC & PPF: slope và curvature",
+      "concept": "IC and PPF shape",
+      "note": "Physical PPF slope=-MPN nên MPN tăng 2→6. Đi sang phải l tăng và N giảm. MPN tăng khi N giảm phù hợp với MPN giảm khi N tăng. Slope âm hơn làm PPF steeper; đây không phải diminishing MRS trên IC.",
+      "dataSources": [
+        {
+          "name": "Sept 28 Ch 5 Intro.pdf",
+          "url": "midterm-assets/Lecture References/Sept 28 Ch 5 Intro.pdf",
+          "page": 3
+        },
+        {
+          "name": "Chapter 4 notes-- Firm's Labor Demand Decision-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 notes-- Firm's Labor Demand Decision-1.docx"
+        }
+      ],
+      "checkKind": "ppf-slope",
+      "initialSlope": -2,
+      "newSlope": -6
+    },
+    {
+      "id": "m1_icppf_12",
+      "source": "ic-ppf-practice",
+      "category": "topic",
+      "type": "mcq",
+      "chapters": [
+        4
+      ],
+      "stem": "A student draws an upward-sloping IC for consumption and leisure, both of which are desirable. Why does that contradict more being preferred to less?",
+      "opts": [
+        "Increasing both goods must reduce utility whenever the consumer likes diversity.",
+        "Moving up and right increases both goods and utility, so those points cannot all have the same utility.",
+        "An IC is upward sloping whenever both goods are normal.",
+        "The consumer must work more at every point on an upward-sloping IC."
+      ],
+      "ans": 1,
+      "pts": 1,
+      "verified": "ai-checked",
+      "sim": false,
+      "topics": [
+        "ic-ppf"
+      ],
+      "topicOrder": 19,
+      "tag": "IC & PPF: slope và curvature",
+      "concept": "IC and PPF shape",
+      "note": "Trên IC, U phải giữ nguyên. Đường đi lên sang phải cho cả C và l tăng; more preferred to less làm U tăng, mâu thuẫn với cùng IC. Vì vậy IC của hai desirable goods dốc xuống trong model lớp.",
+      "dataSources": [
+        {
+          "name": "Chapter 4 notes-- Household Labor Supply Decision-1.docx",
+          "url": "midterm-assets/Lecture References/Chapter 4 notes-- Household Labor Supply Decision-1.docx"
+        }
+      ]
+    }
+  ]
+}
