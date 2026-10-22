@@ -48,20 +48,31 @@ for(let trial=0;trial<100;trial++){
 }
 assert(model.node('app').innerHTML.includes('23 câu | 73 phần trả lời'));assert(model.node('app').innerHTML.includes('43 điểm'));
 assert(model.node('app').innerHTML.indexOf('Pool 1, Question 1')<model.node('app').innerHTML.indexOf('Pool 1, Question 2'));
+const homeModel=load('');assert.equal(homeModel.location.hash,'home');
+assert(homeModel.node('app').innerHTML.includes('Ch 6 Potential Quiz'));
+for(const label of ['Gradeable Questions','Attempted','Accuracy','Mastered (Last ✓)','Review Mode','Quiz Mode','Review Mistakes','Original PDF'])assert(homeModel.node('app').innerHTML.includes(label));
+assert(homeModel.node('app').innerHTML.includes('id="s-total">23</div>'));
 const shock=shocks[0],state=model.api.getState();state.answers[shock.id]=shock.fields.map(f=>f.ans);state.answers[shock.id][0]=(shock.fields[0].ans+1)%4;
 model.api.check(shock.id);assert.equal(state.results[shock.id].points,2.5);assert(model.node('app').innerHTML.includes('Đúng một phần: 2.5/3 điểm'));assert.equal(state.history[shock.id].wrong,1);
 model.api.check(shock.id);assert.equal(state.history[shock.id].attempts,1);
 model=load('#mistakes');assert.equal(model.api.selectedQuestions().length,1);assert.equal(model.api.getState().results[shock.id].points,2.5);
 delete model.api.getState().results[shock.id];model.api.getState().answers[shock.id]=shock.fields.map(f=>f.ans);model.api.check(shock.id);assert.equal(model.api.getState().history[shock.id].wrong,1);assert.equal(model.api.selectedQuestions().length,1);
+model.api.show('home');
+for(const value of ['s-attempted">1','s-pct">50%','s-mastered">1'])assert(model.node('app').innerHTML.includes(value));
 model.node('app').handlers.change({target:{id:'pool-filter',value:'6'}});model=load();assert.equal(model.api.selectedQuestions().length,13);
 model.api.show('source');assert(model.node('app').innerHTML.includes('The remining 50%'));assert(model.node('app').innerHTML.includes('43 điểm'));
 model.api.start();const quiz=model.api.getState().quiz;assert(Math.abs(quiz.deadline-Date.now()-1800000)<5000);const ids=Array.from(quiz.ids);model.api.start();assert.deepEqual(Array.from(model.api.getState().quiz.ids),ids);
+model.api.show('home');assert(model.node('app').innerHTML.includes('Resume Quiz'));assert.deepEqual(Array.from(model.api.getState().quiz.ids),ids);
+const resumed=load('');assert(resumed.node('app').innerHTML.includes('Resume Quiz'));assert.deepEqual(Array.from(resumed.api.getState().quiz.ids),ids);
+model.api.show('session');
 for(const id of quiz.ids){const q=questions.find(q=>q.id===id);quiz.answers[id]=q.type==='mcq'?q.ans:q.fields.map(f=>f.ans);}
 (async()=>{
  await model.api.submit(true);assert.equal(quiz.submitted,true);assert.equal(Object.values(quiz.results).reduce((n,r)=>n+r.points,0),20);assert(model.node('app').innerHTML.includes('20/20 điểm'));
  for(const id of quiz.ids){assert.equal(model.api.getState().results[id].correct,true);assert.deepEqual(model.api.getState().answers[id],quiz.answers[id]);}
  const attempts=JSON.stringify(model.api.getState().history);await model.api.submit(true);assert.equal(JSON.stringify(model.api.getState().history),attempts);
  model=load('#session');assert(model.node('app').innerHTML.includes('20/20 điểm'));
+ model.api.show('home');assert(model.node('app').innerHTML.includes('View Last Quiz'));
+ model.node('app').handlers.click({target:{closest(){return {dataset:{homeReview:''}};}}});assert.equal(model.api.getState().pool,'all');assert.equal(model.api.selectedQuestions().length,23);assert.equal(model.location.hash,'review');
  assert.equal(storage.get('econ302_stats'),'{"existing":{"attempts":2}}');assert.equal(storage.get('econ302_midterm_session'),'{"existing":true}');
  for(const file of ['index.html','Econ302_Ch1-4_Quiz_Study.html','midterm.html'])assert(fs.readFileSync(path.join(root,file),'utf8').includes('href="chapter6.html"'));
  console.log('PASS: full wording across all 9 pages, 60 bold-font keys, 13 MCQ keys, all partial-credit combinations, preserved source order, 20-point draw, 30-minute timer, saved progress, mistakes and legacy storage isolation.');

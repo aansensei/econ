@@ -22,7 +22,7 @@ if(typeof module!=='undefined')module.exports=Chapter6Core;
 if(typeof document!=='undefined'){
  const DATA=window.CHAPTER6_DATA,questions=DATA.questions,byId=new Map(questions.map(q=>[q.id,q]));
  const app=document.getElementById('app'),key='econ302_ch6_v1';
- let state={answers:{},results:{},history:{},pool:'all',quiz:null},view='review',tick=null;
+ let state={answers:{},results:{},history:{},pool:'all',quiz:null},view='home',tick=null;
  try{const saved=JSON.parse(localStorage.getItem(key)||'null');if(saved&&saved.answers&&saved.results&&saved.history)state={...state,...saved};}catch(error){}
  if(!['all','1','2','3','4','5','6'].includes(state.pool))state.pool='all';
  if(state.quiz&&(!Array.isArray(state.quiz.ids)||!state.quiz.ids.length||!state.quiz.ids.every(id=>byId.has(id))||!Number.isFinite(state.quiz.deadline)))state.quiz=null;
@@ -31,6 +31,14 @@ if(typeof document!=='undefined'){
  const sourceUrl=page=>encodeURI(DATA.source.url)+'#page='+page;
  const pageImage=page=>'chapter6-assets/source-pages/page-'+page+'.png';
  function save(){try{localStorage.setItem(key,JSON.stringify(state));}catch(error){document.getElementById('storage-warning').hidden=false;}}
+ function home(){
+  const histories=questions.map(q=>state.history[q.id]).filter(h=>h?.attempts>0);
+  const attempts=histories.reduce((n,h)=>n+h.attempts,0),correct=histories.reduce((n,h)=>n+h.attempts-h.wrong,0);
+  const mastered=questions.filter(q=>state.results[q.id]?.correct).length;
+  const mistakes=questions.filter(q=>state.history[q.id]?.wrong>0).length;
+  const session=state.quiz;
+  app.innerHTML=`<section class="chapter-home" aria-labelledby="home-title"><h1 id="home-title">Econ 302 · Ch 6 Potential Quiz</h1><p class="home-subtitle">UW-Madison · Chapter 6 · 30 minutes per quiz, 20-point quiz simulation</p><p class="home-note">23 questions across 6 pools. Each shock question has 6 answer parts worth ½ point each. Your Chapter 6 progress is saved on this device.</p><div class="stat-grid" aria-label="Chapter 6 progress"><div class="stat-card"><div class="num" id="s-total">${questions.length}</div><div class="lbl">Gradeable Questions</div></div><div class="stat-card"><div class="num" id="s-attempted">${histories.length}</div><div class="lbl">Attempted</div></div><div class="stat-card"><div class="num" id="s-pct">${attempts?Math.round(correct/attempts*100):0}%</div><div class="lbl">Accuracy</div></div><div class="stat-card"><div class="num" id="s-mastered">${mastered}</div><div class="lbl">Mastered (Last ✓)</div></div></div><p class="stats-note">Accuracy counts fully correct question attempts. Individual answer parts still receive partial credit.</p><div class="mode-cards"><section class="mode-card"><h2>📖 Review Mode</h2><p>All 23 questions across 6 pools, in original source order. Check answers and get instant feedback. Retry wrong answers.</p><button class="btn" data-home-review>Start Review</button></section><section class="mode-card"><h2>⏱ Quiz Mode</h2><p>30 minutes for a 20-point practice quiz across all 6 pools. Submit for your score. Your quiz is saved as you work.</p><button class="btn" ${session?'data-resume':'data-view="quiz"'}>${session?(session.submitted?'View Last Quiz':'Resume Quiz'):'Start Quiz'}</button></section><section class="mode-card"><h2>❌ Review Mistakes</h2><p>${mistakes} questions previously missed. Practice them again and check each answer against the original key.</p><button class="btn" data-home-mistakes>View Mistakes</button></section><section class="mode-card"><h2>📄 Original PDF</h2><p>Read the full instructions and all 9 original pages. Questions, choices and answer keys follow the source PDF.</p><button class="btn" data-view="source">View Source</button></section></div></section>`;
+ }
  function selectedQuestions(){return questions.filter(q=>(state.pool==='all'||q.pool===Number(state.pool))&&(view!=='mistakes'||state.history[q.id]?.wrong>0));}
  function feedback(q,result){
   if(!result)return '';
@@ -80,8 +88,9 @@ if(typeof document!=='undefined'){
  }
  function show(next){
   view=next;
+  app.classList.toggle('home-view',view==='home');
   document.querySelectorAll('nav button').forEach(button=>button.classList.toggle('active',button.dataset.view===(view==='session'?'quiz':view)));
-  if(view==='source')source();else if(view==='quiz')quizSetup();else if(view==='session')renderQuiz();else review();
+  if(view==='home')home();else if(view==='source')source();else if(view==='quiz')quizSetup();else if(view==='session')renderQuiz();else review();
   location.hash=view;
   document.getElementById('clock').hidden=!(view==='session'&&state.quiz&&!state.quiz.submitted);
  }
@@ -109,9 +118,9 @@ if(typeof document!=='undefined'){
   else{const a=Array.isArray(answers[id])?answers[id].slice():Array(q.fields.length).fill(null);a[Number(el.dataset.field)]=el.value===''?null:Number(el.value);answers[id]=a;}
   save();
  });
- app.addEventListener('click',event=>{const button=event.target.closest('button');if(!button)return;const d=button.dataset;if(d.jump)document.getElementById('q-'+d.jump).scrollIntoView({behavior:'smooth',block:'start'});else if(d.view)show(d.view);else if(d.check)check(d.check);else if(d.retry){delete state.results[d.retry];save();show(view);}else if('start'in d)start();else if('resume'in d){show('session');startClock();}else if('submit'in d)submit();});
+ app.addEventListener('click',event=>{const button=event.target.closest('button');if(!button)return;const d=button.dataset;if(d.jump)document.getElementById('q-'+d.jump).scrollIntoView({behavior:'smooth',block:'start'});else if('homeReview'in d||'homeMistakes'in d){state.pool='all';save();show('homeReview'in d?'review':'mistakes');}else if(d.view)show(d.view);else if(d.check)check(d.check);else if(d.retry){delete state.results[d.retry];save();show(view);}else if('start'in d)start();else if('resume'in d){show('session');startClock();}else if('submit'in d)submit();});
  document.querySelectorAll('nav button').forEach(button=>button.addEventListener('click',()=>show(button.dataset.view)));
  document.getElementById('submit-top').addEventListener('click',()=>submit());
- const initial=location.hash.slice(1);show(['review','mistakes','source','quiz','session'].includes(initial)?initial:'review');
+ const initial=location.hash.slice(1);show(['home','review','mistakes','source','quiz','session'].includes(initial)?initial:'home');
  if(state.quiz&&!state.quiz.submitted)startClock();
 }
