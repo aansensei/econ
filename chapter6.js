@@ -7,6 +7,11 @@ const Chapter6Core=(()=>{
   const correctParts=hits.filter(Boolean).length,totalParts=hits.length;
   return {hits,correctParts,totalParts,points:q.pts*correctParts/totalParts,max:q.pts,correct:correctParts===totalParts};
  }
+ function shuffle(items,random=Math.random){
+  const shuffled=items.slice();
+  for(let i=shuffled.length-1;i>0;i--){const j=Math.floor(random()*(i+1));[shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]];}
+  return shuffled;
+ }
  function draw(questions,random=Math.random){
   const selected=new Set();
   for(let pool=1;pool<=5;pool++){const items=questions.filter(q=>q.pool===pool);selected.add(items[Math.floor(random()*items.length)].id);}
@@ -15,7 +20,7 @@ const Chapter6Core=(()=>{
   mcq.slice(0,5).forEach(q=>selected.add(q.id));
   return questions.filter(q=>selected.has(q.id)).map(q=>q.id);
  }
- return {answered,grade,draw};
+ return {answered,grade,draw,shuffle};
 })();
 if(typeof module!=='undefined')module.exports=Chapter6Core;
 
@@ -37,9 +42,17 @@ if(typeof document!=='undefined'){
   const mastered=questions.filter(q=>state.results[q.id]?.correct).length;
   const mistakes=questions.filter(q=>state.history[q.id]?.wrong>0).length;
   const session=state.quiz;
-  app.innerHTML=`<section class="chapter-home" aria-labelledby="home-title"><h1 id="home-title">Econ 302 · Ch 6 Potential Quiz</h1><p class="home-subtitle">UW-Madison · Chapter 6 · 30 minutes per quiz, 20-point quiz simulation</p><p class="home-note">23 questions across 6 pools. Each shock question has 6 answer parts worth ½ point each. Your Chapter 6 progress is saved on this device.</p><div class="stat-grid" aria-label="Chapter 6 progress"><div class="stat-card"><div class="num" id="s-total">${questions.length}</div><div class="lbl">Gradeable Questions</div></div><div class="stat-card"><div class="num" id="s-attempted">${histories.length}</div><div class="lbl">Attempted</div></div><div class="stat-card"><div class="num" id="s-pct">${attempts?Math.round(correct/attempts*100):0}%</div><div class="lbl">Accuracy</div></div><div class="stat-card"><div class="num" id="s-mastered">${mastered}</div><div class="lbl">Mastered (Last ✓)</div></div></div><p class="stats-note">Accuracy counts fully correct question attempts. Individual answer parts still receive partial credit.</p><div class="mode-cards"><section class="mode-card"><h2>📖 Review Mode</h2><p>All 23 questions across 6 pools, in original source order. Check answers and get instant feedback. Retry wrong answers.</p><button class="btn" data-home-review>Start Review</button></section><section class="mode-card"><h2>⏱ Quiz Mode</h2><p>30 minutes for a 20-point practice quiz across all 6 pools. Submit for your score. Your quiz is saved as you work.</p><button class="btn" ${session?'data-resume':'data-view="quiz"'}>${session?(session.submitted?'View Last Quiz':'Resume Quiz'):'Start Quiz'}</button></section><section class="mode-card"><h2>❌ Review Mistakes</h2><p>${mistakes} questions previously missed. Practice them again and check each answer against the original key.</p><button class="btn" data-home-mistakes>View Mistakes</button></section><section class="mode-card"><h2>📄 Original PDF</h2><p>Read the full instructions and all 9 original pages. Questions, choices and answer keys follow the source PDF.</p><button class="btn" data-view="source">View Source</button></section></div></section>`;
+  app.innerHTML=`<section class="chapter-home" aria-labelledby="home-title"><h1 id="home-title">Econ 302 · Ch 6 Potential Quiz</h1><p class="home-subtitle">UW-Madison · Chapter 6 · 30 minutes per quiz, 20-point quiz simulation</p><p class="home-note">23 questions across 6 pools. Each shock question has 6 answer parts worth ½ point each. Your Chapter 6 progress is saved on this device.</p><div class="stat-grid" aria-label="Chapter 6 progress"><div class="stat-card"><div class="num" id="s-total">${questions.length}</div><div class="lbl">Gradeable Questions</div></div><div class="stat-card"><div class="num" id="s-attempted">${histories.length}</div><div class="lbl">Attempted</div></div><div class="stat-card"><div class="num" id="s-pct">${attempts?Math.round(correct/attempts*100):0}%</div><div class="lbl">Accuracy</div></div><div class="stat-card"><div class="num" id="s-mastered">${mastered}</div><div class="lbl">Mastered (Last ✓)</div></div></div><p class="stats-note">Accuracy counts fully correct question attempts. Individual answer parts still receive partial credit.</p><div class="mode-cards"><section class="mode-card"><h2>📖 Review Mode</h2><p>All 23 questions across 6 pools, in random order. Check answers and get instant feedback. Retry wrong answers.</p><button class="btn" data-home-review>Start Review</button></section><section class="mode-card"><h2>⏱ Quiz Mode</h2><p>30 minutes for a 20-point practice quiz across all 6 pools. Submit for your score. Your quiz is saved as you work.</p><button class="btn" ${session?'data-resume':'data-view="quiz"'}>${session?(session.submitted?'View Last Quiz':'Resume Quiz'):'Start Quiz'}</button></section><section class="mode-card"><h2>❌ Review Mistakes</h2><p>${mistakes} questions previously missed. Practice them again and check each answer against the original key.</p><button class="btn" data-home-mistakes>View Mistakes</button></section><section class="mode-card"><h2>📄 Original PDF</h2><p>Read the full instructions and all 9 original pages. Questions, choices and answer keys follow the source PDF.</p><button class="btn" data-view="source">View Source</button></section></div></section>`;
  }
- function selectedQuestions(){return questions.filter(q=>(state.pool==='all'||q.pool===Number(state.pool))&&(view!=='mistakes'||state.history[q.id]?.wrong>0));}
+ function selectedQuestions(){
+  const qs=questions.filter(q=>(state.pool==='all'||q.pool===Number(state.pool))&&(view!=='mistakes'||state.history[q.id]?.wrong>0));
+  if(view!=='review')return qs;
+  if(!Array.isArray(state.reviewOrder)||state.reviewOrder.length!==questions.length||new Set(state.reviewOrder).size!==questions.length||!state.reviewOrder.every(id=>byId.has(id))){
+   state.reviewOrder=Chapter6Core.shuffle(questions.map(q=>q.id));save();
+  }
+  const selected=new Set(qs.map(q=>q.id));
+  return state.reviewOrder.filter(id=>selected.has(id)).map(id=>byId.get(id));
+ }
  function feedback(q,result){
   if(!result)return '';
   const status=result.correct?'correct':result.points>0?'partial':'incorrect';
@@ -61,11 +74,11 @@ if(typeof document!=='undefined'){
  }
  function review(){
   const qs=selectedQuestions(),attempted=qs.filter(q=>state.results[q.id]),correct=attempted.filter(q=>state.results[q.id].correct).length;
-  let html=`<div class="section-top"><div><p class="kicker">Module 2 | Chapter 6</p><h1>${view==='mistakes'?'Câu hay sai':'Chapter 6 Potential Quiz'}</h1></div><div class="actions">${view==='review'?'<button class="btn small secondary" data-refresh>Refresh ↺</button>':''}<a class="btn small secondary" href="${sourceUrl(1)}" target="_blank" rel="noopener">Mở PDF gốc</a></div></div><p>Câu hỏi, lựa chọn và đáp án giữ theo bản PDF. Thứ tự câu và các lựa chọn giữ như nguồn. Mỗi biến trong Pools 1 đến 5 được chấm ½ điểm.</p>`;
+  let html=`<div class="section-top"><div><p class="kicker">Module 2 | Chapter 6</p><h1>${view==='mistakes'?'Câu hay sai':'Chapter 6 Potential Quiz'}</h1></div><div class="actions">${view==='review'?'<button class="btn small secondary" data-refresh>Refresh ↺</button>':''}<a class="btn small secondary" href="${sourceUrl(1)}" target="_blank" rel="noopener">Mở PDF gốc</a></div></div><p>${view==='review'?'Câu hỏi được trộn ngẫu nhiên. Lựa chọn và đáp án giữ theo PDF gốc.':'Câu hỏi, lựa chọn và đáp án giữ theo bản PDF. Thứ tự câu và các lựa chọn giữ như nguồn.'} Mỗi biến trong Pools 1 đến 5 được chấm ½ điểm.</p>`;
   if(view==='mistakes')html+='<p class="draft-notice">Giữ các câu từng làm sai, kể cả khi lần làm sau đã đúng.</p>';
   html+=`<div class="filters chapter6-filter"><label>Pool<select id="pool-filter" aria-label="Pool"><option value="all">All pools</option>${DATA.pools.map(pool=>`<option value="${pool.id}" ${state.pool===String(pool.id)?'selected':''}>${escape(pool.title.replace(/\n/g,' '))}</option>`).join('')}</select></label></div><p class="muted">${qs.length} câu | ${qs.reduce((n,q)=>n+(q.fields?.length||1),0)} phần trả lời | ${correct}/${qs.length} câu đúng trọn vẹn | ${points(attempted.reduce((n,q)=>n+state.results[q.id].points,0))}/${qs.reduce((n,q)=>n+q.pts,0)} điểm</p>`;
   let pool=null;
-  for(const q of qs){if(q.pool!==pool){pool=q.pool;html+=`<h2 class="pool-heading">${escape(DATA.pools.find(p=>p.id===pool).title)}</h2>`;}html+=card(q,'review');}
+  for(const q of qs){if(view!=='review'&&q.pool!==pool){pool=q.pool;html+=`<h2 class="pool-heading">${escape(DATA.pools.find(p=>p.id===pool).title)}</h2>`;}html+=card(q,'review');}
   if(!qs.length)html+='<div class="empty">Chưa có câu phù hợp trong bộ đang chọn.</div>';
   app.innerHTML=html;
  }
@@ -99,11 +112,12 @@ if(typeof document!=='undefined'){
   if(view!=='review')return;
   const qs=selectedQuestions(),dialog=document.getElementById('refresh-dialog');if(!qs.length||dialog.open)return;
   const scope=state.pool==='all'?'All pools':'Pool '+state.pool;
-  document.getElementById('refresh-description').textContent=`Làm lại ${qs.length} câu Review trong ${scope}? Câu trả lời và điểm Review của bộ này sẽ được xóa. Lịch sử câu sai và bài Quiz đã lưu được giữ lại.`;
+  document.getElementById('refresh-description').textContent=`Làm lại và trộn thứ tự ${qs.length} câu Review trong ${scope}? Câu trả lời và điểm Review của bộ này sẽ được xóa. Lịch sử câu sai và bài Quiz đã lưu được giữ lại.`;
   dialog.returnValue='cancel';
   const approved=await new Promise(resolve=>{dialog.addEventListener('close',()=>resolve(dialog.returnValue==='ok'),{once:true});dialog.showModal();});
   if(!approved||view!=='review')return;
   for(const q of qs){delete state.answers[q.id];delete state.results[q.id];}
+  state.reviewOrder=Chapter6Core.shuffle(questions.map(q=>q.id));
   save();show('review');window.scrollTo(0,0);
  }
  async function resetProgress(){

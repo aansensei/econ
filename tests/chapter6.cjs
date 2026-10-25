@@ -4,15 +4,17 @@ const root=path.resolve(__dirname,'..'),core=require(path.join(root,'chapter6.js
 const dataCode=fs.readFileSync(path.join(root,'chapter6-data.js'),'utf8'),main=fs.readFileSync(path.join(root,'chapter6.js'),'utf8');
 const audit=JSON.parse(fs.readFileSync(path.join(root,'chapter6-assets/source-audit.json'),'utf8'));
 const storage=new Map([['econ302_stats','{"existing":{"attempts":2}}'],['econ302_midterm_session','{"existing":true}']]);
-function load(hash='#review'){
+function load(hash='#review',random=Math.random){
  const nodes=new Map(),timers={cleared:[]};
  function node(id){if(!nodes.has(id))nodes.set(id,{innerHTML:'',hidden:false,handlers:{},children:[],classList:{toggle(){}},addEventListener(name,fn){this.handlers[name]=fn;},querySelector(){return null;},append(child){this.children.push(child);},setAttribute(){},scrollIntoView(){},showModal(){this.open=true;},close(value){this.returnValue=value;this.open=false;this.handlers.close?.();}});return nodes.get(id);}
- const context=vm.createContext({window:{scrollTo(){}},document:{getElementById:node,querySelectorAll(){return [];},createElement(){return node('warning');}},location:{hash},localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v)},setInterval(){return 1;},clearInterval:id=>timers.cleared.push(id),console});
+ const context=vm.createContext({Math:Object.assign(Object.create(Math),{random}),window:{scrollTo(){}},document:{getElementById:node,querySelectorAll(){return [];},createElement(){return node('warning');}},location:{hash},localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v)},setInterval(){return 1;},clearInterval:id=>timers.cleared.push(id),console});
  vm.runInContext(dataCode,context);const end=main.lastIndexOf('}');
  vm.runInContext(main.slice(0,end)+'globalThis.testAPI={selectedQuestions,show,check,start,submit,card,getState:()=>state};'+main.slice(end),context);
  return {api:context.testAPI,data:JSON.parse(JSON.stringify(context.window.CHAPTER6_DATA)),node,location:context.location,timers};
 }
-let model=load();const data=model.data,questions=data.questions,mcq=questions.filter(q=>q.type==='mcq'),shocks=questions.filter(q=>q.type==='shock');
+let model=load('#review',()=>0);const data=model.data,questions=data.questions,mcq=questions.filter(q=>q.type==='mcq'),shocks=questions.filter(q=>q.type==='shock');
+const sample=['a','b','c','d'];assert.deepEqual(core.shuffle(sample,()=>0),['b','c','d','a']);assert.deepEqual(sample,['a','b','c','d']);
+assert.deepEqual(core.shuffle([],()=>0),[]);assert.deepEqual(core.shuffle(['a'],()=>0),['a']);
 assert.equal(data.source.sha256,'ddce070a20ba573860ed2efa0db939beb8551286df35ad6cadffb491dad58e38');
 assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(root,data.source.url))).digest('hex'),data.source.sha256);
 assert.equal(data.source.pages,9);assert.equal(questions.length,23);assert.equal(new Set(questions.map(q=>q.id)).size,23);assert.equal(data.pools.length,6);
@@ -47,14 +49,21 @@ for(let trial=0;trial<100;trial++){
  for(let pool=1;pool<=5;pool++)assert.equal(items.filter(q=>q.pool===pool).length,1);assert.equal(items.filter(q=>q.pool===6).length,5);
 }
 assert(model.node('app').innerHTML.includes('23 câu | 73 phần trả lời'));assert(model.node('app').innerHTML.includes('43 điểm'));
-assert(model.node('app').innerHTML.indexOf('Pool 1, Question 1')<model.node('app').innerHTML.indexOf('Pool 1, Question 2'));
+const reviewIds=()=>Array.from(model.api.selectedQuestions(),q=>q.id),initialOrder=reviewIds();
+assert.deepEqual(initialOrder,questions.slice(1).concat(questions[0]).map(q=>q.id));
+assert.deepEqual(Array.from(model.node('app').innerHTML.matchAll(/data-q="([^"]+)"/g),m=>m[1]),initialOrder);
+assert(!model.node('app').innerHTML.includes('class="pool-heading"'));assert(model.node('app').innerHTML.includes('Câu hỏi được trộn ngẫu nhiên'));
 const homeModel=load('');assert.equal(homeModel.location.hash,'home');
 assert(homeModel.node('app').innerHTML.includes('Ch 6 Potential Quiz'));
 for(const label of ['Gradeable Questions','Attempted','Accuracy','Mastered (Last ✓)','Review Mode','Quiz Mode','Review Mistakes','Original PDF'])assert(homeModel.node('app').innerHTML.includes(label));
 assert(homeModel.node('app').innerHTML.includes('id="s-total">23</div>'));
 const shock=shocks[0],state=model.api.getState();state.answers[shock.id]=shock.fields.map(f=>f.ans);state.answers[shock.id][0]=(shock.fields[0].ans+1)%4;
 model.api.check(shock.id);assert.equal(state.results[shock.id].points,2.5);assert(model.node('app').innerHTML.includes('Đúng một phần: 2.5/3 điểm'));assert.equal(state.history[shock.id].wrong,1);
-model.api.check(shock.id);assert.equal(state.history[shock.id].attempts,1);
+assert.deepEqual(reviewIds(),initialOrder);model.api.show('home');model.api.show('review');assert.deepEqual(reviewIds(),initialOrder);
+model=load('#review');assert.deepEqual(reviewIds(),initialOrder);
+model.node('app').handlers.change({target:{id:'pool-filter',value:'6'}});assert.deepEqual(reviewIds(),initialOrder.filter(id=>mcq.some(q=>q.id===id)));
+model.node('app').handlers.change({target:{id:'pool-filter',value:'all'}});assert.deepEqual(reviewIds(),initialOrder);
+model.api.check(shock.id);assert.equal(model.api.getState().history[shock.id].attempts,1);
 model=load('#mistakes');assert.equal(model.api.selectedQuestions().length,1);assert.equal(model.api.getState().results[shock.id].points,2.5);
 delete model.api.getState().results[shock.id];model.api.getState().answers[shock.id]=shock.fields.map(f=>f.ans);model.api.check(shock.id);assert.equal(model.api.getState().history[shock.id].wrong,1);assert.equal(model.api.selectedQuestions().length,1);
 model.api.show('home');
@@ -88,7 +97,7 @@ for(const id of quiz.ids){const q=questions.find(q=>q.id===id);quiz.answers[id]=
  assert(model.timers.cleared.length>clearedBefore);assert.equal(model.node('clock').hidden,true);assert.equal(model.location.hash,'home');
  const emptyState={answers:{},results:{},history:{},pool:'all',quiz:null};
  assert.deepEqual(JSON.parse(storage.get('econ302_ch6_v1')),emptyState);
- model=load('#review');assert.deepEqual(JSON.parse(JSON.stringify(model.api.getState())),emptyState);
+ model=load('#review');const {reviewOrder,...resetState}=JSON.parse(JSON.stringify(model.api.getState()));assert.deepEqual(resetState,emptyState);assert.equal(new Set(reviewOrder).size,23);
  assert(model.node('app').innerHTML.includes('0/23 câu đúng trọn vẹn'));assert(!model.node('app').innerHTML.includes('class="feedback'));
  model.api.getState().answers[shock.id]=shock.fields.map(f=>f.ans);model.api.check(shock.id);
  resetting=model.node('reset-progress').handlers.click();model.node('reset-dialog').close('ok');await resetting;
@@ -111,11 +120,13 @@ for(const id of quiz.ids){const q=questions.find(q=>q.id===id);quiz.answers[id]=
  refreshing=clickRefresh();assert.equal(model.node('refresh-dialog').returnValue,'cancel');model.node('refresh-dialog').close('');await refreshing;
  assert.equal(JSON.stringify(model.api.getState()),beforeRefresh);
  refreshing=clickRefresh();model.node('refresh-dialog').close('ok');await refreshing;
+ const refreshedOrder=Array.from(model.api.getState().reviewOrder);assert.equal(new Set(refreshedOrder).size,23);assert(refreshedOrder.every(id=>questions.some(q=>q.id===id)));
  for(const q of mcq){assert.equal(model.api.getState().answers[q.id],undefined);assert.equal(model.api.getState().results[q.id],undefined);}
  assert.equal(model.api.getState().results[shock.id].points,2.5);assert.equal(model.api.getState().pool,'6');assert.equal(model.location.hash,'review');
  assert.equal(JSON.stringify(model.api.getState().history),historyBeforeRefresh);assert.equal(JSON.stringify(model.api.getState().quiz),quizBeforeRefresh);
  assert(model.node('app').innerHTML.includes('0/13 câu đúng trọn vẹn'));
  model=load('#review');assert.equal(model.api.getState().pool,'6');assert.equal(model.api.getState().answers[mcq[1].id],undefined);
+ assert.deepEqual(reviewIds(),refreshedOrder.filter(id=>mcq.some(q=>q.id===id)));
  assert.equal(JSON.stringify(model.api.getState().history),historyBeforeRefresh);assert.equal(JSON.stringify(model.api.getState().quiz),quizBeforeRefresh);
  for(const next of ['home','mistakes','source','quiz','session']){model.api.show(next);assert(!model.node('app').innerHTML.includes('data-refresh'));await clickRefresh();assert.equal(model.node('refresh-dialog').open,undefined);}
  model.api.getState().pool='all';model.api.show('review');
@@ -126,7 +137,10 @@ for(const id of quiz.ids){const q=questions.find(q=>q.id===id);quiz.answers[id]=
  await model.api.submit(true);const submittedQuiz=JSON.stringify(model.api.getState().quiz),submittedHistory=JSON.stringify(model.api.getState().history);
  model.api.show('review');refreshing=clickRefresh();model.node('refresh-dialog').close('ok');await refreshing;
  assert.equal(Object.keys(model.api.getState().results).length,0);assert.equal(JSON.stringify(model.api.getState().quiz),submittedQuiz);assert.equal(JSON.stringify(model.api.getState().history),submittedHistory);
+ const invalidOrderState=JSON.parse(storage.get('econ302_ch6_v1'));invalidOrderState.reviewOrder=questions.map(()=>questions[0].id);invalidOrderState.answers[mcq[0].id]=mcq[0].ans;
+ storage.set('econ302_ch6_v1',JSON.stringify(invalidOrderState));model=load('#review',()=>0);
+ assert.equal(new Set(reviewIds()).size,23);assert.equal(model.api.getState().answers[mcq[0].id],mcq[0].ans);assert.equal(JSON.stringify(model.api.getState().quiz),submittedQuiz);
  assert.equal(storage.get('econ302_stats'),'{"existing":{"attempts":2}}');assert.equal(storage.get('econ302_midterm_session'),'{"existing":true}');
  for(const file of ['index.html','Econ302_Ch1-4_Quiz_Study.html','midterm.html'])assert(fs.readFileSync(path.join(root,file),'utf8').includes('href="chapter6.html"'));
- console.log('PASS: source wording and keys, grading, quiz/timer/storage, reset, Review-only refresh confirmation/cancel/dismiss/reload, pool isolation, preserved mistake history and active/submitted quizzes.');
+ console.log('PASS: source wording/keys, grading, saved quiz/reset/refresh, shuffled Review without pool grouping, stable order across grading/filter/reload, invalid order recovery, preserved mistake history and quizzes.');
 })().catch(error=>{console.error(error);process.exitCode=1;});
