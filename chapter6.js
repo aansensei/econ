@@ -61,7 +61,7 @@ if(typeof document!=='undefined'){
  }
  function review(){
   const qs=selectedQuestions(),attempted=qs.filter(q=>state.results[q.id]),correct=attempted.filter(q=>state.results[q.id].correct).length;
-  let html=`<div class="section-top"><div><p class="kicker">Module 2 | Chapter 6</p><h1>${view==='mistakes'?'Câu hay sai':'Chapter 6 Potential Quiz'}</h1></div><a class="btn small secondary" href="${sourceUrl(1)}" target="_blank" rel="noopener">Mở PDF gốc</a></div><p>Câu hỏi, lựa chọn và đáp án giữ theo bản PDF. Thứ tự câu và các lựa chọn giữ như nguồn. Mỗi biến trong Pools 1 đến 5 được chấm ½ điểm.</p>`;
+  let html=`<div class="section-top"><div><p class="kicker">Module 2 | Chapter 6</p><h1>${view==='mistakes'?'Câu hay sai':'Chapter 6 Potential Quiz'}</h1></div><div class="actions">${view==='review'?'<button class="btn small secondary" data-refresh>Refresh ↺</button>':''}<a class="btn small secondary" href="${sourceUrl(1)}" target="_blank" rel="noopener">Mở PDF gốc</a></div></div><p>Câu hỏi, lựa chọn và đáp án giữ theo bản PDF. Thứ tự câu và các lựa chọn giữ như nguồn. Mỗi biến trong Pools 1 đến 5 được chấm ½ điểm.</p>`;
   if(view==='mistakes')html+='<p class="draft-notice">Giữ các câu từng làm sai, kể cả khi lần làm sau đã đúng.</p>';
   html+=`<div class="filters chapter6-filter"><label>Pool<select id="pool-filter" aria-label="Pool"><option value="all">All pools</option>${DATA.pools.map(pool=>`<option value="${pool.id}" ${state.pool===String(pool.id)?'selected':''}>${escape(pool.title.replace(/\n/g,' '))}</option>`).join('')}</select></label></div><p class="muted">${qs.length} câu | ${qs.reduce((n,q)=>n+(q.fields?.length||1),0)} phần trả lời | ${correct}/${qs.length} câu đúng trọn vẹn | ${points(attempted.reduce((n,q)=>n+state.results[q.id].points,0))}/${qs.reduce((n,q)=>n+q.pts,0)} điểm</p>`;
   let pool=null;
@@ -95,6 +95,17 @@ if(typeof document!=='undefined'){
   document.getElementById('clock').hidden=!(view==='session'&&state.quiz&&!state.quiz.submitted);
  }
  function record(q,result){const history=state.history[q.id]||{attempts:0,wrong:0};state.history[q.id]={attempts:history.attempts+1,wrong:history.wrong+(result.correct?0:1)};}
+ async function refreshReview(){
+  if(view!=='review')return;
+  const qs=selectedQuestions(),dialog=document.getElementById('refresh-dialog');if(!qs.length||dialog.open)return;
+  const scope=state.pool==='all'?'All pools':'Pool '+state.pool;
+  document.getElementById('refresh-description').textContent=`Làm lại ${qs.length} câu Review trong ${scope}? Câu trả lời và điểm Review của bộ này sẽ được xóa. Lịch sử câu sai và bài Quiz đã lưu được giữ lại.`;
+  dialog.returnValue='cancel';
+  const approved=await new Promise(resolve=>{dialog.addEventListener('close',()=>resolve(dialog.returnValue==='ok'),{once:true});dialog.showModal();});
+  if(!approved||view!=='review')return;
+  for(const q of qs){delete state.answers[q.id];delete state.results[q.id];}
+  save();show('review');window.scrollTo(0,0);
+ }
  async function resetProgress(){
   const dialog=document.getElementById('reset-dialog');if(dialog.open)return;
   dialog.returnValue='cancel';
@@ -128,7 +139,7 @@ if(typeof document!=='undefined'){
   else{const a=Array.isArray(answers[id])?answers[id].slice():Array(q.fields.length).fill(null);a[Number(el.dataset.field)]=el.value===''?null:Number(el.value);answers[id]=a;}
   save();
  });
- app.addEventListener('click',event=>{const button=event.target.closest('button');if(!button)return;const d=button.dataset;if(d.jump)document.getElementById('q-'+d.jump).scrollIntoView({behavior:'smooth',block:'start'});else if('homeReview'in d||'homeMistakes'in d){state.pool='all';save();show('homeReview'in d?'review':'mistakes');}else if(d.view)show(d.view);else if(d.check)check(d.check);else if(d.retry){delete state.results[d.retry];save();show(view);}else if('start'in d)start();else if('resume'in d){show('session');startClock();}else if('submit'in d)submit();});
+ app.addEventListener('click',event=>{const button=event.target.closest('button');if(!button)return;const d=button.dataset;if(d.jump)document.getElementById('q-'+d.jump).scrollIntoView({behavior:'smooth',block:'start'});else if('homeReview'in d||'homeMistakes'in d){state.pool='all';save();show('homeReview'in d?'review':'mistakes');}else if('refresh'in d)return refreshReview();else if(d.view)show(d.view);else if(d.check)check(d.check);else if(d.retry){delete state.results[d.retry];save();show(view);}else if('start'in d)start();else if('resume'in d){show('session');startClock();}else if('submit'in d)submit();});
  document.querySelectorAll('nav button[data-view]').forEach(button=>button.addEventListener('click',()=>show(button.dataset.view)));
  document.getElementById('reset-progress').addEventListener('click',resetProgress);
  document.getElementById('submit-top').addEventListener('click',()=>submit());
