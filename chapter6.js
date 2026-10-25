@@ -89,12 +89,22 @@ if(typeof document!=='undefined'){
  function show(next){
   view=next;
   app.classList.toggle('home-view',view==='home');
-  document.querySelectorAll('nav button').forEach(button=>button.classList.toggle('active',button.dataset.view===(view==='session'?'quiz':view)));
+  document.querySelectorAll('nav button[data-view]').forEach(button=>button.classList.toggle('active',button.dataset.view===(view==='session'?'quiz':view)));
   if(view==='home')home();else if(view==='source')source();else if(view==='quiz')quizSetup();else if(view==='session')renderQuiz();else review();
   location.hash=view;
   document.getElementById('clock').hidden=!(view==='session'&&state.quiz&&!state.quiz.submitted);
  }
  function record(q,result){const history=state.history[q.id]||{attempts:0,wrong:0};state.history[q.id]={attempts:history.attempts+1,wrong:history.wrong+(result.correct?0:1)};}
+ async function resetProgress(){
+  const dialog=document.getElementById('reset-dialog');if(dialog.open)return;
+  dialog.returnValue='cancel';
+  const approved=await new Promise(resolve=>{dialog.addEventListener('close',()=>resolve(dialog.returnValue==='ok'),{once:true});dialog.showModal();});
+  if(!approved)return;
+  clearInterval(tick);tick=null;
+  const submitDialog=document.getElementById('confirm-dialog');if(submitDialog.open)submitDialog.close('cancel');
+  state={answers:{},results:{},history:{},pool:'all',quiz:null};save();
+  show(view==='session'?'home':view);window.scrollTo(0,0);
+ }
  function start(){if(state.quiz&&!state.quiz.submitted)return;state.quiz={ids:Chapter6Core.draw(questions),answers:{},results:{},deadline:Date.now()+1800000,submitted:false};save();show('session');startClock();window.scrollTo(0,0);}
  async function submit(expired=false){
   const session=state.quiz;if(!session||session.submitted)return;
@@ -119,7 +129,8 @@ if(typeof document!=='undefined'){
   save();
  });
  app.addEventListener('click',event=>{const button=event.target.closest('button');if(!button)return;const d=button.dataset;if(d.jump)document.getElementById('q-'+d.jump).scrollIntoView({behavior:'smooth',block:'start'});else if('homeReview'in d||'homeMistakes'in d){state.pool='all';save();show('homeReview'in d?'review':'mistakes');}else if(d.view)show(d.view);else if(d.check)check(d.check);else if(d.retry){delete state.results[d.retry];save();show(view);}else if('start'in d)start();else if('resume'in d){show('session');startClock();}else if('submit'in d)submit();});
- document.querySelectorAll('nav button').forEach(button=>button.addEventListener('click',()=>show(button.dataset.view)));
+ document.querySelectorAll('nav button[data-view]').forEach(button=>button.addEventListener('click',()=>show(button.dataset.view)));
+ document.getElementById('reset-progress').addEventListener('click',resetProgress);
  document.getElementById('submit-top').addEventListener('click',()=>submit());
  const initial=location.hash.slice(1);show(['home','review','mistakes','source','quiz','session'].includes(initial)?initial:'home');
  if(state.quiz&&!state.quiz.submitted)startClock();

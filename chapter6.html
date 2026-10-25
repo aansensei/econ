@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="midterm.css?v=20261012.2">
 <link rel="stylesheet" href="chapter6.css?v=20261022.2">
 <script defer src="chapter6-data.js?v=20261022.1"></script>
-<script defer src="chapter6.js?v=20261022.2"></script>
+<script defer src="chapter6.js?v=20261025.1"></script>
 </head>
 <body>
 <div class="study-header">
@@ -22,12 +22,14 @@
  <button data-view="quiz">⏱ Quiz</button>
  <button data-view="mistakes">❌ Mistakes</button>
  <button data-view="source">📄 PDF gốc</button>
+ <button id="reset-progress">↻ Reset tiến độ</button>
 </nav>
 </div>
 <p id="storage-warning" class="warning" role="status" hidden>Trình duyệt không cho lưu dữ liệu. Tiến độ trong lần mở này vẫn dùng được, nhưng có thể mất khi đóng trang.</p>
 <aside id="clock" hidden><span>Chapter 6 Quiz</span><strong id="clock-time"></strong><button id="submit-top">Nộp bài</button></aside>
 <main id="app" aria-live="polite"></main>
 <dialog id="confirm-dialog" aria-labelledby="confirm-title"><form method="dialog"><h2 id="confirm-title">Nộp bài Chapter 6?</h2><p>Câu chưa trả lời được tính 0 điểm. Sau khi nộp, bài được lưu để xem lại.</p><div class="actions"><button class="btn secondary" value="cancel">Tiếp tục làm</button><button class="btn" value="ok">Nộp bài</button></div></form></dialog>
+<dialog id="reset-dialog" aria-labelledby="reset-title" aria-describedby="reset-description"><form method="dialog"><h2 id="reset-title">Reset tiến độ Chapter 6?</h2><p id="reset-description">Xóa toàn bộ câu trả lời, điểm, lịch sử câu sai và bài Quiz đã lưu của Chapter 6 trên trình duyệt này. Thao tác không thể hoàn tác và chỉ áp dụng cho Chapter 6.</p><div class="actions"><button class="btn secondary" value="cancel" autofocus>Hủy</button><button class="btn" value="ok">Reset Chapter 6</button></div></form></dialog>
 <footer>Chapter 6 Potential Quiz. Câu hỏi, lựa chọn và key giữ theo PDF gốc. Tiến độ Chapter 6 được lưu riêng.</footer>
 <noscript>Cần bật JavaScript để luyện và lưu tiến độ.</noscript>
 </body>

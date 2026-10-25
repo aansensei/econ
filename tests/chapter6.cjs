@@ -5,12 +5,12 @@ const dataCode=fs.readFileSync(path.join(root,'chapter6-data.js'),'utf8'),main=f
 const audit=JSON.parse(fs.readFileSync(path.join(root,'chapter6-assets/source-audit.json'),'utf8'));
 const storage=new Map([['econ302_stats','{"existing":{"attempts":2}}'],['econ302_midterm_session','{"existing":true}']]);
 function load(hash='#review'){
- const nodes=new Map();
+ const nodes=new Map(),timers={cleared:[]};
  function node(id){if(!nodes.has(id))nodes.set(id,{innerHTML:'',hidden:false,handlers:{},children:[],classList:{toggle(){}},addEventListener(name,fn){this.handlers[name]=fn;},querySelector(){return null;},append(child){this.children.push(child);},setAttribute(){},scrollIntoView(){},showModal(){this.open=true;},close(value){this.returnValue=value;this.open=false;this.handlers.close?.();}});return nodes.get(id);}
- const context=vm.createContext({window:{scrollTo(){}},document:{getElementById:node,querySelectorAll(){return [];},createElement(){return node('warning');}},location:{hash},localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v)},setInterval(){return 1;},clearInterval(){},console});
+ const context=vm.createContext({window:{scrollTo(){}},document:{getElementById:node,querySelectorAll(){return [];},createElement(){return node('warning');}},location:{hash},localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v)},setInterval(){return 1;},clearInterval:id=>timers.cleared.push(id),console});
  vm.runInContext(dataCode,context);const end=main.lastIndexOf('}');
  vm.runInContext(main.slice(0,end)+'globalThis.testAPI={selectedQuestions,show,check,start,submit,card,getState:()=>state};'+main.slice(end),context);
- return {api:context.testAPI,data:JSON.parse(JSON.stringify(context.window.CHAPTER6_DATA)),node,location:context.location};
+ return {api:context.testAPI,data:JSON.parse(JSON.stringify(context.window.CHAPTER6_DATA)),node,location:context.location,timers};
 }
 let model=load();const data=model.data,questions=data.questions,mcq=questions.filter(q=>q.type==='mcq'),shocks=questions.filter(q=>q.type==='shock');
 assert.equal(data.source.sha256,'ddce070a20ba573860ed2efa0db939beb8551286df35ad6cadffb491dad58e38');
@@ -73,7 +73,28 @@ for(const id of quiz.ids){const q=questions.find(q=>q.id===id);quiz.answers[id]=
  model=load('#session');assert(model.node('app').innerHTML.includes('20/20 điểm'));
  model.api.show('home');assert(model.node('app').innerHTML.includes('View Last Quiz'));
  model.node('app').handlers.click({target:{closest(){return {dataset:{homeReview:''}};}}});assert.equal(model.api.getState().pool,'all');assert.equal(model.api.selectedQuestions().length,23);assert.equal(model.location.hash,'review');
+ const html=fs.readFileSync(path.join(root,'chapter6.html'),'utf8');
+ assert(html.includes('id="reset-progress"'));assert(html.includes('id="reset-dialog"'));assert(html.includes('value="cancel" autofocus'));
+ model.api.start();const beforeReset=JSON.stringify(model.api.getState()),savedBeforeReset=storage.get('econ302_ch6_v1');
+ const resetDialog=model.node('reset-dialog');
+ let resetting=model.node('reset-progress').handlers.click();assert.equal(resetDialog.open,true);
+ await model.node('reset-progress').handlers.click();assert.equal(JSON.stringify(model.api.getState()),beforeReset);
+ resetDialog.close('cancel');await resetting;
+ assert.equal(JSON.stringify(model.api.getState()),beforeReset);assert.equal(storage.get('econ302_ch6_v1'),savedBeforeReset);
+ resetting=model.node('reset-progress').handlers.click();assert.equal(resetDialog.returnValue,'cancel');resetDialog.close('');await resetting;
+ assert.equal(JSON.stringify(model.api.getState()),beforeReset);
+ const clearedBefore=model.timers.cleared.length;
+ resetting=model.node('reset-progress').handlers.click();resetDialog.close('ok');await resetting;
+ assert(model.timers.cleared.length>clearedBefore);assert.equal(model.node('clock').hidden,true);assert.equal(model.location.hash,'home');
+ const emptyState={answers:{},results:{},history:{},pool:'all',quiz:null};
+ assert.deepEqual(JSON.parse(storage.get('econ302_ch6_v1')),emptyState);
+ model=load('#review');assert.deepEqual(JSON.parse(JSON.stringify(model.api.getState())),emptyState);
+ assert(model.node('app').innerHTML.includes('0/23 câu đúng trọn vẹn'));assert(!model.node('app').innerHTML.includes('class="feedback'));
+ model.api.getState().answers[shock.id]=shock.fields.map(f=>f.ans);model.api.check(shock.id);
+ resetting=model.node('reset-progress').handlers.click();model.node('reset-dialog').close('ok');await resetting;
+ assert.equal(model.location.hash,'review');assert(model.node('app').innerHTML.includes('0/23 câu đúng trọn vẹn'));
+ model.api.show('mistakes');assert.equal(model.api.selectedQuestions().length,0);
  assert.equal(storage.get('econ302_stats'),'{"existing":{"attempts":2}}');assert.equal(storage.get('econ302_midterm_session'),'{"existing":true}');
  for(const file of ['index.html','Econ302_Ch1-4_Quiz_Study.html','midterm.html'])assert(fs.readFileSync(path.join(root,file),'utf8').includes('href="chapter6.html"'));
- console.log('PASS: full wording across all 9 pages, 60 bold-font keys, 13 MCQ keys, all partial-credit combinations, preserved source order, 20-point draw, 30-minute timer, saved progress, mistakes and legacy storage isolation.');
+ console.log('PASS: source wording and keys, partial-credit grading, quiz draw, timer, saved progress, mistakes, reset confirmation/cancel/dismiss/reload, active quiz reset and legacy storage isolation.');
 })().catch(error=>{console.error(error);process.exitCode=1;});
