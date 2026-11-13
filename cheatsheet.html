@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#c5050c">
+<title>ECON 302 | Cheatsheet Midterm 2</title>
+<link rel="stylesheet" href="midterm.css?v=20261012.2">
+<link rel="stylesheet" href="chapter6.css?v=20261022.2">
+<link rel="stylesheet" href="cheatsheet.css?v=20261112.1">
+</head>
+<body>
+<div class="study-header">
+<header>
+ <a class="brand" href="cheatsheet.html">ECON 302 <span>Cheatsheet Midterm 2</span></a>
+ <div class="chapter-links"><a class="chapter-link" href="practice.html">Luyện Midterm 2</a><a class="chapter-link" href="chapter6.html">Chapter 6</a><a class="chapter-link" href="chapter78.html">Chapter 7/8</a><a class="chapter-link" href="index.html">Chapters 1 to 5</a></div>
+</header>
+</div>
+<main class="cheat">
+<h1>Cheatsheet Midterm 2</h1>
+<p class="muted">Đề không có equation sheet, nên các công thức dưới đây phải thuộc. Mỗi công thức ghi kèm loại câu hỏi dùng nó.</p>
+<nav class="jump" aria-label="Chuyển nhanh">
+ <a href="#doc">Đọc đề</a><a href="#ch6">Ch 6</a><a href="#malthus">Malthus</a><a href="#solow">Solow</a><a href="#golden">Golden Rule</a><a href="#ch8">Ch 8</a><a href="#data">Data</a><a href="#trap">Bẫy</a>
+</nav>
+
+<h2 id="doc">0. Đọc đề: chữ nào là ký hiệu nào</h2>
+<div class="scroll"><table>
+<tr><th>Đề viết</th><th>Ký hiệu</th><th>Ghi nhớ</th></tr>
+<tr><td>output per worker, GDP per capita, standard of living, per-capita GDP</td><td><code>y = Y/N</code></td><td>cả bốn cụm là một thứ</td></tr>
+<tr><td>capital per worker, per-capita capital stock</td><td><code>k = K/N</code></td><td></td></tr>
+<tr><td>consumption per worker / per capita</td><td><code>c = (1-s)y</code></td><td>Malthus thì <code>c = y</code> (không tiết kiệm)</td></tr>
+<tr><td>saving rate</td><td><code>s</code></td><td>một tỉ lệ, hằng số trong Solow</td></tr>
+<tr><td>saving per worker / per capita</td><td><code>s·y = s·z·f(k)</code></td><td>chính là "flows in"; ở steady state bằng <code>(n+d)k</code></td></tr>
+<tr><td>per-capita depreciation, break-even investment</td><td><code>(n+d)k</code> (chỉ phần hao mòn: <code>d·k</code>)</td><td>"flows out"</td></tr>
+<tr><td>output, GDP, capital stock, consumption (không có "per")</td><td><code>Y, K, C</code> (tổng)</td><td>tăng theo <code>n</code> ở steady state</td></tr>
+<tr><td>growth</td><td>% thay đổi mỗi kì</td><td>khác với mức (level)</td></tr>
+</table></div>
+<div class="rule"><b>Exogenous (đề cho):</b> <code>s, n, d, z</code> (Solow); <code>z, Land, ȳ</code> (Malthus); <code>b</code> (Romer). <b>Endogenous (model ra):</b> <code>k, y, c, K, Y, C</code> (Solow); <code>N, y</code> (Malthus); <code>H, C</code> (Romer). Câu hỏi hay hỏi: "all exogenous except <b>capital stock</b>".</div>
+
+<h2 id="ch6">1. Chapter 6: tìm việc hai phía (two-sided search)</h2>
+<h3>Công thức phải thuộc</h3>
+<div class="scroll"><table>
+<tr><th>Công thức</th><th>Là gì</th></tr>
+<tr><td><code>j = A/Q</code></td><td>market tightness (vacancy trên người tìm việc)</td></tr>
+<tr><td><code>u = 1 - e·m(1,j)</code></td><td>unemployment rate</td></tr>
+<tr><td><code>v = 1 - e·m(1/j,1)</code></td><td>vacancy rate (tỉ lệ không lấp được)</td></tr>
+<tr><td><code>M = e·m(1,j)·Q</code>, <code>GDP = z·M</code></td><td>employment và GDP</td></tr>
+<tr><td><code>w = b + a(z-b)</code></td><td>Nash bargaining, không bằng MPN</td></tr>
+<tr><td><code>e·m(1/j,1) = k / [(1-a)(z-b)]</code></td><td>free entry, profit kì vọng bằng 0</td></tr>
+<tr><td>xác suất người tìm việc có việc <code>e·m(Q,A)/Q</code>; firm lấp được vị trí <code>e·m(Q,A)/A</code></td><td>đã ra ở đề s17, f19</td></tr>
+</table></div>
+<h3>10 shock (điền 6 ô, mỗi ô 0.5 điểm)</h3>
+<div class="scroll"><table>
+<tr><th>Shock</th><th>wages</th><th>labor force</th><th>employment</th><th>job openings</th><th>unemp. rate</th><th>GDP</th></tr>
+<tr><td>b tăng</td><td class="up">up</td><td>?</td><td>?</td><td>?</td><td class="up">up</td><td>?</td></tr>
+<tr><td>b giảm</td><td class="down">down</td><td>?</td><td>?</td><td>?</td><td class="down">down</td><td>?</td></tr>
+<tr><td>a (bargaining power) tăng</td><td class="up">up</td><td>?</td><td>?</td><td>?</td><td class="up">up</td><td>?</td></tr>
+<tr><td>a giảm</td><td class="down">down</td><td>?</td><td>?</td><td>?</td><td class="down">down</td><td>?</td></tr>
+<tr><td>z (Solow residual) tăng</td><td class="up">up</td><td class="up">up</td><td class="up">up</td><td class="up">up</td><td class="down">down</td><td class="up">up</td></tr>
+<tr><td>z giảm</td><td class="down">down</td><td class="down">down</td><td class="down">down</td><td class="down">down</td><td class="up">up</td><td class="down">down</td></tr>
+<tr><td>k (chi phí mở vị trí) giảm</td><td>same</td><td class="up">up</td><td class="up">up</td><td class="up">up</td><td class="down">down</td><td class="up">up</td></tr>
+<tr><td>k tăng</td><td>same</td><td class="down">down</td><td class="down">down</td><td class="down">down</td><td class="up">up</td><td class="down">down</td></tr>
+<tr><td>search efficiency e tăng</td><td>same</td><td class="up">up</td><td class="up">up</td><td class="up">up</td><td class="down">down</td><td class="up">up</td></tr>
+<tr><td>search efficiency e giảm</td><td>same</td><td class="down">down</td><td class="down">down</td><td class="down">down</td><td class="up">up</td><td class="down">down</td></tr>
+</table></div>
+<p class="muted">? là "change ambiguously".</p>
+<div class="rule"><b>Luật 1 (shock làm bánh to nhỏ: z, k, e):</b> labor force, employment, job openings, GDP cùng một chiều, unemployment ngược chiều. Chỉ <code>z</code> đổi wage (vì <code>w = b + a(z-b)</code> chỉ chứa b, a, z).<br><b>Luật 2 (shock chia bánh: b, a):</b> chỉ wage và unemployment chắc chắn, cùng chiều với shock. Bốn ô còn lại là ambiguous.</div>
+<h3>Hai khái niệm tránh nhầm với "ambiguous"</h3>
+<ul>
+<li>Job openings (số vị trí) khác vacancy rate <code>v</code>. Khi <code>e</code> đổi, <code>v</code> không đổi nhưng số job openings đổi.</li>
+<li>Beveridge curve: vacancy rate trên unemployment rate, dốc xuống. <b>k tăng</b>: <code>j</code> giảm, di chuyển sang phải. Work from home (dễ ghép hơn): Beveridge dịch trái, GDP tăng.</li>
+</ul>
+<h3>Fact hay ra</h3>
+<ul>
+<li>Unemployment tồn tại vì <b>mất thời gian tìm match tốt</b> (market friction).</li>
+<li>Firm lúc nào cũng "indifferent giữa mở vị trí và rút lui" (free entry). Profit kì vọng bằng 0, nhưng <b>sau khi match thì dương</b>.</li>
+<li>Wage <b>không</b> bằng MPN. Nash bargaining: firm không nhận một nửa, trả nhiều hơn b.</li>
+<li>Mô hình <b>không thỏa First Welfare Theorem</b>. Câu "tăng unemployment benefit luôn làm tăng unemployment rate" được cô tính là <b>đúng</b> (câu NOT true là "wage bằng MPN").</li>
+<li><code>b &gt; z</code> thì employment bằng 0. Minimum wage trên Nash wage: GDP ambiguous.</li>
+<li>Productivity tăng: xác suất firm tìm được worker <b>giảm</b> (<code>j</code> tăng). Skill-biased growth: wage cao hơn, unemployment thấp hơn cho nhóm STEM.</li>
+<li>Labor force participation <b>pro-cyclical</b>.</li>
+</ul>
+
+<h2 id="malthus">2. Chapter 7a: Malthus</h2>
+<div class="scroll"><table>
+<tr><th>Thứ</th><th>Công thức hoặc ý</th></tr>
+<tr><td>sản xuất</td><td><code>Y = z·Land^α·N^β</code> (α + β = 1), nên <code>y = z·(Land/N)^α</code></td></tr>
+<tr><td>dân số</td><td><code>y &gt; ȳ</code>: N tăng. <code>y &lt; ȳ</code>: N giảm</td></tr>
+<tr><td>cân bằng</td><td><code>y* = ȳ</code> và <code>N* = Land·(z/ȳ)^(1/α)</code></td></tr>
+<tr><td>exogenous / endogenous</td><td><code>z, Land, ȳ</code> / <code>N</code> (và y)</td></tr>
+</table></div>
+<h3>Long run so với trước cú sốc</h3>
+<div class="scroll"><table>
+<tr><th>Thay đổi vĩnh viễn</th><th>Population</th><th>Consumption per worker</th></tr>
+<tr><td>z tăng, hoặc thêm đất (Land tăng)</td><td class="up">tăng</td><td>không đổi</td></tr>
+<tr><td>z giảm, hoặc mất đất</td><td class="down">giảm</td><td>không đổi</td></tr>
+<tr><td>ȳ giảm (y tế tốt hơn, sống được với ít hơn)</td><td class="up">tăng</td><td class="down">giảm</td></tr>
+<tr><td>ȳ tăng</td><td class="down">giảm</td><td class="up">tăng</td></tr>
+<tr><td>nhà nước cấm đẻ (chặn dân số tăng lại)</td><td class="down">giảm</td><td class="up">tăng</td></tr>
+<tr><td>dịch bệnh, chiến tranh (một lần)</td><td>không đổi (hồi phục)</td><td>không đổi (chỉ tăng tạm thời)</td></tr>
+</table></div>
+<div class="rule"><b>Một câu để nhớ:</b> chuyện tốt chỉ thêm người, không thêm mức sống. Mức sống long run chỉ đổi khi <code>ȳ</code> đổi hoặc có chính sách chặn dân số.</div>
+<ul>
+<li>Malthus sai vì <b>capital tích lũy</b> (không cố định như đất) và <b>sinh con là lựa chọn</b>: giàu hơn thì tỉ lệ chết giảm và tỉ lệ sinh cũng giảm. Mô hình kém sau <b>Industrial Revolution</b>.</li>
+<li>Tăng trưởng dân số cao hơn: per capita GDP <b>giảm</b> ở cả Malthus và Solow.</li>
+<li>"Zero-sum": đất cố định, nước này được thì nước khác mất. Lời Malthus: mọi gain về TFP bị chia cho nhiều người hơn.</li>
+</ul>
+
+<h2 id="solow">3. Chapter 7b: Solow</h2>
+<h3>Hình ảnh bồn tắm</h3>
+<p>Nước vào = <code>s·z·f(k)</code> (saving per worker). Nước ra = <code>(n+d)·k</code>. Steady state là chỗ hai bên bằng nhau.</p>
+<div class="scroll"><table>
+<tr><th>Công thức</th><th>Dùng cho</th></tr>
+<tr><td><code>(n+d)·k* = s·z·f(k*)</code></td><td>steady state, tìm cái gì đổi k*</td></tr>
+<tr><td><code>Y = C + I</code> và <code>s·Y = I</code></td><td>tiết kiệm bằng đầu tư</td></tr>
+<tr><td><code>c = (1-s)·y</code></td><td>consumption mỗi người (mọi lúc)</td></tr>
+<tr><td><code>c = y - (n+d)·k</code></td><td>chỉ ở steady state, dùng tìm Golden Rule</td></tr>
+<tr><td><code>K' = (1-d)K + I</code>, đầu tư tăng x vĩnh viễn thì <code>ΔK = x/d</code></td><td>đã ra ở list Q55</td></tr>
+<tr><td><code>z = Y/F(K, N^d)</code></td><td>Solow residual: phần output không giải thích được bởi lao động và capital</td></tr>
+</table></div>
+<h3>Cái gì KHÔNG ĐỔI ở steady state</h3>
+<div class="scroll"><table>
+<tr><th>Đứng yên (per capita)</th><th>Vẫn tăng, theo tốc độ n</th></tr>
+<tr><td><code>k, y, c</code>, saving per worker <code>s·y</code>, <code>(n+d)k</code>, <code>mpk</code>, <code>s</code></td><td>tổng <code>K, Y, C, I</code></td></tr>
+<tr><td>growth của <code>y</code> bằng <b>0</b></td><td>growth của <code>Y</code> bằng <b>n</b></td></tr>
+</table></div>
+<h3>Cái gì đổi mức (level) ở long run</h3>
+<div class="scroll"><table>
+<tr><th>Thay đổi</th><th>k*</th><th>y*</th><th>Tốc độ tăng long run</th></tr>
+<tr><td>s tăng</td><td class="up">up</td><td class="up">up</td><td>y: 0 (không đổi)</td></tr>
+<tr><td>z tăng</td><td class="up">up</td><td class="up">up</td><td>y: 0</td></tr>
+<tr><td>n tăng</td><td class="down">down</td><td class="down">down</td><td>Y tăng nhanh hơn, y vẫn 0</td></tr>
+<tr><td>d tăng</td><td class="down">down</td><td class="down">down</td><td>y: 0</td></tr>
+</table></div>
+<div class="rule"><b>Nhớ:</b> <code>s</code> và <code>z</code> ở vế "nước vào" (tốt), <code>n</code> và <code>d</code> ở vế "nước ra" (xấu). Tăng trưởng mức sống lâu dài chỉ đến từ <b>công nghệ z</b>, nên chính sách giúp nước nghèo là mở cửa thương mại để lấy công nghệ.</div>
+<h3>Ngoài steady state</h3>
+<ul>
+<li>Nước nghèo (<code>k</code> thấp) tăng nhanh hơn nước giàu, và tốc độ <b>chậm dần</b> khi gần k*. Mức <code>k, y, c</code>, saving đều <b>tăng</b>, chỉ có tốc độ tăng giảm.</li>
+<li><code>s·z·f(k) &gt; (n+d)·k</code>: k tích lũy. Nhỏ hơn thì k giảm.</li>
+<li>Steady state ổn định vì <b>marginal return của capital giảm dần</b>.</li>
+<li>Một nước mất capital vì chiến tranh: long run về cùng steady state, đang hồi phục thì tăng trưởng nhanh hơn bình thường.</li>
+</ul>
+
+<h2 id="golden">4. Golden Rule</h2>
+<div class="scroll"><table>
+<tr><th>Ý</th><th>Nội dung</th></tr>
+<tr><td>tối đa cái gì</td><td><b>consumption per worker</b> (không phải y hay k)</td></tr>
+<tr><td>điều kiện</td><td><code>mpk = n + d</code></td></tr>
+<tr><td>n giảm</td><td><code>k_GR</code> <span class="up">tăng</span></td></tr>
+<tr><td>d tăng</td><td><code>k_GR</code> <span class="down">giảm</span> (và per-capita saving giảm)</td></tr>
+<tr><td>d giảm</td><td><code>k_GR</code> tăng. Cô trả lời: <code>s_GR</code> cũng tăng (cùng chiều với k_GR)</td></tr>
+</table></div>
+<div class="scroll"><table>
+<tr><th></th><th>Dưới Golden Rule (tiêu xài quá mức)</th><th>Trên Golden Rule (tiết kiệm quá mức)</th></tr>
+<tr><td>capital</td><td>thiếu</td><td>thừa</td></tr>
+<tr><td>mpk so với n + d</td><td><code>mpk &gt; n + d</code></td><td><code>mpk &lt; n + d</code></td></tr>
+<tr><td>nên làm</td><td><b>tăng</b> s</td><td><b>giảm</b> s</td></tr>
+<tr><td>consumption khi đổi s</td><td>giảm trước, tăng sau</td><td>tăng ngay và tăng mãi</td></tr>
+</table></div>
+<div class="trap"><b>Bẫy:</b> đề không nói trên hay dưới Golden Rule thì "s tăng, c ở steady state thế nào" là <b>ambiguous</b>. Còn y thì chắc chắn tăng khi s tăng.</div>
+
+<h2 id="ch8">5. Chapter 8: Romer (endogenous growth)</h2>
+<div class="scroll"><table>
+<tr><th>Thứ</th><th>Công thức hoặc ý</th></tr>
+<tr><td>sản xuất</td><td><code>Y = z·K^α·u^β·H^γ</code></td></tr>
+<tr><td>human capital</td><td><code>H' = b·(1-u)·H</code>. <code>u</code> = thời gian làm việc, <code>1-u</code> = thời gian học</td></tr>
+<tr><td>tăng trưởng</td><td>H tăng theo <b>b(1-u)</b> (đề f16 viết <code>b(1-u) - 1</code>): nhìn đáp án có b nhân (1-u)</td></tr>
+<tr><td>đường ln C</td><td>đường thẳng. <b>level</b> = điểm xuất phát, <b>slope</b> = <code>b(1-u)</code></td></tr>
+</table></div>
+<h3>Shock lên đường ln C</h3>
+<div class="scroll"><table>
+<tr><th>Thay đổi</th><th>Level hôm nay</th><th>Slope</th></tr>
+<tr><td>u giảm (học nhiều hơn)</td><td class="down">dịch xuống (C hôm nay thấp hơn)</td><td class="up">dốc hơn</td></tr>
+<tr><td>b tăng (school quality, internet access)</td><td>không đổi</td><td class="up">dốc hơn</td></tr>
+<tr><td>b giảm (mất học thời pandemic)</td><td>không đổi</td><td class="down">thoải hơn</td></tr>
+<tr><td>z tăng</td><td class="up">dịch lên</td><td>không đổi</td></tr>
+<tr><td>z giảm</td><td class="down">dịch xuống</td><td>không đổi</td></tr>
+<tr><td>thuế lump-sum lên C để trả giáo dục</td><td class="down">dịch xuống</td><td class="up">dốc hơn</td></tr>
+<tr><td>luật bắt học xong mới được làm (u giảm)</td><td class="down">dịch xuống</td><td class="up">dốc hơn</td></tr>
+</table></div>
+<h3>Hai nước giống hệt, chỉ khác một thứ</h3>
+<div class="scroll"><table>
+<tr><th>Khác nhau ở</th><th>Kết luận</th></tr>
+<tr><td>H ban đầu (A có nhiều hơn)</td><td><b>cùng tốc độ tăng</b>, A có level cao hơn</td></tr>
+<tr><td>b (A giáo dục hiệu quả hơn)</td><td>A tăng nhanh hơn (về lâu dài vượt B)</td></tr>
+<tr><td>u (A làm nhiều, học ít)</td><td>A cao hơn hôm nay nhưng chậm hơn, rồi B vượt</td></tr>
+</table></div>
+<h3>Khái niệm</h3>
+<ul>
+<li><b>Nonrival:</b> kiến thức không cạn khi nhiều người dùng. <b>H là local</b> (nằm trong con người), khác <code>z</code> là global.</li>
+<li><b>Externality:</b> lựa chọn của hộ ảnh hưởng thu nhập người xung quanh. Thị trường không tính lợi ích xã hội, nên có <b>vai trò cho chính sách</b>. Trợ cấp trường học vì externality dương. Người học giỏi thích sống chỗ người cũng học giỏi.</li>
+<li>Workers chia thời gian giữa market work và <b>tích lũy job skills (human capital)</b>. Giáo dục là một loại investment.</li>
+<li>Học nhiều hơn thì output <b>hôm nay giảm</b>, tăng trưởng sau đó tăng.</li>
+<li>Constant returns to scale. Consumption và H tăng cùng tốc độ.</li>
+<li><b>Romer so với Solow:</b> Solow cho hội tụ về tốc độ tăng, Romer thì chênh lệch thu nhập giữa các nước <b>tồn tại mãi</b>. Chính sách chỉ Romer có: đầu tư human capital.</li>
+</ul>
+
+<h2 id="data">6. Data (chỉ lấy những thứ có trong list và slide năm nay)</h2>
+<ul>
+<li><b>Asian Tigers:</b> Hong Kong, Singapore, South Korea, Taiwan (<b>không phải China</b>). Hội tụ nhờ mở cửa thương mại và tài chính.</li>
+<li><b>BRICS:</b> Brazil, Russia, India, China, South Africa. Tăng nhanh 1993 đến 2013, giờ chững vì tham nhũng và các lí do riêng.</li>
+<li><b>Forced savings</b> (Nga, Đông Âu 1950): tăng GDP một thời gian nhưng không bền (đúng như Solow dự đoán).</li>
+<li>Mở cửa thương mại: nước nghèo mở cửa tăng nhanh hơn. Nhiều rào cản thương mại thì lợi ích GDP thấp hơn và tuổi thọ ngắn hơn.</li>
+<li>Income per worker hội tụ giữa các nước <b>giàu</b>, nhiều nước nghèo thì không. Chênh lệch giữa các nước hiện <b>lớn hơn</b> trước Cách mạng công nghiệp.</li>
+<li>Climate: chi phí bão và hạn hán ở Mỹ tăng. Nước nghèo bị thiệt nhiều hơn nên hội tụ chậm đi. Trong Solow, thiệt hại capital là <code>d</code> tăng.</li>
+<li>Khác biệt TFP giữa các nước: learning by doing, rào cản tiếp nhận công nghệ, phân bổ yếu tố sản xuất. <b>Không</b> phải kích thước dân số.</li>
+<li>Investment rate dương với tăng trưởng, population growth âm với output per worker. Widening income distribution <b>không</b> dương với tăng trưởng.</li>
+<li>Mỹ: manufacturing employment giảm từ 1979 nhưng data không cho biết bao nhiêu do thương mại. Bang như Mississippi: ít năm học và thu nhập thấp hơn trung bình.</li>
+<li>Globalization: lợi nhờ chuyên môn hóa, cạnh tranh, tiếp cận vốn nước ngoài. Data không cho thấy "nghèo thì nghèo hơn".</li>
+</ul>
+
+<h2 id="trap">7. Bẫy hay gặp</h2>
+<div class="trap">
+<ul>
+<li><b>Mức và tốc độ:</b> s, d, z đổi mức y chứ không đổi tốc độ tăng long run.</li>
+<li><b>Per và tổng:</b> "output growth" không có "per" là tổng Y (bằng n). "Standard of living" là y.</li>
+<li><b>Long run so với trước:</b> cú sốc một lần (dịch bệnh, chiến tranh) về chỗ cũ. Chỉ thay đổi vĩnh viễn z, Land, ȳ mới đổi cân bằng.</li>
+<li><b>Golden Rule tối đa c</b>, không tối đa y. Đề không cho biết trên hay dưới thì c ambiguous.</li>
+<li><b>Job openings khác vacancy rate.</b> <b>e</b> và <b>k</b> không đổi wage.</li>
+<li><b>Đảo ngược:</b> đề cho kết quả, hỏi nguyên nhân (cô dùng ở Midterm 1). Tự hỏi: cú sốc nào cho đúng bộ kết quả này?</li>
+<li><b>Hai nước giống hệt:</b> H ban đầu khác thì cùng tốc độ tăng. Country có k cao hơn (Solow) thì tăng trưởng thấp hơn.</li>
+</ul>
+</div>
+</main>
+<footer>Cheatsheet dựa trên list Ch 6, Ch 7/8, các đề Midterm 2 cũ và ghi chú lecture. Đề không có equation sheet.</footer>
+</body>
+</html>

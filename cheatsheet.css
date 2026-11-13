@@ -1,0 +1,19 @@
+main.cheat{max-width:900px;margin:24px auto 60px;padding:0 16px}
+.jump{position:sticky;top:0;z-index:50;display:flex;gap:6px;flex-wrap:wrap;padding:10px 0;background:#f4f4f4}
+.jump a{padding:5px 12px;border:1px solid var(--line);border-radius:20px;background:white;text-decoration:none;font-size:.85rem;color:var(--ink)}
+.cheat h1{color:var(--red);font-size:1.6rem}
+.cheat h2{margin:34px 0 10px;padding-bottom:6px;border-bottom:3px solid var(--red);color:var(--red);scroll-margin-top:64px}
+.cheat h3{margin:20px 0 8px;font-size:1.02rem}
+.cheat table{width:100%;border-collapse:collapse;background:white;margin:8px 0 14px;font-size:.92rem}
+.cheat th,.cheat td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+.cheat th{background:#fff0f1;font-weight:700}
+.cheat .scroll{overflow-x:auto}
+.cheat code{font-family:Consolas,Menlo,monospace;background:#f1efe9;padding:1px 6px;border-radius:4px;font-size:.92em;white-space:nowrap}
+.cheat .rule{margin:10px 0;padding:10px 14px;border-left:4px solid var(--red);background:white;border-radius:0 8px 8px 0}
+.cheat .trap{margin:10px 0;padding:10px 14px;border-left:4px solid #b58c2a;background:#fff8e6;border-radius:0 8px 8px 0}
+.cheat .up{color:var(--green);font-weight:700}
+.cheat .down{color:var(--red);font-weight:700}
+.cheat ul{margin:6px 0 12px;padding-left:22px}
+.cheat li{margin:3px 0}
+@media print{.study-header,.jump,footer{display:none}.cheat h2{break-after:avoid}.cheat table{break-inside:avoid}}
+@media(max-width:600px){.cheat table{font-size:.84rem}.cheat th,.cheat td{padding:6px 7px}}
