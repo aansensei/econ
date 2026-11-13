@@ -1,0 +1,12 @@
+.shock-field.single{grid-template-columns:1fr}
+.shock-field .field-mark{grid-column:1/-1;font-size:.85rem;font-weight:600}
+.shock-field.answer .field-mark{color:var(--green)}
+.shock-field.wrong .field-mark{color:var(--red)}
+.shock-field .field-mark:empty{display:none}
+.shock-field.single select{grid-column:1/-1}
+.qchip{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:34px;border:1px solid #bbb;background:white;border-radius:6px;font-size:.8rem;color:var(--ink)}
+.qchip.ok{background:#edf7ef;border-color:var(--green)}
+.qchip.bad{background:#fff0f1;border-color:var(--red)}
+.qchip.current{outline:3px solid #d5a020;outline-offset:1px}
+.section-top .muted{margin:0}
+@media(max-width:650px){.shock-field:not(.single){grid-template-columns:1fr}}
