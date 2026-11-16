@@ -116,7 +116,10 @@
 <p>Nước vào = <code>s·z·f(k)</code> (saving per worker). Nước ra = <code>(n+d)·k</code>. Steady state là chỗ hai bên bằng nhau.</p>
 <div class="scroll"><table>
 <tr><th>Công thức</th><th>Dùng cho</th></tr>
-<tr><td><code>(n+d)·k* = s·z·f(k*)</code></td><td>steady state, tìm cái gì đổi k*</td></tr>
+<tr><td><code>k = K/N</code>, <code>y = Y/N = z·f(k)</code> (slide cô viết <code>f(k) = k^α</code>, tức <code>y = z·k^α</code>)</td><td>per worker: k là capital per worker, y là output per worker</td></tr>
+<tr><td><code>mpk = f'(k)</code></td><td>độ dốc của đường y. k tăng thì mpk giảm (diminishing returns)</td></tr>
+<tr><td><code>S/N = s·z·f(k)</code> (= <code>s·y</code>)</td><td>saving per capita, "nước vào bồn"</td></tr>
+<tr><td><code>(n+d)·k* = s·z·f(k*)</code></td><td>steady state, tìm cái gì đổi k*. Lúc đó <code>k' = k</code>. Vào lớn hơn ra thì k tăng, nhỏ hơn thì k giảm</td></tr>
 <tr><td><code>Y = C + I</code> và <code>s·Y = I</code></td><td>tiết kiệm bằng đầu tư</td></tr>
 <tr><td><code>c = (1-s)·y</code></td><td>consumption mỗi người (mọi lúc)</td></tr>
 <tr><td><code>c = y - (n+d)·k</code></td><td>chỉ ở steady state, dùng tìm Golden Rule</td></tr>
@@ -153,6 +156,7 @@
 <tr><th>Ý</th><th>Nội dung</th></tr>
 <tr><td>tối đa cái gì</td><td><b>consumption per worker</b> (không phải y hay k)</td></tr>
 <tr><td>điều kiện</td><td><code>mpk = n + d</code></td></tr>
+<tr><td>cách ra điều kiện</td><td>Ở steady state <code>c = z·f(k) - (n+d)·k</code>. Tối đa c: lấy đạo hàm theo k, <code>mpk - (n+d) = 0</code>. Trên đồ thị: slope của y bằng slope của <code>(n+d)k</code></td></tr>
 <tr><td>n giảm</td><td><code>k_GR</code> <span class="up">tăng</span></td></tr>
 <tr><td>d tăng</td><td><code>k_GR</code> <span class="down">giảm</span> (và per-capita saving giảm)</td></tr>
 <tr><td>d giảm</td><td><code>k_GR</code> tăng. Cô trả lời: <code>s_GR</code> cũng tăng (cùng chiều với k_GR)</td></tr>
@@ -171,10 +175,14 @@
 <h2 id="ch8">5. Chapter 8: Romer (endogenous growth)</h2>
 <div class="scroll"><table>
 <tr><th>Thứ</th><th>Công thức hoặc ý</th></tr>
-<tr><td>sản xuất</td><td><code>Y = z·K^α·u^β·H^γ</code></td></tr>
-<tr><td>human capital</td><td><code>H' = b·(1-u)·H</code>. <code>u</code> = thời gian làm việc, <code>1-u</code> = thời gian học</td></tr>
-<tr><td>tăng trưởng</td><td>H tăng theo <b>b(1-u)</b> (đề f16 viết <code>b(1-u) - 1</code>): nhìn đáp án có b nhân (1-u)</td></tr>
-<tr><td>đường ln C</td><td>đường thẳng. <b>level</b> = điểm xuất phát, <b>slope</b> = <code>b(1-u)</code></td></tr>
+<tr><td>sản xuất</td><td><code>Y = z·K^α·u^β·H^γ</code> (dạng tổng quát cô viết: <code>Y = f(z, K, N, H)</code>, <code>u</code> là phần thời gian dành cho lao động N)</td></tr>
+<tr><td>capital</td><td><code>K' = (1-d)·K + I</code> (giống Chapter 7)</td></tr>
+<tr><td>human capital</td><td><code>H' = b·(1-u)·H</code>. <code>u</code> = thời gian làm việc, <code>1-u</code> = thời gian học. Cô còn viết <code>H' = b(1-N)H</code>, cùng một thứ</td></tr>
+<tr><td>tăng trưởng exponential</td><td><code>H_t = [b(1-u)]^t · H_0</code>, nên H tăng đều theo <b>b(1-u)</b> (đề f16 viết <code>b(1-u) - 1</code>): nhìn đáp án có b nhân (1-u)</td></tr>
+<tr><td>C và H</td><td>C tăng <b>cùng tốc độ với H</b> (constant returns). Khác Solow: ở Solow tổng tăng theo n</td></tr>
+<tr><td>đường ln C</td><td>đường thẳng: <code>ln H_t = ln H_0 + t·ln[b(1-u)]</code>. <b>slope</b> phụ thuộc <code>b(1-u)</code> (lớn hơn thì dốc hơn). <b>level</b> (điểm xuất phát) phụ thuộc <code>z</code>, <code>u</code> (qua <code>u^β</code>) và <code>H_0</code></td></tr>
+<tr><td>ai quyết định</td><td><code>z</code>, <code>b</code> là <b>exogenous</b>. <code>u</code> là biến hộ gia đình <b>tự chọn</b> (chọn u để tối đa hóa consumption liên thời gian). <code>H</code>, <code>C</code> là kết quả</td></tr>
+<tr><td colspan="2" class="muted">Năm nay không có equation sheet, nên phải nhớ <code>H' = b(1-u)H</code>. Đề s23 có phát sheet này (kèm <code>Y = f(z,K,N,H)</code> và <code>K' = (1-d)K + I</code>).</td></tr>
 </table></div>
 <h3>Shock lên đường ln C</h3>
 <div class="scroll"><table>
