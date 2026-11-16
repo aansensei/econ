@@ -3,11 +3,11 @@ const ctx={window:{}};
 vm.createContext(ctx);
 vm.runInContext(fs.readFileSync('practice-data.js','utf8'),ctx);
 const P=ctx.window.PRACTICE,Q=P.questions;
-assert.strictEqual(Q.length,71);
-assert.strictEqual(new Set(Q.map(q=>q.id)).size,71);
+assert.strictEqual(Q.length,93);
+assert.strictEqual(new Set(Q.map(q=>q.id)).size,93);
 const bySet={};
 Q.forEach(q=>{bySet[q.set]=(bySet[q.set]||0)+1;});
-assert.deepStrictEqual(bySet,{a:20,b:18,c:20,d:7,e:6});
+assert.deepStrictEqual(bySet,{a:20,b:18,c:20,d:7,e:6,f:22});
 Q.forEach(q=>{
  assert(q.stem&&q.explain&&q.tag,q.id);
  assert(q.fields.length>=1,q.id);
