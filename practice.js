@@ -65,7 +65,7 @@ function renderHome(){
  const all=stats(Q);
  const wrap=el('div','chapter-home');
  wrap.append(el('h1','','Luyện Midterm 2: Malthus, Solow, Golden Rule và data'));
- wrap.append(el('p','home-subtitle',Q.length+' câu gom từ đề cũ, câu tự chế, câu viết lại theo kiểu cô và Ask Your Neighbor Ch 7. Tiến độ từng câu được lưu trên trình duyệt này, đóng trang rồi mở lại vẫn làm tiếp được.'));
+ wrap.append(el('p','home-subtitle',Q.length+' câu gom từ đề cũ, câu tự chế, câu viết lại theo kiểu cô và Ask Your Neighbor Ch 6 và Ch 7. Tiến độ từng câu được lưu trên trình duyệt này, đóng trang rồi mở lại vẫn làm tiếp được.'));
  const grid=el('div','stat-grid');
  grid.append(statCard(all.answered+' / '+all.count,'Đã làm'),statCard(pct(all.right,all.total)+'%','Ô đúng'),statCard(String(all.count-all.perfect-(all.count-all.answered)),'Câu sai'),statCard(String(all.count-all.answered),'Chưa làm'));
  wrap.append(grid);
